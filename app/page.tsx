@@ -161,75 +161,156 @@ export default function Home() {
         <section className="w-full border-y border-zinc-800/60 bg-zinc-950">
           <div className="max-w-6xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-10 items-stretch">
 
-            {/* Fake map */}
-            <div className="relative lg:w-3/5 min-h-[340px] rounded-2xl overflow-hidden border border-zinc-800 bg-[#0d1117] flex-shrink-0">
-              {/* Map grid lines */}
-              <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6b7280" strokeWidth="0.5"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-              </svg>
-              {/* Fake road lines */}
-              <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <line x1="0" y1="45%" x2="100%" y2="45%" stroke="#1f2937" strokeWidth="8"/>
-                <line x1="0" y1="70%" x2="100%" y2="70%" stroke="#1f2937" strokeWidth="5"/>
-                <line x1="28%" y1="0" x2="28%" y2="100%" stroke="#1f2937" strokeWidth="8"/>
-                <line x1="65%" y1="0" x2="65%" y2="100%" stroke="#1f2937" strokeWidth="5"/>
-                <line x1="0" y1="22%" x2="100%" y2="22%" stroke="#1f2937" strokeWidth="3"/>
-                <line x1="48%" y1="0" x2="48%" y2="100%" stroke="#1f2937" strokeWidth="3"/>
+            {/* Map */}
+            <div className="relative lg:w-3/5 min-h-[380px] rounded-2xl overflow-hidden border border-zinc-800 flex-shrink-0" style={{background:"#1a1f2e"}}>
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                {/* Base fill */}
+                <rect width="600" height="380" fill="#1a1f2e"/>
+
+                {/* Park / green areas */}
+                <rect x="320" y="180" width="90" height="60" rx="4" fill="#1e2d1e"/>
+                <rect x="30" y="260" width="70" height="50" rx="4" fill="#1e2d1e"/>
+                <rect x="440" y="60" width="60" height="40" rx="4" fill="#1e2d1e"/>
+
+                {/* Water */}
+                <path d="M0 310 Q80 300 160 315 Q240 330 320 310 Q400 295 480 310 Q540 320 600 305 L600 380 L0 380Z" fill="#111827" opacity="0.9"/>
+                <path d="M0 325 Q100 315 200 328 Q300 340 400 325 Q500 312 600 322" fill="none" stroke="#1e3a5f" strokeWidth="1.5"/>
+
+                {/* Major roads - arterials */}
+                {/* Horizontal major */}
+                <line x1="0" y1="155" x2="600" y2="155" stroke="#2d3748" strokeWidth="10"/>
+                <line x1="0" y1="155" x2="600" y2="155" stroke="#374151" strokeWidth="7"/>
+                {/* Vertical major */}
+                <line x1="195" y1="0" x2="195" y2="380" stroke="#2d3748" strokeWidth="10"/>
+                <line x1="195" y1="0" x2="195" y2="380" stroke="#374151" strokeWidth="7"/>
+                {/* Diagonal arterial - like MoPac */}
+                <path d="M120 0 Q150 80 165 155 Q178 230 170 380" fill="none" stroke="#374151" strokeWidth="8"/>
+                {/* Another diagonal */}
+                <path d="M600 100 Q520 140 460 155 Q380 170 300 200 Q220 230 160 310" fill="none" stroke="#374151" strokeWidth="6"/>
+
+                {/* Secondary roads */}
+                <line x1="0" y1="80" x2="600" y2="80" stroke="#252d3d" strokeWidth="4"/>
+                <line x1="0" y1="240" x2="600" y2="240" stroke="#252d3d" strokeWidth="4"/>
+                <line x1="0" y1="295" x2="600" y2="295" stroke="#252d3d" strokeWidth="3"/>
+                <line x1="320" y1="0" x2="320" y2="380" stroke="#252d3d" strokeWidth="4"/>
+                <line x1="450" y1="0" x2="450" y2="295" stroke="#252d3d" strokeWidth="4"/>
+                <line x1="80" y1="0" x2="80" y2="380" stroke="#252d3d" strokeWidth="3"/>
+
+                {/* Tertiary / local streets */}
+                <line x1="0" y1="115" x2="600" y2="115" stroke="#1f2937" strokeWidth="2"/>
+                <line x1="0" y1="195" x2="600" y2="195" stroke="#1f2937" strokeWidth="2"/>
+                <line x1="0" y1="265" x2="600" y2="265" stroke="#1f2937" strokeWidth="2"/>
+                <line x1="255" y1="0" x2="255" y2="380" stroke="#1f2937" strokeWidth="2"/>
+                <line x1="385" y1="0" x2="385" y2="295" stroke="#1f2937" strokeWidth="2"/>
+                <line x1="520" y1="0" x2="520" y2="295" stroke="#1f2937" strokeWidth="2"/>
+                <line x1="130" y1="0" x2="130" y2="155" stroke="#1f2937" strokeWidth="2"/>
+                <line x1="130" y1="155" x2="130" y2="380" stroke="#1f2937" strokeWidth="2"/>
+
+                {/* Road center dashes on major roads */}
+                <line x1="0" y1="155" x2="600" y2="155" stroke="#4b5563" strokeWidth="1" strokeDasharray="12 8"/>
+                <line x1="195" y1="0" x2="195" y2="380" stroke="#4b5563" strokeWidth="1" strokeDasharray="12 8"/>
+
+                {/* City blocks - subtle shading */}
+                <rect x="81" y="81" width="48" height="33" fill="#1e2433" opacity="0.6"/>
+                <rect x="81" y="116" width="48" height="38" fill="#1d2332" opacity="0.6"/>
+                <rect x="131" y="81" width="63" height="33" fill="#1e2433" opacity="0.6"/>
+                <rect x="131" y="116" width="63" height="38" fill="#1d2332" opacity="0.6"/>
+                <rect x="196" y="81" width="58" height="33" fill="#1e2433" opacity="0.6"/>
+                <rect x="196" y="116" width="58" height="38" fill="#1d2332" opacity="0.6"/>
+                <rect x="256" y="81" width="63" height="33" fill="#1e2433" opacity="0.6"/>
+                <rect x="256" y="116" width="63" height="38" fill="#1d2332" opacity="0.6"/>
+                <rect x="321" y="81" width="63" height="33" fill="#1e2433" opacity="0.6"/>
+                <rect x="386" y="81" width="63" height="33" fill="#1e2433" opacity="0.6"/>
+                <rect x="196" y="196" width="58" height="43" fill="#1e2433" opacity="0.6"/>
+                <rect x="256" y="196" width="63" height="43" fill="#1d2332" opacity="0.6"/>
+                <rect x="321" y="196" width="63" height="43" fill="#1e2433" opacity="0.6"/>
+                <rect x="386" y="196" width="63" height="43" fill="#1d2332" opacity="0.6"/>
+                <rect x="451" y="156" width="68" height="38" fill="#1e2433" opacity="0.6"/>
+                <rect x="451" y="196" width="68" height="43" fill="#1d2332" opacity="0.6"/>
+                <rect x="196" y="241" width="58" height="23" fill="#1e2433" opacity="0.6"/>
+                <rect x="256" y="241" width="63" height="23" fill="#1d2332" opacity="0.6"/>
+                <rect x="321" y="241" width="63" height="23" fill="#1e2433" opacity="0.6"/>
+                <rect x="386" y="241" width="63" height="23" fill="#1d2332" opacity="0.6"/>
+                <rect x="81" y="156" width="48" height="38" fill="#1e2433" opacity="0.6"/>
+                <rect x="131" y="156" width="63" height="38" fill="#1d2332" opacity="0.6"/>
+                <rect x="81" y="196" width="48" height="43" fill="#1e2433" opacity="0.6"/>
+                <rect x="131" y="196" width="63" height="43" fill="#1d2332" opacity="0.6"/>
+
+                {/* Park trees dots */}
+                <circle cx="340" cy="200" r="3" fill="#2d4a2d" opacity="0.8"/>
+                <circle cx="355" cy="210" r="2" fill="#2d4a2d" opacity="0.8"/>
+                <circle cx="370" cy="198" r="3" fill="#2d4a2d" opacity="0.8"/>
+                <circle cx="345" cy="222" r="2" fill="#2d4a2d" opacity="0.8"/>
+                <circle cx="390" cy="205" r="3" fill="#2d4a2d" opacity="0.8"/>
+                <circle cx="50" cy="275" r="3" fill="#2d4a2d" opacity="0.8"/>
+                <circle cx="65" cy="285" r="2" fill="#2d4a2d" opacity="0.8"/>
+                <circle cx="75" cy="270" r="3" fill="#2d4a2d" opacity="0.8"/>
+
+                {/* Street labels */}
+                <text x="200" y="148" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5">W 6TH ST</text>
+                <text x="200" y="148" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5">W 6TH ST</text>
+                <text x="420" y="148" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5">E 6TH ST</text>
+                <text x="10" y="148" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5">W 6TH ST</text>
+                <text x="199" y="30" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5" writingMode="tb">CONGRESS AVE</text>
+                <text x="322" y="30" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5" writingMode="tb">LAMAR BLVD</text>
+                <text x="10" y="76" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5">MLK JR BLVD</text>
+                <text x="10" y="237" fontSize="7" fill="#6b7280" fontFamily="sans-serif" fontWeight="600" letterSpacing="0.5">BEN WHITE BLVD</text>
+                <text x="333" y="192" fontSize="6" fill="#4ade80" fontFamily="sans-serif" fontWeight="600">PARK</text>
+                <text x="38" y="280" fontSize="6" fill="#4ade80" fontFamily="sans-serif" fontWeight="600">PARK</text>
               </svg>
 
               {/* Area label */}
-              <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-sm border border-zinc-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
+              <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm border border-zinc-700 rounded-lg px-3 py-1.5 flex items-center gap-2 z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest">Austin, TX — Live</span>
               </div>
 
               {/* Gym pins */}
-              {/* Austin Rec Center — active, many players */}
-              <div className="absolute" style={{left:"26%",top:"40%"}}>
+              <div className="absolute z-20" style={{left:"29%",top:"36%"}}>
                 <div className="relative flex flex-col items-center group cursor-pointer">
-                  <div className="w-8 h-8 rounded-full bg-orange-500 border-2 border-orange-300 flex items-center justify-center shadow-[0_0_16px_rgba(249,115,22,.7)] text-white text-[10px] font-bold z-10">12</div>
-                  <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[8px] border-l-transparent border-r-transparent border-t-orange-500" />
-                  <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Austin Rec Center</div>
+                  <div className="w-9 h-9 rounded-full bg-orange-500 border-2 border-orange-200 flex items-center justify-center shadow-[0_0_20px_rgba(249,115,22,.8)] text-white text-[11px] font-bold">12</div>
+                  <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[9px] border-l-transparent border-r-transparent border-t-orange-500" />
+                  <div className="absolute bottom-14 left-1/2 -translate-x-1/2 bg-zinc-900/95 border border-zinc-600 rounded-lg px-3 py-2 text-[11px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-30">
+                    <p className="font-bold">Austin Rec Center</p><p className="text-orange-400 text-[10px]">12 players · Competitive</p>
+                  </div>
                 </div>
               </div>
 
-              {/* Clay Madsen — active */}
-              <div className="absolute" style={{left:"60%",top:"18%"}}>
+              <div className="absolute z-20" style={{left:"68%",top:"15%"}}>
                 <div className="relative flex flex-col items-center group cursor-pointer">
-                  <div className="w-7 h-7 rounded-full bg-orange-500 border-2 border-orange-300 flex items-center justify-center shadow-[0_0_12px_rgba(249,115,22,.6)] text-white text-[10px] font-bold z-10">8</div>
-                  <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[7px] border-l-transparent border-r-transparent border-t-orange-500" />
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Clay Madsen Rec</div>
+                  <div className="w-8 h-8 rounded-full bg-orange-500 border-2 border-orange-200 flex items-center justify-center shadow-[0_0_16px_rgba(249,115,22,.7)] text-white text-[10px] font-bold">8</div>
+                  <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[8px] border-l-transparent border-r-transparent border-t-orange-500" />
+                  <div className="absolute bottom-13 left-1/2 -translate-x-1/2 bg-zinc-900/95 border border-zinc-600 rounded-lg px-3 py-2 text-[11px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-30">
+                    <p className="font-bold">Clay Madsen Rec</p><p className="text-orange-400 text-[10px]">8 players · Balanced</p>
+                  </div>
                 </div>
               </div>
 
-              {/* Brushy Creek — low activity */}
-              <div className="absolute" style={{left:"72%",top:"62%"}}>
+              <div className="absolute z-20" style={{left:"78%",top:"58%"}}>
                 <div className="relative flex flex-col items-center group cursor-pointer">
-                  <div className="w-6 h-6 rounded-full bg-orange-400 border border-orange-300 flex items-center justify-center shadow-[0_0_8px_rgba(249,115,22,.4)] text-white text-[9px] font-bold z-10">3</div>
-                  <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-orange-400" />
-                  <div className="absolute bottom-9 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Brushy Creek Park</div>
+                  <div className="w-7 h-7 rounded-full bg-orange-400 border border-orange-200 flex items-center justify-center shadow-[0_0_10px_rgba(249,115,22,.5)] text-white text-[9px] font-bold">3</div>
+                  <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[7px] border-l-transparent border-r-transparent border-t-orange-400" />
+                  <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-zinc-900/95 border border-zinc-600 rounded-lg px-3 py-2 text-[11px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-30">
+                    <p className="font-bold">Brushy Creek Park</p><p className="text-orange-400 text-[10px]">3 players · Casual</p>
+                  </div>
                 </div>
               </div>
 
-              {/* Pflugerville — no run */}
-              <div className="absolute" style={{left:"44%",top:"72%"}}>
+              <div className="absolute z-20" style={{left:"50%",top:"68%"}}>
                 <div className="relative flex flex-col items-center group cursor-pointer">
-                  <div className="w-6 h-6 rounded-full bg-zinc-700 border border-zinc-600 flex items-center justify-center text-zinc-500 text-[9px] font-bold z-10">—</div>
-                  <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-zinc-700" />
-                  <div className="absolute bottom-9 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Pflugerville Park</div>
+                  <div className="w-7 h-7 rounded-full bg-zinc-700 border border-zinc-500 flex items-center justify-center text-zinc-400 text-[9px] font-bold">—</div>
+                  <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[7px] border-l-transparent border-r-transparent border-t-zinc-700" />
+                  <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-zinc-900/95 border border-zinc-600 rounded-lg px-3 py-2 text-[11px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-30">
+                    <p className="font-bold">Pflugerville Park</p><p className="text-zinc-500 text-[10px]">No active run</p>
+                  </div>
                 </div>
               </div>
 
               {/* Legend */}
-              <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm border border-zinc-800 rounded-lg p-2.5 flex flex-col gap-1.5">
-                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-orange-500" /><span className="text-[9px] text-zinc-400">Active run</span></div>
+              <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm border border-zinc-800 rounded-lg p-2.5 flex flex-col gap-1.5 z-10">
+                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-orange-500 shadow-[0_0_6px_rgba(249,115,22,.5)]" /><span className="text-[9px] text-zinc-400">Active run</span></div>
                 <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-zinc-700" /><span className="text-[9px] text-zinc-400">No run yet</span></div>
-                <div className="flex items-center gap-2 text-[9px] text-zinc-500"><span className="font-bold text-orange-400">12</span><span className="text-zinc-400">= players checked in</span></div>
+                <div className="flex items-center gap-2"><span className="font-bold text-orange-400 text-[9px]">12</span><span className="text-[9px] text-zinc-400">= players in</span></div>
               </div>
             </div>
 

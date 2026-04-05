@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RunCheck — Marketing Website
 
-## Getting Started
+The official landing site for **RunCheck**, a pickup basketball app that helps players find live games near them. Built and maintained by Tracy H., founder of RunCheck.
 
-First, run the development server:
+**Live site:** [theruncheck.app](https://theruncheck.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## About RunCheck
+
+RunCheck solves a problem every pickup basketball player knows: you drive to the gym and it's empty. The app lets players check in at courts in real time using GPS verification, so anyone can see exactly how many people are at a gym before they leave the house.
+
+Currently live in Austin, TX and surrounding areas — with more cities coming soon.
+
+---
+
+## What's on the site
+
+| Page | Route | Description |
+|---|---|---|
+| Home | `/` | Hero with background video, live court demo, testimonials, FAQ, email capture |
+| How it Works | `/how-it-works` | Step-by-step walkthrough of the app experience |
+| About | `/about` | Mission, vision, values, and founder story |
+| Contact | `/contact` | Email, phone, and privacy policy links |
+
+---
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion v12
+- **Deployment:** Vercel
+- **Domain:** theruncheck.app
+
+---
+
+## Project structure
+
+```
+app/
+  page.tsx              # Home page
+  about/page.tsx        # About page
+  how-it-works/page.tsx # How it works page
+  contact/page.tsx      # Contact page
+  components/
+    Nav.tsx             # Sticky navigation bar
+    Footer.tsx          # Site footer with links + Instagram
+    Reveal.tsx          # Scroll-reveal animation wrapper
+    LiveDemo.tsx        # Animated real-time court activity demo
+    FAQ.tsx             # Accordion FAQ component
+public/
+  runcheck-logo.png     # RunCheck logo
+  founder.jpg           # Founder photo (used on About page)
+  hero.mp4              # Background video for home page hero
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploying
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The site deploys automatically to Vercel. To push a manual production build:
 
-## Deploy on Vercel
+```bash
+cd ~/Desktop/runcheck-site
+vercel --prod
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Email capture
+
+The early access email form in the homepage is wired to a `submitEmail()` function in `app/page.tsx`. To connect it to a real email service (Klaviyo, Mailchimp, etc.), replace the `console.log` inside that function with your API call. No other changes needed.
+
+---
+
+## Contact
+
+- **Email:** runcheckapp@gmail.com
+- **Phone:** (517) 944-1431
+- **Instagram:** [@run.check](https://www.instagram.com/run.check)
+- **Privacy Policy:** [View on Notion](https://gray-marlin-55c.notion.site/RunCheck-Privacy-Policy-3280818539eb80168b7cc7dd061f3d09)
