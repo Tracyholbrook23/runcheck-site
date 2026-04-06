@@ -58,20 +58,20 @@ export function Nav({ activePath = "/" }: { activePath?: string }) {
               </Link>
             ))}
             <a
-              href="#"
+              href="/#waitlist"
               className="bg-orange-500 hover:bg-orange-400 text-white rounded-full px-6 py-2.5 text-base transition-colors font-bold shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_32px_rgba(249,115,22,0.45)]"
             >
-              Download
+              Join Waitlist
             </a>
           </div>
 
           {/* Mobile: download + hamburger */}
           <div className="flex sm:hidden items-center gap-3">
             <a
-              href="#"
+              href="/#waitlist"
               className="bg-orange-500 hover:bg-orange-400 text-white rounded-full px-4 py-2 text-sm font-bold transition-colors"
             >
-              Download
+              Join Waitlist
             </a>
             <button
               onClick={() => setMenuOpen((o) => !o)}
