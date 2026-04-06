@@ -130,8 +130,8 @@ export default function About() {
         <section className="flex flex-col items-center text-center px-6 py-24 gap-6">
           <Reveal className="flex flex-col items-center gap-6">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Join the run</h2>
-            <p className="text-zinc-400 text-base max-w-sm leading-7">Find courts, check in, and never show up to an empty gym again.</p>
-            <a href="#" className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)]">Download App</a>
+            <p className="text-zinc-400 text-base max-w-sm leading-7">Get early access when RunCheck launches in Austin — sign up for the waitlist.</p>
+            <a href="/#waitlist" className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)]">Join the Waitlist →</a>
           </Reveal>
         </section>
 

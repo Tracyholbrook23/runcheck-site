@@ -80,8 +80,8 @@ export default function HowItWorks() {
         <section className="flex flex-col items-center text-center px-6 py-24 gap-6">
           <Reveal className="flex flex-col items-center gap-6">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Ready to run?</h2>
-            <p className="text-zinc-400 text-base max-w-sm leading-7">Download RunCheck and find your next game in minutes.</p>
-            <a href="#" className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-9 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)]">Download App</a>
+            <p className="text-zinc-400 text-base max-w-sm leading-7">Join the waitlist and be first to know when RunCheck launches in Austin.</p>
+            <a href="/#waitlist" className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-9 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)]">Join the Waitlist →</a>
           </Reveal>
         </section>
 
