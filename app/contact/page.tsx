@@ -11,8 +11,8 @@ const contactMethods = [
   {
     icon: "📧",
     label: "Email",
-    value: "runcheckapp@gmail.com",
-    href: "mailto:runcheckapp@gmail.com",
+    value: "hello@theruncheck.app",
+    href: "mailto:hello@theruncheck.app",
     desc: "Best for general inquiries, partnerships, or feedback.",
     cta: "Send an email",
   },
