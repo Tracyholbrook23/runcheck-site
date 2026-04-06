@@ -1,21 +1,17 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const variants: Variants = {
   hidden: {
-    opacity: 0,
-    y: 36,
-    scale: 0.97,
-    filter: "blur(4px)",
+    opacity: 0.999,
+    y: 20,
   },
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
-    scale: 1,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.75,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
       delay: delay / 1000,
     },
@@ -31,18 +27,12 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
+      viewport={{ once: true, amount: 0.01 }}
       custom={delay}
       variants={variants}
     >
