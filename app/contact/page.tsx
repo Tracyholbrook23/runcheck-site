@@ -65,7 +65,7 @@ export default function Contact() {
         {/* ── Contact cards ────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto px-6 py-24 w-full">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {contactMethods.map(({ icon, label, value, href, desc, cta, external }, i) => (
+            {contactMethods.map(({ icon, label, value, href, desc, cta }, i) => (
               <Reveal key={label} delay={i * 100}>
                 <motion.div
                   whileHover={{ y: -4, borderColor: "rgba(249,115,22,.35)" }}
@@ -82,7 +82,6 @@ export default function Contact() {
                   <p className="text-sm text-zinc-400 leading-6 flex-1">{desc}</p>
                   <a
                     href={href}
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-orange-400 hover:text-orange-300 transition-colors group"
                   >
                     {cta}
