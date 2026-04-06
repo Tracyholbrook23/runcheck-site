@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RunCheck — Find Pickup Basketball Runs Near You",
-  description: "See who's checked in at courts near you before you leave the house. Real-time pickup basketball, powered by RunCheck.",
+  title: "RunCheck — Pickup Basketball, Launching in Austin",
+  description: "Never show up to an empty gym again. RunCheck is launching in Austin soon — join the waitlist for early access and exclusive league perks.",
 };
 
 export default function RootLayout({
