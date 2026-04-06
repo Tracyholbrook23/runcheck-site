@@ -5,7 +5,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
 
-const PRIVACY_URL = "https://gray-marlin-55c.notion.site/RunCheck-Privacy-Policy-3280818539eb80168b7cc7dd061f3d09";
+const PRIVACY_URL = "/privacy";
 
 const contactMethods = [
   {
@@ -31,8 +31,7 @@ const contactMethods = [
     href: PRIVACY_URL,
     desc: "Learn how we handle your data and protect your privacy.",
     cta: "Read privacy policy",
-    external: true,
-  },
+    },
 ];
 
 export default function Contact() {

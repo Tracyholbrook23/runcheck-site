@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const PRIVACY_URL =
-  "https://gray-marlin-55c.notion.site/RunCheck-Privacy-Policy-3280818539eb80168b7cc7dd061f3d09";
+  "/privacy";
 
 const INSTAGRAM_URL = "https://www.instagram.com/run.check?igsh=dWdieWZteXlvd21k&utm_source=qr";
 
@@ -31,9 +31,9 @@ export function Footer() {
             <Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
             <Link href="/about" className="hover:text-white transition-colors">About</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
-            <a href={PRIVACY_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <Link href={PRIVACY_URL} className="hover:text-white transition-colors">
               Privacy Policy
-            </a>
+            </Link>
           </div>
 
           {/* Social icons */}

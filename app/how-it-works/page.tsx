@@ -6,7 +6,7 @@ import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
 import { FAQ } from "../components/FAQ";
 
-const PRIVACY_URL = "https://gray-marlin-55c.notion.site/RunCheck-Privacy-Policy-3280818539eb80168b7cc7dd061f3d09";
+const PRIVACY_URL = "/privacy";
 
 export default function HowItWorks() {
   return (
