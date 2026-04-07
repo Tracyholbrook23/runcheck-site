@@ -115,18 +115,18 @@ export default function Home() {
           <div className="anim-glow pointer-events-none absolute top-1/2 left-1/4 w-[700px] h-[700px] rounded-full z-0"
             style={{background:"radial-gradient(ellipse,rgba(249,115,22,.18) 0%,transparent 70%)"}} />
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-8 pt-24 pb-32 flex flex-col lg:flex-row items-center justify-center gap-16">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-24 pb-32 flex flex-col lg:flex-row items-center justify-center gap-16">
 
             {/* Copy */}
             <div className="flex flex-col gap-6 max-w-xl text-center lg:text-left items-center lg:items-start">
               <div className="anim-badge inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316]" />
-                Launching soon in Austin &amp; surrounding areas
+                Launching Summer 2026 — Austin &amp; surrounding areas
               </div>
-              <h1 className="anim-title leading-none">
+              <div className="anim-title leading-none">
                 <img src="/runcheck-logo.png" alt="RunCheck" className="h-[clamp(5rem,14vw,10rem)] w-auto" />
-              </h1>
-              <p className="anim-tag text-2xl sm:text-3xl font-semibold text-orange-400 leading-snug">Find pickup basketball runs near you</p>
+              </div>
+              <h1 className="anim-tag text-2xl sm:text-3xl font-semibold text-orange-400 leading-snug">Find pickup basketball runs near you</h1>
               <p className="anim-desc text-lg leading-8 text-zinc-300 max-w-lg">
                 Stop wasting trips to empty gyms. See who&apos;s checked in, where the run is, and when it tips off — before you ever leave the house.
               </p>
@@ -150,9 +150,11 @@ export default function Home() {
                   <form onSubmit={handleHeroWaitlist} className="flex flex-col sm:flex-row gap-3 w-full">
                     <input
                       type="email"
+                      name="email"
+                      autoComplete="email"
                       value={heroEmail}
                       onChange={e => setHeroEmail(e.target.value)}
-                      placeholder="Enter your email"
+                      placeholder="Your email address"
                       required
                       className="flex-1 bg-zinc-900/80 border border-zinc-700 focus:border-orange-500/60 rounded-2xl px-5 py-4 text-base text-white placeholder-zinc-500 outline-none transition-colors"
                     />
@@ -169,7 +171,7 @@ export default function Home() {
               </div>
 
               <div className="anim-stats flex items-center gap-8 mt-1">
-                {[["100+","Beta Courts"],["Real-time","Check-ins"],["Live","Runs"]].map(([v,l])=>(
+                {[["100+","Courts"],["0","Empty Trips"],["Free","Always"]].map(([v,l])=>(
                   <div key={l} className="flex flex-col items-center lg:items-start gap-0.5">
                     <span className="text-lg font-extrabold text-orange-400 leading-none">{v}</span>
                     <span className="text-[10px] uppercase tracking-widest text-zinc-600">{l}</span>
@@ -178,12 +180,12 @@ export default function Home() {
               </div>
               <p className="anim-stats text-xs text-zinc-600 flex items-center gap-1.5 mt-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse inline-block" />
-                Starting in Austin, TX — <span className="text-zinc-500">more cities coming soon</span>
+                Starting in Austin, TX — <span className="text-zinc-500">more cities after launch</span>
               </p>
             </div>
 
             {/* Phone mockup */}
-            <div className="anim-phone flex-shrink-0 hidden sm:block">
+            <div className="anim-phone flex-shrink-0 hidden sm:block relative">
               <div className="absolute -top-6 -right-4 anim-pin-1 z-20 flex flex-col items-center">
                 <div className="w-9 h-9 rounded-full bg-orange-500 border-2 border-orange-300 flex items-center justify-center shadow-[0_0_16px_rgba(249,115,22,.6)]"><span className="text-white text-xs font-bold">8</span></div>
                 <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-orange-500" />
@@ -223,8 +225,8 @@ export default function Home() {
           </div>{/* end inner content wrapper */}
         </section>
 
-        {/* ══ MAP SECTION ══════════════════════════════════════ */}
-        <section className="w-full border-y border-zinc-800/60 bg-zinc-950">
+        {/* ══ MAP SECTION — REMOVED ════════════════════════════ */}
+        {false && <section className="w-full border-y border-zinc-800/60 bg-zinc-950">
           <div className="max-w-6xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-10 items-stretch">
 
             {/* Map */}
@@ -387,36 +389,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </section>
-
-        {/* ══ BETA TESTER QUOTES ══════════════════════════════ */}
-        <section className="flex flex-col items-center text-center px-6 py-28 gap-16 max-w-5xl mx-auto w-full">
-          <Reveal><SectionLabel>Beta Testers</SectionLabel>
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">What our beta testers are saying</h2>
-            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">We&apos;ve been running a closed beta in Austin. Here&apos;s what players had to say.</p>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-            {[
-              {quote:"Finally stopped wasting gas driving to empty gyms. I check RunCheck before I even put my shoes on.",name:"Marcus T.",location:"Austin, TX",level:"Competitive",avatar:"https://i.pravatar.cc/80?img=12"},
-              {quote:"The check-in system is genius. You actually know the run is real before you show up.",name:"DeShawn R.",location:"Round Rock, TX",level:"Balanced",avatar:"https://i.pravatar.cc/80?img=33"},
-              {quote:"Started a run at my local gym and within 20 min four more players checked in. This app is legit.",name:"Jordan K.",location:"Cedar Park, TX",level:"Casual",avatar:"https://i.pravatar.cc/80?img=52"},
-            ].map(({quote,name,location,level,avatar},i)=>(
-              <Reveal key={name} delay={i*100} className="h-full">
-                <motion.div whileHover={{y:-4,borderColor:"rgba(249,115,22,.3)"}} transition={{duration:.2}}
-                  className="h-full flex flex-col gap-4 bg-[#0d0d0d] rounded-2xl p-6 border border-zinc-800 text-left">
-                  <div className="flex gap-0.5">{[0,1,2,3,4].map(j=><span key={j} className="text-orange-400 text-xs">★</span>)}</div>
-                  <p className="text-sm leading-7 text-zinc-300 flex-1">&ldquo;{quote}&rdquo;</p>
-                  <div className="flex items-center gap-3 pt-2 border-t border-zinc-800">
-                    <img src={avatar} alt={name} className="w-9 h-9 rounded-full object-cover border border-zinc-700 flex-shrink-0" />
-                    <div><p className="text-xs font-semibold text-white">{name}</p><p className="text-[10px] text-zinc-600">{location} · {level} · Beta Tester</p></div>
-                  </div>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        <Divider />
+        </section>}
 
         {/* ══ HOW IT WORKS ════════════════════════════════════ */}
         <section className="flex flex-col items-center text-center px-6 py-28 gap-16 max-w-5xl mx-auto w-full">
@@ -445,6 +418,80 @@ export default function Home() {
             <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">This is what the app looks like. Player counts update in real time as people check in.</p>
           </Reveal>
           <Reveal delay={100} className="w-full"><LiveDemo /></Reveal>
+        </section>
+
+        <Divider />
+
+        {/* ══ CORE FEATURES ═══════════════════════════════════
+            HOW TO REPLACE PLACEHOLDERS LATER:
+            Find each feature object below and replace the placeholder <div>
+            with: <img src="/screenshots/your-screenshot.png" alt="..." className="w-full h-full object-cover" />
+            inside the same outer rounded container.
+        ═══════════════════════════════════════════════════════ */}
+        <section className="flex flex-col items-center text-center px-6 py-28 gap-14 max-w-6xl mx-auto w-full">
+          <Reveal>
+            <SectionLabel>Core Features</SectionLabel>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Everything you need to find a run</h2>
+            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">
+              From live court activity to run planning — here&apos;s what RunCheck puts in your hands.
+            </p>
+          </Reveal>
+
+          {/* Mobile: horizontal scroll · Desktop: 5-column grid */}
+          <div className="w-full overflow-x-auto -mx-6 px-6 pb-3 lg:overflow-visible lg:mx-0 lg:px-0">
+            <div className="flex gap-5 w-max lg:w-full lg:grid lg:grid-cols-5">
+              {[
+                { icon: "👀", title: "Live Runs", caption: "See who's playing before you show up" },
+                { icon: "📅", title: "Plan a Run", caption: "Plan runs that people actually show up to" },
+                { icon: "🗺️", title: "Gym Map", caption: "Find games near you instantly" },
+                { icon: "🏀", title: "Player Visibility", caption: "Know who you're running with" },
+                { icon: "✅", title: "Reliability System", caption: "Play with people who actually show up" },
+              ].map(({ icon, title, caption }, i) => (
+                <Reveal key={title} delay={i * 80} className="flex-shrink-0 w-48 lg:w-auto">
+                  <div className="flex flex-col gap-4">
+
+                    {/* ── Screenshot slot ─────────────────────────────────────────
+                        REPLACE LATER: swap the inner <div className="screenshot-placeholder">
+                        with <img src="/screenshots/your-file.png" alt={title}
+                                  className="w-full h-full object-cover object-top" />
+                    ──────────────────────────────────────────────────────────── */}
+                    <div className="relative w-full aspect-[9/18] rounded-[24px] bg-zinc-950 border border-zinc-800 overflow-hidden shadow-[0_4px_32px_rgba(0,0,0,0.5)]">
+                      {/* Phone notch */}
+                      <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-black rounded-full z-10" />
+                      {/* Scan-line texture for visual depth */}
+                      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 3px,#ffffff 3px,#ffffff 4px)" }} />
+                      {/* Placeholder content */}
+                      <div className="screenshot-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 px-5">
+                        <div className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl shadow-inner">
+                          {icon}
+                        </div>
+                        <div className="flex flex-col items-center gap-0.5">
+                          <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">Screenshot</p>
+                          <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">coming soon</p>
+                        </div>
+                      </div>
+                      {/* Home indicator bar */}
+                      <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-zinc-800 rounded-full z-10" />
+                    </div>
+
+                    {/* Feature info */}
+                    <div className="flex flex-col gap-1 text-left">
+                      <p className="text-sm font-bold text-white">{title}</p>
+                      <p className="text-xs text-zinc-500 leading-5">{caption}</p>
+                    </div>
+
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal delay={240}>
+            <p className="text-xs text-zinc-700 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50 inline-block" />
+              App screenshots will be added here before launch
+            </p>
+          </Reveal>
         </section>
 
         <Divider />
@@ -489,6 +536,35 @@ export default function Home() {
 
         <Divider />
 
+        {/* ══ BETA TESTER QUOTES ══════════════════════════════ */}
+        <section className="flex flex-col items-center text-center px-6 py-28 gap-16 max-w-5xl mx-auto w-full">
+          <Reveal><SectionLabel>Beta Testers</SectionLabel>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">What our beta testers are saying</h2>
+            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">We&apos;ve been running a closed beta in Austin. Here&apos;s what players had to say.</p>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+            {[
+              {quote:"Finally stopped wasting gas driving to empty gyms. I check RunCheck before I even put my shoes on.",name:"Marcus T.",location:"Austin, TX",level:"Competitive",initial:"M",color:"bg-orange-500/20 text-orange-400 border-orange-500/30"},
+              {quote:"The check-in system is genius. You actually know the run is real before you show up.",name:"DeShawn R.",location:"Round Rock, TX",level:"Balanced",initial:"D",color:"bg-blue-500/20 text-blue-400 border-blue-500/30"},
+              {quote:"Started a run at my local gym and within 20 min four more players checked in. This app is legit.",name:"Jordan K.",location:"Cedar Park, TX",level:"Casual",initial:"J",color:"bg-green-500/20 text-green-400 border-green-500/30"},
+            ].map(({quote,name,location,level,initial,color},i)=>(
+              <Reveal key={name} delay={i*100} className="h-full">
+                <motion.div whileHover={{y:-4,borderColor:"rgba(249,115,22,.3)"}} transition={{duration:.2}}
+                  className="h-full flex flex-col gap-4 bg-[#0d0d0d] rounded-2xl p-6 border border-zinc-800 text-left">
+                  <div className="flex gap-0.5">{[0,1,2,3,4].map(j=><span key={j} className="text-orange-400 text-xs">★</span>)}</div>
+                  <p className="text-sm leading-7 text-zinc-300 flex-1">&ldquo;{quote}&rdquo;</p>
+                  <div className="flex items-center gap-3 pt-2 border-t border-zinc-800">
+                    <div className={`w-9 h-9 rounded-full border flex items-center justify-center flex-shrink-0 text-sm font-bold ${color}`}>{initial}</div>
+                    <div><p className="text-xs font-semibold text-white">{name}</p><p className="text-[10px] text-zinc-600">{location} · {level} · Beta Tester</p></div>
+                  </div>
+                </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <Divider />
+
         {/* ══ FAQ ══════════════════════════════════════════════ */}
         <section className="flex flex-col items-center text-center px-6 py-28 gap-14 max-w-5xl mx-auto w-full">
           <Reveal><SectionLabel>FAQ</SectionLabel>
@@ -509,7 +585,7 @@ export default function Home() {
             <Reveal>
               <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-widest text-orange-400">Launching in Austin</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-orange-400">Launching Summer 2026 in Austin</span>
               </div>
             </Reveal>
             <Reveal delay={80}>
@@ -520,7 +596,7 @@ export default function Home() {
             </Reveal>
             <Reveal delay={140}>
               <p className="text-zinc-400 text-base sm:text-lg leading-8 max-w-lg">
-                Drop your email and we&apos;ll notify you the moment RunCheck launches — plus early supporters get first access and exclusive league perks.
+                Drop your email and we&apos;ll notify you the moment RunCheck launches in Austin. Early supporters get priority access before the app opens to everyone.
               </p>
             </Reveal>
             <Reveal delay={200} className="w-full">
@@ -541,6 +617,8 @@ export default function Home() {
                     whileFocus={{borderColor:"rgba(249,115,22,.7)",boxShadow:"0 0 0 3px rgba(249,115,22,.15)"}}
                     transition={{duration:.15}}
                     type="email"
+                    name="email"
+                    autoComplete="email"
                     value={waitlistEmail}
                     onChange={e => setWaitlistEmail(e.target.value)}
                     placeholder="Enter your email address"
@@ -577,13 +655,61 @@ export default function Home() {
 
         <Divider />
 
+        {/* ══ COMING SOON ══════════════════════════════════════ */}
+        <section className="flex flex-col items-center text-center px-6 py-20 gap-10 max-w-4xl mx-auto w-full">
+          <Reveal className="flex flex-col items-center gap-4">
+            <div className="inline-flex items-center gap-2 bg-zinc-900/60 border border-zinc-800 rounded-full px-4 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Coming soon</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">More on the way</h2>
+            <p className="text-zinc-500 text-base leading-7 max-w-md mx-auto">
+              These features are actively in development and will roll out after the initial launch.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl">
+            {[
+              {
+                icon: "🔒",
+                title: "Private Runs",
+                desc: "Create invite-only games for your crew. Share a link, control who shows up, and keep your run exclusive.",
+              },
+              {
+                icon: "💸",
+                title: "Paid Runs",
+                desc: "Host runs and collect entry fees directly through the app. RunCheck handles payments so you can focus on the game.",
+              },
+            ].map(({ icon, title, desc }, i) => (
+              <Reveal key={title} delay={i * 100}>
+                <div className="flex flex-col gap-5 bg-[#0a0a0a] rounded-2xl p-7 border border-zinc-800 border-dashed text-left h-full">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="w-11 h-11 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl flex-shrink-0">
+                      {icon}
+                    </div>
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-600 border border-zinc-800 rounded-full px-3 py-1 mt-1 whitespace-nowrap">
+                      Post-launch
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-base font-bold text-white mb-2">{title}</p>
+                    <p className="text-sm text-zinc-500 leading-6">{desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <Divider />
+
         {/* ══ FINAL CTA ════════════════════════════════════════ */}
         <section className="relative flex flex-col items-center text-center px-6 py-36 gap-8 overflow-hidden">
           <div className="pointer-events-none absolute inset-0" style={{background:"radial-gradient(ellipse at center,rgba(249,115,22,.1) 0%,transparent 65%)"}} />
           <Reveal className="relative z-10 flex flex-col items-center gap-6 max-w-xl">
             <span className="inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300">
               <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316] animate-pulse" />
-              Launching in Austin soon
+              Launching Summer 2026 in Austin
             </span>
             <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tighter leading-tight">
               Don&apos;t show up to<br /><span className="text-orange-400">empty gyms</span> again
