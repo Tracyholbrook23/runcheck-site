@@ -16,6 +16,28 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "RunCheck — Pickup Basketball, Launching in Austin",
   description: "Never show up to an empty gym again. RunCheck is launching in Austin soon — join the waitlist for early access and exclusive league perks.",
+  metadataBase: new URL("https://www.theruncheck.app"),
+  openGraph: {
+    title: "RunCheck — Pickup Basketball, Launching in Austin",
+    description: "Never show up to an empty gym again. RunCheck lets you see who's playing, where the run is, and when it tips off — before you leave the house.",
+    url: "https://www.theruncheck.app",
+    siteName: "RunCheck",
+    type: "website",
+    images: [
+      {
+        url: "/runcheck-logo1.png",
+        width: 1024,
+        height: 1024,
+        alt: "RunCheck — Pickup Basketball App",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "RunCheck — Pickup Basketball, Launching in Austin",
+    description: "Never show up to an empty gym again. Join the waitlist for early access.",
+    images: ["/runcheck-logo1.png"],
+  },
 };
 
 export default function RootLayout({

@@ -39,7 +39,7 @@ export function Nav({ activePath = "/" }: { activePath?: string }) {
         <div className="max-w-6xl mx-auto px-8 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center select-none">
-            <img src="/runcheck-logo.png" alt="RunCheck" className="h-16 w-auto" />
+            <img src="/runcheck-logo.png" alt="RunCheck" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop links */}

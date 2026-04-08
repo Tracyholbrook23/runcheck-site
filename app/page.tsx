@@ -441,12 +441,12 @@ export default function Home() {
           <div className="w-full overflow-x-auto -mx-6 px-6 pb-3 lg:overflow-visible lg:mx-0 lg:px-0">
             <div className="flex gap-5 w-max lg:w-full lg:grid lg:grid-cols-5">
               {[
-                { icon: "👀", title: "Live Runs", caption: "See who's playing before you show up" },
-                { icon: "📅", title: "Plan a Run", caption: "Plan runs that people actually show up to" },
-                { icon: "🗺️", title: "Gym Map", caption: "Find games near you instantly" },
-                { icon: "🏀", title: "Player Visibility", caption: "Know who you're running with" },
-                { icon: "✅", title: "Reliability System", caption: "Play with people who actually show up" },
-              ].map(({ icon, title, caption }, i) => (
+                { icon: "👀", title: "Live Runs",          caption: "See who's playing before you show up",     screenshot: "/mockups/find-a-run.png" },
+                { icon: "📅", title: "Plan a Run",         caption: "Plan runs that people actually show up to", screenshot: "/mockups/plan-a-visit.png" },
+                { icon: "🗺️", title: "Gym Map",            caption: "Find games near you instantly",             screenshot: "/mockups/nearby-courts-map.png" },
+                { icon: "🏀", title: "Player Visibility",  caption: "Know who you're running with",              screenshot: "/mockups/activity-feed.png" },
+                { icon: "✅", title: "Reliability System", caption: "Play with people who actually show up",     screenshot: "/mockups/player-profile.png" },
+              ].map(({ icon, title, caption, screenshot }, i) => (
                 <Reveal key={title} delay={i * 80} className="flex-shrink-0 w-48 lg:w-auto">
                   <div className="flex flex-col gap-4">
 
@@ -460,16 +460,8 @@ export default function Home() {
                       <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-black rounded-full z-10" />
                       {/* Scan-line texture for visual depth */}
                       <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 3px,#ffffff 3px,#ffffff 4px)" }} />
-                      {/* Placeholder content */}
-                      <div className="screenshot-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 px-5">
-                        <div className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl shadow-inner">
-                          {icon}
-                        </div>
-                        <div className="flex flex-col items-center gap-0.5">
-                          <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">Screenshot</p>
-                          <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">coming soon</p>
-                        </div>
-                      </div>
+                      {/* App screenshot */}
+                      <img src={screenshot} alt={title} className="absolute inset-0 w-full h-full object-cover object-top" />
                       {/* Home indicator bar */}
                       <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-zinc-800 rounded-full z-10" />
                     </div>
@@ -486,11 +478,23 @@ export default function Home() {
             </div>
           </div>
 
-          <Reveal delay={240}>
-            <p className="text-xs text-zinc-700 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50 inline-block" />
-              App screenshots will be added here before launch
+        </section>
+
+        {/* ══ APP SHOWCASE ════════════════════════════════════ */}
+        <section className="flex flex-col items-center text-center px-6 pb-24 gap-8 max-w-5xl mx-auto w-full">
+          <Reveal>
+            <SectionLabel>The full experience</SectionLabel>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">See RunCheck in action</h2>
+            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">
+              Home feed, court check-in, and run planning — all in one place.
             </p>
+          </Reveal>
+          <Reveal delay={100} className="w-full">
+            <img
+              src="/mockups/hero-3phone-b.png"
+              alt="RunCheck app — home feed, court detail, and run planning screens"
+              className="w-full max-w-3xl mx-auto rounded-2xl"
+            />
           </Reveal>
         </section>
 
