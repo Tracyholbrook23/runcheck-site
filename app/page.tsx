@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Reveal } from "./components/Reveal";
@@ -40,6 +40,9 @@ export default function Home() {
   const [heroSent, setHeroSent]         = useState(false);
   const [heroLoading, setHeroLoading]   = useState(false);
   const [heroError, setHeroError]       = useState("");
+
+  // Active feature tab state (Core Features section)
+  const [activeFeature, setActiveFeature] = useState(0);
 
   // Bottom waitlist form state
   const [waitlistEmail, setWaitlistEmail]     = useState("");
@@ -111,14 +114,14 @@ export default function Home() {
             src="/hero.mp4"
           />
           {/* Overlay */}
-          <div className="absolute inset-0 z-0" style={{background:"linear-gradient(to right, rgba(0,0,0,0.88) 45%, rgba(0,0,0,0.25) 100%)"}} />
+          <div className="absolute inset-0 z-0" style={{background:"linear-gradient(to right, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.15) 100%)"}} />
           <div className="anim-glow pointer-events-none absolute top-1/2 left-1/4 w-[700px] h-[700px] rounded-full z-0"
             style={{background:"radial-gradient(ellipse,rgba(249,115,22,.18) 0%,transparent 70%)"}} />
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-24 pb-32 flex flex-col lg:flex-row items-center justify-center gap-16">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-24 pb-32 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4">
 
             {/* Copy */}
-            <div className="flex flex-col gap-6 max-w-xl text-center lg:text-left items-center lg:items-start">
+            <div className="flex flex-col gap-6 max-w-lg text-center lg:text-left items-center lg:items-start flex-shrink-0">
               <div className="anim-badge inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316]" />
                 Launching Summer 2026 — Austin &amp; surrounding areas
@@ -185,42 +188,12 @@ export default function Home() {
             </div>
 
             {/* Phone mockup */}
-            <div className="anim-phone flex-shrink-0 hidden sm:block relative">
-              <div className="absolute -top-6 -right-4 anim-pin-1 z-20 flex flex-col items-center">
-                <div className="w-9 h-9 rounded-full bg-orange-500 border-2 border-orange-300 flex items-center justify-center shadow-[0_0_16px_rgba(249,115,22,.6)]"><span className="text-white text-xs font-bold">8</span></div>
-                <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-orange-500" />
-              </div>
-              <div className="absolute top-12 -left-8 anim-pin-2 z-20 flex flex-col items-center">
-                <div className="w-8 h-8 rounded-full bg-green-500 border-2 border-green-300 flex items-center justify-center shadow-[0_0_12px_rgba(34,197,94,.5)]"><span className="text-white text-[10px] font-bold">—</span></div>
-                <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-green-500" />
-              </div>
-              <div className="absolute bottom-20 -right-6 anim-pin-3 z-20 flex flex-col items-center">
-                <div className="w-8 h-8 rounded-full bg-orange-500 border-2 border-orange-300 flex items-center justify-center shadow-[0_0_12px_rgba(249,115,22,.5)]"><span className="text-white text-[10px] font-bold">12</span></div>
-                <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-orange-500" />
-              </div>
-              <div className="w-[240px] sm:w-[270px] rounded-[44px] bg-zinc-900 border-2 border-zinc-700 shadow-[0_0_100px_rgba(249,115,22,.12)] overflow-hidden relative">
-                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10" />
-                <div className="bg-black rounded-[40px] overflow-hidden pt-12 pb-6 px-4 flex flex-col gap-3 min-h-[500px]">
-                  <div className="flex items-center justify-between px-1 mt-1">
-                    <div><p className="text-[9px] text-zinc-500 uppercase tracking-widest font-semibold">Live Runs</p><p className="text-white font-extrabold text-sm">Find a Run</p></div>
-                    <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_6px_#4ade80]" /><span className="text-[9px] text-zinc-500">Near You</span></div>
-                  </div>
-                  <div className="flex items-center gap-2 bg-zinc-900 rounded-xl px-3 py-2 border border-zinc-800">
-                    <span className="text-zinc-500 text-xs">🔍</span><span className="text-zinc-600 text-[11px]">Search courts...</span>
-                  </div>
-                  {[{name:"Clay Madsen Rec",city:"Round Rock",players:8,active:true},{name:"Austin Rec Center",city:"Austin",players:12,active:true},{name:"Brushy Creek Park",city:"Cedar Park",players:0,active:false},{name:"Pflugerville Park",city:"Pflugerville",players:5,active:true}].map(r=>(
-                    <div key={r.name} className={"flex items-center gap-3 bg-[#141414] rounded-xl p-3 border border-zinc-800/80 "+(r.active?"border-l-2 border-l-orange-500":"border-l-2 border-l-zinc-700")}>
-                      <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-sm flex-shrink-0">🏀</div>
-                      <div className="flex-1 min-w-0"><p className="text-white text-[11px] font-semibold truncate">{r.name}</p><p className="text-zinc-500 text-[9px]">{r.city}</p></div>
-                      <div className="flex items-center gap-1 flex-shrink-0">
-                        <span className={"w-1.5 h-1.5 rounded-full "+(r.active?"bg-orange-400":"bg-zinc-600")} />
-                        <span className={"text-[10px] font-bold "+(r.active?"text-orange-400":"text-zinc-500")}>{r.active?r.players+" in":"No run"}</span>
-                      </div>
-                    </div>
-                  ))}
-                  <button className="w-full bg-orange-500 rounded-xl py-2.5 text-white text-[11px] font-bold mt-auto">Check In Here</button>
-                </div>
-              </div>
+            <div className="anim-phone flex-shrink-0 flex justify-center lg:justify-end">
+              <img
+                src="/mockups/find-a-run.png"
+                alt="RunCheck — Find a Run screen"
+                className="w-[92vw] sm:w-[600px] lg:w-[780px] xl:w-[880px] drop-shadow-[0_40px_120px_rgba(0,0,0,0.9)] [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.20))]"
+              />
             </div>
           </div>{/* end inner content wrapper */}
         </section>
@@ -391,94 +364,86 @@ export default function Home() {
           </div>
         </section>}
 
-        {/* ══ HOW IT WORKS ════════════════════════════════════ */}
-        <section className="flex flex-col items-center text-center px-6 py-28 gap-16 max-w-5xl mx-auto w-full">
-          <Reveal><SectionLabel>How it works</SectionLabel>
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Three steps to your next run</h2>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-            {[{step:"01",icon:"👀",title:"See who's playing",desc:"Browse active runs and see how many players have checked in at each court — live."},{step:"02",icon:"📍",title:"Check where the run is",desc:"Every run is pinned to a real location: indoor gym, outdoor park, or neighborhood court."},{step:"03",icon:"⏰",title:"Show up at the right time",desc:"See live check-in times so you always arrive when the game is actually going."}].map(({step,icon,title,desc},i)=>(
-              <Reveal key={step} delay={i*100} className="h-full">
-                <motion.div whileHover={{y:-3}} transition={{duration:.2}} className="h-full flex flex-col gap-4 bg-[#111] rounded-2xl p-7 border border-zinc-800 border-l-4 border-l-orange-500 text-left">
-                  <div className="flex items-center gap-3"><span className="text-3xl">{icon}</span><span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">Step {step}</span></div>
-                  <h3 className="text-lg font-bold">{title}</h3>
-                  <p className="text-sm leading-6 text-zinc-400">{desc}</p>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
         <Divider />
 
-        {/* ══ LIVE DEMO ════════════════════════════════════════ */}
-        <section className="flex flex-col items-center text-center px-6 py-28 gap-14 max-w-5xl mx-auto w-full">
-          <Reveal><SectionLabel>Live demo</SectionLabel>
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">See how it works</h2>
-            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">This is what the app looks like. Player counts update in real time as people check in.</p>
-          </Reveal>
-          <Reveal delay={100} className="w-full"><LiveDemo /></Reveal>
-        </section>
+        {/* ══ CORE FEATURES ═══════════════════════════════════ */}
+        {(() => {
+          const features = [
+            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/find-a-run.png" },
+            { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/plan-a-visit.png" },
+            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/nearby-courts-map.png" },
+            { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/activity-feed.png" },
+            { icon: "✅", title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/player-profile.png" },
+          ];
+          const af = features[activeFeature];
+          return (
+            <section className="w-full px-4 sm:px-10 py-24">
+              <div className="max-w-7xl mx-auto flex flex-col gap-16">
 
-        <Divider />
-
-        {/* ══ CORE FEATURES ═══════════════════════════════════
-            HOW TO REPLACE PLACEHOLDERS LATER:
-            Find each feature object below and replace the placeholder <div>
-            with: <img src="/screenshots/your-screenshot.png" alt="..." className="w-full h-full object-cover" />
-            inside the same outer rounded container.
-        ═══════════════════════════════════════════════════════ */}
-        <section className="flex flex-col items-center text-center px-6 py-28 gap-14 max-w-6xl mx-auto w-full">
-          <Reveal>
-            <SectionLabel>Core Features</SectionLabel>
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Everything you need to find a run</h2>
-            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">
-              From live court activity to run planning — here&apos;s what RunCheck puts in your hands.
-            </p>
-          </Reveal>
-
-          {/* Mobile: horizontal scroll · Desktop: 5-column grid */}
-          <div className="w-full overflow-x-auto -mx-6 px-6 pb-3 lg:overflow-visible lg:mx-0 lg:px-0">
-            <div className="flex gap-5 w-max lg:w-full lg:grid lg:grid-cols-5">
-              {[
-                { icon: "👀", title: "Live Runs",          caption: "See who's playing before you show up",     screenshot: "/mockups/find-a-run.png" },
-                { icon: "📅", title: "Plan a Run",         caption: "Plan runs that people actually show up to", screenshot: "/mockups/plan-a-visit.png" },
-                { icon: "🗺️", title: "Gym Map",            caption: "Find games near you instantly",             screenshot: "/mockups/nearby-courts-map.png" },
-                { icon: "🏀", title: "Player Visibility",  caption: "Know who you're running with",              screenshot: "/mockups/activity-feed.png" },
-                { icon: "✅", title: "Reliability System", caption: "Play with people who actually show up",     screenshot: "/mockups/player-profile.png" },
-              ].map(({ icon, title, caption, screenshot }, i) => (
-                <Reveal key={title} delay={i * 80} className="flex-shrink-0 w-48 lg:w-auto">
-                  <div className="flex flex-col gap-4">
-
-                    {/* ── Screenshot slot ─────────────────────────────────────────
-                        REPLACE LATER: swap the inner <div className="screenshot-placeholder">
-                        with <img src="/screenshots/your-file.png" alt={title}
-                                  className="w-full h-full object-cover object-top" />
-                    ──────────────────────────────────────────────────────────── */}
-                    <div className="relative w-full aspect-[9/18] rounded-[24px] bg-zinc-950 border border-zinc-800 overflow-hidden shadow-[0_4px_32px_rgba(0,0,0,0.5)]">
-                      {/* Phone notch */}
-                      <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-black rounded-full z-10" />
-                      {/* Scan-line texture for visual depth */}
-                      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 3px,#ffffff 3px,#ffffff 4px)" }} />
-                      {/* App screenshot */}
-                      <img src={screenshot} alt={title} className="absolute inset-0 w-full h-full object-cover object-top" />
-                      {/* Home indicator bar */}
-                      <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-zinc-800 rounded-full z-10" />
-                    </div>
-
-                    {/* Feature info */}
-                    <div className="flex flex-col gap-1 text-left">
-                      <p className="text-sm font-bold text-white">{title}</p>
-                      <p className="text-xs text-zinc-500 leading-5">{caption}</p>
-                    </div>
-
-                  </div>
+                {/* Header */}
+                <Reveal className="text-center">
+                  <SectionLabel>Core Features</SectionLabel>
+                  <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Everything you need to find a run</h2>
                 </Reveal>
-              ))}
-            </div>
-          </div>
 
-        </section>
+                {/* Two-column: compact tabs (left) + dominant phone (right) */}
+                <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
+
+                  {/* Left: compact feature list — fixed narrow width */}
+                  <div className="flex flex-col gap-2 w-full lg:w-[280px] flex-shrink-0 lg:pt-8">
+                    {features.map((f, i) => (
+                      <button
+                        key={f.title}
+                        onClick={() => setActiveFeature(i)}
+                        className={`text-left px-4 py-3 rounded-xl border transition-all duration-200 ${
+                          activeFeature === i
+                            ? "border-orange-500/50 bg-orange-500/10"
+                            : "border-transparent hover:border-zinc-800 hover:bg-zinc-900/50"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <span className="text-lg flex-shrink-0">{f.icon}</span>
+                          <div className="flex flex-col">
+                            <p className={`text-sm font-semibold leading-tight ${activeFeature === i ? "text-white" : "text-zinc-400"}`}>{f.title}</p>
+                            {activeFeature === i && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                className="text-xs text-zinc-500 leading-4 mt-1"
+                              >
+                                {f.caption}
+                              </motion.p>
+                            )}
+                          </div>
+                          {activeFeature === i && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Right: phone — takes all remaining space, no max-w cap */}
+                  <div className="flex-1 flex items-center justify-center min-h-[500px] lg:min-h-[700px]">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={activeFeature}
+                        src={af.screenshot}
+                        alt={af.title}
+                        initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -24, scale: 0.96 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="h-full max-h-[700px] w-auto [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.28))_drop-shadow(0_60px_120px_rgba(0,0,0,0.9))]"
+                      />
+                    </AnimatePresence>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
+        <Divider />
 
         {/* ══ APP SHOWCASE ════════════════════════════════════ */}
         <section className="flex flex-col items-center text-center px-6 pb-24 gap-8 max-w-5xl mx-auto w-full">
@@ -493,9 +458,76 @@ export default function Home() {
             <img
               src="/mockups/hero-3phone-b.png"
               alt="RunCheck app — home feed, court detail, and run planning screens"
-              className="w-full max-w-3xl mx-auto rounded-2xl"
+              className="w-full max-w-5xl mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
             />
           </Reveal>
+        </section>
+
+        <Divider />
+
+        {/* ══ HOW IT WORKS — REAL MOCKUPS ══════════════════ */}
+        <section className="w-full px-4 sm:px-10 py-24">
+          <div className="max-w-7xl mx-auto flex flex-col gap-12">
+
+            {/* Header — tight, minimal */}
+            <Reveal className="text-center">
+              <SectionLabel>How it works</SectionLabel>
+              <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Three steps to your next run</h2>
+            </Reveal>
+
+            {/* Steps stacked left + two phones right */}
+            <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+
+              {/* Left: 3 compact steps */}
+              <div className="flex flex-col gap-6 w-full lg:w-[300px] flex-shrink-0">
+                {[
+                  { step: "01", icon: "👀", title: "See who’s playing", desc: "Browse active runs and live check-in counts before you leave." },
+                  { step: "02", icon: "📍", title: "Check into a court", desc: "Tap in when you arrive. Your count goes live instantly." },
+                  { step: "03", icon: "📅", title: "Plan your run", desc: "Schedule games, invite your crew, see who confirms." },
+                ].map(({ step, icon, title, desc }, i) => (
+                  <Reveal key={step} delay={i * 80}>
+                    <div className="flex gap-4 items-start">
+                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 font-extrabold text-xs mt-0.5">
+                        {step}
+                      </div>
+                      <div>
+                        <p className="font-bold text-white text-sm mb-1">{icon} {title}</p>
+                        <p className="text-xs leading-5 text-zinc-500">{desc}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+
+              {/* Right: overlapping phone duo */}
+              <div className="flex-1 min-w-0 flex items-end justify-center">
+                <div className="flex items-end">
+
+                  {/* Secondary — rendered FIRST so primary paints over it naturally */}
+                  <Reveal delay={150} className="flex-shrink-0 mb-8">
+                    <img
+                      src="/mockups/upcoming-runs.png"
+                      alt="RunCheck — Upcoming runs screen"
+                      className="h-[360px] lg:h-[420px] w-auto object-contain opacity-85
+                                 [filter:drop-shadow(0_0_30px_rgba(249,115,22,0.12))_drop-shadow(0_30px_60px_rgba(0,0,0,0.9))]"
+                    />
+                  </Reveal>
+
+                  {/* Primary — rendered SECOND (paints on top), pulled left to overlap */}
+                  <Reveal delay={60} className="flex-shrink-0 -ml-12">
+                    <img
+                      src="/mockups/court-detail.png"
+                      alt="RunCheck — Court detail screen"
+                      className="h-[460px] lg:h-[540px] w-auto object-contain
+                                 [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.30))_drop-shadow(0_40px_80px_rgba(0,0,0,0.95))]"
+                    />
+                  </Reveal>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
         </section>
 
         <Divider />
