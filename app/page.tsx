@@ -465,69 +465,95 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ HOW IT WORKS — REAL MOCKUPS ══════════════════ */}
-        <section className="w-full px-4 sm:px-10 py-24">
-          <div className="max-w-7xl mx-auto flex flex-col gap-12">
+        {/* ══ HOW IT WORKS — THREE STEPS ══════════════════ */}
+        <section className="w-full py-24">
 
-            {/* Header — tight, minimal */}
-            <Reveal className="text-center">
-              <SectionLabel>How it works</SectionLabel>
-              <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Three steps to your next run</h2>
-            </Reveal>
+          {/* Header — constrained, centred */}
+          <Reveal className="text-center px-4 sm:px-10 mb-12">
+            <SectionLabel>How it works</SectionLabel>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Three steps to your next run</h2>
+          </Reveal>
 
-            {/* Steps stacked left + two phones right */}
-            <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+          {/* Card row — centered group, scroll on small viewports */}
+          <div className="w-full overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex justify-center gap-4 w-fit mx-auto px-6 sm:px-10 lg:px-16 [scroll-snap-type:x_mandatory]">
 
-              {/* Left: 3 compact steps */}
-              <div className="flex flex-col gap-6 w-full lg:w-[300px] flex-shrink-0">
-                {[
-                  { step: "01", icon: "👀", title: "See who’s playing", desc: "Browse active runs and live check-in counts before you leave." },
-                  { step: "02", icon: "📍", title: "Check into a court", desc: "Tap in when you arrive. Your count goes live instantly." },
-                  { step: "03", icon: "📅", title: "Plan your run", desc: "Schedule games, invite your crew, see who confirms." },
-                ].map(({ step, icon, title, desc }, i) => (
-                  <Reveal key={step} delay={i * 80}>
-                    <div className="flex gap-4 items-start">
-                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 font-extrabold text-xs mt-0.5">
-                        {step}
-                      </div>
-                      <div>
-                        <p className="font-bold text-white text-sm mb-1">{icon} {title}</p>
-                        <p className="text-xs leading-5 text-zinc-500">{desc}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
+              {[
+                {
+                  step: "01", label: "See who’s playing",
+                  headline: "See who’s playing",
+                  desc: "Browse active runs and live check-in counts before you leave.",
+                  mockup: "/mockups/find-a-run.png",
+                  alt: "RunCheck — Find a Run screen",
+                },
+                {
+                  step: "02", label: "Check in",
+                  headline: "Check into a court",
+                  desc: "Tap in when you arrive. Your count goes live instantly.",
+                  mockup: "/mockups/court-detail.png",
+                  alt: "RunCheck — Court detail screen",
+                },
+                {
+                  step: "03", label: "Plan your run",
+                  headline: "Plan your run",
+                  desc: "Schedule games, invite your crew, see who confirms.",
+                  mockup: "/mockups/plan-a-visit.png",
+                  alt: "RunCheck — Plan a Visit screen",
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.step}
+                  className="
+                    group flex-shrink-0 w-[300px] sm:w-[348px]
+                    flex flex-col
+                    bg-zinc-900 border border-zinc-800
+                    rounded-3xl overflow-hidden
+                    text-left
+                    [scroll-snap-align:start]
+                    hover:border-zinc-700
+                    transition-colors duration-300
+                  "
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                  }}
+                  viewport={{ once: true, amount: 0.01 }}
+                  whileHover={{ y: -6, transition: { duration: 0.22, ease: "easeOut" } }}
+                >
+                  {/* Card header */}
+                  <div className="px-6 pt-6 pb-4 flex flex-col gap-1.5">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-orange-500">
+                      {card.step} &mdash; {card.label}
+                    </p>
+                    <p className="text-[15px] font-extrabold text-white leading-snug">
+                      {card.headline}
+                    </p>
+                    <p className="text-[12px] text-zinc-400 leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
 
-              {/* Right: overlapping phone duo */}
-              <div className="flex-1 min-w-0 flex items-end justify-center">
-                <div className="flex items-end">
-
-                  {/* Secondary — rendered FIRST so primary paints over it naturally */}
-                  <Reveal delay={150} className="flex-shrink-0 mb-8">
+                  {/* Phone — bottom-anchored, same sizing as reference */}
+                  <div className="flex-1 flex items-end justify-center px-6 pt-2 overflow-hidden">
                     <img
-                      src="/mockups/upcoming-runs.png"
-                      alt="RunCheck — Upcoming runs screen"
-                      className="h-[360px] lg:h-[420px] w-auto object-contain opacity-85
-                                 [filter:drop-shadow(0_0_30px_rgba(249,115,22,0.12))_drop-shadow(0_30px_60px_rgba(0,0,0,0.9))]"
+                      src={card.mockup}
+                      alt={card.alt}
+                      className="
+                        h-[440px] sm:h-[500px] w-auto object-contain max-w-none
+                        [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.14))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
+                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(249,115,22,0.32))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
+                        transition-all duration-500
+                      "
                     />
-                  </Reveal>
-
-                  {/* Primary — rendered SECOND (paints on top), pulled left to overlap */}
-                  <Reveal delay={60} className="flex-shrink-0 -ml-12">
-                    <img
-                      src="/mockups/court-detail.png"
-                      alt="RunCheck — Court detail screen"
-                      className="h-[460px] lg:h-[540px] w-auto object-contain
-                                 [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.30))_drop-shadow(0_40px_80px_rgba(0,0,0,0.95))]"
-                    />
-                  </Reveal>
-
-                </div>
-              </div>
+                  </div>
+                </motion.div>
+              ))}
 
             </div>
           </div>
+
         </section>
 
         <Divider />
