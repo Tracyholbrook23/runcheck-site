@@ -124,12 +124,18 @@ function DetailModal({
   );
 }
 
-// ── Lightbox: big phone image on black backdrop ────────────────────────────────
-function PhoneLightbox({
+// ── Feature modal: same layout as DetailModal (text left, phone right) ────────
+function FeatureModal({
+  label,
+  headline,
+  desc,
   mockup,
   alt,
   onClose,
 }: {
+  label: string;
+  headline: string;
+  desc: string;
   mockup: string;
   alt: string;
   onClose: () => void;
@@ -137,36 +143,55 @@ function PhoneLightbox({
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-6"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
         {/* Backdrop */}
         <motion.div
-          className="absolute inset-0 bg-black/90 backdrop-blur-md"
+          className="absolute inset-0 bg-black/85 backdrop-blur-md"
           onClick={onClose}
         />
 
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors text-sm font-bold"
-        >
-          ✕
-        </button>
-
-        {/* Phone — scales to fit viewport */}
-        <motion.img
-          src={mockup}
-          alt={alt}
-          className="relative z-10 max-h-[85vh] w-auto object-contain
-                     [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.22))_drop-shadow(0_30px_80px_rgba(0,0,0,0.95))]"
-          initial={{ opacity: 0, scale: 0.88, y: 24 }}
+        {/* Modal card — identical structure to DetailModal */}
+        <motion.div
+          className="relative z-10 w-full max-w-3xl bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl"
+          initial={{ opacity: 0, scale: 0.93, y: 28 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.88, y: 24 }}
+          exit={{ opacity: 0, scale: 0.93, y: 28 }}
           transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-        />
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors text-sm font-bold"
+          >
+            ✕
+          </button>
+
+          <div className="flex flex-col sm:flex-row items-stretch">
+            {/* Left: text */}
+            <div className="sm:w-[44%] flex-shrink-0 flex flex-col justify-center gap-4 px-7 pt-10 pb-7 sm:py-10">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">
+                {label}
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+                {headline}
+              </h2>
+              <p className="text-sm leading-6 text-zinc-400">{desc}</p>
+            </div>
+
+            {/* Right: phone */}
+            <div className="flex-1 bg-zinc-950/60 flex items-end justify-center pt-6 px-4 overflow-hidden">
+              <img
+                src={mockup}
+                alt={alt}
+                className="h-[400px] sm:h-[520px] w-auto object-contain max-w-none
+                           [filter:drop-shadow(0_0_50px_rgba(249,115,22,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
+              />
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   );
@@ -175,7 +200,7 @@ function PhoneLightbox({
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HowItWorksPage() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
-  const [activeFeature, setActiveFeature] = useState<{ mockup: string; alt: string } | null>(null);
+  const [activeFeature, setActiveFeature] = useState<{ label: string; headline: string; desc: string; mockup: string; alt: string } | null>(null);
 
   return (
     <>
@@ -319,7 +344,7 @@ export default function HowItWorksPage() {
               ].map((card, i) => (
                 <motion.button
                   key={card.label}
-                  onClick={() => setActiveFeature({ mockup: card.mockup, alt: card.alt })}
+                  onClick={() => setActiveFeature({ label: card.label, headline: card.headline, desc: card.desc, mockup: card.mockup, alt: card.alt })}
                   className="
                     group flex-shrink-0 w-[300px] sm:w-[348px]
                     flex flex-col
@@ -386,7 +411,10 @@ export default function HowItWorksPage() {
       )}
 
       {activeFeature !== null && (
-        <PhoneLightbox
+        <FeatureModal
+          label={activeFeature.label}
+          headline={activeFeature.headline}
+          desc={activeFeature.desc}
           mockup={activeFeature.mockup}
           alt={activeFeature.alt}
           onClose={() => setActiveFeature(null)}
