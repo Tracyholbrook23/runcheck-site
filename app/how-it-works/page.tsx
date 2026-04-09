@@ -124,9 +124,58 @@ function DetailModal({
   );
 }
 
+// ── Lightbox: big phone image on black backdrop ────────────────────────────────
+function PhoneLightbox({
+  mockup,
+  alt,
+  onClose,
+}: {
+  mockup: string;
+  alt: string;
+  onClose: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-50 flex items-center justify-center p-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        {/* Backdrop */}
+        <motion.div
+          className="absolute inset-0 bg-black/90 backdrop-blur-md"
+          onClick={onClose}
+        />
+
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors text-sm font-bold"
+        >
+          ✕
+        </button>
+
+        {/* Phone — scales to fit viewport */}
+        <motion.img
+          src={mockup}
+          alt={alt}
+          className="relative z-10 max-h-[85vh] w-auto object-contain
+                     [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.22))_drop-shadow(0_30px_80px_rgba(0,0,0,0.95))]"
+          initial={{ opacity: 0, scale: 0.88, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.88, y: 24 }}
+          transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+        />
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HowItWorksPage() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
+  const [activeFeature, setActiveFeature] = useState<{ mockup: string; alt: string } | null>(null);
 
   return (
     <>
@@ -268,14 +317,15 @@ export default function HowItWorksPage() {
                   alt: "RunCheck — Rank tiers and player profile screen",
                 },
               ].map((card, i) => (
-                <motion.div
+                <motion.button
                   key={card.label}
+                  onClick={() => setActiveFeature({ mockup: card.mockup, alt: card.alt })}
                   className="
                     group flex-shrink-0 w-[300px] sm:w-[348px]
                     flex flex-col
                     bg-zinc-900 border border-zinc-800
                     rounded-3xl overflow-hidden
-                    text-left [scroll-snap-align:start]
+                    cursor-pointer text-left [scroll-snap-align:start]
                     hover:border-zinc-700
                     transition-colors duration-300
                   "
@@ -314,7 +364,7 @@ export default function HowItWorksPage() {
                       "
                     />
                   </div>
-                </motion.div>
+                </motion.button>
               ))}
 
               {/* Trailing spacer — matches existing section */}
@@ -332,6 +382,14 @@ export default function HowItWorksPage() {
         <DetailModal
           step={steps[activeStep]}
           onClose={() => setActiveStep(null)}
+        />
+      )}
+
+      {activeFeature !== null && (
+        <PhoneLightbox
+          mockup={activeFeature.mockup}
+          alt={activeFeature.alt}
+          onClose={() => setActiveFeature(null)}
         />
       )}
     </>
