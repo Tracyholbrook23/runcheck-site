@@ -211,6 +211,120 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
+        {/* ── More Ways — secondary feature cards ───────────────────── */}
+        <section className="w-full pb-24">
+
+          {/* Sub-header — smaller than main headline, same visual language */}
+          <div className="flex flex-col items-center text-center px-6 pb-10 gap-2">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">
+              Built for the full experience
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              More ways to stay in the game
+            </h2>
+            <p className="text-zinc-500 text-sm leading-relaxed max-w-sm mt-1">
+              RunCheck isn&apos;t just about finding runs — it&apos;s built for the full experience.
+            </p>
+          </div>
+
+          {/* Scroll track — identical structure to the step cards above */}
+          <div className="w-full overflow-x-auto pl-6 sm:pl-10 lg:pl-16 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="inline-flex gap-4 [scroll-snap-type:x_mandatory]">
+
+              {[
+                {
+                  label: "01 — Connect",
+                  headline: "Stay connected with your runs",
+                  desc: "Chat with players before you arrive or coordinate in real time with run chats.",
+                  mockup: "/mockups/messaging.png",
+                  alt: "RunCheck — Messaging screen",
+                },
+                {
+                  label: "02 — Compete",
+                  headline: "Earn your reputation",
+                  desc: "Climb the leaderboard, build your rank, and show the court you're consistent.",
+                  mockup: "/mockups/leaderboard.png",
+                  alt: "RunCheck — Leaderboard screen",
+                },
+                {
+                  label: "03 — Find Your Game",
+                  headline: "Filter your perfect run",
+                  desc: "Search by skill level, court type, location, and more to find games that match your vibe.",
+                  mockup: "/mockups/filters.png",
+                  alt: "RunCheck — Filters screen",
+                },
+                {
+                  label: "04 — Your Crew",
+                  headline: "See where your friends play",
+                  desc: "Add friends and stay in the loop with where your crew is running.",
+                  mockup: "/mockups/friends.png",
+                  alt: "RunCheck — Friends screen",
+                },
+                {
+                  label: "05 — Show Your Game",
+                  headline: "Build your player profile",
+                  desc: "Post clips, track your activity, and build your presence on the court.",
+                  mockup: "/mockups/clips.png",
+                  alt: "RunCheck — Clips and profile screen",
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.label}
+                  className="
+                    group flex-shrink-0 w-[300px] sm:w-[348px]
+                    flex flex-col
+                    bg-zinc-900 border border-zinc-800
+                    rounded-3xl overflow-hidden
+                    text-left [scroll-snap-align:start]
+                    hover:border-zinc-700
+                    transition-colors duration-300
+                  "
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                  }}
+                  viewport={{ once: true, amount: 0.01 }}
+                  whileHover={{ y: -6, transition: { duration: 0.22, ease: "easeOut" } }}
+                >
+                  {/* Card header */}
+                  <div className="px-6 pt-6 pb-4 flex flex-col gap-1.5">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-orange-500">
+                      {card.label}
+                    </p>
+                    <p className="text-[15px] font-extrabold text-white leading-snug">
+                      {card.headline}
+                    </p>
+                    <p className="text-[12px] text-zinc-400 leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
+
+                  {/* Phone — slightly smaller than the step cards, glow slightly toned down */}
+                  <div className="flex-1 flex items-end justify-center px-6 pt-2 overflow-hidden">
+                    <img
+                      src={card.mockup}
+                      alt={card.alt}
+                      className="
+                        h-[400px] sm:h-[460px] w-auto object-contain max-w-none
+                        [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.10))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
+                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(249,115,22,0.28))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
+                        transition-all duration-500
+                      "
+                    />
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* Trailing spacer — matches existing section */}
+              <div className="w-6 sm:w-10 lg:w-16 flex-shrink-0" aria-hidden="true" />
+
+            </div>
+          </div>
+
+        </section>
+
         <Footer />
       </div>
 
