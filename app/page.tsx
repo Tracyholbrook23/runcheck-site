@@ -550,7 +550,7 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ MORE WAYS — SECONDARY FEATURE SHOWCASE ══════════ */}
+        {/* ══ MORE WAYS — SECONDARY FEATURE SHOWCASE ════════ */}
         <section className="w-full py-20">
 
           {/* Header — slightly smaller and less bold than main section */}
