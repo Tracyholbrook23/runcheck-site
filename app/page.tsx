@@ -601,7 +601,7 @@ export default function Home() {
                   label: "05 — Show Your Game",
                   title: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
-                  mockup: "/mockups/449shots_so.png",
+                  mockup: "/mockups/227shots_so.png",
                   alt: "RunCheck — Rank tiers and player profile screen",
                 },
               ].map((card, i) => (
