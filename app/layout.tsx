@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "RunCheck — Pickup Basketball, Launching in Austin",
-  description: "Never show up to an empty gym again. RunCheck is launching in Austin soon — join the waitlist for early access and exclusive league perks.",
+  description: "Never show up to an empty gym again. RunCheck is launching in Austin soon — join the waitlist for early access.",
   metadataBase: new URL("https://www.theruncheck.app"),
   openGraph: {
     title: "RunCheck — Pickup Basketball, Launching in Austin",

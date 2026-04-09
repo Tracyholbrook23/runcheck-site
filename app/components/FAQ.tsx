@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const FAQS = [
   {
     q: "Is RunCheck free?",
-    a: "Yes — the core app is completely free. Finding runs, checking in, browsing courts, and planning visits are all free. Premium features like Private Runs and Paid Runs require a subscription.",
+    a: "Yes — the core app is completely free. Finding runs, checking in, browsing courts, and planning runs are all free. Premium features like Private Runs and Paid Runs will require a subscription when they launch.",
   },
   {
     q: "How do GPS check-ins work?",
@@ -14,15 +14,15 @@ const FAQS = [
   },
   {
     q: "What if I show up and no one is there?",
-    a: "Check the player count before you leave — if it shows zero, there's no active run. You can also use Plan a Visit to schedule ahead, so courts show upcoming interest before anyone checks in.",
+    a: "Check the player count before you leave — if it shows zero, there's no active run. You can also use Plan a Run to schedule ahead, so courts show upcoming interest before anyone checks in.",
   },
   {
     q: "Can I find games near me even if I just moved to a new city?",
-    a: "Absolutely. RunCheck has courts across multiple cities. Just open the app, let it use your location, and you'll see every court in your area — with real-time player counts for the active ones.",
+    a: "RunCheck is launching in Austin, TX first, with more cities on the roadmap after launch. If you're in Austin, you'll see every tracked court near you — with real-time player counts for active runs. More cities are coming soon.",
   },
   {
     q: "Can I start my own run?",
-    a: "Yes. You can post an Open Run so other nearby players can see it and join you. Set the level (Casual, Balanced, Competitive), the time, and you're good. Premium users can also create Private or Paid Runs.",
+    a: "Yes. You can post an Open Run so other nearby players can see it and join you. Set the level (Casual, Balanced, Competitive), the time, and you're good. Premium users will also be able to create Private or Paid Runs after launch.",
   },
   {
     q: "What is a Reliability Score?",

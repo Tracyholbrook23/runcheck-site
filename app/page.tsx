@@ -174,7 +174,7 @@ export default function Home() {
               </div>
 
               <div className="anim-stats flex items-center gap-8 mt-1">
-                {[["100+","Courts"],["0","Empty Trips"],["Free","Always"]].map(([v,l])=>(
+                {[["100+","Courts"],["Zero","Wasted Trips"],["Free","Always"]].map(([v,l])=>(
                   <div key={l} className="flex flex-col items-center lg:items-start gap-0.5">
                     <span className="text-lg font-extrabold text-orange-400 leading-none">{v}</span>
                     <span className="text-[10px] uppercase tracking-widest text-zinc-600">{l}</span>
@@ -403,17 +403,11 @@ export default function Home() {
                       >
                         <div className="flex items-center gap-2.5">
                           <span className="text-lg flex-shrink-0">{f.icon}</span>
-                          <div className="flex flex-col">
+                          <div className="flex flex-col gap-0.5">
                             <p className={`text-sm font-semibold leading-tight ${activeFeature === i ? "text-white" : "text-zinc-400"}`}>{f.title}</p>
-                            {activeFeature === i && (
-                              <motion.p
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                className="text-xs text-zinc-500 leading-4 mt-1"
-                              >
-                                {f.caption}
-                              </motion.p>
-                            )}
+                            <p className={`text-xs leading-relaxed transition-colors duration-200 ${activeFeature === i ? "text-zinc-400" : "text-zinc-600"}`}>
+                              {f.caption}
+                            </p>
                           </div>
                           {activeFeature === i && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />}
                         </div>
@@ -468,19 +462,19 @@ export default function Home() {
         {/* ══ HOW IT WORKS — THREE STEPS ══════════════════ */}
         <section className="w-full py-24">
 
-          {/* Header — constrained, centred */}
+          {/* Header */}
           <Reveal className="text-center px-4 sm:px-10 mb-12">
             <SectionLabel>How it works</SectionLabel>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Three steps to your next run</h2>
           </Reveal>
 
-          {/* Card row — centered group, scroll on small viewports */}
+          {/* Card row — centered, horizontal scroll on small viewports */}
           <div className="w-full overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="flex justify-center gap-4 w-fit mx-auto px-6 sm:px-10 lg:px-16 [scroll-snap-type:x_mandatory]">
 
               {[
                 {
-                  step: "01", label: "See who’s playing",
+                  step: "01", label: "Browse",
                   headline: "See who’s playing",
                   desc: "Browse active runs and live check-in counts before you leave.",
                   mockup: "/mockups/find-a-run.png",
@@ -494,7 +488,7 @@ export default function Home() {
                   alt: "RunCheck — Court detail screen",
                 },
                 {
-                  step: "03", label: "Plan your run",
+                  step: "03", label: "Plan",
                   headline: "Plan your run",
                   desc: "Schedule games, invite your crew, see who confirms.",
                   mockup: "/mockups/plan-a-visit.png",
@@ -504,26 +498,24 @@ export default function Home() {
                 <motion.div
                   key={card.step}
                   className="
-                    group flex-shrink-0 w-[300px] sm:w-[348px]
+                    group flex-shrink-0 w-[320px] sm:w-[370px]
                     flex flex-col
-                    bg-zinc-900 border border-zinc-800
+                    bg-zinc-900/70 border border-zinc-800/60
                     rounded-3xl overflow-hidden
-                    text-left
-                    [scroll-snap-align:start]
-                    hover:border-zinc-700
+                    text-left [scroll-snap-align:start]
+                    hover:border-zinc-700/80
                     transition-colors duration-300
                   "
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{
-                    opacity: 1,
-                    y: 0,
+                    opacity: 1, y: 0,
                     transition: { delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] },
                   }}
                   viewport={{ once: true, amount: 0.01 }}
                   whileHover={{ y: -6, transition: { duration: 0.22, ease: "easeOut" } }}
                 >
                   {/* Card header */}
-                  <div className="px-6 pt-6 pb-4 flex flex-col gap-1.5">
+                  <div className="px-6 pt-5 pb-3 flex flex-col gap-1.5">
                     <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-orange-500">
                       {card.step} &mdash; {card.label}
                     </p>
@@ -535,15 +527,118 @@ export default function Home() {
                     </p>
                   </div>
 
-                  {/* Phone — bottom-anchored, same sizing as reference */}
-                  <div className="flex-1 flex items-end justify-center px-6 pt-2 overflow-hidden">
+                  {/* Phone — bottom-anchored, fills the card body */}
+                  <div className="flex-1 flex items-end justify-center px-4 pt-2 overflow-hidden">
                     <img
                       src={card.mockup}
                       alt={card.alt}
                       className="
-                        h-[440px] sm:h-[500px] w-auto object-contain max-w-none
-                        [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.14))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
-                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(249,115,22,0.32))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
+                        h-[500px] sm:h-[560px] w-auto object-contain max-w-none
+                        [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.18))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
+                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(249,115,22,0.36))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
+                        transition-all duration-500
+                      "
+                    />
+                  </div>
+                </motion.div>
+              ))}
+
+            </div>
+          </div>
+
+        </section>
+
+        <Divider />
+
+        {/* ══ MORE WAYS — SECONDARY FEATURE SHOWCASE ══════════ */}
+        <section className="w-full py-20">
+
+          {/* Header — slightly smaller and less bold than main section */}
+          <Reveal className="text-center px-4 sm:px-10 mb-10">
+            <SectionLabel>Built for the full experience</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              More ways to stay in the game
+            </h2>
+            <p className="text-zinc-500 text-sm leading-relaxed mt-3 max-w-sm mx-auto">
+              RunCheck isn&apos;t just about finding runs — it&apos;s built for the full experience.
+            </p>
+          </Reveal>
+
+          {/* Feature card row — horizontal scroll, slightly smaller than main cards */}
+          <div className="w-full overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex justify-center gap-3 w-fit mx-auto px-6 sm:px-10 lg:px-16 [scroll-snap-type:x_mandatory]">
+
+              {[
+                {
+                  label: "01 — Filters",
+                  title: "Find your kind of run",
+                  desc: "Skill level, court type, distance — narrow it down fast.",
+                  mockup: "/mockups/nearby-courts-map.png",
+                  alt: "RunCheck — Nearby courts map with filters",
+                },
+                {
+                  label: "02 — Profiles",
+                  title: "Build your reputation",
+                  desc: "Your stats, level, and run history — all in one place.",
+                  mockup: "/mockups/player-profile.png",
+                  alt: "RunCheck — Player profile screen",
+                },
+                {
+                  label: "03 — Activity",
+                  title: "See what's happening",
+                  desc: "Live updates from courts across your city, right now.",
+                  mockup: "/mockups/activity-feed.png",
+                  alt: "RunCheck — Activity feed screen",
+                },
+                {
+                  label: "04 — Schedule",
+                  title: "Plan before you leave",
+                  desc: "Browse upcoming runs and lock in your spot early.",
+                  mockup: "/mockups/upcoming-runs.png",
+                  alt: "RunCheck — Upcoming runs screen",
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.label}
+                  className="
+                    group flex-shrink-0 w-[270px] sm:w-[310px]
+                    flex flex-col
+                    bg-zinc-900/50 border border-zinc-800/50
+                    rounded-3xl overflow-hidden
+                    text-left [scroll-snap-align:start]
+                    hover:border-zinc-700/60
+                    transition-colors duration-300
+                  "
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{
+                    opacity: 1, y: 0,
+                    transition: { delay: i * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                  }}
+                  viewport={{ once: true, amount: 0.01 }}
+                  whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+                >
+                  {/* Card header */}
+                  <div className="px-5 pt-5 pb-3 flex flex-col gap-1.5">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-orange-500/80">
+                      {card.label}
+                    </p>
+                    <p className="text-[14px] font-extrabold text-white leading-snug">
+                      {card.title}
+                    </p>
+                    <p className="text-[11px] text-zinc-500 leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
+
+                  {/* Phone — slightly smaller than the main step cards */}
+                  <div className="flex-1 flex items-end justify-center px-4 pt-2 overflow-hidden">
+                    <img
+                      src={card.mockup}
+                      alt={card.alt}
+                      className="
+                        h-[400px] sm:h-[450px] w-auto object-contain max-w-none
+                        [filter:drop-shadow(0_-4px_20px_rgba(249,115,22,0.10))_drop-shadow(0_12px_32px_rgba(0,0,0,0.85))]
+                        group-hover:[filter:drop-shadow(0_-4px_36px_rgba(249,115,22,0.22))_drop-shadow(0_16px_40px_rgba(0,0,0,0.95))]
                         transition-all duration-500
                       "
                     />

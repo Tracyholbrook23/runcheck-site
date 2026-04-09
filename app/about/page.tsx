@@ -71,7 +71,7 @@ export default function About() {
                 {icon:"🏀",label:"The game comes first",desc:"Every decision we make is for the player on the court, not the product manager."},
                 {icon:"📍",label:"Transparency",desc:"You should always know what's actually happening at a gym before you show up."},
                 {icon:"🤝",label:"Community",desc:"RunCheck works because players show up, check in, and contribute info that helps everyone."},
-                {icon:"⚡",label:"No fluff",desc:"We build what players actually need. Less features, more usefulness."},
+                {icon:"⚡",label:"No fluff",desc:"We build what players actually need. Fewer features, more usefulness."},
               ].map(({icon,label,desc})=>(
                 <motion.div key={label} whileHover={{x:4}} transition={{duration:.2}}
                   className="flex items-start gap-4 bg-[#111] rounded-2xl p-6 border border-zinc-800">
@@ -93,7 +93,7 @@ export default function About() {
               <div className="relative lg:w-1/2 min-h-[420px] lg:min-h-[600px] overflow-hidden bg-zinc-900">
                 <img
                   src="/founder.jpg"
-                  alt="Tracy H., Founder of RunCheck"
+                  alt="Tracy Holbrook, Founder of RunCheck"
                   className="w-full h-full object-cover object-center"
                 />
                 {/* subtle gradient fade to right on desktop */}
@@ -105,7 +105,7 @@ export default function About() {
               <div className="lg:w-1/2 flex flex-col justify-center px-8 sm:px-14 py-16 gap-6 bg-black">
                 <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">The Builder</p>
                 <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                  Tracy H.
+                  Tracy Holbrook
                 </h2>
                 <p className="text-orange-400 font-semibold text-lg">Founder, RunCheck</p>
                 <div className="w-12 h-0.5 bg-orange-500/50 rounded-full" />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How It Works — RunCheck | Find a Pickup Run in 3 Steps",
+  title: "How It Works — RunCheck | Find a Pickup Basketball Run",
   description: "See who's playing, check where the run is, and show up at the right time. RunCheck makes finding pickup basketball simple, live, and reliable.",
 };
 
