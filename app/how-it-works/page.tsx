@@ -4,12 +4,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
+import { Reveal } from "../components/Reveal";
 
 const steps = [
   {
     step: "01", label: "Browse",
     title: "Open the app and browse nearby courts",
-    mockup: "/mockups/nearby-courts-map.png",
+    mockup: "/mockups/738shots_so.png",
     alt: "RunCheck — Nearby courts map screen",
     detail: {
       headline: "Every court near you, live.",
@@ -20,7 +21,7 @@ const steps = [
   {
     step: "02", label: "See what’s happening",
     title: "See who’s playing and what’s going on",
-    mockup: "/mockups/find-a-run.png",
+    mockup: "/mockups/997shots_so.png",
     alt: "RunCheck — Find a Run screen",
     detail: {
       headline: "Real info, before you leave.",
@@ -31,7 +32,7 @@ const steps = [
   {
     step: "03", label: "Check in",
     title: "Check in when you arrive",
-    mockup: "/mockups/court-detail.png",
+    mockup: "/mockups/175shots_so.png",
     alt: "RunCheck — Court detail screen",
     detail: {
       headline: "Let the court know you’re there.",
@@ -42,7 +43,7 @@ const steps = [
   {
     step: "04", label: "Run or plan",
     title: "Start a run or join one",
-    mockup: "/mockups/plan-a-visit.png",
+    mockup: "/mockups/775shots_so.png",
     alt: "RunCheck — Plan a Run screen",
     detail: {
       headline: "Your crew, coordinated.",
@@ -53,7 +54,7 @@ const steps = [
   {
     step: "05", label: "Know your players",
     title: "See who you’re running with",
-    mockup: "/mockups/activity-feed.png",
+    mockup: "/mockups/484shots_so.png",
     alt: "RunCheck — Activity feed screen",
     detail: {
       headline: "No more mystery players.",
@@ -209,13 +210,17 @@ export default function HowItWorksPage() {
 
         {/* Headline */}
         <section className="flex flex-col items-center text-center px-6 pt-32 pb-8 gap-3">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">
-            How it works
-          </p>
-          <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight max-w-2xl leading-tight">
-            From couch to court in under a minute.
-          </h1>
-          <p className="text-zinc-600 text-sm">Scroll to see each step →</p>
+          <Reveal>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">
+              How it works
+            </p>
+            <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight max-w-2xl leading-tight">
+              From couch to court in under a minute.
+            </h1>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="text-zinc-600 text-sm">Scroll to see each step →</p>
+          </Reveal>
         </section>
 
         {/* Horizontal showcase card row */}
@@ -289,7 +294,7 @@ export default function HowItWorksPage() {
         <section className="w-full pb-24">
 
           {/* Sub-header — smaller than main headline, same visual language */}
-          <div className="flex flex-col items-center text-center px-6 pb-10 gap-2">
+          <Reveal className="flex flex-col items-center text-center px-6 pb-10 gap-2">
             <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">
               Built for the full experience
             </p>
@@ -299,7 +304,7 @@ export default function HowItWorksPage() {
             <p className="text-zinc-500 text-sm leading-relaxed max-w-sm mt-1">
               RunCheck isn&apos;t just about finding runs — it&apos;s built for the full experience.
             </p>
-          </div>
+          </Reveal>
 
           {/* Scroll track — identical structure to the step cards above */}
           <div className="w-full overflow-x-auto pl-6 sm:pl-10 lg:pl-16 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -310,35 +315,35 @@ export default function HowItWorksPage() {
                   label: "01 — Connect",
                   headline: "Stay connected with your runs",
                   desc: "Chat with players before you arrive or coordinate in real time with run chats.",
-                  mockup: "/mockups/815shots_so.png",
+                  mockup: "/mockups/478shots_so.png",
                   alt: "RunCheck — Messaging screen",
                 },
                 {
                   label: "02 — Compete",
                   headline: "Earn your reputation",
                   desc: "Climb the leaderboard, build your rank, and show the court you're consistent.",
-                  mockup: "/mockups/173shots_so.png",
+                  mockup: "/mockups/168shots_so.png",
                   alt: "RunCheck — Leaderboard screen",
                 },
                 {
                   label: "03 — Find Your Game",
                   headline: "Filter your perfect run",
                   desc: "Search by skill level, court type, location, and more to find games that match your vibe.",
-                  mockup: "/mockups/140shots_so.png",
+                  mockup: "/mockups/533shots_so.png",
                   alt: "RunCheck — Filters screen",
                 },
                 {
                   label: "04 — Your Crew",
                   headline: "See where your friends play",
                   desc: "Add friends and stay in the loop with where your crew is running.",
-                  mockup: "/mockups/394shots_so.png",
+                  mockup: "/mockups/69shots_so.png",
                   alt: "RunCheck — Your crew and profile screen",
                 },
                 {
                   label: "05 — Show Your Game",
                   headline: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
-                  mockup: "/mockups/227shots_so.png",
+                  mockup: "/mockups/940shots_so.png",
                   alt: "RunCheck — Rank tiers and player profile screen",
                 },
               ].map((card, i) => (

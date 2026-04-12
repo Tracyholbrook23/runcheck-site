@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Reveal } from "./components/Reveal";
@@ -12,7 +12,16 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500 mb-3">{children}</p>;
 }
 function Divider() {
-  return <div className="w-full border-t border-zinc-800/60" />;
+  return (
+    <motion.div
+      className="w-full border-t border-zinc-800/60"
+      initial={{ scaleX: 0, opacity: 0 }}
+      whileInView={{ scaleX: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+      style={{ originX: 0.5 }}
+    />
+  );
 }
 
 // ── Klaviyo waitlist signup ────────────────────────────────────────────────────
@@ -80,6 +89,11 @@ export default function Home() {
     }
   }
 
+  // Subtle hero-phone parallax — GPU-composited transform, safe on mobile
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
+  const phoneParallaxY = useTransform(scrollY, [0, 700], [0, -38]);
+
   return (
     <>
       <style>{`
@@ -106,7 +120,7 @@ export default function Home() {
         <Nav activePath="/" />
 
         {/* ══ HERO ══════════════════════════════════════════════ */}
-        <section className="relative flex flex-col lg:flex-row items-center justify-center min-h-screen overflow-hidden w-full">
+        <section ref={heroRef} className="relative flex flex-col lg:flex-row items-center justify-center min-h-screen overflow-hidden w-full">
           {/* Video — true full-bleed */}
           <video
             autoPlay muted loop playsInline
@@ -118,16 +132,16 @@ export default function Home() {
           <div className="anim-glow pointer-events-none absolute top-1/2 left-1/4 w-[700px] h-[700px] rounded-full z-0"
             style={{background:"radial-gradient(ellipse,rgba(249,115,22,.18) 0%,transparent 70%)"}} />
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-24 pb-32 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-12 lg:pt-24 pb-8 lg:pb-32 flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-4">
 
             {/* Copy */}
-            <div className="flex flex-col gap-6 max-w-lg text-center lg:text-left items-center lg:items-start flex-shrink-0">
+            <div className="flex flex-col gap-3 lg:gap-6 max-w-lg text-center lg:text-left items-center lg:items-start flex-shrink-0">
               <div className="anim-badge inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316]" />
                 Launching Summer 2026 — Austin &amp; surrounding areas
               </div>
               <div className="anim-title leading-none">
-                <img src="/runcheck-logo.png" alt="RunCheck" className="h-[clamp(5rem,14vw,10rem)] w-auto" />
+                <img src="/runcheck-logo.png" alt="RunCheck" className="h-[clamp(3rem,14vw,10rem)] w-auto" />
               </div>
               <h1 className="anim-tag text-2xl sm:text-3xl font-semibold text-orange-400 leading-snug">Find pickup basketball runs near you</h1>
               <p className="anim-desc text-lg leading-8 text-zinc-300 max-w-lg">
@@ -187,14 +201,17 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Phone mockup */}
-            <div className="anim-phone flex-shrink-0 flex justify-center lg:justify-end">
+            {/* Phone mockup — parallax drift as hero scrolls out */}
+            <motion.div
+              className="anim-phone flex-shrink-0 flex justify-center lg:justify-end"
+              style={{ y: phoneParallaxY }}
+            >
               <img
-                src="/mockups/find-a-run.png"
+                src="/mockups/997shots_so.png"
                 alt="RunCheck — Find a Run screen"
-                className="w-[92vw] sm:w-[600px] lg:w-[780px] xl:w-[880px] drop-shadow-[0_40px_120px_rgba(0,0,0,0.9)] [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.20))]"
+                className="w-[88vw] lg:w-[400px] xl:w-[460px] drop-shadow-[0_40px_120px_rgba(0,0,0,0.9)] [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.20))]"
               />
-            </div>
+            </motion.div>
           </div>{/* end inner content wrapper */}
         </section>
 
@@ -369,16 +386,16 @@ export default function Home() {
         {/* ══ CORE FEATURES ═══════════════════════════════════ */}
         {(() => {
           const features = [
-            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/find-a-run.png" },
-            { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/plan-a-visit.png" },
-            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/nearby-courts-map.png" },
-            { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/activity-feed.png" },
-            { icon: "✅", title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/player-profile.png" },
+            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/997shots_so.png" },
+            { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/775shots_so.png" },
+            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/738shots_so.png" },
+            { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/484shots_so.png" },
+            { icon: "✅", title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/725shots_so.png" },
           ];
           const af = features[activeFeature];
           return (
-            <section className="w-full px-4 sm:px-10 py-24">
-              <div className="max-w-7xl mx-auto flex flex-col gap-16">
+            <section className="w-full px-4 sm:px-10 pt-12 pb-24 lg:py-24">
+              <div className="max-w-7xl mx-auto flex flex-col gap-8 lg:gap-16">
 
                 {/* Header */}
                 <Reveal className="text-center">
@@ -387,36 +404,52 @@ export default function Home() {
                 </Reveal>
 
                 {/* Two-column: compact tabs (left) + dominant phone (right) */}
-                <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
+                <div className="flex flex-col lg:flex-row items-start gap-3 lg:gap-10">
 
-                  {/* Left: compact feature list — fixed narrow width */}
-                  <div className="flex flex-col gap-2 w-full lg:w-[280px] flex-shrink-0 lg:pt-8">
+                  {/* Left: compact feature list — staggered slide-in from left */}
+                  <motion.div
+                    className="flex flex-col gap-2 w-full lg:w-[280px] flex-shrink-0 lg:pt-8 order-last lg:order-first"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={{
+                      hidden: {},
+                      visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+                    }}
+                  >
                     {features.map((f, i) => (
-                      <button
+                      <motion.div
                         key={f.title}
-                        onClick={() => setActiveFeature(i)}
-                        className={`text-left px-4 py-3 rounded-xl border transition-all duration-200 ${
-                          activeFeature === i
-                            ? "border-orange-500/50 bg-orange-500/10"
-                            : "border-transparent hover:border-zinc-800 hover:bg-zinc-900/50"
-                        }`}
+                        variants={{
+                          hidden: { opacity: 0, x: -14 },
+                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                        }}
                       >
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-lg flex-shrink-0">{f.icon}</span>
-                          <div className="flex flex-col gap-0.5">
-                            <p className={`text-sm font-semibold leading-tight ${activeFeature === i ? "text-white" : "text-zinc-400"}`}>{f.title}</p>
-                            <p className={`text-xs leading-relaxed transition-colors duration-200 ${activeFeature === i ? "text-zinc-400" : "text-zinc-600"}`}>
-                              {f.caption}
-                            </p>
+                        <button
+                          onClick={() => setActiveFeature(i)}
+                          className={`w-full text-left px-4 py-3 rounded-xl border transition-all duration-200 ${
+                            activeFeature === i
+                              ? "border-orange-500/50 bg-orange-500/10"
+                              : "border-transparent hover:border-zinc-800 hover:bg-zinc-900/50"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-lg flex-shrink-0">{f.icon}</span>
+                            <div className="flex flex-col gap-0.5">
+                              <p className={`text-sm font-semibold leading-tight ${activeFeature === i ? "text-white" : "text-zinc-400"}`}>{f.title}</p>
+                              <p className={`text-xs leading-relaxed transition-colors duration-200 ${activeFeature === i ? "text-zinc-400" : "text-zinc-600"}`}>
+                                {f.caption}
+                              </p>
+                            </div>
+                            {activeFeature === i && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />}
                           </div>
-                          {activeFeature === i && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />}
-                        </div>
-                      </button>
+                        </button>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
 
                   {/* Right: phone — takes all remaining space, no max-w cap */}
-                  <div className="flex-1 flex items-center justify-center min-h-[500px] lg:min-h-[700px]">
+                  <div className="w-full h-[70vh] flex items-center justify-center order-first lg:order-last lg:h-auto lg:flex-1 lg:min-h-[820px]">
                     <AnimatePresence mode="wait">
                       <motion.img
                         key={activeFeature}
@@ -426,7 +459,7 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -24, scale: 0.96 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="h-full max-h-[700px] w-auto [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.28))_drop-shadow(0_60px_120px_rgba(0,0,0,0.9))]"
+                        className="h-[70vh] w-auto lg:h-full lg:max-h-[860px] [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.28))_drop-shadow(0_60px_120px_rgba(0,0,0,0.9))]"
                       />
                     </AnimatePresence>
                   </div>
@@ -440,7 +473,7 @@ export default function Home() {
         <Divider />
 
         {/* ══ APP SHOWCASE ════════════════════════════════════ */}
-        <section className="flex flex-col items-center text-center px-6 pb-24 gap-8 max-w-5xl mx-auto w-full">
+        <section className="flex flex-col items-center text-center px-3 sm:px-6 pb-16 lg:pb-24 gap-4 sm:gap-8 max-w-7xl mx-auto w-full">
           <Reveal>
             <SectionLabel>The full experience</SectionLabel>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">See RunCheck in action</h2>
@@ -448,11 +481,11 @@ export default function Home() {
               Home feed, court check-in, and run planning — all in one place.
             </p>
           </Reveal>
-          <Reveal delay={100} className="w-full">
+          <Reveal delay={100} className="w-full" variant="scale">
             <img
-              src="/mockups/hero-3phone-b.png"
-              alt="RunCheck app — home feed, court detail, and run planning screens"
-              className="w-full max-w-5xl mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
+              src="/mockups/759shots_so.png"
+              alt="RunCheck app — find a run, map, and court check-in screens"
+              className="w-full mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
             />
           </Reveal>
         </section>
@@ -477,21 +510,21 @@ export default function Home() {
                   step: "01", label: "Browse",
                   headline: "See who’s playing",
                   desc: "Browse active runs and live check-in counts before you leave.",
-                  mockup: "/mockups/find-a-run.png",
+                  mockup: "/mockups/997shots_so.png",
                   alt: "RunCheck — Find a Run screen",
                 },
                 {
                   step: "02", label: "Check in",
                   headline: "Check into a court",
                   desc: "Tap in when you arrive. Your count goes live instantly.",
-                  mockup: "/mockups/court-detail.png",
+                  mockup: "/mockups/175shots_so.png",
                   alt: "RunCheck — Court detail screen",
                 },
                 {
                   step: "03", label: "Plan",
                   headline: "Plan your run",
                   desc: "Schedule games, invite your crew, see who confirms.",
-                  mockup: "/mockups/plan-a-visit.png",
+                  mockup: "/mockups/775shots_so.png",
                   alt: "RunCheck — Plan a Visit screen",
                 },
               ].map((card, i) => (
@@ -573,35 +606,35 @@ export default function Home() {
                   label: "01 — Connect",
                   title: "Stay connected with your runs",
                   desc: "Chat with players before you arrive or coordinate in real time with run chats.",
-                  mockup: "/mockups/815shots_so.png",
+                  mockup: "/mockups/478shots_so.png",
                   alt: "RunCheck — Messaging screen",
                 },
                 {
                   label: "02 — Compete",
                   title: "Earn your reputation",
                   desc: "Climb the leaderboard, build your rank, and show the court you're consistent.",
-                  mockup: "/mockups/173shots_so.png",
+                  mockup: "/mockups/168shots_so.png",
                   alt: "RunCheck — Leaderboard screen",
                 },
                 {
                   label: "03 — Find Your Game",
                   title: "Filter your perfect run",
                   desc: "Search by skill level, court type, location, and more to find games that match your vibe.",
-                  mockup: "/mockups/140shots_so.png",
+                  mockup: "/mockups/533shots_so.png",
                   alt: "RunCheck — Filters screen",
                 },
                 {
                   label: "04 — Your Crew",
                   title: "See where your friends play",
                   desc: "Add friends and stay in the loop with where your crew is running.",
-                  mockup: "/mockups/394shots_so.png",
+                  mockup: "/mockups/69shots_so.png",
                   alt: "RunCheck — Your crew and profile screen",
                 },
                 {
                   label: "05 — Show Your Game",
                   title: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
-                  mockup: "/mockups/227shots_so.png",
+                  mockup: "/mockups/940shots_so.png",
                   alt: "RunCheck — Rank tiers and player profile screen",
                 },
               ].map((card, i) => (
@@ -666,18 +699,18 @@ export default function Home() {
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Find a run that matches your level</h2>
             <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">Filter by run level so you always end up in a game that fits.</p>
           </Reveal>
-          <Reveal delay={100} className="w-full">
-            <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 max-w-3xl mx-auto w-full">
-              {[{emoji:"😊",label:"Casual",desc:"Just for fun. Laid-back energy, all skill levels welcome.",color:"border-zinc-700 hover:border-zinc-500",tc:"text-zinc-300"},{emoji:"🤝",label:"Balanced",desc:"Competitive but friendly. Good pace, decent level.",color:"border-zinc-700 hover:border-zinc-500",tc:"text-zinc-300"},{emoji:"🔥",label:"Competitive",desc:"High intensity. Come ready to ball or sit down.",color:"border-orange-500",tc:"text-orange-400",active:true}].map(({emoji,label,desc,color,tc,active})=>(
-                <motion.div key={label} whileHover={{y:-4}} transition={{duration:.2}} className={"flex-1 flex flex-col items-center gap-3 rounded-2xl p-6 border-2 bg-[#0d0d0d] transition-colors cursor-default "+color}>
+          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 max-w-3xl mx-auto w-full">
+            {[{emoji:"😊",label:"Casual",desc:"Just for fun. Laid-back energy, all skill levels welcome.",color:"border-zinc-700 hover:border-zinc-500",tc:"text-zinc-300"},{emoji:"🤝",label:"Balanced",desc:"Competitive but friendly. Good pace, decent level.",color:"border-zinc-700 hover:border-zinc-500",tc:"text-zinc-300"},{emoji:"🔥",label:"Competitive",desc:"High intensity. Come ready to ball or sit down.",color:"border-orange-500",tc:"text-orange-400",active:true}].map(({emoji,label,desc,color,tc,active},i)=>(
+              <Reveal key={label} delay={i * 90} className="flex-1">
+                <motion.div whileHover={{y:-4}} transition={{duration:.2}} className={"h-full flex flex-col items-center gap-3 rounded-2xl p-6 border-2 bg-[#0d0d0d] transition-colors cursor-default "+color}>
                   <span className="text-4xl">{emoji}</span>
                   <span className={"text-base font-bold "+tc}>{label}</span>
                   <p className="text-sm text-zinc-500 leading-6">{desc}</p>
                   {active&&<span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-orange-500 border border-orange-500/50 rounded-full px-3 py-0.5">Most Popular</span>}
                 </motion.div>
-              ))}
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
         </section>
 
         <Divider />
@@ -870,7 +903,7 @@ export default function Home() {
         {/* ══ FINAL CTA ════════════════════════════════════════ */}
         <section className="relative flex flex-col items-center text-center px-6 py-36 gap-8 overflow-hidden">
           <div className="pointer-events-none absolute inset-0" style={{background:"radial-gradient(ellipse at center,rgba(249,115,22,.1) 0%,transparent 65%)"}} />
-          <Reveal className="relative z-10 flex flex-col items-center gap-6 max-w-xl">
+          <Reveal className="relative z-10 flex flex-col items-center gap-6 max-w-xl" variant="scale">
             <span className="inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300">
               <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316] animate-pulse" />
               Launching Summer 2026 in Austin
