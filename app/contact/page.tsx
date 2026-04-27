@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
+import { ChromeBackground } from "../components/ChromeBackground";
 
 const PRIVACY_URL = "/privacy";
 
@@ -42,13 +43,13 @@ export default function Contact() {
         .ct-title{animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .1s both}
         .ct-sub  {animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both}
       `}</style>
-      <div className="bg-black text-white flex flex-col min-h-screen">
+      <div className="bg-black text-white min-h-screen relative">
+        <ChromeBackground />
+        <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/contact" />
 
         {/* ── Hero ─────────────────────────────────────────────── */}
         <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 overflow-hidden">
-          <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-25"
-            style={{background:"radial-gradient(ellipse,rgba(249,115,22,.45) 0%,transparent 70%)"}} />
           <div className="relative z-10 max-w-xl">
             <p className="ct-sub text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-5">Contact</p>
             <h1 className="ct-title text-5xl sm:text-6xl font-extrabold tracking-tighter leading-tight mb-6">
@@ -107,6 +108,7 @@ export default function Contact() {
         </section>
 
         <Footer />
+        </div>{/* end z-10 */}
       </div>
     </>
   );

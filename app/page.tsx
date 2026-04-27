@@ -7,6 +7,8 @@ import { Footer } from "./components/Footer";
 import { Reveal } from "./components/Reveal";
 import { LiveDemo } from "./components/LiveDemo";
 import { FAQ } from "./components/FAQ";
+import { IridescentPhone } from "./components/IridescentPhone";
+import { ChromeBackground } from "./components/ChromeBackground";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500 mb-3">{children}</p>;
@@ -99,8 +101,7 @@ export default function Home() {
       <style>{`
         @keyframes heroFadeUp { from{opacity:0;transform:translateY(48px)} to{opacity:1;transform:translateY(0)} }
         @keyframes heroFadeIn { from{opacity:0} to{opacity:1} }
-        @keyframes glowPulse { 0%,100%{opacity:.18;transform:translate(-50%,-50%) scale(1)} 50%{opacity:.32;transform:translate(-50%,-50%) scale(1.12)} }
-        @keyframes pinBounce { 0%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 70%{transform:translateY(-5px)} }
+@keyframes pinBounce { 0%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 70%{transform:translateY(-5px)} }
         .anim-title{animation:heroFadeUp .85s cubic-bezier(.16,1,.3,1) .05s both}
         .anim-badge{animation:heroFadeUp .85s cubic-bezier(.16,1,.3,1) .15s both}
         .anim-tag  {animation:heroFadeUp .85s cubic-bezier(.16,1,.3,1) .28s both}
@@ -108,8 +109,7 @@ export default function Home() {
         .anim-btns {animation:heroFadeUp .85s cubic-bezier(.16,1,.3,1) .55s both}
         .anim-stats{animation:heroFadeIn 1s ease 1.0s both}
         .anim-phone{animation:heroFadeUp 1.1s cubic-bezier(.16,1,.3,1) .35s both}
-        .anim-glow {animation:glowPulse 5s ease-in-out infinite}
-        .anim-pin-1{animation:pinBounce 3s ease-in-out .2s infinite}
+.anim-pin-1{animation:pinBounce 3s ease-in-out .2s infinite}
         .anim-pin-2{animation:pinBounce 3s ease-in-out .8s infinite}
         .anim-pin-3{animation:pinBounce 3s ease-in-out 1.4s infinite}
         .feat{transition:border-color .2s,transform .2s,box-shadow .2s}
@@ -129,8 +129,6 @@ export default function Home() {
           />
           {/* Overlay */}
           <div className="absolute inset-0 z-0" style={{background:"linear-gradient(to right, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.15) 100%)"}} />
-          <div className="anim-glow pointer-events-none absolute top-1/2 left-1/4 w-[700px] h-[700px] rounded-full z-0"
-            style={{background:"radial-gradient(ellipse,rgba(249,115,22,.18) 0%,transparent 70%)"}} />
 
           <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-12 lg:pt-24 pb-8 lg:pb-32 flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-4">
 
@@ -201,15 +199,15 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Phone mockup — parallax drift as hero scrolls out */}
+            {/* Phone mockup — parallax drift + iridescent hover effect */}
             <motion.div
               className="anim-phone flex-shrink-0 flex justify-center lg:justify-end"
               style={{ y: phoneParallaxY }}
             >
-              <img
+              <IridescentPhone
                 src="/mockups/997shots_so.png"
                 alt="RunCheck — Find a Run screen"
-                className="w-[88vw] lg:w-[400px] xl:w-[460px] drop-shadow-[0_40px_120px_rgba(0,0,0,0.9)] [filter:drop-shadow(0_0_60px_rgba(249,115,22,0.20))]"
+                className="w-[88vw] lg:w-[400px] xl:w-[460px]"
               />
             </motion.div>
           </div>{/* end inner content wrapper */}
@@ -381,6 +379,11 @@ export default function Home() {
           </div>
         </section>}
 
+        {/* ══ CHROME ZONE — all sections below the hero ══════ */}
+        <div className="relative">
+          <ChromeBackground />
+          <div className="relative z-10">
+
         <Divider />
 
         {/* ══ CORE FEATURES ═══════════════════════════════════ */}
@@ -451,16 +454,20 @@ export default function Home() {
                   {/* Right: phone — takes all remaining space, no max-w cap */}
                   <div className="w-full h-[70vh] flex items-center justify-center order-first lg:order-last lg:h-auto lg:flex-1 lg:min-h-[820px]">
                     <AnimatePresence mode="wait">
-                      <motion.img
+                      <motion.div
                         key={activeFeature}
-                        src={af.screenshot}
-                        alt={af.title}
                         initial={{ opacity: 0, y: 24, scale: 0.96 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -24, scale: 0.96 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="h-[70vh] w-auto lg:h-full lg:max-h-[860px] [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.28))_drop-shadow(0_60px_120px_rgba(0,0,0,0.9))]"
-                      />
+                        className="h-[70vh] lg:h-full lg:max-h-[860px] flex items-center justify-center"
+                      >
+                        <IridescentPhone
+                          src={af.screenshot}
+                          alt={af.title}
+                          className="h-[70vh] w-auto lg:h-full lg:max-h-[860px]"
+                        />
+                      </motion.div>
                     </AnimatePresence>
                   </div>
 
@@ -919,6 +926,9 @@ export default function Home() {
         </section>
 
         <Footer />
+
+          </div>{/* end relative z-10 */}
+        </div>{/* end chrome zone */}
       </div>
     </>
   );

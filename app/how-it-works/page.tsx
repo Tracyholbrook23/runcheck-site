@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
+import { ChromeBackground } from "../components/ChromeBackground";
 
 const steps = [
   {
@@ -205,7 +206,9 @@ export default function HowItWorksPage() {
 
   return (
     <>
-      <div className="bg-black text-white flex flex-col min-h-screen">
+      <div className="bg-black text-white min-h-screen relative">
+        <ChromeBackground />
+        <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/how-it-works" />
 
         {/* Headline */}
@@ -406,6 +409,7 @@ export default function HowItWorksPage() {
         </section>
 
         <Footer />
+        </div>{/* end z-10 */}
       </div>
 
       {activeStep !== null && (

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
+import { ChromeBackground } from "../components/ChromeBackground";
 
 export default function About() {
   return (
@@ -13,13 +14,13 @@ export default function About() {
         .au-title{animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .1s both}
         .au-sub  {animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both}
       `}</style>
-      <div className="bg-black text-white flex flex-col min-h-screen">
+      <div className="bg-black text-white min-h-screen relative">
+        <ChromeBackground />
+        <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/about" />
 
         {/* ── Hero ─────────────────────────────────────────────── */}
         <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 overflow-hidden">
-          <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full opacity-25"
-            style={{background:"radial-gradient(ellipse,rgba(249,115,22,.45) 0%,transparent 70%)"}} />
           <div className="relative z-10 max-w-2xl">
             <p className="au-sub text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-5">About RunCheck</p>
             <h1 className="au-title text-5xl sm:text-7xl font-extrabold tracking-tighter leading-tight mb-6">
@@ -136,6 +137,7 @@ export default function About() {
         </section>
 
         <Footer />
+        </div>{/* end z-10 */}
       </div>
     </>
   );
