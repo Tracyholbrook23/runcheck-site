@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-const PRIVACY_URL =
-  "/privacy";
+const PRIVACY_URL = "/privacy";
+const TERMS_URL = "/terms";
 
 const INSTAGRAM_URL = "https://www.instagram.com/run.check?igsh=dWdieWZteXlvd21k&utm_source=qr";
 
@@ -34,6 +34,9 @@ export function Footer() {
             <Link href={PRIVACY_URL} className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
+            <Link href={TERMS_URL} className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
           </div>
 
           {/* Social icons */}
@@ -55,6 +58,9 @@ export function Footer() {
           <p className="text-xs text-zinc-700">© {new Date().getFullYear()} RunCheck. All rights reserved.</p>
           <p className="text-xs text-zinc-700">Austin, TX</p>
         </div>
+
+        {/* Built by */}
+        <p className="text-center text-xs text-zinc-800">Built by Tracy</p>
       </div>
     </footer>
   );

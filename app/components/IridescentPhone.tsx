@@ -48,17 +48,17 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
     setHovered(false);
   }, []);
 
-  // Iridescent gradient parameters — shift with cursor
+  // Orange-chrome gradient — stays in warm orange / amber / gold range
   const angle = 135 + norm.x * 35 + norm.y * 20;
-  const h1    = 25  + norm.x * 30;   // orange / gold
-  const h2    = 200 + norm.y * 50;   // blue / cyan
-  const h3    = 270 + norm.x * 25;   // violet / purple
+  const h1    = 22  + norm.x * 12;   // deep orange
+  const h2    = 38  + norm.y * 14;   // amber / gold
+  const h3    = 30  + norm.x * 10;   // warm orange-gold
 
   // Shadow deepens and shifts slightly with tilt
   const shadowY  = 40 + norm.y * 18;
   const shadowSz = 120 + Math.abs(norm.y) * 40;
   const glowSz   = hovered ? "80px" : "60px";
-  const glowAlpha = hovered ? "0.42" : "0.20";
+  const glowAlpha = hovered ? "0.42" : "0";
 
   return (
     <div
@@ -79,7 +79,7 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
           alt={alt}
           className={className}
           style={{
-            filter: `drop-shadow(0 0 ${glowSz} rgba(249,115,22,${glowAlpha})) drop-shadow(0 ${shadowY}px ${shadowSz}px rgba(0,0,0,0.92))`,
+            filter: `drop-shadow(0 0 ${glowSz} rgba(249,115,22,${hovered ? glowAlpha : "0"})) drop-shadow(0 ${shadowY}px ${shadowSz}px rgba(0,0,0,0.92))`,
             transition: hovered ? "none" : "filter 0.45s ease",
             display: "block",
           }}
@@ -93,15 +93,15 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
             inset: 0,
             pointerEvents: "none",
             mixBlendMode: "overlay",
-            opacity: hovered ? 0.9 : 0.14,
+            opacity: hovered ? 0.9 : 0,
             transition: "opacity 0.35s ease",
             background: `
-              radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(255,255,255,0.22) 0%, transparent 52%),
+              radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(255,200,120,0.28) 0%, transparent 52%),
               linear-gradient(${angle}deg,
-                hsla(${h1}, 95%, 65%, 0.36) 0%,
-                hsla(${h2}, 85%, 68%, 0.30) 33%,
-                hsla(${h3}, 80%, 65%, 0.36) 66%,
-                hsla(${h1 + 55}, 90%, 62%, 0.28) 100%
+                hsla(${h1}, 100%, 60%, 0.50) 0%,
+                hsla(${h2},  90%, 68%, 0.38) 30%,
+                hsla(${h3 + 10}, 85%, 75%, 0.32) 55%,
+                hsla(${h1 - 5}, 100%, 58%, 0.48) 100%
               )
             `,
           }}
@@ -117,7 +117,7 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
             mixBlendMode: "screen",
             opacity: hovered ? 0.85 : 0,
             transition: "opacity 0.25s ease",
-            background: `radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(255,255,255,0.20) 0%, transparent 36%)`,
+            background: `radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(255,180,80,0.30) 0%, rgba(255,140,40,0.12) 40%, transparent 65%)`,
           }}
         />
       </motion.div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
@@ -138,9 +138,46 @@ export default function Home() {
                 <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316]" />
                 Launching Summer 2026 — Austin &amp; surrounding areas
               </div>
-              <div className="anim-title leading-none">
-                <img src="/runcheck-logo.png" alt="RunCheck" className="h-[clamp(3rem,14vw,10rem)] w-auto" />
-              </div>
+              {/* Logo — floating bob + true coin spin (two faces, backface-visibility) */}
+              <motion.div
+                className="anim-title leading-none"
+                animate={{ y: [0, -14, 0] }}
+                transition={{ y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" } }}
+              >
+                {/* perspective lives on the PARENT of the spinning element */}
+                <div style={{ perspective: "500px", display: "inline-block" }}>
+                  <motion.div
+                    animate={{ rotateY: [0, 360] }}
+                    transition={{ rotateY: { duration: 3, repeat: Infinity, ease: "linear" } }}
+                    style={{ transformStyle: "preserve-3d", position: "relative", display: "inline-block" }}
+                  >
+                    {/* Front face */}
+                    <img
+                      src="/runcheck-logo.png"
+                      alt="RunCheck"
+                      className="h-[clamp(3rem,14vw,10rem)] w-auto block"
+                      style={{
+                        backfaceVisibility: "hidden",
+                        WebkitBackfaceVisibility: "hidden",
+                        filter: "drop-shadow(0 0 22px rgba(249,115,22,0.5))",
+                      }}
+                    />
+                    {/* Back face — pre-rotated 180° so it faces away at rest, visible on the flip */}
+                    <img
+                      src="/runcheck-logo.png"
+                      alt=""
+                      aria-hidden="true"
+                      className="h-[clamp(3rem,14vw,10rem)] w-auto absolute inset-0"
+                      style={{
+                        backfaceVisibility: "hidden",
+                        WebkitBackfaceVisibility: "hidden",
+                        filter: "drop-shadow(0 0 22px rgba(249,115,22,0.5)) sepia(0.4) hue-rotate(10deg)",
+                        transform: "rotateY(180deg)",
+                      }}
+                    />
+                  </motion.div>
+                </div>
+              </motion.div>
               <h1 className="anim-tag text-2xl sm:text-3xl font-semibold text-orange-400 leading-snug">Find pickup basketball runs near you</h1>
               <p className="anim-desc text-lg leading-8 text-zinc-300 max-w-lg">
                 Stop wasting trips to empty gyms. See who&apos;s checked in, where the run is, and when it tips off — before you ever leave the house.
@@ -701,24 +738,194 @@ export default function Home() {
         <Divider />
 
         {/* ══ RUN LEVELS ══════════════════════════════════════ */}
-        <section className="flex flex-col items-center text-center px-6 py-28 gap-12 max-w-5xl mx-auto w-full">
-          <Reveal><SectionLabel>Set the vibe</SectionLabel>
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Find a run that matches your level</h2>
-            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">Filter by run level so you always end up in a game that fits.</p>
-          </Reveal>
-          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 max-w-3xl mx-auto w-full">
-            {[{emoji:"😊",label:"Casual",desc:"Just for fun. Laid-back energy, all skill levels welcome.",color:"border-zinc-700 hover:border-zinc-500",tc:"text-zinc-300"},{emoji:"🤝",label:"Balanced",desc:"Competitive but friendly. Good pace, decent level.",color:"border-zinc-700 hover:border-zinc-500",tc:"text-zinc-300"},{emoji:"🔥",label:"Competitive",desc:"High intensity. Come ready to ball or sit down.",color:"border-orange-500",tc:"text-orange-400",active:true}].map(({emoji,label,desc,color,tc,active},i)=>(
-              <Reveal key={label} delay={i * 90} className="flex-1">
-                <motion.div whileHover={{y:-4}} transition={{duration:.2}} className={"h-full flex flex-col items-center gap-3 rounded-2xl p-6 border-2 bg-[#0d0d0d] transition-colors cursor-default "+color}>
-                  <span className="text-4xl">{emoji}</span>
-                  <span className={"text-base font-bold "+tc}>{label}</span>
-                  <p className="text-sm text-zinc-500 leading-6">{desc}</p>
-                  {active&&<span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-orange-500 border border-orange-500/50 rounded-full px-3 py-0.5">Most Popular</span>}
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        {(() => {
+          const levels = [
+            {
+              emoji: "😊", label: "Casual",
+              tagline: "Just here for the love of the game",
+              desc: "Just for fun. Laid-back energy, all skill levels welcome.",
+              cardBorder: "border-zinc-700 hover:border-zinc-400",
+              tc: "text-zinc-200",
+              accentColor: "#a1a1aa",
+              detail: {
+                who: "Everyday people who just want to move, sweat, and enjoy the game. Zero pressure, zero ego. You don't need to be good — you just need to show up.",
+                vibe: "Relaxed pace, lots of laughs, and no trash talk. People pass up good shots to give someone else a turn. It's basketball at its most fun.",
+                players: ["Beginners & newcomers", "People returning after a long break", "Older players just staying active", "Anyone who plays for fun, not stats", "All ages and body types welcome"],
+                expect: "Don't be surprised if someone apologizes after a foul or if the teams get shuffled mid-game to keep it fair. Good vibes only.",
+                warning: null,
+              },
+            },
+            {
+              emoji: "🤝", label: "Balanced",
+              tagline: "Competitive, but keeps it respectful",
+              desc: "Competitive but friendly. Good pace, decent level.",
+              cardBorder: "border-zinc-700 hover:border-blue-500/60",
+              tc: "text-blue-300",
+              accentColor: "#60a5fa",
+              detail: {
+                who: "A solid mix — some former high school players, recreational league regulars, and athletes who know the game and take it seriously without letting their ego run the floor.",
+                vibe: "Real basketball with accountability. People call fouls fairly, run actual plays, and compete hard — but shake hands after and grab food together.",
+                players: ["Former high school / JV players", "Rec-league regulars", "Athletes who are competitive but coachable", "Players who know fundamentals", "A healthy mix of ages & backgrounds"],
+                expect: "Expect real effort every possession. People here want to win, but not at the cost of the run. Skill check: can you handle the ball under pressure? You'll find out.",
+                warning: null,
+              },
+            },
+            {
+              emoji: "🔥", label: "Competitive",
+              tagline: "Come ready or don't come at all",
+              desc: "High intensity. Come ready to ball or sit down.",
+              cardBorder: "border-orange-500",
+              tc: "text-orange-400",
+              accentColor: "#f97316",
+              active: true,
+              detail: {
+                who: "The real deal. These are former college players, ex-pros, semi-pro athletes, and gym legends who've been putting in work their whole lives. Every possession matters.",
+                vibe: "Fast, physical, and intense. Full-court press, hard screens, and nobody's giving you anything. If you go soft, expect to ride the bench.",
+                players: ["Former D1 / D2 / D3 college players", "Ex-professional & semi-pro athletes", "High-level high school prospects", "Gym legends with 20+ years of run", "Players who train year-round"],
+                expect: "If you can hold your own here, you can hold your own anywhere. This is where reputations are built. Come with your A-game or be ready to watch.",
+                warning: "Not recommended for beginners or casual players. The pace and physicality can be intense.",
+              },
+            },
+          ];
+          const [selectedLevel, setSelectedLevel] = React.useState<number | null>(null);
+          const sel = selectedLevel !== null ? levels[selectedLevel] : null;
+
+          return (
+            <>
+              <section className="flex flex-col items-center text-center px-6 py-28 gap-12 max-w-5xl mx-auto w-full">
+                <Reveal>
+                  <SectionLabel>Set the vibe</SectionLabel>
+                  <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Find a run that matches your level</h2>
+                  <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">Tap any card to see exactly what you're walking into.</p>
+                </Reveal>
+                <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 max-w-3xl mx-auto w-full">
+                  {levels.map(({emoji,label,desc,cardBorder,tc,active},i) => (
+                    <Reveal key={label} delay={i * 90} className="flex-1">
+                      <motion.button
+                        onClick={() => setSelectedLevel(i)}
+                        whileHover={{ y: -6, scale: 1.02 }}
+                        whileTap={{ scale: 0.96 }}
+                        transition={{ duration: .18 }}
+                        className={"w-full h-full flex flex-col items-center gap-3 rounded-2xl p-6 border-2 bg-[#0d0d0d] transition-colors cursor-pointer text-center " + cardBorder}
+                      >
+                        <span className="text-4xl">{emoji}</span>
+                        <span className={"text-base font-bold " + tc}>{label}</span>
+                        <p className="text-sm text-zinc-500 leading-6">{desc}</p>
+                        {active && <span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-orange-500 border border-orange-500/50 rounded-full px-3 py-0.5">Most Popular</span>}
+                        <span className="text-[10px] text-zinc-600 mt-1 uppercase tracking-widest">Tap to learn more →</span>
+                      </motion.button>
+                    </Reveal>
+                  ))}
+                </div>
+              </section>
+
+              {/* ── Level detail modal (bottom sheet on mobile, centered on desktop) ── */}
+              <AnimatePresence>
+                {sel && (
+                  <motion.div
+                    className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-6"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  >
+                    {/* backdrop */}
+                    <motion.div
+                      className="absolute inset-0 bg-black/80 backdrop-blur-md"
+                      onClick={() => setSelectedLevel(null)}
+                    />
+
+                    {/* sheet / card */}
+                    <motion.div
+                      className="relative z-10 w-full sm:max-w-lg bg-zinc-950 border border-t sm:border rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col"
+                      style={{ borderColor: sel.accentColor + "55", maxHeight: "88vh" }}
+                      initial={{ y: "100%", opacity: 1 }}
+                      animate={{ y: 0,      opacity: 1 }}
+                      exit={{ y: "100%",   opacity: 0 }}
+                      transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                      // desktop overrides via sm: classes handled by initial/animate above
+                    >
+                      {/* drag handle (mobile hint) */}
+                      <div className="flex justify-center pt-3 pb-1 sm:hidden flex-shrink-0">
+                        <div className="w-10 h-1 rounded-full bg-zinc-700" />
+                      </div>
+
+                      {/* top accent bar */}
+                      <div className="h-1 w-full flex-shrink-0" style={{ background: `linear-gradient(to right, transparent, ${sel.accentColor}, transparent)` }} />
+
+                      {/* scrollable content */}
+                      <div className="overflow-y-auto flex-1 px-6 sm:px-7 pt-5 pb-4 flex flex-col gap-5">
+                        {/* header */}
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex items-center gap-3">
+                            <span className="text-4xl sm:text-5xl">{sel.emoji}</span>
+                            <div className="text-left">
+                              <p className="text-lg sm:text-xl font-extrabold text-white">{sel.label}</p>
+                              <p className="text-xs font-semibold italic" style={{ color: sel.accentColor }}>{sel.tagline}</p>
+                            </div>
+                          </div>
+                          {/* desktop close — hidden on mobile (use bottom button instead) */}
+                          <button
+                            onClick={() => setSelectedLevel(null)}
+                            className="hidden sm:flex w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 items-center justify-center text-zinc-400 hover:text-white text-sm flex-shrink-0 transition-colors"
+                          >✕</button>
+                        </div>
+
+                        <div className="h-px bg-zinc-800" />
+
+                        {/* who */}
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: sel.accentColor }}>Who you'll find here</p>
+                          <p className="text-sm text-zinc-300 leading-7">{sel.detail.who}</p>
+                        </div>
+
+                        {/* player types */}
+                        <div className="flex flex-col gap-2">
+                          {sel.detail.players.map(p => (
+                            <div key={p} className="flex items-center gap-2.5">
+                              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: sel.accentColor }} />
+                              <span className="text-sm text-zinc-400">{p}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="h-px bg-zinc-800" />
+
+                        {/* vibe */}
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: sel.accentColor }}>The vibe</p>
+                          <p className="text-sm text-zinc-300 leading-7">{sel.detail.vibe}</p>
+                        </div>
+
+                        {/* what to expect */}
+                        <div className="rounded-xl p-4" style={{ background: sel.accentColor + "12", border: `1px solid ${sel.accentColor}30` }}>
+                          <p className="text-[10px] font-bold uppercase tracking-widest mb-1.5" style={{ color: sel.accentColor }}>What to expect</p>
+                          <p className="text-sm text-zinc-300 leading-7">{sel.detail.expect}</p>
+                        </div>
+
+                        {/* warning if competitive */}
+                        {sel.detail.warning && (
+                          <div className="flex items-start gap-3 bg-orange-500/10 border border-orange-500/30 rounded-xl px-4 py-3">
+                            <span className="text-lg flex-shrink-0">⚠️</span>
+                            <p className="text-xs text-orange-300 leading-6">{sel.detail.warning}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* sticky close button — big and obvious on mobile */}
+                      <div className="flex-shrink-0 px-6 sm:px-7 py-4 border-t border-zinc-800/60">
+                        <button
+                          onClick={() => setSelectedLevel(null)}
+                          className="w-full py-4 rounded-2xl font-bold text-base text-white transition-all active:scale-95"
+                          style={{ background: sel.accentColor === "#f97316" ? "#f97316" : "#27272a", color: sel.accentColor === "#f97316" ? "#fff" : sel.accentColor }}
+                        >
+                          Got it
+                        </button>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </>
+          );
+        })()}
 
         <Divider />
 
