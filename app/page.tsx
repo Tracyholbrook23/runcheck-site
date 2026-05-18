@@ -242,7 +242,7 @@ export default function Home() {
               style={{ y: phoneParallaxY }}
             >
               <IridescentPhone
-                src="/mockups/997shots_so.png"
+                src="/mockups/884shots_so.png"
                 alt="RunCheck — Find a Run screen"
                 className="w-[88vw] lg:w-[400px] xl:w-[460px]"
               />
@@ -426,9 +426,9 @@ export default function Home() {
         {/* ══ CORE FEATURES ═══════════════════════════════════ */}
         {(() => {
           const features = [
-            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/940shots_so.png" },
+            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/931shots_so.png" },
             { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/775shots_so.png" },
-            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/738shots_so.png" },
+            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/421shots_so.png" },
             { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/484shots_so.png" },
             { icon: "✅", title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/725shots_so.png" },
           ];
@@ -527,8 +527,8 @@ export default function Home() {
           </Reveal>
           <Reveal delay={100} className="w-full" variant="scale">
             <img
-              src="/mockups/759shots_so.png"
-              alt="RunCheck app — find a run, map, and court check-in screens"
+              src="/mockups/867shots_so.png"
+              alt="RunCheck app — activity schedule, find a run, and home screens"
               className="w-full mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
             />
           </Reveal>
@@ -554,15 +554,15 @@ export default function Home() {
                   step: "01", label: "Browse",
                   headline: "See who’s playing",
                   desc: "Browse active runs and live check-in counts before you leave.",
-                  mockup: "/mockups/997shots_so.png",
+                  mockup: "/mockups/884shots_so.png",
                   alt: "RunCheck — Find a Run screen",
                 },
                 {
                   step: "02", label: "Check in",
                   headline: "Check into a court",
                   desc: "Tap in when you arrive. Your count goes live instantly.",
-                  mockup: "/mockups/175shots_so.png",
-                  alt: "RunCheck — Court detail screen",
+                  mockup: "/mockups/394shots_so.png",
+                  alt: "RunCheck — Court check-in screen",
                 },
                 {
                   step: "03", label: "Plan",
@@ -650,7 +650,7 @@ export default function Home() {
                   label: "01 — Connect",
                   title: "Stay connected with your runs",
                   desc: "Chat with players before you arrive or coordinate in real time with run chats.",
-                  mockup: "/mockups/478shots_so.png",
+                  mockup: "/mockups/134shots_so.png",
                   alt: "RunCheck — Messaging screen",
                 },
                 {

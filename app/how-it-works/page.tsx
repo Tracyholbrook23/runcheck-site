@@ -11,7 +11,7 @@ const steps = [
   {
     step: "01", label: "Browse",
     title: "Open the app and browse nearby courts",
-    mockup: "/mockups/738shots_so.png",
+    mockup: "/mockups/421shots_so.png",
     alt: "RunCheck — Nearby courts map screen",
     detail: {
       headline: "Every court near you, live.",
@@ -22,7 +22,7 @@ const steps = [
   {
     step: "02", label: "See what’s happening",
     title: "See who’s playing and what’s going on",
-    mockup: "/mockups/997shots_so.png",
+    mockup: "/mockups/884shots_so.png",
     alt: "RunCheck — Find a Run screen",
     detail: {
       headline: "Real info, before you leave.",
@@ -33,8 +33,8 @@ const steps = [
   {
     step: "03", label: "Check in",
     title: "Check in when you arrive",
-    mockup: "/mockups/175shots_so.png",
-    alt: "RunCheck — Court detail screen",
+    mockup: "/mockups/394shots_so.png",
+    alt: "RunCheck — Court check-in screen",
     detail: {
       headline: "Let the court know you’re there.",
       body: "When you get to the gym, tap Check In Here. RunCheck uses GPS to confirm you’re actually at the court — no ghosts, no fake check-ins. Your check-in shows up live for everyone browsing that court.",
@@ -318,7 +318,7 @@ export default function HowItWorksPage() {
                   label: "01 — Connect",
                   headline: "Stay connected with your runs",
                   desc: "Chat with players before you arrive or coordinate in real time with run chats.",
-                  mockup: "/mockups/478shots_so.png",
+                  mockup: "/mockups/134shots_so.png",
                   alt: "RunCheck — Messaging screen",
                 },
                 {
