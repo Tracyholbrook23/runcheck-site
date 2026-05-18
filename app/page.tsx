@@ -426,7 +426,7 @@ export default function Home() {
         {/* ══ CORE FEATURES ═══════════════════════════════════ */}
         {(() => {
           const features = [
-            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/997shots_so.png" },
+            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/940shots_so.png" },
             { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/775shots_so.png" },
             { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/738shots_so.png" },
             { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/484shots_so.png" },
@@ -678,8 +678,8 @@ export default function Home() {
                   label: "05 — Show Your Game",
                   title: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
-                  mockup: "/mockups/940shots_so.png",
-                  alt: "RunCheck — Rank tiers and player profile screen",
+                  mockup: "/mockups/823shots_so.png",
+                  alt: "RunCheck — Start a run and set your level screen",
                 },
               ].map((card, i) => (
                 <motion.div

@@ -346,8 +346,8 @@ export default function HowItWorksPage() {
                   label: "05 — Show Your Game",
                   headline: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
-                  mockup: "/mockups/940shots_so.png",
-                  alt: "RunCheck — Rank tiers and player profile screen",
+                  mockup: "/mockups/823shots_so.png",
+                  alt: "RunCheck — Start a run and set your level screen",
                 },
               ].map((card, i) => (
                 <motion.button
