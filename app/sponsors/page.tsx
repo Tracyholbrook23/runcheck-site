@@ -170,7 +170,7 @@ export default function Sponsors() {
 
   const [form, setForm] = useState({
     businessName: "", contactName: "", email: "", phone: "",
-    category: "", otherCategory: "", tier: "", city: "",
+    category: "", otherCategory: "", tier: "", billing: "", city: "",
   });
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
@@ -180,6 +180,10 @@ export default function Sponsors() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!form.billing) {
+      alert("Please select a billing preference.");
+      return;
+    }
     setFormStatus("submitting");
     try {
       const payload = {
@@ -195,7 +199,7 @@ export default function Sponsors() {
       });
       if (!res.ok) throw new Error("Failed");
       setFormStatus("success");
-      setForm({ businessName: "", contactName: "", email: "", phone: "", category: "", otherCategory: "", tier: "", city: "" });
+      setForm({ businessName: "", contactName: "", email: "", phone: "", category: "", otherCategory: "", tier: "", billing: "", city: "" });
     } catch {
       setFormStatus("error");
     }
@@ -666,7 +670,32 @@ export default function Sponsors() {
                     </div>
                   </div>
 
-                  {/* Row 4: target city */}
+                  {/* Row 4: billing preference */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Billing Preference *</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {[
+                        { value: "Month to month", label: "Month to Month", sub: "Pay monthly, cancel anytime" },
+                        { value: "3-month package", label: "3-Month Package", sub: "Save ~15% — pay once for 3 months" },
+                      ].map(({ value, label, sub }) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => setField("billing", value)}
+                          className={`flex flex-col gap-1 rounded-xl px-4 py-3 border text-left transition-all ${
+                            form.billing === value
+                              ? "border-orange-500/70 bg-orange-500/10"
+                              : "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600"
+                          }`}
+                        >
+                          <span className={`text-sm font-bold ${form.billing === value ? "text-orange-400" : "text-white"}`}>{label}</span>
+                          <span className="text-xs text-zinc-500">{sub}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Row 5: target city */}
                   <div className="flex flex-col gap-2">
                     <label className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Target City *</label>
                     <input
