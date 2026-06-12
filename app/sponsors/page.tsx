@@ -170,7 +170,7 @@ export default function Sponsors() {
 
   const [form, setForm] = useState({
     businessName: "", contactName: "", email: "", phone: "",
-    category: "", tier: "", city: "",
+    category: "", otherCategory: "", tier: "", city: "",
   });
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
@@ -182,14 +182,20 @@ export default function Sponsors() {
     e.preventDefault();
     setFormStatus("submitting");
     try {
+      const payload = {
+        ...form,
+        category: form.category === "Other" && form.otherCategory.trim()
+          ? `Other: ${form.otherCategory.trim()}`
+          : form.category,
+      };
       const res = await fetch("/api/sponsor-inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("Failed");
       setFormStatus("success");
-      setForm({ businessName: "", contactName: "", email: "", phone: "", category: "", tier: "", city: "" });
+      setForm({ businessName: "", contactName: "", email: "", phone: "", category: "", otherCategory: "", tier: "", city: "" });
     } catch {
       setFormStatus("error");
     }
@@ -633,6 +639,16 @@ export default function Sponsors() {
                         <option value="Apparel & Gear">Apparel & Gear</option>
                         <option value="Other">Other</option>
                       </select>
+                      {form.category === "Other" && (
+                        <input
+                          type="text"
+                          required
+                          value={form.otherCategory}
+                          onChange={(e) => setField("otherCategory", e.target.value)}
+                          placeholder="Describe your business type"
+                          className="mt-2 bg-[#0d0d0d] border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-orange-500/60 transition-colors"
+                        />
+                      )}
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Tier Interest *</label>
