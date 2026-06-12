@@ -33,12 +33,18 @@ export function ChromeBackground() {
       W: 0, H: 0,
     };
     let raf = 0;
+    // Cached gradients — rebuilt only on resize, not every frame
+    let vigGrad: CanvasGradient | null = null;
 
     const resize = () => {
       S.W = canvas.offsetWidth;
       S.H = canvas.offsetHeight;
       canvas.width  = S.W;
       canvas.height = S.H;
+      // Rebuild cached vignette gradient for new dimensions
+      vigGrad = ctx.createRadialGradient(S.W/2, S.H/2, S.H * 0.10, S.W/2, S.H/2, S.H * 0.90);
+      vigGrad.addColorStop(0, "rgba(255,255,255, 1)");
+      vigGrad.addColorStop(1, "rgba(0,0,0, 0.80)");
       initBlobs();
     };
 
@@ -214,6 +220,8 @@ export function ChromeBackground() {
       ctx.globalAlpha = 1;
 
       // ── cursor specular ──────────────────────────────────────────────────
+      // Only draw when cursor is inside the canvas; gradient follows cursor so
+      // we must create it per-frame, but skip it entirely when offscreen.
       ctx.globalCompositeOperation = "screen";
       if (mouse.x > 0 && mouse.x < W && mouse.y > 0 && mouse.y < H) {
         const sp = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 130);
@@ -224,13 +232,12 @@ export function ChromeBackground() {
         ctx.fillRect(0, 0, W, H);
       }
 
-      // ── vignette ─────────────────────────────────────────────────────────
+      // ── vignette — uses cached gradient, rebuilt only on resize ──────────
       ctx.globalCompositeOperation = "multiply";
-      const vig = ctx.createRadialGradient(W/2, H/2, H * 0.10, W/2, H/2, H * 0.90);
-      vig.addColorStop(0, "rgba(255,255,255, 1)");
-      vig.addColorStop(1, "rgba(0,0,0, 0.80)");
-      ctx.fillStyle = vig;
-      ctx.fillRect(0, 0, W, H);
+      if (vigGrad) {
+        ctx.fillStyle = vigGrad;
+        ctx.fillRect(0, 0, W, H);
+      }
 
       ctx.globalCompositeOperation = "source-over";
       ctx.globalAlpha = 1;
@@ -240,11 +247,22 @@ export function ChromeBackground() {
 
     raf = requestAnimationFrame(draw);
 
+    // Pause animation when the tab is hidden, resume when visible again
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+      } else {
+        raf = requestAnimationFrame(draw);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("click", onClick);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 

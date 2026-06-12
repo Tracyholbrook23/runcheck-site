@@ -26,70 +26,30 @@ function Divider() {
   );
 }
 
-// ── Klaviyo waitlist signup ────────────────────────────────────────────────────
-async function submitEmail(email: string): Promise<void> {
-  const res = await fetch("/api/subscribe", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
-  });
+const APP_STORE_URL = "https://apps.apple.com/us/app/runcheck-pickup-basketball/id6760801659";
 
-  const data = await res.json();
-
-  if (!res.ok || !data.success) {
-    const msg = data?.error ?? "Something went wrong. Please try again.";
-    console.error("[RunCheck] Waitlist signup failed:", msg);
-    throw new Error(msg);
-  }
-
-  console.log("[RunCheck] Waitlist signup success:", email);
+function AppStoreButton({ className = "" }: { className?: string }) {
+  return (
+    <a
+      href={APP_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-3 bg-white text-black rounded-2xl px-6 py-3.5 transition-all hover:bg-zinc-100 shadow-[0_0_32px_rgba(255,255,255,0.12)] hover:shadow-[0_0_48px_rgba(255,255,255,0.22)] ${className}`}
+    >
+      <svg viewBox="0 0 814 1000" className="w-6 h-6 fill-current flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
+        <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.4C46 790.8 0 663.6 0 541.1c0-204.8 133.4-313.1 264.8-313.1 70.2 0 128.6 42.8 170.8 42.8 40.4 0 107-46.7 183.9-46.7zm-155.9-210.1c31.8-39.7 54.3-95.7 54.3-151.7 0-8.1-.6-16.2-2-23.1-51.2 1.9-112.3 34.2-149.2 75.8-28.5 32.4-55.1 88.4-55.1 145.5 0 8.7 1.4 17.4 2 20.1 3.2.6 8.4 1.3 13.6 1.3 46.1 0 101.3-30.9 136.4-67.9z"/>
+      </svg>
+      <div className="flex flex-col text-left">
+        <span className="text-[10px] leading-none font-medium">Download on the</span>
+        <span className="text-lg font-bold leading-tight">App Store</span>
+      </div>
+    </a>
+  );
 }
 
 export default function Home() {
-  // Hero inline form state
-  const [heroEmail, setHeroEmail]       = useState("");
-  const [heroSent, setHeroSent]         = useState(false);
-  const [heroLoading, setHeroLoading]   = useState(false);
-  const [heroError, setHeroError]       = useState("");
-
   // Active feature tab state (Core Features section)
   const [activeFeature, setActiveFeature] = useState(0);
-
-  // Bottom waitlist form state
-  const [waitlistEmail, setWaitlistEmail]     = useState("");
-  const [waitlistSent, setWaitlistSent]       = useState(false);
-  const [waitlistLoading, setWaitlistLoading] = useState(false);
-  const [waitlistError, setWaitlistError]     = useState("");
-
-  async function handleHeroWaitlist(e: React.FormEvent) {
-    e.preventDefault();
-    if (!heroEmail.trim()) return;
-    setHeroLoading(true);
-    setHeroError("");
-    try {
-      await submitEmail(heroEmail);
-      setHeroSent(true);
-    } catch {
-      setHeroError("Something went wrong. Please try again.");
-    } finally {
-      setHeroLoading(false);
-    }
-  }
-
-  async function handleWaitlist(e: React.FormEvent) {
-    e.preventDefault();
-    if (!waitlistEmail.trim()) return;
-    setWaitlistLoading(true);
-    setWaitlistError("");
-    try {
-      await submitEmail(waitlistEmail);
-      setWaitlistSent(true);
-    } catch {
-      setWaitlistError("Something went wrong. Please try again.");
-    } finally {
-      setWaitlistLoading(false);
-    }
-  }
 
   // Subtle hero-phone parallax — GPU-composited transform, safe on mobile
   const heroRef = useRef<HTMLElement>(null);
@@ -135,8 +95,8 @@ export default function Home() {
             {/* Copy */}
             <div className="flex flex-col gap-3 lg:gap-6 max-w-lg text-center lg:text-left items-center lg:items-start flex-shrink-0">
               <div className="anim-badge inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316]" />
-                Launching Summer 2026 — Austin &amp; surrounding areas
+                <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_#22c55e]" />
+                Now live — Available on the App Store
               </div>
               {/* Logo — floating bob + true coin spin (two faces, backface-visibility) */}
               <motion.div
@@ -183,43 +143,9 @@ export default function Home() {
                 Stop wasting trips to empty gyms. See who&apos;s checked in, where the run is, and when it tips off — before you ever leave the house.
               </p>
 
-              {/* Hero waitlist form */}
-              <div className="anim-btns w-full max-w-md">
-                {heroSent ? (
-                  <motion.div
-                    initial={{opacity:0,y:12,scale:.97}}
-                    animate={{opacity:1,y:0,scale:1}}
-                    transition={{duration:.5,ease:[0.16,1,0.3,1]}}
-                    className="flex items-center gap-3 bg-green-500/10 border border-green-500/30 rounded-2xl px-5 py-4"
-                  >
-                    <span className="text-xl">🏀</span>
-                    <div>
-                      <p className="text-sm font-bold text-white">You&apos;re on the list!</p>
-                      <p className="text-xs text-zinc-400">We&apos;ll hit you when RunCheck goes live in Austin.</p>
-                    </div>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleHeroWaitlist} className="flex flex-col sm:flex-row gap-3 w-full">
-                    <input
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      value={heroEmail}
-                      onChange={e => setHeroEmail(e.target.value)}
-                      placeholder="Your email address"
-                      required
-                      className="flex-1 bg-zinc-900/80 border border-zinc-700 focus:border-orange-500/60 rounded-2xl px-5 py-4 text-base text-white placeholder-zinc-500 outline-none transition-colors"
-                    />
-                    <button
-                      type="submit"
-                      disabled={heroLoading}
-                      className="bg-orange-500 hover:bg-orange-400 text-white font-extrabold rounded-2xl px-7 py-4 text-base transition-all shadow-[0_0_32px_rgba(249,115,22,.3)] hover:shadow-[0_0_48px_rgba(249,115,22,.45)] disabled:opacity-50 whitespace-nowrap flex-shrink-0"
-                    >
-                      {heroLoading ? "Joining…" : "Join the waitlist →"}
-                    </button>
-                  </form>
-                )}
-                {heroError && <p className="text-red-400 text-xs mt-2">{heroError}</p>}
+              {/* App Store download */}
+              <div className="anim-btns">
+                <AppStoreButton />
               </div>
 
               <div className="anim-stats flex items-center gap-8 mt-1">
@@ -231,8 +157,8 @@ export default function Home() {
                 ))}
               </div>
               <p className="anim-stats text-xs text-zinc-600 flex items-center gap-1.5 mt-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse inline-block" />
-                Starting in Austin, TX — <span className="text-zinc-500">more cities after launch</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
+                Live in Austin, TX — <span className="text-zinc-500">more cities coming soon</span>
               </p>
             </div>
 
@@ -242,7 +168,7 @@ export default function Home() {
               style={{ y: phoneParallaxY }}
             >
               <IridescentPhone
-                src="/mockups/884shots_so.png"
+                src="/mockups/find-a-run.png"
                 alt="RunCheck — Find a Run screen"
                 className="w-[88vw] lg:w-[400px] xl:w-[460px]"
               />
@@ -426,11 +352,11 @@ export default function Home() {
         {/* ══ CORE FEATURES ═══════════════════════════════════ */}
         {(() => {
           const features = [
-            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/931shots_so.png" },
-            { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/775shots_so.png" },
-            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/421shots_so.png" },
-            { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/484shots_so.png" },
-            { icon: "✅", title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/725shots_so.png" },
+            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/live-runs.png" },
+            { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/plan-a-run.png" },
+            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/map-screen.png" },
+            { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/player-profiles.png" },
+            { icon: "✅", title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/reliability.png" },
           ];
           const af = features[activeFeature];
           return (
@@ -527,7 +453,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={100} className="w-full" variant="scale">
             <img
-              src="/mockups/867shots_so.png"
+              src="/mockups/app-overview.png"
               alt="RunCheck app — activity schedule, find a run, and home screens"
               className="w-full mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
             />
@@ -554,21 +480,21 @@ export default function Home() {
                   step: "01", label: "Browse",
                   headline: "See who’s playing",
                   desc: "Browse active runs and live check-in counts before you leave.",
-                  mockup: "/mockups/884shots_so.png",
+                  mockup: "/mockups/find-a-run.png",
                   alt: "RunCheck — Find a Run screen",
                 },
                 {
                   step: "02", label: "Check in",
                   headline: "Check into a court",
                   desc: "Tap in when you arrive. Your count goes live instantly.",
-                  mockup: "/mockups/394shots_so.png",
+                  mockup: "/mockups/court-checkin.png",
                   alt: "RunCheck — Court check-in screen",
                 },
                 {
                   step: "03", label: "Plan",
                   headline: "Plan your run",
                   desc: "Schedule games, invite your crew, see who confirms.",
-                  mockup: "/mockups/775shots_so.png",
+                  mockup: "/mockups/plan-a-run.png",
                   alt: "RunCheck — Plan a Visit screen",
                 },
               ].map((card, i) => (
@@ -650,35 +576,35 @@ export default function Home() {
                   label: "01 — Connect",
                   title: "Stay connected with your runs",
                   desc: "Chat with players before you arrive or coordinate in real time with run chats.",
-                  mockup: "/mockups/134shots_so.png",
+                  mockup: "/mockups/messaging.png",
                   alt: "RunCheck — Messaging screen",
                 },
                 {
                   label: "02 — Compete",
                   title: "Earn your reputation",
                   desc: "Climb the leaderboard, build your rank, and show the court you're consistent.",
-                  mockup: "/mockups/168shots_so.png",
+                  mockup: "/mockups/leaderboard.png",
                   alt: "RunCheck — Leaderboard screen",
                 },
                 {
                   label: "03 — Find Your Game",
                   title: "Filter your perfect run",
                   desc: "Search by skill level, court type, location, and more to find games that match your vibe.",
-                  mockup: "/mockups/533shots_so.png",
+                  mockup: "/mockups/filters.png",
                   alt: "RunCheck — Filters screen",
                 },
                 {
                   label: "04 — Your Crew",
                   title: "See where your friends play",
                   desc: "Add friends and stay in the loop with where your crew is running.",
-                  mockup: "/mockups/69shots_so.png",
+                  mockup: "/mockups/your-crew.png",
                   alt: "RunCheck — Your crew and profile screen",
                 },
                 {
                   label: "05 — Show Your Game",
                   title: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
-                  mockup: "/mockups/823shots_so.png",
+                  mockup: "/mockups/start-run.png",
                   alt: "RunCheck — Start a run and set your level screen",
                 },
               ].map((card, i) => (
@@ -986,81 +912,40 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ WAITLIST ═════════════════════════════════════════ */}
-        <section id="waitlist" className="relative w-full overflow-hidden">
+        {/* ══ DOWNLOAD ═════════════════════════════════════════ */}
+        <section id="download" className="relative w-full overflow-hidden">
           <div className="pointer-events-none absolute inset-0" style={{background:"radial-gradient(ellipse at 50% 60%,rgba(249,115,22,.13) 0%,transparent 65%)"}} />
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent" />
 
           <div className="relative z-10 max-w-2xl mx-auto px-6 py-24 flex flex-col items-center text-center gap-8">
             <Reveal>
-              <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-widest text-orange-400">Launching Summer 2026 in Austin</span>
+              <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest text-green-400">Now Available on the App Store</span>
               </div>
             </Reveal>
             <Reveal delay={80}>
               <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                Get early access.<br />
-                <span className="text-orange-400">Be first on the court.</span>
+                Ready to run?<br />
+                <span className="text-orange-400">Download the app.</span>
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className="text-zinc-400 text-base sm:text-lg leading-8 max-w-lg">
-                Drop your email and we&apos;ll notify you the moment RunCheck launches in Austin. Early supporters get priority access before the app opens to everyone.
+                RunCheck is live in Austin. Find active courts, check in, and never show up to an empty gym again.
               </p>
             </Reveal>
-            <Reveal delay={200} className="w-full">
-              {waitlistSent ? (
-                <motion.div
-                  initial={{opacity:0,y:16,scale:.96}}
-                  animate={{opacity:1,y:0,scale:1}}
-                  transition={{duration:.5,ease:[0.16,1,0.3,1]}}
-                  className="flex flex-col items-center gap-3"
-                >
-                  <div className="w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center text-2xl">🏀</div>
-                  <p className="text-xl font-extrabold text-white">You&apos;re on the list!</p>
-                  <p className="text-zinc-400 text-sm">We&apos;ll hit you when RunCheck goes live in Austin. Get ready to run.</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleWaitlist} className="flex flex-col sm:flex-row gap-3 w-full">
-                  <motion.input
-                    whileFocus={{borderColor:"rgba(249,115,22,.7)",boxShadow:"0 0 0 3px rgba(249,115,22,.15)"}}
-                    transition={{duration:.15}}
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    value={waitlistEmail}
-                    onChange={e => setWaitlistEmail(e.target.value)}
-                    placeholder="Enter your email address"
-                    required
-                    className="flex-1 bg-zinc-900/80 border border-zinc-700 rounded-2xl px-5 py-4 text-base text-white placeholder-zinc-500 outline-none transition-colors"
-                  />
-                  <motion.button
-                    whileHover={{scale:1.02,boxShadow:"0 0 36px rgba(249,115,22,.5)"}}
-                    whileTap={{scale:.97}}
-                    transition={{duration:.15}}
-                    type="submit"
-                    disabled={waitlistLoading}
-                    className="bg-orange-500 hover:bg-orange-400 text-white font-extrabold rounded-2xl px-8 py-4 text-base transition-colors flex-shrink-0 shadow-[0_0_24px_rgba(249,115,22,.3)] disabled:opacity-50 whitespace-nowrap"
-                  >
-                    {waitlistLoading ? "Joining…" : "Join the waitlist →"}
-                  </motion.button>
-                </form>
-              )}
-              {waitlistError && (
-                <p className="text-red-400 text-xs mt-3">{waitlistError}</p>
-              )}
+            <Reveal delay={200}>
+              <AppStoreButton />
             </Reveal>
-            {!waitlistSent && (
-              <Reveal delay={260}>
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-600">
-                  <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> No spam, ever</span>
-                  <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Unsubscribe anytime</span>
-                  <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Launch updates only</span>
-                </div>
-              </Reveal>
-            )}
+            <Reveal delay={260}>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-600">
+                <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Free to download</span>
+                <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Available on iOS</span>
+                <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Austin, TX — more cities soon</span>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -1119,16 +1004,14 @@ export default function Home() {
           <div className="pointer-events-none absolute inset-0" style={{background:"radial-gradient(ellipse at center,rgba(249,115,22,.1) 0%,transparent 65%)"}} />
           <Reveal className="relative z-10 flex flex-col items-center gap-6 max-w-xl" variant="scale">
             <span className="inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300">
-              <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_6px_#f97316] animate-pulse" />
-              Launching Summer 2026 in Austin
+              <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_#22c55e] animate-pulse" />
+              Now live in Austin
             </span>
             <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tighter leading-tight">
               Don&apos;t show up to<br /><span className="text-orange-400">empty gyms</span> again
             </h2>
-            <p className="text-zinc-400 text-base leading-7 max-w-sm">Be the first to know when RunCheck goes live. Drop your email and get early access.</p>
-            <a href="#waitlist" className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_40px_rgba(249,115,22,.3)] hover:shadow-[0_0_60px_rgba(249,115,22,.45)]">
-              Join the Waitlist →
-            </a>
+            <p className="text-zinc-400 text-base leading-7 max-w-sm">RunCheck is live. Download the app and find your next run today.</p>
+            <AppStoreButton />
           </Reveal>
         </section>
 

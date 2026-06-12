@@ -10,6 +10,21 @@ interface IridescentPhoneProps {
   className?: string;
 }
 
+// Combined state shape — one setState call per event instead of four
+interface PhoneState {
+  tilt: { x: number; y: number };
+  glow: { x: number; y: number };
+  norm: { x: number; y: number };
+  hovered: boolean;
+}
+
+const IDLE_STATE: PhoneState = {
+  tilt: { x: 0, y: 0 },
+  glow: { x: 50, y: 50 },
+  norm: { x: 0, y: 0 },
+  hovered: false,
+};
+
 /**
  * Wraps a phone-mockup image with:
  *  - Mouse-tracked 3-D perspective tilt (spring-animated)
@@ -20,13 +35,8 @@ interface IridescentPhoneProps {
 export function IridescentPhone({ src, alt, className = "" }: IridescentPhoneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Tilt angles (degrees)
-  const [tilt, setTilt]       = useState({ x: 0, y: 0 });
-  // Glow position in % (for gradient + specular)
-  const [glow, setGlow]       = useState({ x: 50, y: 50 });
-  // Raw normalised mouse position (-1 → 1) used for hue shift
-  const [norm, setNorm]       = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
+  // Single state object — one re-render per mousemove instead of four
+  const [ps, setPs] = useState<PhoneState>(IDLE_STATE);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -36,17 +46,14 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
     const nx = (px - 0.5) * 2;  // -1 to 1
     const ny = (py - 0.5) * 2;  // -1 to 1
 
-    setTilt({ x: -ny * 15, y: nx * 15 });
-    setGlow({ x: px * 100, y: py * 100 });
-    setNorm({ x: nx, y: ny });
+    setPs({ tilt: { x: -ny * 15, y: nx * 15 }, glow: { x: px * 100, y: py * 100 }, norm: { x: nx, y: ny }, hovered: true });
   }, []);
 
   const handleMouseLeave = useCallback(() => {
-    setTilt({ x: 0, y: 0 });
-    setGlow({ x: 50, y: 50 });
-    setNorm({ x: 0, y: 0 });
-    setHovered(false);
+    setPs(IDLE_STATE);
   }, []);
+
+  const { tilt, glow, norm, hovered } = ps;
 
   // Orange-chrome gradient — stays in warm orange / amber / gold range
   const angle = 135 + norm.x * 35 + norm.y * 20;
@@ -64,7 +71,6 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: "900px", display: "inline-block" }}
     >

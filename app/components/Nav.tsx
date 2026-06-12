@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "How it works", href: "/how-it-works" },
   { label: "About", href: "/about" },
+  { label: "Sponsors", href: "/sponsors" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -58,20 +59,27 @@ export function Nav({ activePath = "/" }: { activePath?: string }) {
               </Link>
             ))}
             <a
-              href="/#waitlist"
-              className="bg-orange-500 hover:bg-orange-400 text-white rounded-full px-6 py-2.5 text-base transition-colors font-bold shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_32px_rgba(249,115,22,0.45)]"
+              href="https://apps.apple.com/us/app/runcheck-pickup-basketball/id6760801659"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-white text-black rounded-full px-5 py-2.5 text-sm font-bold transition-all hover:bg-zinc-100 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
             >
-              Join Waitlist
+              <svg viewBox="0 0 814 1000" className="w-4 h-4 fill-current flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
+                <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.4C46 790.8 0 663.6 0 541.1c0-204.8 133.4-313.1 264.8-313.1 70.2 0 128.6 42.8 170.8 42.8 40.4 0 107-46.7 183.9-46.7zm-155.9-210.1c31.8-39.7 54.3-95.7 54.3-151.7 0-8.1-.6-16.2-2-23.1-51.2 1.9-112.3 34.2-149.2 75.8-28.5 32.4-55.1 88.4-55.1 145.5 0 8.7 1.4 17.4 2 20.1 3.2.6 8.4 1.3 13.6 1.3 46.1 0 101.3-30.9 136.4-67.9z"/>
+              </svg>
+              Download the App
             </a>
           </div>
 
           {/* Mobile: download + hamburger */}
           <div className="flex sm:hidden items-center gap-3">
             <a
-              href="/#waitlist"
-              className="bg-orange-500 hover:bg-orange-400 text-white rounded-full px-4 py-2 text-sm font-bold transition-colors"
+              href="https://apps.apple.com/us/app/runcheck-pickup-basketball/id6760801659"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-black rounded-full px-4 py-2 text-sm font-bold transition-all hover:bg-zinc-100"
             >
-              Join Waitlist
+              Download
             </a>
             <button
               onClick={() => setMenuOpen((o) => !o)}
