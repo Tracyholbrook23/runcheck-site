@@ -3,7 +3,15 @@ import Image from "next/image";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
-import { SpinWheel, GIVEAWAY } from "../components/SpinWheel";
+import { SpinWheel } from "../components/SpinWheel";
+
+// Duplicated from SpinWheel.tsx's GIVEAWAY constant rather than imported —
+// importing a plain constant from a "use client" file into this server
+// component was silently evaluating stale/false on Vercel's Turbopack
+// build, even across fresh deployments. Keep these two in sync by hand.
+const GIVEAWAY_ACTIVE = true;
+const GIVEAWAY_IMAGE = "/spin-wheel/kobe-girl-dad-prize.jpg";
+const GIVEAWAY_TITLE = "Kobe Girl Dad Giveaway";
 
 export const metadata: Metadata = {
   title: "RunCheck Spin Wheel — Pick the Next Hooper",
@@ -14,14 +22,14 @@ export const metadata: Metadata = {
 export default function SpinWheelPage() {
   return (
     <div className="bg-black text-white min-h-screen relative overflow-hidden">
-      {GIVEAWAY.active ? (
+      {GIVEAWAY_ACTIVE ? (
         <>
           {/* Prize photo as the full-page background — big, behind
               everything, with the wheel sitting on top of it. */}
           <div className="fixed inset-0">
             <Image
-              src={GIVEAWAY.prizeImage}
-              alt={GIVEAWAY.title}
+              src={GIVEAWAY_IMAGE}
+              alt={GIVEAWAY_TITLE}
               fill
               sizes="100vw"
               className="object-cover"
