@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
-import { SpinWheel } from "../components/SpinWheel";
+import { SpinWheel, GIVEAWAY } from "../components/SpinWheel";
 
 export const metadata: Metadata = {
   title: "RunCheck Spin Wheel — Pick the Next Hooper",
@@ -13,14 +14,36 @@ export const metadata: Metadata = {
 export default function SpinWheelPage() {
   return (
     <div className="bg-black text-white min-h-screen relative overflow-hidden">
-      {/* Court-inspired background texture — subtle, neutral gray lines */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 39px, #71717a 39px, #71717a 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #71717a 39px, #71717a 40px)",
-        }}
-      />
+      {GIVEAWAY.active ? (
+        <>
+          {/* Prize photo as the full-page background — big, behind
+              everything, with the wheel sitting on top of it. */}
+          <div className="fixed inset-0">
+            <Image
+              src={GIVEAWAY.prizeImage}
+              alt={GIVEAWAY.title}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+            {/* Dark overlay so nav/text/wheel stay legible over a busy photo
+                — darkest at the very top/bottom (nav, footer) and lightest
+                in the middle where the wheel sits, so the photo still reads
+                clearly as the page background. */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/45 to-black/85" />
+          </div>
+        </>
+      ) : (
+        /* Court-inspired background texture — subtle, neutral gray lines */
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(0deg, transparent, transparent 39px, #71717a 39px, #71717a 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, #71717a 39px, #71717a 40px)",
+          }}
+        />
+      )}
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/spin-wheel" />

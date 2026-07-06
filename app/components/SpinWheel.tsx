@@ -37,7 +37,7 @@ const SEGMENT_COLORS = [
 // Current giveaway banner — edit or set `active: false` to hide it and fall
 // back to a plain wheel with no prize context.
 // ---------------------------------------------------------------------------
-const GIVEAWAY = {
+export const GIVEAWAY = {
   active: true,
   title: "Kobe Girl Dad Giveaway",
   description:
@@ -265,30 +265,16 @@ export function SpinWheel() {
 
   return (
     <div className="w-full flex flex-col items-center gap-10">
-      {/* Current giveaway banner — prize photo sits plainly visible next to
-          the text (a faded photo behind the wheel kept getting hidden by
-          the wheel's own opaque disc, since the two are nearly the same
-          size — putting it here guarantees it's actually seen). */}
+      {/* Current giveaway banner — the photo itself is now the full-page
+          background (see spin-wheel/page.tsx), so this is just the text. */}
       {GIVEAWAY.active && (
-        <div className="w-full max-w-md flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-          <div className="relative w-28 h-40 sm:w-32 sm:h-48 flex-shrink-0 rounded-2xl overflow-hidden border border-orange-500/40 shadow-[0_0_30px_rgba(243,96,37,0.25)] bg-black">
-            <Image
-              src={GIVEAWAY.prizeImage}
-              alt={GIVEAWAY.title}
-              fill
-              sizes="160px"
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div className="flex flex-col items-center sm:items-start gap-1">
-            <span className="text-orange-400 text-[10px] font-bold uppercase tracking-widest">
-              {GIVEAWAY.title}
-            </span>
-            <p className="text-zinc-400 text-xs leading-snug max-w-sm">
-              {GIVEAWAY.description}
-            </p>
-          </div>
+        <div className="w-full max-w-md flex flex-col items-center gap-1 text-center">
+          <span className="text-orange-400 text-[10px] font-bold uppercase tracking-widest">
+            {GIVEAWAY.title}
+          </span>
+          <p className="text-zinc-300 text-xs leading-snug max-w-sm">
+            {GIVEAWAY.description}
+          </p>
         </div>
       )}
 
