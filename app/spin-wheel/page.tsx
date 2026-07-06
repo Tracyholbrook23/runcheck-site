@@ -23,7 +23,7 @@ export default function SpinWheelPage() {
       />
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        <Nav />
+        <Nav activePath="/spin-wheel" />
 
         <section className="flex flex-col items-center text-center px-6 pt-32 pb-6 gap-3">
           <Reveal>

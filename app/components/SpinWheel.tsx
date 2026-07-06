@@ -265,38 +265,35 @@ export function SpinWheel() {
 
   return (
     <div className="w-full flex flex-col items-center gap-10">
-      {/* Current giveaway banner */}
+      {/* Current giveaway banner — prize photo sits plainly visible next to
+          the text (a faded photo behind the wheel kept getting hidden by
+          the wheel's own opaque disc, since the two are nearly the same
+          size — putting it here guarantees it's actually seen). */}
       {GIVEAWAY.active && (
-        <div className="w-full max-w-md flex flex-col items-center gap-1 text-center">
-          <span className="text-orange-400 text-[10px] font-bold uppercase tracking-widest">
-            {GIVEAWAY.title}
-          </span>
-          <p className="text-zinc-400 text-xs leading-snug max-w-sm">
-            {GIVEAWAY.description}
-          </p>
+        <div className="w-full max-w-md flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+          <div className="relative w-28 h-40 sm:w-32 sm:h-48 flex-shrink-0 rounded-2xl overflow-hidden border border-orange-500/40 shadow-[0_0_30px_rgba(243,96,37,0.25)] bg-black">
+            <Image
+              src={GIVEAWAY.prizeImage}
+              alt={GIVEAWAY.title}
+              fill
+              sizes="160px"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <div className="flex flex-col items-center sm:items-start gap-1">
+            <span className="text-orange-400 text-[10px] font-bold uppercase tracking-widest">
+              {GIVEAWAY.title}
+            </span>
+            <p className="text-zinc-400 text-xs leading-snug max-w-sm">
+              {GIVEAWAY.description}
+            </p>
+          </div>
         </div>
       )}
 
-      {/* Wheel + Spin button, with the prize photo faded in behind both */}
+      {/* Wheel + Spin button */}
       <div className="relative flex flex-col items-center gap-8 py-4">
-        {GIVEAWAY.active && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden rounded-[40px]">
-            <div className="relative w-full h-full max-w-[420px]">
-              <Image
-                src={GIVEAWAY.prizeImage}
-                alt={GIVEAWAY.title}
-                fill
-                sizes="420px"
-                className="object-contain opacity-60 sm:opacity-70"
-                priority
-              />
-            </div>
-            {/* Light fade at the very top/bottom only, so the shoes stay
-                visible in the middle while the wheel + button stay legible */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80" />
-          </div>
-        )}
-
         {/* Pointer + wheel, kept snug against each other (spacing to the
             button below comes from the parent's gap, not from here) */}
         <div className="relative flex flex-col items-center">
