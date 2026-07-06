@@ -107,23 +107,29 @@ function fireConfetti() {
     return;
   }
 
-  const colors = ["#22c55e", "#4ade80", "#f97316", "#ffffff", "#16a34a"];
-  const count = 140;
+  const colors = ["#22c55e", "#4ade80", "#f97316", "#ffffff", "#16a34a", "#2882d7"];
+  const count = 260;
   const particles = Array.from({ length: count }, () => ({
-    x: canvas.width / 2 + (Math.random() - 0.5) * 120,
-    y: canvas.height * 0.35,
+    // Half burst outward from center, half rain down from the top — makes
+    // the effect read clearly across the whole screen, not just a quick
+    // pop near the middle.
+    x:
+      Math.random() < 0.5
+        ? canvas.width / 2 + (Math.random() - 0.5) * 160
+        : Math.random() * canvas.width,
+    y: Math.random() < 0.5 ? canvas.height * 0.35 : -20 - Math.random() * canvas.height * 0.4,
     vx: (Math.random() - 0.5) * 14,
-    vy: Math.random() * -14 - 4,
-    size: Math.random() * 7 + 4,
+    vy: Math.random() * -14 - 2,
+    size: Math.random() * 8 + 4,
     color: colors[Math.floor(Math.random() * colors.length)],
     rotation: Math.random() * 360,
     spin: (Math.random() - 0.5) * 20,
-    gravity: 0.35 + Math.random() * 0.15,
+    gravity: 0.22 + Math.random() * 0.15,
     life: 0,
   }));
 
   let frame = 0;
-  const maxFrames = 150;
+  const maxFrames = 260;
 
   function tick() {
     if (!ctx) return;
@@ -486,6 +492,15 @@ export function SpinWheel() {
               </h2>
               {GIVEAWAY.active ? (
                 <>
+                  <div className="relative w-24 h-24 rounded-xl overflow-hidden border border-orange-500/40 shadow-[0_0_20px_rgba(243,96,37,0.3)] bg-black">
+                    <Image
+                      src={GIVEAWAY.prizeImage}
+                      alt={GIVEAWAY.title}
+                      fill
+                      sizes="96px"
+                      className="object-cover"
+                    />
+                  </div>
                   <p className="text-zinc-400 text-sm">
                     🎁 You won: {GIVEAWAY.title}
                   </p>
