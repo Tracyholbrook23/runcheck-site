@@ -287,12 +287,13 @@ export function SpinWheel() {
                 alt={GIVEAWAY.title}
                 fill
                 sizes="420px"
-                className="object-contain opacity-25 sm:opacity-30"
+                className="object-contain opacity-60 sm:opacity-70"
                 priority
               />
             </div>
-            {/* Fade so the wheel + button stay fully legible on top */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black" />
+            {/* Light fade at the very top/bottom only, so the shoes stay
+                visible in the middle while the wheel + button stay legible */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80" />
           </div>
         )}
 
@@ -323,21 +324,36 @@ export function SpinWheel() {
               // own wedge no matter how many segments there are — a
               // tangential layout overlaps neighbors once you're past
               // ~8-10 segments, which is exactly what a 20-name wheel needs.
+              //
+              // This outer div rotates by the SAME `angle` used for the
+              // conic-gradient background segment, so the label always
+              // lands on its own segment's color — no drift between what's
+              // visually under the pointer and what the JS picked as
+              // winner. The inner wrapper re-centers on the wheel's own
+              // center point (its parent's edge, not its center, is what
+              // "top-1/2 left-1/2" measures from) before rotating -90° so
+              // the label reads outward from the hub instead of tangent to
+              // the rim.
               return (
                 <div
                   key={`${name}-${i}`}
                   className="absolute inset-0"
-                  style={{ transform: `rotate(${angle - 90}deg)` }}
+                  style={{ transform: `rotate(${angle}deg)` }}
                 >
-                  <span
-                    className="absolute top-1/2 left-9 sm:left-11 md:left-12 text-[9px] sm:text-[10px] md:text-xs font-bold text-white uppercase whitespace-nowrap"
-                    style={{
-                      transform: "translateY(-50%)",
-                      textShadow: "0 1px 3px rgba(0,0,0,0.8)",
-                    }}
+                  <div
+                    className="absolute top-1/2 left-1/2"
+                    style={{ transform: "translate(-50%, -50%) rotate(-90deg)" }}
                   >
-                    {name.length > 16 ? `${name.slice(0, 15)}…` : name}
-                  </span>
+                    <span
+                      className="absolute left-9 sm:left-11 md:left-12 text-[9px] sm:text-[10px] md:text-xs font-bold text-white uppercase whitespace-nowrap"
+                      style={{
+                        transform: "translateY(-50%)",
+                        textShadow: "0 1px 3px rgba(0,0,0,0.8)",
+                      }}
+                    >
+                      {name.length > 16 ? `${name.slice(0, 15)}…` : name}
+                    </span>
+                  </div>
                 </div>
               );
             })}
