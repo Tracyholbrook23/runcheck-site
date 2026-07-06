@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -9,6 +10,7 @@ const navLinks = [
   { label: "How it works", href: "/how-it-works" },
   { label: "About", href: "/about" },
   { label: "Sponsors", href: "/sponsors" },
+  { label: "Spin Wheel", href: "/spin-wheel" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -40,7 +42,7 @@ export function Nav({ activePath = "/" }: { activePath?: string }) {
         <div className="max-w-6xl mx-auto px-8 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center select-none">
-            <img src="/runcheck-logo.png" alt="RunCheck" className="h-16 w-auto" />
+            <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} priority className="h-16 w-auto" />
           </Link>
 
           {/* Desktop links */}
