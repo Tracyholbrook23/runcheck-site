@@ -42,9 +42,7 @@ const GIVEAWAY = {
   title: "Kobe Girl Dad Giveaway",
   description:
     "This spin is for the Kobe “Girl Dad” giveaway — one lucky hooper walks away with the pair.",
-  // Placeholder until the real prize photo is dropped in — see chat for
-  // instructions on swapping this out.
-  prizeImage: "/spin-wheel/kobe-girl-dad-prize.svg",
+  prizeImage: "/spin-wheel/kobe-girl-dad-prize.jpg",
   claimInstructions:
     "Check your notifications in the RunCheck app to claim your prize.",
 };
