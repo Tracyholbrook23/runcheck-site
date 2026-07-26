@@ -5,7 +5,8 @@
         "appIDs": ["6WP9VUH692.com.runcheck.app"],
         "components": [
           { "/": "/open", "comment": "Email verification deep link" },
-          { "/": "/post/*", "comment": "Shared community post deep link" }
+          { "/": "/post/*", "comment": "Shared community post deep link" },
+          { "/": "/run/*", "comment": "Shared run deep link (incl. private runs)" }
         ]
       }
     ]
