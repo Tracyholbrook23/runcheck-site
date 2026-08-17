@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const PRIVACY_URL = "/privacy";
 const TERMS_URL = "/terms";
@@ -22,7 +23,7 @@ export function Footer() {
         {/* Top row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
           <div className="flex flex-col items-center sm:items-start gap-2">
-            <img src="/runcheck-logo.png" alt="RunCheck" className="h-10 w-auto" />
+            <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} className="h-10 w-auto" />
             <span className="text-xs text-zinc-600">Find pickup basketball runs near you</span>
           </div>
 
@@ -30,6 +31,7 @@ export function Footer() {
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
             <Link href="/about" className="hover:text-white transition-colors">About</Link>
+            <Link href="/merch" className="hover:text-white transition-colors">Merch</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
             <Link href={PRIVACY_URL} className="hover:text-white transition-colors">
               Privacy Policy
@@ -60,7 +62,14 @@ export function Footer() {
         </div>
 
         {/* Built by */}
-        <p className="text-center text-xs text-zinc-800">Built by Tracy</p>
+        <a
+          href="https://www.instagram.com/szhimuptray"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-center text-xs text-zinc-500 hover:text-orange-400 underline underline-offset-4 decoration-zinc-700 hover:decoration-orange-400 transition-colors"
+        >
+          Built by Tracy
+        </a>
       </div>
     </footer>
   );
