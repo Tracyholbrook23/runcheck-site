@@ -1,56 +1,40 @@
-import type { Metadata } from "next";
-import PostRedirectClient from "./PostRedirectClient";
+import type { Metadata } from 'next';
+import { cache } from 'react';
+import PostRedirectClient from './PostRedirectClient';
 
-/**
- * /post/[postId] — shared community post landing page
- *
- * This is what a RunCheck Community post's "Share" button links to
- * (see screens/CommunityFeedScreen.js / CommunityPostDetailScreen.js in the
- * app repo). It exists purely to:
- *   1. Give iMessage/Twitter/Slack/etc. something real to unfurl a link
- *      preview from (generic RunCheck branding — we don't have Firestore
- *      access from this site to pull the actual post content in yet).
- *   2. Bounce the visitor into the app (Universal Link if installed, custom
- *      scheme fallback, then App Store) via PostRedirectClient.
- *
- * Actual routing to the specific post happens app-side — see App.js's
- * LINKING_CONFIG, which maps this path to Main → Community → CommunityPostDetail.
- */
+const SITE_URL = 'https://theruncheck.app';
+const PREVIEW_URL = 'https://us-central1-runcheck-567a3.cloudfunctions.net/getCommunityPostSharePreview';
 
-export const metadata: Metadata = {
-  title: "A post on RunCheck",
-  description:
-    "Someone shared a pickup basketball post with you on RunCheck. Open the app to see who's running, where, and when.",
-  openGraph: {
-    title: "RunCheck — Pickup Basketball",
-    description:
-      "Someone shared a post with you on RunCheck. Open the app to see it.",
-    url: "https://www.theruncheck.app",
-    siteName: "RunCheck",
-    type: "website",
-    images: [
-      {
-        url: "/runcheck-logo1.png",
-        width: 1024,
-        height: 1024,
-        alt: "RunCheck — Pickup Basketball App",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary",
-    title: "RunCheck — Pickup Basketball",
-    description:
-      "Someone shared a post with you on RunCheck. Open the app to see it.",
-    images: ["/runcheck-logo1.png"],
-  },
-};
+type PostPreview = { postId: string; body: string; authorName: string; mediaUrl: string | null; mediaType: 'image' | 'gif' | null };
+const POST_ID_RE = /^[A-Za-z0-9_-]{1,128}$/;
 
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ postId: string }>;
-}) {
+const getPostPreview = cache(async (postId: string): Promise<PostPreview | null> => {
+  if (!POST_ID_RE.test(postId)) return null;
+  try {
+    const response = await fetch(`${PREVIEW_URL}?postId=${encodeURIComponent(postId)}`, { next: { revalidate: 60 } });
+    return response.ok ? (await response.json() as PostPreview) : null;
+  } catch {
+    return null;
+  }
+});
+
+export async function generateMetadata({ params }: { params: Promise<{ postId: string }> }): Promise<Metadata> {
   const { postId } = await params;
-  return <PostRedirectClient postId={postId} />;
+  const preview = await getPostPreview(postId);
+  const title = preview ? `${preview.authorName} on RunCheck` : 'A post on RunCheck';
+  const description = preview?.body ?? 'Someone shared a pickup basketball post with you on RunCheck.';
+  const url = `${SITE_URL}/post/${encodeURIComponent(postId)}`;
+  const image = preview?.mediaUrl ?? `${SITE_URL}/runcheck-logo1.png`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, url, siteName: 'RunCheck', type: 'article', images: [{ url: image, width: 1200, height: 630, alt: title }] },
+    twitter: { card: 'summary_large_image', title, description, images: [image] },
+  };
+}
+
+export default async function PostPage({ params }: { params: Promise<{ postId: string }> }) {
+  const { postId } = await params;
+  return <PostRedirectClient postId={postId} preview={await getPostPreview(postId)} />;
 }

@@ -1,19 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
 
-// Product gallery images. Order controls thumbnail order, first image is
-// the default view shown on load.
-const GALLERY = [
+// Four product-only angles, in rotation order, so dragging left-to-right
+// cycles through them like a real spin. The on-model shot lives outside
+// this sequence since a person doesn't "spin" the same way.
+const SPIN_FRAMES = [
   { src: "/merch/snapback-black.jpg", alt: "RunCheck Snapback, front view" },
-  { src: "/merch/snapback-black-model.jpg", alt: "RunCheck Snapback worn on model" },
+  { src: "/merch/snapback-black-left.jpg", alt: "RunCheck Snapback, angled view showing the left panel" },
   { src: "/merch/snapback-black-back.jpg", alt: "RunCheck Snapback, back view with strap" },
+  { src: "/merch/snapback-black-right.jpg", alt: "RunCheck Snapback, angled view showing the right panel" },
 ];
+
+const MODEL_SHOT = { src: "/merch/snapback-black-model.jpg", alt: "RunCheck Snapback worn on model" };
 
 const DETAILS = [
   "Structured mid-profile fit with a curved brim",
@@ -24,45 +28,110 @@ const DETAILS = [
 
 const BUY_URL = "https://runcheck-shop.fourthwall.com/products/runcheck-snapback-hat-black";
 
+const DRAG_STEP_PX = 70;
+
 function ProductGallery() {
-  const [active, setActive] = useState(0);
+  const [frame, setFrame] = useState(0);
+  const [showModel, setShowModel] = useState(false);
+  const dragState = useRef({ startX: 0, lastStepX: 0, dragging: false });
+
+  function stepTo(dx: number) {
+    const steps = Math.trunc(dx / DRAG_STEP_PX);
+    if (steps === 0) return;
+    setFrame((f) => {
+      const next = (f - steps) % SPIN_FRAMES.length;
+      return next < 0 ? next + SPIN_FRAMES.length : next;
+    });
+  }
+
+  function onPointerDown(e: React.PointerEvent) {
+    if (showModel) return;
+    (e.target as Element).setPointerCapture(e.pointerId);
+    dragState.current = { startX: e.clientX, lastStepX: e.clientX, dragging: true };
+  }
+
+  function onPointerMove(e: React.PointerEvent) {
+    if (!dragState.current.dragging) return;
+    const dx = e.clientX - dragState.current.lastStepX;
+    if (Math.abs(dx) >= DRAG_STEP_PX) {
+      stepTo(dx);
+      dragState.current.lastStepX = e.clientX;
+    }
+  }
+
+  function onPointerUp() {
+    dragState.current.dragging = false;
+  }
+
+  const current = showModel ? MODEL_SHOT : SPIN_FRAMES[frame];
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative aspect-square w-full rounded-3xl overflow-hidden bg-[#0d0d0d] border border-zinc-800">
+      <div
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerLeave={onPointerUp}
+        className={`group relative aspect-square w-full rounded-3xl overflow-hidden bg-[#0d0d0d] border border-zinc-800 select-none touch-pan-y ${
+          showModel ? "" : "cursor-grab active:cursor-grabbing"
+        }`}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent pointer-events-none z-10" />
         <AnimatePresence mode="wait">
           <motion.div
-            key={active}
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1 }}
+            key={current.src}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            transition={{ duration: 0.12, ease: "linear" }}
             className="absolute inset-0"
           >
             <Image
-              src={GALLERY[active].src}
-              alt={GALLERY[active].alt}
+              src={current.src}
+              alt={current.alt}
               fill
               priority
-              className="object-cover"
+              draggable={false}
+              className="object-cover pointer-events-none"
             />
           </motion.div>
         </AnimatePresence>
+
+        {!showModel && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-black/70 backdrop-blur-sm border border-zinc-700 rounded-full px-4 py-2 text-[11px] font-semibold text-zinc-300 opacity-90 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
+            </svg>
+            Drag to spin
+          </div>
+        )}
       </div>
+
       <div className="flex items-center gap-3">
-        {GALLERY.map((img, i) => (
+        {SPIN_FRAMES.map((img, i) => (
           <button
             key={img.src}
-            onClick={() => setActive(i)}
+            onClick={() => {
+              setShowModel(false);
+              setFrame(i);
+            }}
             aria-label={`Show ${img.alt}`}
-            className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
-              active === i ? "border-orange-500" : "border-zinc-800 opacity-60 hover:opacity-100"
+            className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
+              !showModel && frame === i ? "border-orange-500" : "border-zinc-800 opacity-60 hover:opacity-100"
             }`}
           >
             <Image src={img.src} alt={img.alt} fill className="object-cover" />
           </button>
         ))}
+        <button
+          onClick={() => setShowModel(true)}
+          className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
+            showModel ? "border-orange-500" : "border-zinc-800 opacity-60 hover:opacity-100"
+          }`}
+          aria-label="Show worn on model"
+        >
+          <Image src={MODEL_SHOT.src} alt={MODEL_SHOT.alt} fill className="object-cover" />
+        </button>
       </div>
     </div>
   );

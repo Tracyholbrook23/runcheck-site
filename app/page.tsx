@@ -1,14 +1,52 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Reveal } from "./components/Reveal";
 import { LiveDemo } from "./components/LiveDemo";
 import { FAQ } from "./components/FAQ";
 import { IridescentPhone } from "./components/IridescentPhone";
-import { ChromeBackground } from "./components/ChromeBackground";
+
+function PlayIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  );
+}
+
+/** Decorative line-art hoop + backboard + net, sits behind the phone in the hero */
+function HoopIllustration() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 500 500"
+      className="absolute -right-10 -top-6 w-[85%] h-[85%] opacity-[0.16] pointer-events-none select-none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* backboard */}
+      <rect x="230" y="30" width="230" height="150" rx="6" fill="none" stroke="#f97316" strokeWidth="3" />
+      <rect x="290" y="90" width="90" height="60" rx="3" fill="none" stroke="#f97316" strokeWidth="2" />
+      {/* rim */}
+      <ellipse cx="300" cy="184" rx="62" ry="14" fill="none" stroke="#f97316" strokeWidth="4" />
+      {/* net */}
+      {Array.from({ length: 9 }, (_, i) => {
+        const x1 = 300 - 58 + i * (116 / 8);
+        const x2 = 300 - 20 + i * (40 / 8);
+        return (
+          <line key={i} x1={x1} y1={190} x2={x2} y2={290} stroke="#f97316" strokeWidth="1.5" opacity="0.8" />
+        );
+      })}
+      <path d="M242 200 Q300 230 358 200" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
+      <path d="M252 240 Q300 262 348 240" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
+      <path d="M262 275 Q300 292 338 275" fill="none" stroke="#f97316" strokeWidth="1.5" opacity="0.7" />
+    </svg>
+  );
+}
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500 mb-3">{children}</p>;
@@ -50,11 +88,8 @@ function AppStoreButton({ className = "" }: { className?: string }) {
 export default function Home() {
   // Active feature tab state (Core Features section)
   const [activeFeature, setActiveFeature] = useState(0);
-
-  // Subtle hero-phone parallax — GPU-composited transform, safe on mobile
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollY } = useScroll();
-  const phoneParallaxY = useTransform(scrollY, [0, 700], [0, -38]);
+  // Selected run-level state (Run Levels section, read inside the IIFE below)
+  const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
 
   return (
     <>
@@ -80,99 +115,97 @@ export default function Home() {
         <Nav activePath="/" />
 
         {/* ══ HERO ══════════════════════════════════════════════ */}
-        <section ref={heroRef} className="relative flex flex-col lg:flex-row items-center justify-center min-h-screen overflow-hidden w-full">
-          {/* Video — true full-bleed */}
-          <video
-            autoPlay muted loop playsInline
-            className="absolute inset-0 w-full h-full object-cover z-0 opacity-30"
-            src="/hero.mp4"
+        <section className="relative flex flex-col overflow-hidden w-full border-b border-zinc-800/60">
+          {/* Base + glow background */}
+          <div className="absolute inset-0 z-0 bg-black" />
+          <div
+            className="absolute inset-0 z-0"
+            style={{ background: "radial-gradient(ellipse 900px 700px at 82% 30%, rgba(249,115,22,0.16) 0%, transparent 70%)" }}
           />
-          {/* Overlay */}
-          <div className="absolute inset-0 z-0" style={{background:"linear-gradient(to right, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.15) 100%)"}} />
+          <div
+            className="absolute inset-0 z-0"
+            style={{ background: "linear-gradient(to right, rgba(0,0,0,0.94) 32%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.25) 100%)" }}
+          />
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-12 lg:pt-24 pb-8 lg:pb-32 flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-4">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-28 lg:pt-36 pb-16 lg:pb-24 flex flex-col lg:flex-row items-center gap-14 lg:gap-8">
 
             {/* Copy */}
-            <div className="flex flex-col gap-3 lg:gap-6 max-w-lg text-center lg:text-left items-center lg:items-start flex-shrink-0">
+            <div className="flex flex-col gap-5 lg:gap-6 max-w-xl text-center lg:text-left items-center lg:items-start flex-shrink-0 lg:w-1/2">
               <div className="anim-badge inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_#22c55e]" />
                 Now live — Available on the App Store
               </div>
-              {/* Logo — floating bob + true coin spin (two faces, backface-visibility) */}
-              <motion.div
-                className="anim-title leading-none"
-                animate={{ y: [0, -14, 0] }}
-                transition={{ y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" } }}
-              >
-                {/* perspective lives on the PARENT of the spinning element */}
-                <div style={{ perspective: "500px", display: "inline-block" }}>
-                  <motion.div
-                    animate={{ rotateY: [0, 360] }}
-                    transition={{ rotateY: { duration: 3, repeat: Infinity, ease: "linear" } }}
-                    style={{ transformStyle: "preserve-3d", position: "relative", display: "inline-block" }}
-                  >
-                    {/* Front face */}
-                    <img
-                      src="/runcheck-logo.png"
-                      alt="RunCheck"
-                      className="h-[clamp(3rem,14vw,10rem)] w-auto block"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        WebkitBackfaceVisibility: "hidden",
-                        filter: "drop-shadow(0 0 22px rgba(249,115,22,0.5))",
-                      }}
-                    />
-                    {/* Back face — pre-rotated 180° so it faces away at rest, visible on the flip */}
-                    <img
-                      src="/runcheck-logo.png"
-                      alt=""
-                      aria-hidden="true"
-                      className="h-[clamp(3rem,14vw,10rem)] w-auto absolute inset-0"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        WebkitBackfaceVisibility: "hidden",
-                        filter: "drop-shadow(0 0 22px rgba(249,115,22,0.5)) sepia(0.4) hue-rotate(10deg)",
-                        transform: "rotateY(180deg)",
-                      }}
-                    />
-                  </motion.div>
-                </div>
-              </motion.div>
-              <h1 className="anim-tag text-2xl sm:text-3xl font-semibold text-orange-400 leading-snug">Find pickup basketball runs near you</h1>
-              <p className="anim-desc text-lg leading-8 text-zinc-300 max-w-lg">
-                Stop wasting trips to empty gyms. See who&apos;s checked in, where the run is, and when it tips off — before you ever leave the house.
+
+              <h1 className="anim-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.95]">
+                <span className="block">No more</span>
+                <span className="block">empty gyms.</span>
+                <span className="block text-orange-500">Ever again.</span>
+              </h1>
+
+              <p className="anim-desc text-base sm:text-lg leading-7 sm:leading-8 text-zinc-400 max-w-md">
+                Find pickup basketball runs near you. See who&apos;s checked in, where the run is, and when it tips off — before you ever leave the house.
               </p>
 
-              {/* App Store download */}
-              <div className="anim-btns">
+              {/* CTAs */}
+              <div className="anim-btns flex flex-wrap items-center justify-center lg:justify-start gap-4">
                 <AppStoreButton />
+                <Link
+                  href="/how-it-works"
+                  className="inline-flex items-center gap-2.5 border border-zinc-700 rounded-2xl px-5 py-3.5 text-sm font-semibold text-zinc-200 hover:text-white hover:border-zinc-500 transition-colors"
+                >
+                  <span className="w-7 h-7 rounded-full border border-zinc-600 flex items-center justify-center flex-shrink-0">
+                    <PlayIcon />
+                  </span>
+                  See how it works
+                </Link>
               </div>
 
-              <div className="anim-stats flex items-center gap-8 mt-1">
-                {[["100+","Courts"],["Zero","Wasted Trips"],["Free","Always"]].map(([v,l])=>(
-                  <div key={l} className="flex flex-col items-center lg:items-start gap-0.5">
-                    <span className="text-lg font-extrabold text-orange-400 leading-none">{v}</span>
-                    <span className="text-[10px] uppercase tracking-widest text-zinc-600">{l}</span>
+              <p className="anim-stats text-xs text-zinc-600 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
+                Live in <span className="text-orange-400 font-medium">Austin, TX</span> — <span className="text-zinc-500">more cities coming soon</span>
+              </p>
+
+              {/* Stats card */}
+              <div className="anim-stats w-full grid grid-cols-3 divide-x divide-zinc-800/60 border border-zinc-800/60 rounded-2xl bg-zinc-950/60 backdrop-blur-sm">
+                {[["100+","Courts"],["0","Wasted Trips"],["Free","Always"]].map(([v,l])=>(
+                  <div key={l} className="flex flex-col items-center lg:items-start gap-0.5 px-4 py-4">
+                    <span className="text-xl font-extrabold text-white leading-none">{v}</span>
+                    <span className="text-[10px] uppercase tracking-widest text-zinc-500">{l}</span>
                   </div>
                 ))}
               </div>
-              <p className="anim-stats text-xs text-zinc-600 flex items-center gap-1.5 mt-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
-                Live in Austin, TX — <span className="text-zinc-500">more cities coming soon</span>
-              </p>
+
+              {/* Mini feature row */}
+              <div className="anim-stats w-full grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { icon: "👀", title: "See Who's In" },
+                  { icon: "📅", title: "Know When & Where" },
+                  { icon: "🏆", title: "Compete & Climb" },
+                  { icon: "🏀", title: "Built for Ballers" },
+                ].map((f) => (
+                  <div key={f.title} className="flex flex-col items-center lg:items-start gap-1.5 border border-zinc-800/60 rounded-xl px-3 py-3 bg-zinc-950/40">
+                    <span className="text-base leading-none">{f.icon}</span>
+                    <span className="text-[11px] font-semibold text-zinc-300 text-center lg:text-left leading-tight">{f.title}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Phone mockup — parallax drift + iridescent hover effect */}
-            <motion.div
-              className="anim-phone flex-shrink-0 flex justify-center lg:justify-end"
-              style={{ y: phoneParallaxY }}
-            >
-              <IridescentPhone
-                src="/mockups/find-a-run.png"
-                alt="RunCheck — Find a Run screen"
-                className="w-[88vw] lg:w-[400px] xl:w-[460px]"
+            {/* Phone + hoop illustration */}
+            <div className="anim-phone relative flex-shrink-0 w-full lg:w-1/2 h-[380px] sm:h-[460px] lg:h-[620px] flex items-center justify-center">
+              <HoopIllustration />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at 55% 55%, rgba(249,115,22,0.20) 0%, transparent 60%)" }}
               />
-            </motion.div>
+              <div className="relative z-10">
+                <IridescentPhone
+                  src="/mockups/live-runs.png"
+                  alt="RunCheck — see who's checked in and playing nearby"
+                  className="h-[340px] sm:h-[420px] lg:h-[580px] w-auto object-contain"
+                />
+              </div>
+            </div>
           </div>{/* end inner content wrapper */}
         </section>
 
@@ -342,9 +375,8 @@ export default function Home() {
           </div>
         </section>}
 
-        {/* ══ CHROME ZONE — all sections below the hero ══════ */}
+        {/* ══ sections below the hero ══════ */}
         <div className="relative">
-          <ChromeBackground />
           <div className="relative z-10">
 
         <Divider />
@@ -452,10 +484,13 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={100} className="w-full" variant="scale">
-            <img
+            <Image
               src="/mockups/app-overview.png"
               alt="RunCheck app — activity schedule, find a run, and home screens"
-              className="w-full mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
+              width={1600}
+              height={900}
+              sizes="100vw"
+              className="w-full h-auto mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
             />
           </Reveal>
         </section>
@@ -532,9 +567,11 @@ export default function Home() {
 
                   {/* Phone — bottom-anchored, fills the card body */}
                   <div className="flex-1 flex items-end justify-center px-4 pt-2 overflow-hidden">
-                    <img
+                    <Image
                       src={card.mockup}
                       alt={card.alt}
+                      width={1170}
+                      height={2532}
                       className="
                         h-[500px] sm:h-[560px] w-auto object-contain max-w-none
                         [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.18))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
@@ -642,9 +679,11 @@ export default function Home() {
 
                   {/* Phone — slightly smaller than the main step cards */}
                   <div className="flex-1 flex items-end justify-center px-4 pt-2 overflow-hidden">
-                    <img
+                    <Image
                       src={card.mockup}
                       alt={card.alt}
+                      width={1170}
+                      height={2532}
                       className="
                         h-[400px] sm:h-[450px] w-auto object-contain max-w-none
                         [filter:drop-shadow(0_-4px_20px_rgba(249,115,22,0.10))_drop-shadow(0_12px_32px_rgba(0,0,0,0.85))]
@@ -713,7 +752,6 @@ export default function Home() {
               },
             },
           ];
-          const [selectedLevel, setSelectedLevel] = React.useState<number | null>(null);
           const sel = selectedLevel !== null ? levels[selectedLevel] : null;
 
           return (
@@ -722,7 +760,7 @@ export default function Home() {
                 <Reveal>
                   <SectionLabel>Set the vibe</SectionLabel>
                   <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Find a run that matches your level</h2>
-                  <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">Tap any card to see exactly what you're walking into.</p>
+                  <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">Tap any card to see exactly what you&apos;re walking into.</p>
                 </Reveal>
                 <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 max-w-3xl mx-auto w-full">
                   {levels.map(({emoji,label,desc,cardBorder,tc,active},i) => (
@@ -798,7 +836,7 @@ export default function Home() {
 
                         {/* who */}
                         <div>
-                          <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: sel.accentColor }}>Who you'll find here</p>
+                          <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: sel.accentColor }}>Who you&apos;ll find here</p>
                           <p className="text-sm text-zinc-300 leading-7">{sel.detail.who}</p>
                         </div>
 

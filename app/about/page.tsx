@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
-import { ChromeBackground } from "../components/ChromeBackground";
 
 export default function About() {
   return (
@@ -15,7 +15,6 @@ export default function About() {
         .au-sub  {animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both}
       `}</style>
       <div className="bg-black text-white min-h-screen relative">
-        <ChromeBackground />
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/about" />
 
@@ -92,10 +91,12 @@ export default function About() {
             <div className="flex flex-col lg:flex-row min-h-[600px]">
               {/* Large photo */}
               <div className="relative lg:w-1/2 min-h-[420px] lg:min-h-[600px] overflow-hidden bg-zinc-900">
-                <img
+                <Image
                   src="/founder.jpg"
                   alt="Tracy Holbrook, Founder of RunCheck"
-                  className="w-full h-full object-cover object-center"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-top"
                 />
                 {/* subtle gradient fade to right on desktop */}
                 <div className="hidden lg:block absolute inset-y-0 right-0 w-32"

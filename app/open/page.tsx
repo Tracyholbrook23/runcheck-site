@@ -16,6 +16,7 @@
  */
 
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function OpenPage() {
   useEffect(() => {
@@ -50,11 +51,13 @@ export default function OpenPage() {
       }}
     >
       {/* Logo */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src="/runcheck-logo1.png"
         alt="RunCheck"
-        style={{ width: 120, height: 120, marginBottom: 32, borderRadius: 24 }}
+        width={120}
+        height={120}
+        priority
+        style={{ marginBottom: 32, borderRadius: 24 }}
       />
 
       <p style={{ fontSize: 18, color: "#888", marginTop: 0 }}>

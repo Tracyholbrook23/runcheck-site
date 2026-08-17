@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
-import { ChromeBackground } from "../components/ChromeBackground";
 
 const PRIVACY_URL = "/privacy";
 
@@ -44,7 +43,6 @@ export default function Contact() {
         .ct-sub  {animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both}
       `}</style>
       <div className="bg-black text-white min-h-screen relative">
-        <ChromeBackground />
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/contact" />
 

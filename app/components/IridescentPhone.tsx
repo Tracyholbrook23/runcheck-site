@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface IridescentPhoneProps {
   src: string;
@@ -80,9 +81,11 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
         style={{ transformStyle: "preserve-3d", position: "relative", display: "inline-block" }}
       >
         {/* ── Phone image ───────────────────────────────────── */}
-        <img
+        <Image
           src={src}
           alt={alt}
+          width={1170}
+          height={2532}
           className={className}
           style={{
             filter: `drop-shadow(0 0 ${glowSz} rgba(249,115,22,${hovered ? glowAlpha : "0"})) drop-shadow(0 ${shadowY}px ${shadowSz}px rgba(0,0,0,0.92))`,

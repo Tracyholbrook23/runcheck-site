@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
-import { ChromeBackground } from "../components/ChromeBackground";
 
 const steps = [
   {
@@ -112,9 +112,11 @@ function DetailModal({
             </div>
             {/* Right: phone — height-only sizing, w-auto preserves ratio */}
             <div className="flex-1 bg-zinc-950/60 flex items-end justify-center pt-6 px-4 overflow-hidden">
-              <img
+              <Image
                 src={step.mockup}
                 alt={step.alt}
+                width={1170}
+                height={2532}
                 className="h-[400px] sm:h-[520px] w-auto object-contain max-w-none
                            [filter:drop-shadow(0_0_50px_rgba(249,115,22,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
               />
@@ -185,9 +187,11 @@ function FeatureModal({
 
             {/* Right: phone */}
             <div className="flex-1 bg-zinc-950/60 flex items-end justify-center pt-6 px-4 overflow-hidden">
-              <img
+              <Image
                 src={mockup}
                 alt={alt}
+                width={1170}
+                height={2532}
                 className="h-[400px] sm:h-[520px] w-auto object-contain max-w-none
                            [filter:drop-shadow(0_0_50px_rgba(249,115,22,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
               />
@@ -207,7 +211,6 @@ export default function HowItWorksPage() {
   return (
     <>
       <div className="bg-black text-white min-h-screen relative">
-        <ChromeBackground />
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/how-it-works" />
 
@@ -273,9 +276,11 @@ export default function HowItWorksPage() {
 
                   {/* Phone — small top padding lifts it slightly from the gap */}
                   <div className="flex-1 flex items-end justify-center px-6 pt-2 overflow-hidden">
-                    <img
+                    <Image
                       src={step.mockup}
                       alt={step.alt}
+                      width={1170}
+                      height={2532}
                       className="
                         h-[440px] sm:h-[500px] w-auto object-contain max-w-none
                         [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.14))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
@@ -386,9 +391,11 @@ export default function HowItWorksPage() {
 
                   {/* Phone — slightly smaller than the step cards, glow slightly toned down */}
                   <div className="flex-1 flex items-end justify-center px-6 pt-2 overflow-hidden">
-                    <img
+                    <Image
                       src={card.mockup}
                       alt={card.alt}
+                      width={1170}
+                      height={2532}
                       className="
                         h-[400px] sm:h-[460px] w-auto object-contain max-w-none
                         [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.10))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]

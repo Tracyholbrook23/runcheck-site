@@ -2,10 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
-import { ChromeBackground } from "../components/ChromeBackground";
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
 function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
@@ -231,7 +231,6 @@ export default function Sponsors() {
       `}</style>
 
       <div className="bg-black text-white min-h-screen relative">
-        <ChromeBackground />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Nav activePath="/sponsors" />
 
@@ -271,11 +270,13 @@ export default function Sponsors() {
           {/* ── "Looking for Sponsors" visual ─────────────────────────── */}
           <section className="max-w-5xl mx-auto px-6 py-20 w-full flex flex-col lg:flex-row items-center gap-14">
             <Reveal className="flex-shrink-0 flex justify-center w-full lg:w-auto">
-              <img
+              <Image
                 src="/sponsor-assets/looking.png"
                 alt="RunCheck — Looking for Sponsors"
+                width={1170}
+                height={2532}
                 className="phone-img cursor-zoom-in"
-                style={{ maxWidth: 380 }}
+                style={{ maxWidth: 380, height: "auto" }}
                 onClick={() => openLightbox("/sponsor-assets/looking.png", "RunCheck — Looking for Sponsors")}
               />
             </Reveal>
@@ -346,10 +347,13 @@ export default function Sponsors() {
                 <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-12 lg:gap-16`}>
                   {/* Phone screenshot */}
                   <div className="flex-shrink-0 flex justify-center w-full lg:w-auto">
-                    <img
+                    <Image
                       src={img}
                       alt={alt}
+                      width={1170}
+                      height={2532}
                       className="phone-img cursor-zoom-in"
+                      style={{ height: "auto" }}
                       onClick={() => openLightbox(img, alt)}
                     />
                   </div>
@@ -385,10 +389,13 @@ export default function Sponsors() {
                   { src: "/sponsor-assets/seen-5.png", caption: "Full partner profile" },
                 ].map(({ src, caption }) => (
                   <div key={src} className="flex flex-col items-center gap-3 flex-shrink-0 snap-start" style={{ width: "clamp(260px, 36vw, 400px)" }}>
-                    <img
+                    <Image
                       src={src}
                       alt={caption}
-                      className="w-full rounded-2xl cursor-zoom-in"
+                      width={1170}
+                      height={2532}
+                      sizes="(max-width: 640px) 100vw, 400px"
+                      className="w-full h-auto rounded-2xl cursor-zoom-in"
                       style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06)" }}
                       onClick={() => openLightbox(src, caption)}
                     />
@@ -671,29 +678,73 @@ export default function Sponsors() {
                   </div>
 
                   {/* Row 4: billing preference */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Billing Preference *</label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {[
-                        { value: "Month to month", label: "Month to Month", sub: "Pay monthly, cancel anytime" },
-                        { value: "3-month package", label: "3-Month Package", sub: "Save ~15% — pay once for 3 months" },
-                      ].map(({ value, label, sub }) => (
-                        <button
-                          key={value}
-                          type="button"
-                          onClick={() => setField("billing", value)}
-                          className={`flex flex-col gap-1 rounded-xl px-4 py-3 border text-left transition-all ${
-                            form.billing === value
-                              ? "border-orange-500/70 bg-orange-500/10"
-                              : "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600"
-                          }`}
-                        >
-                          <span className={`text-sm font-bold ${form.billing === value ? "text-orange-400" : "text-white"}`}>{label}</span>
-                          <span className="text-xs text-zinc-500">{sub}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  {(() => {
+                    const TIER_PRICING: Record<string, { monthly: number; bundle: number }> = {
+                      "Starter ($10/mo)":   { monthly: 10,  bundle: 20 },
+                      "Growth ($25/mo)":    { monthly: 25,  bundle: 50 },
+                      "Exclusive ($50/mo)": { monthly: 50,  bundle: 90 },
+                    };
+                    const pricing = form.tier ? TIER_PRICING[form.tier] : null;
+                    const monthlySaving = pricing ? (pricing.monthly * 3) - pricing.bundle : null;
+
+                    return (
+                      <div className="flex flex-col gap-2">
+                        <label className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Billing Preference *</label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {/* Month to month */}
+                          <button
+                            type="button"
+                            onClick={() => setField("billing", "Month to month")}
+                            className={`flex flex-col gap-1.5 rounded-xl px-4 py-3 border text-left transition-all ${
+                              form.billing === "Month to month"
+                                ? "border-orange-500/70 bg-orange-500/10"
+                                : "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600"
+                            }`}
+                          >
+                            <span className={`text-sm font-bold ${form.billing === "Month to month" ? "text-orange-400" : "text-white"}`}>
+                              Month to Month
+                            </span>
+                            {pricing ? (
+                              <span className="text-lg font-extrabold text-white">${pricing.monthly}<span className="text-xs font-normal text-zinc-400">/mo</span></span>
+                            ) : null}
+                            <span className="text-xs text-zinc-500">Pay monthly, cancel anytime</span>
+                          </button>
+
+                          {/* 3-month package */}
+                          <button
+                            type="button"
+                            onClick={() => setField("billing", "3-month package")}
+                            className={`flex flex-col gap-1.5 rounded-xl px-4 py-3 border text-left transition-all relative overflow-hidden ${
+                              form.billing === "3-month package"
+                                ? "border-orange-500/70 bg-orange-500/10"
+                                : "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className={`text-sm font-bold ${form.billing === "3-month package" ? "text-orange-400" : "text-white"}`}>
+                                3-Month Package
+                              </span>
+                              {monthlySaving !== null && (
+                                <span className="text-[10px] font-extrabold uppercase tracking-wide bg-green-500/20 text-green-400 border border-green-500/30 rounded-full px-2 py-0.5">
+                                  Save ${monthlySaving}
+                                </span>
+                              )}
+                            </div>
+                            {pricing ? (
+                              <div className="flex items-baseline gap-2">
+                                <span className="text-lg font-extrabold text-white">${pricing.bundle}</span>
+                                <span className="text-xs text-zinc-500 line-through">${pricing.monthly * 3}</span>
+                              </div>
+                            ) : null}
+                            <span className="text-xs text-zinc-500">Paid once, covers 3 months</span>
+                          </button>
+                        </div>
+                        {!form.tier && (
+                          <p className="text-xs text-zinc-600 mt-1">Select a tier above to see exact pricing</p>
+                        )}
+                      </div>
+                    );
+                  })()}
 
                   {/* Row 5: target city */}
                   <div className="flex flex-col gap-2">
@@ -733,7 +784,7 @@ export default function Sponsors() {
                 🏀
               </div>
               <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                Ready to reach Austin's<br className="hidden sm:block" /> basketball community?
+                Ready to reach your<br className="hidden sm:block" /> basketball community?
               </h2>
               <p className="text-zinc-400 text-base leading-8 max-w-lg">
                 Spots are limited. We're keeping the sponsor list small so every partner gets real visibility — not lost in a crowd. If this sounds like your kind of marketing, let's talk.
