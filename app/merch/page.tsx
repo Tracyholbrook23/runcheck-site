@@ -53,6 +53,7 @@ const PRODUCTS: Product[] = [
     tag: "IN STOCK",
     description: "Structured mid-profile snapback with an embroidered RunCheck logo. Same silhouette as our original run.",
     buyUrl: "https://runcheck-shop.fourthwall.com/products/runcheck-snapback-hat-black",
+    image: "/merch/snapback-black.jpg",
   },
   {
     id: "dad-hat",
