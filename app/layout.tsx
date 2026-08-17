@@ -21,12 +21,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "RunCheck — Pickup Basketball, Launching in Austin",
-  description: "Never show up to an empty gym again. RunCheck is launching in Austin soon — join the waitlist for early access.",
+  title: "RunCheck - Pickup Basketball, Launching in Austin",
+  description: "Never show up to an empty gym again. RunCheck is launching in Austin soon, join the waitlist for early access.",
   metadataBase: new URL("https://www.theruncheck.app"),
   openGraph: {
-    title: "RunCheck — Pickup Basketball, Launching in Austin",
-    description: "Never show up to an empty gym again. RunCheck lets you see who's playing, where the run is, and when it tips off — before you leave the house.",
+    title: "RunCheck - Pickup Basketball, Launching in Austin",
+    description: "Never show up to an empty gym again. RunCheck lets you see who's playing, where the run is, and when it tips off, before you leave the house.",
     url: "https://www.theruncheck.app",
     siteName: "RunCheck",
     type: "website",
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
         url: "/runcheck-logo1.png",
         width: 1024,
         height: 1024,
-        alt: "RunCheck — Pickup Basketball App",
+        alt: "RunCheck Pickup Basketball App",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "RunCheck — Pickup Basketball, Launching in Austin",
+    title: "RunCheck - Pickup Basketball, Launching in Austin",
     description: "Never show up to an empty gym again. Join the waitlist for early access.",
     images: ["/runcheck-logo1.png"],
   },
@@ -57,7 +57,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
         {children}
 
-        {/* Klaviyo onsite tracking — loads on every page, non-blocking */}
+        {/* Klaviyo onsite tracking, loads on every page, non-blocking */}
         <Script
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=X9v6kc"
           strategy="afterInteractive"
