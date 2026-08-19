@@ -78,6 +78,7 @@ const CarouselStacked = () => {
   const scrollProgress = useMotionValue(0);
   const startProgress = React.useRef(0);
   const dragMoved = React.useRef(false);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
   const [windowWidth, setWindowWidth] = React.useState(0);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const total = slides.length;
@@ -118,6 +119,31 @@ const CarouselStacked = () => {
     });
   };
 
+  // A tap on the drag surface — figure out which card sits closest to the
+  // tap point (using the same offset math each Card uses to position itself)
+  // and open that one. Ignored if the pointer actually dragged first.
+  const handleTap = (point: { x: number; y: number }) => {
+    if (dragMoved.current) return;
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const tapX = point.x - (rect.left + rect.width / 2);
+    const p = scrollProgress.get();
+    let closest = 0;
+    let closestDist = Infinity;
+    for (let i = 0; i < total; i++) {
+      let diff = (i - p) % total;
+      if (diff > total / 2) diff -= total;
+      if (diff < -total / 2) diff += total;
+      const cardX = diff * config.xMultiplier;
+      const dist = Math.abs(cardX - tapX);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = i;
+      }
+    }
+    setActiveIndex(closest);
+  };
+
   // Lock body scroll while the lightbox is open, and wire up Escape / arrow keys.
   React.useEffect(() => {
     if (activeIndex === null) return;
@@ -137,9 +163,11 @@ const CarouselStacked = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full py-6 sm:py-10 overflow-hidden select-none">
-      <div className="relative w-full max-w-7xl h-[26rem] sm:h-[32rem] lg:h-[36rem] flex items-center justify-center">
-        {/* Draggable layer — cards live inside it so a press-and-hold on a card still
-           starts a drag, while a quick tap (no movement) opens that card instead. */}
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-7xl h-[26rem] sm:h-[32rem] lg:h-[36rem] flex items-center justify-center"
+      >
+        {/* Transparent drag + tap surface */}
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -150,22 +178,19 @@ const CarouselStacked = () => {
             scrollProgress.set(scrollProgress.get() + delta);
           }}
           onDragEnd={handleDragEnd}
-          className="absolute inset-0 z-10 flex items-center justify-center cursor-grab active:cursor-grabbing"
-        >
-          {slides.map((slide, i) => (
-            <Card
-              key={i}
-              slide={slide}
-              index={i}
-              total={total}
-              progress={scrollProgress}
-              config={config}
-              onOpen={() => {
-                if (!dragMoved.current) setActiveIndex(i);
-              }}
-            />
-          ))}
-        </motion.div>
+          onTap={(_, info) => handleTap(info.point)}
+          className="absolute inset-0 z-50 cursor-grab active:cursor-grabbing"
+        />
+        {slides.map((slide, i) => (
+          <Card
+            key={i}
+            slide={slide}
+            index={i}
+            total={total}
+            progress={scrollProgress}
+            config={config}
+          />
+        ))}
       </div>
       <p className="mt-2 text-xs text-zinc-500 uppercase tracking-widest">
         Drag to explore &middot; tap a screen to zoom in
@@ -191,10 +216,9 @@ interface CardProps {
   total: number;
   progress: MotionValue<number>;
   config: CarouselConfig;
-  onOpen: () => void;
 }
 
-const Card = ({ slide, index, total, progress, config, onOpen }: CardProps) => {
+const Card = ({ slide, index, total, progress, config }: CardProps) => {
   const offset = useTransform(progress, (p) => {
     let diff = (index - p) % total;
     if (diff > total / 2) diff -= total;
@@ -238,9 +262,8 @@ const Card = ({ slide, index, total, progress, config, onOpen }: CardProps) => {
   return (
     <motion.div
       style={{ x, rotate, y, scale, opacity, zIndex }}
-      onTap={onOpen}
       className={cn(
-        "absolute flex flex-col items-center cursor-pointer",
+        "absolute flex flex-col items-center pointer-events-none",
         "w-40 sm:w-56 lg:w-64",
       )}
     >
