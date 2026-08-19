@@ -117,6 +117,9 @@ const CarouselStacked = () => {
       damping: 30,
       mass: 1,
     });
+    // Reset for the next interaction — otherwise a tap right after a drag
+    // stays blocked forever, since a clean tap never re-fires onDragStart.
+    dragMoved.current = false;
   };
 
   // A tap on the drag surface — figure out which card sits closest to the
