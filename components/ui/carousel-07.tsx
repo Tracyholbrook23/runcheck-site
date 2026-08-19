@@ -150,7 +150,7 @@ const CarouselStacked = () => {
             scrollProgress.set(scrollProgress.get() + delta);
           }}
           onDragEnd={handleDragEnd}
-          className="absolute inset-0 z-10 cursor-grab active:cursor-grabbing"
+          className="absolute inset-0 z-10 flex items-center justify-center cursor-grab active:cursor-grabbing"
         >
           {slides.map((slide, i) => (
             <Card
