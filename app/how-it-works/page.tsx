@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
+import { X } from "lucide-react";
 
 const steps = [
   {
@@ -94,9 +95,9 @@ function DetailModal({
         >
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors text-sm font-bold"
+            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
           >
-            ✕
+            <X className="w-4 h-4" />
           </button>
           <div className="flex flex-col sm:flex-row items-stretch">
             {/* Left: text */}
@@ -168,9 +169,9 @@ function FeatureModal({
         >
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors text-sm font-bold"
+            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
           >
-            ✕
+            <X className="w-4 h-4" />
           </button>
 
           <div className="flex flex-col sm:flex-row items-stretch">

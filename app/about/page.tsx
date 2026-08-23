@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
+import { BasketballIcon } from "../components/BasketballIcon";
+import { Target, Telescope, MapPin, Handshake, Zap } from "lucide-react";
 
 export default function About() {
   return (
@@ -37,7 +39,7 @@ export default function About() {
         <section className="max-w-5xl mx-auto px-6 py-24 w-full grid grid-cols-1 sm:grid-cols-2 gap-12">
           <Reveal>
             <div className="flex flex-col gap-5 h-full bg-[#0d0d0d] rounded-2xl p-8 border border-zinc-800">
-              <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-xl">🎯</div>
+              <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center"><Target className="w-5 h-5 text-orange-400" strokeWidth={1.75} /></div>
               <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Mission</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">Make pickup basketball accessible for everyone</h2>
               <p className="text-zinc-400 text-base leading-8">
@@ -47,7 +49,7 @@ export default function About() {
           </Reveal>
           <Reveal delay={120}>
             <div className="flex flex-col gap-5 h-full bg-[#0d0d0d] rounded-2xl p-8 border border-zinc-800">
-              <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-xl">🔭</div>
+              <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center"><Telescope className="w-5 h-5 text-orange-400" strokeWidth={1.75} /></div>
               <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Vision</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">A world where no hooper ever shows up to an empty court</h2>
               <p className="text-zinc-400 text-base leading-8">
@@ -68,14 +70,14 @@ export default function About() {
           <Reveal delay={100}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                {icon:"🏀",label:"The game comes first",desc:"Every decision we make is for the player on the court, not the product manager."},
-                {icon:"📍",label:"Transparency",desc:"You should always know what's actually happening at a gym before you show up."},
-                {icon:"🤝",label:"Community",desc:"RunCheck works because players show up, check in, and contribute info that helps everyone."},
-                {icon:"⚡",label:"No fluff",desc:"We build what players actually need. Fewer features, more usefulness."},
-              ].map(({icon,label,desc})=>(
+                {icon:BasketballIcon,label:"The game comes first",desc:"Every decision we make is for the player on the court, not the product manager."},
+                {icon:MapPin,label:"Transparency",desc:"You should always know what's actually happening at a gym before you show up."},
+                {icon:Handshake,label:"Community",desc:"RunCheck works because players show up, check in, and contribute info that helps everyone."},
+                {icon:Zap,label:"No fluff",desc:"We build what players actually need. Fewer features, more usefulness."},
+              ].map(({icon:Icon,label,desc})=>(
                 <motion.div key={label} whileHover={{x:4}} transition={{duration:.2}}
                   className="flex items-start gap-4 bg-[#111] rounded-2xl p-6 border border-zinc-800">
-                  <span className="text-2xl flex-shrink-0 mt-0.5">{icon}</span>
+                  <Icon className="w-6 h-6 flex-shrink-0 mt-0.5 text-orange-400" strokeWidth={1.75} />
                   <div><p className="font-bold text-base mb-1.5">{label}</p><p className="text-sm text-zinc-400 leading-6">{desc}</p></div>
                 </motion.div>
               ))}
@@ -120,7 +122,7 @@ export default function About() {
                 <p className="text-zinc-400 text-base leading-8">
                   I built RunCheck for every player who's made that drive and turned around. For the hooper who just moved to a new city and doesn't know anyone. For the guy who gets one free hour after work and can't afford to waste it. This is the app I always wished someone had built. So I built it myself.
                 </p>
-                <p className="text-xs text-zinc-600 mt-2">🏀 Austin, TX · Built for the culture</p>
+                <p className="text-xs text-zinc-600 mt-2 flex items-center gap-1.5"><BasketballIcon className="w-3.5 h-3.5" /> Austin, TX · Built for the culture</p>
               </div>
             </div>
           </Reveal>

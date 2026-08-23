@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { Gift } from "lucide-react";
 
 /**
  * RunCheck Spin Wheel
@@ -501,8 +502,8 @@ export function SpinWheel() {
                       className="object-cover"
                     />
                   </div>
-                  <p className="text-zinc-400 text-sm">
-                    🎁 You won: {GIVEAWAY.title}
+                  <p className="text-zinc-400 text-sm flex items-center justify-center gap-1.5">
+                    <Gift className="w-4 h-4 text-orange-400" /> You won: {GIVEAWAY.title}
                   </p>
                   <p className="text-orange-400 text-xs font-semibold px-4">
                     {GIVEAWAY.claimInstructions}

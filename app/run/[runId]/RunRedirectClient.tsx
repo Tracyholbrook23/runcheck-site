@@ -3,6 +3,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { MapPin, Clock } from 'lucide-react';
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/runcheck-pickup-basketball/id6760801659';
 
@@ -43,8 +44,8 @@ export default function RunRedirectClient({ runId, preview }: { runId: string; p
             {preview?.visibility === 'invite_only' ? 'Private run invitation' : 'Pickup basketball'}
           </div>
           <h1 style={{ fontSize: 28, lineHeight: 1.12, margin: 0 }}>{title}</h1>
-          {preview?.gymName && <p style={{ margin: '14px 0 0', color: '#D5DCE8', fontSize: 17 }}>📍 {preview.gymName}</p>}
-          {preview?.formattedStartTime && <p style={{ margin: '8px 0 0', color: '#D5DCE8', fontSize: 17 }}>🕒 {preview.formattedStartTime}</p>}
+          {preview?.gymName && <p style={{ margin: '14px 0 0', color: '#D5DCE8', fontSize: 17, display: 'flex', alignItems: 'center', gap: 8 }}><MapPin size={16} style={{ flexShrink: 0 }} /> {preview.gymName}</p>}
+          {preview?.formattedStartTime && <p style={{ margin: '8px 0 0', color: '#D5DCE8', fontSize: 17, display: 'flex', alignItems: 'center', gap: 8 }}><Clock size={16} style={{ flexShrink: 0 }} /> {preview.formattedStartTime}</p>}
           {preview?.description && <p style={{ margin: '18px 0 0', color: '#AAB6C8', lineHeight: 1.5 }}>{preview.description}</p>}
           {status && <p style={{ margin: '18px 0 0', color: '#FFB4BE', fontWeight: 700 }}>{status}</p>}
           {!status && <button type="button" onClick={openApp} style={{ width: '100%', marginTop: 24, border: 0, borderRadius: 14, background: '#FA5B70', color: '#fff', padding: '16px 18px', fontSize: 16, fontWeight: 800, cursor: 'pointer' }}>

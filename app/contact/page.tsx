@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
+import { Mail, Phone, Lock } from "lucide-react";
 
 const PRIVACY_URL = "/privacy";
 
 const contactMethods = [
   {
-    icon: "📧",
+    icon: Mail,
     label: "Email",
     value: "hello@theruncheck.app",
     href: "mailto:hello@theruncheck.app",
@@ -17,7 +18,7 @@ const contactMethods = [
     cta: "Send an email",
   },
   {
-    icon: "📞",
+    icon: Phone,
     label: "Phone",
     value: "(517) 944-1431",
     href: "tel:+15179441431",
@@ -25,7 +26,7 @@ const contactMethods = [
     cta: "Call now",
   },
   {
-    icon: "🔒",
+    icon: Lock,
     label: "Privacy Policy",
     value: "View our Privacy Policy",
     href: PRIVACY_URL,
@@ -64,15 +65,15 @@ export default function Contact() {
         {/* ── Contact cards ────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto px-6 py-24 w-full">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {contactMethods.map(({ icon, label, value, href, desc, cta }, i) => (
+            {contactMethods.map(({ icon: Icon, label, value, href, desc, cta }, i) => (
               <Reveal key={label} delay={i * 100}>
                 <motion.div
                   whileHover={{ y: -4, borderColor: "rgba(249,115,22,.35)" }}
                   transition={{ duration: .2 }}
                   className="flex flex-col gap-5 bg-[#0d0d0d] rounded-2xl p-7 border border-zinc-800 h-full"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-2xl">
-                    {icon}
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-orange-400" strokeWidth={1.75} />
                   </div>
                   <div className="flex flex-col gap-1">
                     <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">{label}</p>

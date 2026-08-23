@@ -6,6 +6,29 @@ import Image from "next/image";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
+import { BasketballIcon } from "../components/BasketballIcon";
+import {
+  Eye,
+  MapPin,
+  Tag,
+  Globe,
+  ClipboardList,
+  Smartphone,
+  Store,
+  BarChart3,
+  Phone,
+  Dumbbell,
+  Trophy,
+  HeartPulse,
+  Scissors,
+  Video,
+  UtensilsCrossed,
+  Shirt,
+  Star,
+  Flame,
+  Crown,
+  CheckCircle2,
+} from "lucide-react";
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
 function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
@@ -54,7 +77,7 @@ const TIERS = [
   {
     name: "Starter",
     color: "#60A5FA",
-    badge: "⭐",
+    badge: Star,
     price: "$10 / mo",
     billing: "$20 for 3 months",
     perks: [
@@ -67,7 +90,7 @@ const TIERS = [
   {
     name: "Growth",
     color: "#F97316",
-    badge: "🔥",
+    badge: Flame,
     price: "$25 / mo",
     billing: "$50 for 3 months",
     highlight: true,
@@ -83,7 +106,7 @@ const TIERS = [
   {
     name: "Exclusive",
     color: "#FFD700",
-    badge: "👑",
+    badge: Crown,
     price: "$50 / mo",
     billing: "$90 for 3 months",
     perks: [
@@ -100,47 +123,47 @@ const TIERS = [
 // ── Analytics stat cards ─────────────────────────────────────────────────────
 
 const STATS = [
-  { value: "12,480", label: "Marketplace visits tracked", icon: "👀", color: "#60A5FA" },
-  { value: "1,847",  label: "Profile views (demo partner)", icon: "📍", color: "#F97316" },
-  { value: "934",    label: "Offer views recorded", icon: "🏷️", color: "#34D399" },
-  { value: "412",    label: "Website clicks driven", icon: "🌐", color: "#A78BFA" },
-  { value: "341",    label: "Promo code reveals", icon: "📋", color: "#FBBF24" },
-  { value: "203",    label: "Directions clicks", icon: "📍", color: "#2DD4BF" },
+  { value: "12,480", label: "Marketplace visits tracked", icon: Eye, color: "#60A5FA" },
+  { value: "1,847",  label: "Profile views (demo partner)", icon: MapPin, color: "#F97316" },
+  { value: "934",    label: "Offer views recorded", icon: Tag, color: "#34D399" },
+  { value: "412",    label: "Website clicks driven", icon: Globe, color: "#A78BFA" },
+  { value: "341",    label: "Promo code reveals", icon: ClipboardList, color: "#FBBF24" },
+  { value: "203",    label: "Directions clicks", icon: MapPin, color: "#2DD4BF" },
 ];
 
 // ── What you get breakdown ───────────────────────────────────────────────────
 
 const BENEFITS = [
   {
-    icon: "👀",
+    icon: Eye,
     title: "Be Seen Every Time Players Open RunCheck",
     desc: "Your brand lives inside the Player Perks section on the home screen. Every time a player opens the app to find a run, your offer is right there — not buried in a search result, not competing with a feed algorithm.",
     img: "/sponsor-assets/seen-3.png",
     alt: "RunCheck home screen showing Player Perks section",
   },
   {
-    icon: "📲",
+    icon: Smartphone,
     title: "Your Own Profile in the Partner Marketplace",
     desc: "Sponsors get a full partner profile page inside RunCheck: logo, tagline, description, exclusive offer, and direct action buttons — website, Instagram, phone, email, and directions. Players tap directly from the app into your world.",
     img: "/sponsor-assets/seen-5.png",
     alt: "RunCheck partner profile page",
   },
   {
-    icon: "🏪",
+    icon: Store,
     title: "Category Placement in the Marketplace",
     desc: "Players browse the Marketplace by category — Gyms, Trainers, Leagues, Recovery, Barbers, Food, Apparel, and more. Your business shows up exactly where the right audience is looking.",
     img: "/sponsor-assets/seen-1.png",
     alt: "RunCheck Partner Marketplace category browse",
   },
   {
-    icon: "📊",
+    icon: BarChart3,
     title: "See Real Results From Your Sponsorship",
     desc: "No guessing. Premium and Exclusive sponsors get access to a live analytics dashboard showing profile views, offer clicks, website visits, phone calls, Instagram taps, promo reveals, and more — tracked per month with a 6-month trend chart.",
     img: "/sponsor-assets/growth.png",
     alt: "RunCheck Partner Analytics dashboard",
   },
   {
-    icon: "📞",
+    icon: Phone,
     title: "Drive Calls, Emails & Social Media Traffic",
     desc: "Every partner profile includes call-to-action buttons players can tap instantly: call your number, send you an email, follow on Instagram, get directions, or visit your website. High-intent actions tracked in real time.",
     img: "/sponsor-assets/drive.png",
@@ -151,14 +174,14 @@ const BENEFITS = [
 // ── Categories you can sponsor ───────────────────────────────────────────────
 
 const CATEGORIES = [
-  { icon: "🏋️", label: "Gyms & Fitness" },
-  { icon: "🏀", label: "Trainers & Coaches" },
-  { icon: "🏆", label: "Leagues & Tournaments" },
-  { icon: "💆", label: "Recovery & Wellness" },
-  { icon: "✂️", label: "Barbers" },
-  { icon: "📹", label: "Sports Media" },
-  { icon: "🍔", label: "Food & Drink" },
-  { icon: "👟", label: "Apparel & Gear" },
+  { icon: Dumbbell, label: "Gyms & Fitness" },
+  { icon: BasketballIcon, label: "Trainers & Coaches" },
+  { icon: Trophy, label: "Leagues & Tournaments" },
+  { icon: HeartPulse, label: "Recovery & Wellness" },
+  { icon: Scissors, label: "Barbers" },
+  { icon: Video, label: "Sports Media" },
+  { icon: UtensilsCrossed, label: "Food & Drink" },
+  { icon: Shirt, label: "Apparel & Gear" },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -310,14 +333,14 @@ export default function Sponsors() {
             </Reveal>
             <Reveal delay={80}>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {STATS.map(({ value, label, icon, color }) => (
+                {STATS.map(({ value, label, icon: Icon, color }) => (
                   <motion.div
                     key={label}
                     whileHover={{ y: -3 }}
                     transition={{ duration: 0.2 }}
                     className="bg-[#0d0d0d] rounded-2xl p-6 border border-zinc-800 flex flex-col gap-2"
                   >
-                    <span className="text-2xl">{icon}</span>
+                    <Icon className="w-6 h-6" style={{ color }} strokeWidth={1.75} />
                     <p className="text-3xl font-extrabold tracking-tight" style={{ color }}>{value}</p>
                     <p className="text-zinc-500 text-sm leading-5">{label}</p>
                   </motion.div>
@@ -342,7 +365,7 @@ export default function Sponsors() {
               </h2>
             </Reveal>
 
-            {BENEFITS.map(({ icon, title, desc, img, alt }, i) => (
+            {BENEFITS.map(({ icon: Icon, title, desc, img, alt }, i) => (
               <Reveal key={title} delay={80}>
                 <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-12 lg:gap-16`}>
                   {/* Phone screenshot */}
@@ -359,8 +382,8 @@ export default function Sponsors() {
                   </div>
                   {/* Text */}
                   <div className="flex flex-col gap-4 flex-1">
-                    <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-xl flex-shrink-0">
-                      {icon}
+                    <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-orange-400" strokeWidth={1.75} />
                     </div>
                     <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug">{title}</h3>
                     <p className="text-zinc-400 text-base leading-8">{desc}</p>
@@ -421,14 +444,14 @@ export default function Sponsors() {
             </Reveal>
             <Reveal delay={80}>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {CATEGORIES.map(({ icon, label }) => (
+                {CATEGORIES.map(({ icon: Icon, label }) => (
                   <motion.div
                     key={label}
                     whileHover={{ x: 4 }}
                     transition={{ duration: 0.2 }}
                     className="flex items-center gap-3 bg-[#0d0d0d] rounded-xl p-4 border border-zinc-800"
                   >
-                    <span className="text-xl flex-shrink-0">{icon}</span>
+                    <Icon className="w-5 h-5 flex-shrink-0 text-orange-400" strokeWidth={1.75} />
                     <p className="text-sm font-semibold text-zinc-300">{label}</p>
                   </motion.div>
                 ))}
@@ -451,7 +474,7 @@ export default function Sponsors() {
             </Reveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {TIERS.map(({ name, color, badge, price, billing, highlight, perks }) => (
+              {TIERS.map(({ name, color, badge: Badge, price, billing, highlight, perks }) => (
                 <Reveal key={name} delay={80}>
                   <motion.div
                     whileHover={{ y: -4 }}
@@ -470,7 +493,7 @@ export default function Sponsors() {
                       </div>
                     )}
                     <div className="flex items-center gap-3">
-                      <span className="text-2xl">{badge}</span>
+                      <Badge className="w-6 h-6" style={{ color }} strokeWidth={1.75} />
                       <div>
                         <p className="text-2xl font-extrabold tracking-tight" style={{ color }}>
                           {price}
@@ -568,7 +591,9 @@ export default function Sponsors() {
             {formStatus === "success" ? (
               <Reveal>
                 <div className="bg-[#0d0d0d] border border-green-500/40 rounded-2xl p-10 text-center flex flex-col items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-green-500/15 flex items-center justify-center text-3xl">✅</div>
+                  <div className="w-14 h-14 rounded-full bg-green-500/15 flex items-center justify-center">
+                    <CheckCircle2 className="w-7 h-7 text-green-400" strokeWidth={1.75} />
+                  </div>
                   <h3 className="text-2xl font-extrabold tracking-tight">We got your info!</h3>
                   <p className="text-zinc-400 text-base leading-7 max-w-sm">
                     Thanks for reaching out. We'll follow up at your email within 24–48 hours.
@@ -670,9 +695,9 @@ export default function Sponsors() {
                         className="bg-[#0d0d0d] border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-orange-500/60 transition-colors appearance-none"
                       >
                         <option value="" disabled>Select a tier</option>
-                        <option value="Starter ($10/mo)">⭐ Starter — $10/mo</option>
-                        <option value="Growth ($25/mo)">🔥 Growth — $25/mo</option>
-                        <option value="Exclusive ($50/mo)">👑 Exclusive — $50/mo</option>
+                        <option value="Starter ($10/mo)">Starter — $10/mo</option>
+                        <option value="Growth ($25/mo)">Growth — $25/mo</option>
+                        <option value="Exclusive ($50/mo)">Exclusive — $50/mo</option>
                       </select>
                     </div>
                   </div>
@@ -780,8 +805,8 @@ export default function Sponsors() {
           {/* ── Final CTA ─────────────────────────────────────────────── */}
           <section className="flex flex-col items-center text-center px-6 py-28 gap-7">
             <Reveal className="flex flex-col items-center gap-6 max-w-2xl">
-              <div className="w-14 h-14 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-3xl">
-                🏀
+              <div className="w-14 h-14 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center">
+                <BasketballIcon className="w-7 h-7 text-orange-400" />
               </div>
               <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
                 Ready to reach your<br className="hidden sm:block" /> basketball community?
@@ -806,7 +831,7 @@ export default function Sponsors() {
                 </a>
               </div>
               <p className="text-xs text-zinc-600 pt-2">
-                🏀 Austin, TX · RunCheck is currently in pre-launch · Sponsorship locked in before launch = best placement
+                Austin, TX · RunCheck is currently in pre-launch · Sponsorship locked in before launch = best placement
               </p>
             </Reveal>
           </section>

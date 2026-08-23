@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
 
     // Klaviyo returns 202 Accepted (no body) on success
     if (klaviyoRes.status === 202 || klaviyoRes.ok) {
-      console.log(`[RunCheck/subscribe] ✓ Subscribed to waitlist: ${email}`);
+      console.log(`[RunCheck/subscribe] Subscribed to waitlist: ${email}`);
       return NextResponse.json({ success: true }, { status: 200 });
     }
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BasketballIcon } from "./BasketballIcon";
 
 type Run = {
   id: number;
@@ -55,7 +56,7 @@ export function LiveDemo() {
           )
         );
         setTotalCheckins((t) => t + 1);
-        addNotif("🏀 New player checked in at Austin Rec Center");
+        addNotif("New player checked in at Austin Rec Center");
       },
       () => {
         setRuns((prev) =>
@@ -64,7 +65,7 @@ export function LiveDemo() {
           )
         );
         setTotalCheckins((t) => t + 1);
-        addNotif("📍 Player joined Clay Madsen Rec");
+        addNotif("Player joined Clay Madsen Rec");
       },
       () => {
         setRuns((prev) =>
@@ -73,7 +74,7 @@ export function LiveDemo() {
           )
         );
         setTotalCheckins((t) => t + 2);
-        addNotif("🟠 New run started at Pflugerville Park");
+        addNotif("New run started at Pflugerville Park");
       },
       () => {
         setRuns((prev) =>
@@ -89,7 +90,7 @@ export function LiveDemo() {
           )
         );
         setTotalCheckins((t) => t + 1);
-        addNotif("🌳 Player checked in at Brushy Creek");
+        addNotif("Player checked in at Brushy Creek");
       },
     ];
 
@@ -136,8 +137,8 @@ export function LiveDemo() {
               }`}
             >
               {/* Icon */}
-              <div className="w-10 h-10 rounded-xl bg-zinc-900 flex items-center justify-center text-lg flex-shrink-0 border border-zinc-800">
-                🏀
+              <div className="w-10 h-10 rounded-xl bg-zinc-900 flex items-center justify-center flex-shrink-0 border border-zinc-800">
+                <BasketballIcon className="w-5 h-5 text-orange-400" />
               </div>
 
               {/* Info */}

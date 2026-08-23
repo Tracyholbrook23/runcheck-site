@@ -117,7 +117,7 @@ function ProductGallery({ colorway }: { colorway: Colorway }) {
               fill
               priority
               draggable={false}
-              className="object-cover pointer-events-none"
+              className={`object-cover pointer-events-none ${showModel ? "object-top" : ""}`}
             />
           </motion.div>
         </AnimatePresence>
@@ -155,7 +155,7 @@ function ProductGallery({ colorway }: { colorway: Colorway }) {
           }`}
           aria-label="Show worn on model"
         >
-          <Image src={colorway.modelShot.src} alt={colorway.modelShot.alt} fill className="object-cover" />
+          <Image src={colorway.modelShot.src} alt={colorway.modelShot.alt} fill className="object-cover object-top" />
         </button>
       </div>
     </div>

@@ -10,6 +10,27 @@ import { Reveal } from "./components/Reveal";
 import { LiveDemo } from "./components/LiveDemo";
 import { FAQ } from "./components/FAQ";
 import { IridescentPhone } from "./components/IridescentPhone";
+import { BasketballIcon } from "./components/BasketballIcon";
+import CarouselStacked from "@/components/ui/carousel-07";
+import {
+  Eye,
+  Calendar,
+  Trophy,
+  MapPin,
+  Map as MapIcon,
+  CheckCircle2,
+  Smile,
+  Handshake,
+  Flame,
+  AlertTriangle,
+  Ban,
+  Zap,
+  Lock,
+  Banknote,
+  Check,
+  Star,
+  X,
+} from "lucide-react";
 
 function PlayIcon() {
   return (
@@ -178,13 +199,13 @@ export default function Home() {
               {/* Mini feature row */}
               <div className="anim-stats w-full grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { icon: "👀", title: "See Who's In" },
-                  { icon: "📅", title: "Know When & Where" },
-                  { icon: "🏆", title: "Compete & Climb" },
-                  { icon: "🏀", title: "Built for Ballers" },
+                  { icon: Eye, title: "See Who's In" },
+                  { icon: Calendar, title: "Know When & Where" },
+                  { icon: Trophy, title: "Compete & Climb" },
+                  { icon: BasketballIcon, title: "Built for Ballers" },
                 ].map((f) => (
                   <div key={f.title} className="flex flex-col items-center lg:items-start gap-1.5 border border-zinc-800/60 rounded-xl px-3 py-3 bg-zinc-950/40">
-                    <span className="text-base leading-none">{f.icon}</span>
+                    <f.icon className="w-4 h-4 text-orange-400" strokeWidth={2} />
                     <span className="text-[11px] font-semibold text-zinc-300 text-center lg:text-left leading-tight">{f.title}</span>
                   </div>
                 ))}
@@ -369,7 +390,7 @@ export default function Home() {
                 );
               })}
               <p className="text-[10px] text-zinc-600 mt-1 flex items-center gap-1.5">
-                <span>📍</span> GPS-verified check-ins only — so the player count is always accurate. No check-in without being physically at the court.
+                <MapPin className="w-3 h-3 flex-shrink-0" /> GPS-verified check-ins only — so the player count is always accurate. No check-in without being physically at the court.
               </p>
             </div>
           </div>
@@ -384,11 +405,11 @@ export default function Home() {
         {/* ══ CORE FEATURES ═══════════════════════════════════ */}
         {(() => {
           const features = [
-            { icon: "👀", title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/live-runs.png" },
-            { icon: "📅", title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/plan-a-run.png" },
-            { icon: "🗺️", title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/map-screen.png" },
-            { icon: "🏀", title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/player-profiles.png" },
-            { icon: "✅", title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/reliability.png" },
+            { icon: Eye, title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/live-runs.png" },
+            { icon: Calendar, title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/plan-a-run.png" },
+            { icon: MapIcon, title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/map-screen.png" },
+            { icon: BasketballIcon, title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/player-profiles.png" },
+            { icon: CheckCircle2, title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/reliability.png" },
           ];
           const af = features[activeFeature];
           return (
@@ -432,7 +453,7 @@ export default function Home() {
                           }`}
                         >
                           <div className="flex items-center gap-2.5">
-                            <span className="text-lg flex-shrink-0">{f.icon}</span>
+                            <f.icon className="w-5 h-5 flex-shrink-0 text-orange-400" strokeWidth={2} />
                             <div className="flex flex-col gap-0.5">
                               <p className={`text-sm font-semibold leading-tight ${activeFeature === i ? "text-white" : "text-zinc-400"}`}>{f.title}</p>
                               <p className={`text-xs leading-relaxed transition-colors duration-200 ${activeFeature === i ? "text-zinc-400" : "text-zinc-600"}`}>
@@ -484,14 +505,7 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={100} className="w-full" variant="scale">
-            <Image
-              src="/mockups/app-overview.png"
-              alt="RunCheck app — activity schedule, find a run, and home screens"
-              width={1600}
-              height={900}
-              sizes="100vw"
-              className="w-full h-auto mx-auto rounded-2xl [filter:drop-shadow(0_0_80px_rgba(249,115,22,0.15))_drop-shadow(0_40px_80px_rgba(0,0,0,0.8))]"
-            />
+            <CarouselStacked />
           </Reveal>
         </section>
 
@@ -706,7 +720,7 @@ export default function Home() {
         {(() => {
           const levels = [
             {
-              emoji: "😊", label: "Casual",
+              icon: Smile, label: "Casual",
               tagline: "Just here for the love of the game",
               desc: "Just for fun. Laid-back energy, all skill levels welcome.",
               cardBorder: "border-zinc-700 hover:border-zinc-400",
@@ -721,7 +735,7 @@ export default function Home() {
               },
             },
             {
-              emoji: "🤝", label: "Balanced",
+              icon: Handshake, label: "Balanced",
               tagline: "Competitive, but keeps it respectful",
               desc: "Competitive but friendly. Good pace, decent level.",
               cardBorder: "border-zinc-700 hover:border-blue-500/60",
@@ -736,7 +750,7 @@ export default function Home() {
               },
             },
             {
-              emoji: "🔥", label: "Competitive",
+              icon: Flame, label: "Competitive",
               tagline: "Come ready or don't come at all",
               desc: "High intensity. Come ready to ball or sit down.",
               cardBorder: "border-orange-500",
@@ -763,7 +777,7 @@ export default function Home() {
                   <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">Tap any card to see exactly what you&apos;re walking into.</p>
                 </Reveal>
                 <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 max-w-3xl mx-auto w-full">
-                  {levels.map(({emoji,label,desc,cardBorder,tc,active},i) => (
+                  {levels.map(({icon: LevelIcon,label,desc,cardBorder,tc,active},i) => (
                     <Reveal key={label} delay={i * 90} className="flex-1">
                       <motion.button
                         onClick={() => setSelectedLevel(i)}
@@ -772,7 +786,7 @@ export default function Home() {
                         transition={{ duration: .18 }}
                         className={"w-full h-full flex flex-col items-center gap-3 rounded-2xl p-6 border-2 bg-[#0d0d0d] transition-colors cursor-pointer text-center " + cardBorder}
                       >
-                        <span className="text-4xl">{emoji}</span>
+                        <LevelIcon className={"w-9 h-9 " + tc} strokeWidth={1.75} />
                         <span className={"text-base font-bold " + tc}>{label}</span>
                         <p className="text-sm text-zinc-500 leading-6">{desc}</p>
                         {active && <span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-orange-500 border border-orange-500/50 rounded-full px-3 py-0.5">Most Popular</span>}
@@ -819,7 +833,7 @@ export default function Home() {
                         {/* header */}
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex items-center gap-3">
-                            <span className="text-4xl sm:text-5xl">{sel.emoji}</span>
+                            <sel.icon className="w-9 h-9 sm:w-11 sm:h-11" style={{ color: sel.accentColor }} strokeWidth={1.75} />
                             <div className="text-left">
                               <p className="text-lg sm:text-xl font-extrabold text-white">{sel.label}</p>
                               <p className="text-xs font-semibold italic" style={{ color: sel.accentColor }}>{sel.tagline}</p>
@@ -829,7 +843,7 @@ export default function Home() {
                           <button
                             onClick={() => setSelectedLevel(null)}
                             className="hidden sm:flex w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 items-center justify-center text-zinc-400 hover:text-white text-sm flex-shrink-0 transition-colors"
-                          >✕</button>
+                          ><X className="w-4 h-4" /></button>
                         </div>
 
                         <div className="h-px bg-zinc-800" />
@@ -867,7 +881,7 @@ export default function Home() {
                         {/* warning if competitive */}
                         {sel.detail.warning && (
                           <div className="flex items-start gap-3 bg-orange-500/10 border border-orange-500/30 rounded-xl px-4 py-3">
-                            <span className="text-lg flex-shrink-0">⚠️</span>
+                            <AlertTriangle className="w-5 h-5 flex-shrink-0 text-orange-400" />
                             <p className="text-xs text-orange-300 leading-6">{sel.detail.warning}</p>
                           </div>
                         )}
@@ -899,10 +913,10 @@ export default function Home() {
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Built for players, by players</h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-            {[{icon:"🚫",title:"Avoid empty gyms",desc:"Never drive across town to an empty floor again. Know before you go."},{icon:"🔥",title:"Find better runs",desc:"Filter by court type, access, city, and level. Find games that match your vibe."},{icon:"⚡",title:"Save time",desc:"Less scouting, more hooping. Find your run in seconds."}].map(({icon,title,desc},i)=>(
+            {[{icon:Ban,title:"Avoid empty gyms",desc:"Never drive across town to an empty floor again. Know before you go."},{icon:Flame,title:"Find better runs",desc:"Filter by court type, access, city, and level. Find games that match your vibe."},{icon:Zap,title:"Save time",desc:"Less scouting, more hooping. Find your run in seconds."}].map(({icon:Icon,title,desc},i)=>(
               <Reveal key={title} delay={i*100} className="h-full">
                 <div className="feat h-full flex flex-col items-center gap-4 rounded-2xl p-7 border border-zinc-800 bg-[#0d0d0d]">
-                  <span className="text-5xl">{icon}</span><h3 className="text-lg font-bold">{title}</h3><p className="text-sm leading-6 text-zinc-400">{desc}</p>
+                  <Icon className="w-10 h-10 text-orange-400" strokeWidth={1.75} /><h3 className="text-lg font-bold">{title}</h3><p className="text-sm leading-6 text-zinc-400">{desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -926,7 +940,7 @@ export default function Home() {
               <Reveal key={name} delay={i*100} className="h-full">
                 <motion.div whileHover={{y:-4,borderColor:"rgba(249,115,22,.3)"}} transition={{duration:.2}}
                   className="h-full flex flex-col gap-4 bg-[#0d0d0d] rounded-2xl p-6 border border-zinc-800 text-left">
-                  <div className="flex gap-0.5">{[0,1,2,3,4].map(j=><span key={j} className="text-orange-400 text-xs">★</span>)}</div>
+                  <div className="flex gap-0.5">{[0,1,2,3,4].map(j=><Star key={j} className="w-3.5 h-3.5 fill-orange-400 text-orange-400" />)}</div>
                   <p className="text-sm leading-7 text-zinc-300 flex-1">&ldquo;{quote}&rdquo;</p>
                   <div className="flex items-center gap-3 pt-2 border-t border-zinc-800">
                     <div className={`w-9 h-9 rounded-full border flex items-center justify-center flex-shrink-0 text-sm font-bold ${color}`}>{initial}</div>
@@ -979,9 +993,9 @@ export default function Home() {
             </Reveal>
             <Reveal delay={260}>
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-600">
-                <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Free to download</span>
-                <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Available on iOS</span>
-                <span className="flex items-center gap-1.5"><span className="text-green-500">✓</span> Austin, TX — more cities soon</span>
+                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" strokeWidth={3} /> Free to download</span>
+                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" strokeWidth={3} /> Available on iOS</span>
+                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" strokeWidth={3} /> Austin, TX — more cities soon</span>
               </div>
             </Reveal>
           </div>
@@ -1005,21 +1019,21 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl">
             {[
               {
-                icon: "🔒",
+                icon: Lock,
                 title: "Private Runs",
                 desc: "Create invite-only games for your crew. Share a link, control who shows up, and keep your run exclusive.",
               },
               {
-                icon: "💸",
+                icon: Banknote,
                 title: "Paid Runs",
                 desc: "Host runs and collect entry fees directly through the app. RunCheck handles payments so you can focus on the game.",
               },
-            ].map(({ icon, title, desc }, i) => (
+            ].map(({ icon: Icon, title, desc }, i) => (
               <Reveal key={title} delay={i * 100}>
                 <div className="flex flex-col gap-5 bg-[#0a0a0a] rounded-2xl p-7 border border-zinc-800 border-dashed text-left h-full">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl flex-shrink-0">
-                      {icon}
+                    <div className="w-11 h-11 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-zinc-400" />
                     </div>
                     <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-600 border border-zinc-800 rounded-full px-3 py-1 mt-1 whitespace-nowrap">
                       Post-launch
