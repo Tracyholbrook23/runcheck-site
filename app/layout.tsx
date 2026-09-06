@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -47,6 +48,16 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "RunCheck",
+  url: "https://www.theruncheck.app",
+  image: "https://www.theruncheck.app/runcheck-logo1.png",
+  description:
+    "RunCheck lets you see who's playing, where the run is, and when it tips off, before you leave the house. Launching in Austin.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,6 +66,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         {children}
 
         {/* Klaviyo onsite tracking, loads on every page, non-blocking */}
@@ -62,6 +78,7 @@ export default function RootLayout({
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=X9v6kc"
           strategy="afterInteractive"
         />
+        <GoogleAnalytics />
       </body>
     </html>
   );
