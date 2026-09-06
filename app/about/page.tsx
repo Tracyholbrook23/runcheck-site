@@ -6,7 +6,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
 import { BasketballIcon } from "../components/BasketballIcon";
-import { Target, Telescope, MapPin, Handshake, Zap } from "lucide-react";
+import { Target, Telescope, MapPin, Handshake, Zap, ArrowRight } from "lucide-react";
 
 export default function About() {
   return (
@@ -28,7 +28,7 @@ export default function About() {
               We built RunCheck<br />because we hated<br />empty gyms
             </h1>
             <p className="au-sub text-zinc-400 text-lg leading-8 max-w-lg mx-auto">
-              Every pickup player has done it — driven across town, walked into an empty gym, and driven back home. RunCheck exists to end that.
+              Every pickup player has done it. Driven across town, walked into an empty gym, and driven back home. RunCheck exists to end that.
             </p>
           </div>
         </section>
@@ -43,7 +43,7 @@ export default function About() {
               <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Mission</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">Make pickup basketball accessible for everyone</h2>
               <p className="text-zinc-400 text-base leading-8">
-                Pickup basketball is one of the purest forms of the game. No refs, no fees, no politics — just run. But finding a good game has always been hit or miss. RunCheck builds the layer of real-time information the pickup community has always been missing, so any player, anywhere, can find a game.
+                Pickup basketball is one of the purest forms of the game. No refs, no fees, no politics, just run. But finding a good game has always been hit or miss. RunCheck builds the layer of real-time information the pickup community has always been missing, so any player, anywhere, can find a game.
               </p>
             </div>
           </Reveal>
@@ -53,7 +53,7 @@ export default function About() {
               <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Vision</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">A world where no hooper ever shows up to an empty court</h2>
               <p className="text-zinc-400 text-base leading-8">
-                We envision a future where pickup basketball has the same infrastructure as organized sports — where players can see live court activity, connect with their community, and trust that the run is real before they leave home.
+                We envision a future where pickup basketball has the same infrastructure as organized sports, where players can see live court activity, connect with their community, and trust that the run is real before they leave home.
               </p>
             </div>
           </Reveal>
@@ -114,10 +114,10 @@ export default function About() {
                 <p className="text-orange-400 font-semibold text-lg">Founder, RunCheck</p>
                 <div className="w-12 h-0.5 bg-orange-500/50 rounded-full" />
                 <p className="text-zinc-300 text-base leading-8">
-                  Growing up, pickup basketball was everything. It wasn't organized, it wasn't scheduled — it was just people who loved the game finding each other and running. But that magic always came with a real frustration: you never knew if a game was actually happening until you were already there.
+                  Growing up, pickup basketball was everything. It wasn't organized, it wasn't scheduled, it was just people who loved the game finding each other and running. But that magic always came with a real frustration: you never knew if a game was actually happening until you were already there.
                 </p>
                 <p className="text-zinc-400 text-base leading-8">
-                  I drove to more empty gyms than I can count. I'd show up with my bag, lace up, and look around at four walls and a locked door. That feeling — that wasted trip — is what planted the seed. Not a startup idea. Just a problem I was tired of living with.
+                  I drove to more empty gyms than I can count. I'd show up with my bag, lace up, and look around at four walls and a locked door. That feeling, that wasted trip, is what planted the seed. Not a startup idea. Just a problem I was tired of living with.
                 </p>
                 <p className="text-zinc-400 text-base leading-8">
                   I built RunCheck for every player who's made that drive and turned around. For the hooper who just moved to a new city and doesn't know anyone. For the guy who gets one free hour after work and can't afford to waste it. This is the app I always wished someone had built. So I built it myself.
@@ -134,8 +134,8 @@ export default function About() {
         <section className="flex flex-col items-center text-center px-6 py-24 gap-6">
           <Reveal className="flex flex-col items-center gap-6">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Join the run</h2>
-            <p className="text-zinc-400 text-base max-w-sm leading-7">Get early access when RunCheck launches in Austin — sign up for the waitlist.</p>
-            <a href="/#waitlist" className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)]">Join the Waitlist →</a>
+            <p className="text-zinc-400 text-base max-w-sm leading-7">Get early access when RunCheck launches in Austin, sign up for the waitlist.</p>
+            <a href="/#waitlist" className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)]">Join the Waitlist <ArrowRight className="w-4 h-4" strokeWidth={2.5} /></a>
           </Reveal>
         </section>
 

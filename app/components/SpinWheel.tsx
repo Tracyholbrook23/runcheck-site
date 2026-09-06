@@ -11,17 +11,17 @@ import { Gift } from "lucide-react";
  * A basketball-themed "spin the wheel" name picker.
  *
  * Two modes:
- *  - Random Mode (public): winner is chosen with Math.random(). Fair, no
+ * - Random Mode (public): winner is chosen with Math.random(). Fair, no
  *    outcome is predetermined.
- *  - Demo / Controlled Reveal Mode (admin-only): lets whoever is running an
+ * - Demo / Controlled Reveal Mode (admin-only): lets whoever is running an
  *    event/demo pre-select which name the wheel lands on, while the spin
  *    animation still looks fully natural. This exists for live demos,
- *    rehearsed reveals, and recorded promo content — NOT for real public
+ *    rehearsed reveals, and recorded promo content, NOT for real public
  *    giveaways. It is gated behind a hidden admin panel (see bottom of file)
  *    so normal visitors never see it.
  */
 
-// Segment color palette — pulled straight from the RunCheck logo mark
+// Segment color palette - pulled straight from the RunCheck logo mark
 // (basketball orange + checkmark blue), alternating with near-black court
 // tones so the wheel reads as unmistakably "RunCheck" rather than a generic
 // green wheel. Edit these hexes to retheme.
@@ -35,14 +35,14 @@ const SEGMENT_COLORS = [
 ];
 
 // ---------------------------------------------------------------------------
-// Current giveaway banner — edit or set `active: false` to hide it and fall
+// Current giveaway banner - edit or set `active: false` to hide it and fall
 // back to a plain wheel with no prize context.
 // ---------------------------------------------------------------------------
 export const GIVEAWAY = {
   active: true,
   title: "Kobe Girl Dad Giveaway",
   description:
-    "This spin is for the Kobe “Girl Dad” giveaway — one lucky hooper walks away with the pair.",
+    "This spin is for the Kobe “Girl Dad” giveaway. One lucky hooper walks away with the pair.",
   prizeImage: "/spin-wheel/kobe-girl-dad-prize.jpg",
   claimInstructions:
     "Check your notifications in the RunCheck app to claim your prize.",
@@ -86,7 +86,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 // ---------------------------------------------------------------------------
-// Lightweight confetti burst — no external dependency required.
+// Lightweight confetti burst - no external dependency required.
 // ---------------------------------------------------------------------------
 function fireConfetti() {
   if (typeof window === "undefined") return;
@@ -111,7 +111,7 @@ function fireConfetti() {
   const colors = ["#22c55e", "#4ade80", "#f97316", "#ffffff", "#16a34a", "#2882d7"];
   const count = 260;
   const particles = Array.from({ length: count }, () => ({
-    // Half burst outward from center, half rain down from the top — makes
+    // Half burst outward from center, half rain down from the top, makes
     // the effect read clearly across the whole screen, not just a quick
     // pop near the middle.
     x:
@@ -272,7 +272,7 @@ export function SpinWheel() {
 
   return (
     <div className="w-full flex flex-col items-center gap-10">
-      {/* Current giveaway banner — the photo itself is now the full-page
+      {/* Current giveaway banner - the photo itself is now the full-page
           background (see spin-wheel/page.tsx), so this is just the text. */}
       {GIVEAWAY.active && (
         <div className="w-full max-w-md flex flex-col items-center gap-1 text-center">
@@ -298,7 +298,7 @@ export function SpinWheel() {
         </div>
 
         <div className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px]">
-          {/* Outer glow ring — tight, so it accents the wheel without washing the page */}
+          {/* Outer glow ring - tight, so it accents the wheel without washing the page */}
           <div className="absolute -inset-1 rounded-full bg-green-500/15 blur-lg" />
 
           <motion.div
@@ -311,13 +311,13 @@ export function SpinWheel() {
               const angle = i * segmentAngle + segmentAngle / 2;
               // Labels run radially (hub → rim), like spokes, rather than
               // following the curved rim. That keeps each name inside its
-              // own wedge no matter how many segments there are — a
+              // own wedge no matter how many segments there are, a
               // tangential layout overlaps neighbors once you're past
               // ~8-10 segments, which is exactly what a 20-name wheel needs.
               //
               // This outer div rotates by the SAME `angle` used for the
               // conic-gradient background segment, so the label always
-              // lands on its own segment's color — no drift between what's
+              // lands on its own segment's color - no drift between what's
               // visually under the pointer and what the JS picked as
               // winner. The inner wrapper re-centers on the wheel's own
               // center point (its parent's edge, not its center, is what
@@ -349,7 +349,7 @@ export function SpinWheel() {
             })}
           </motion.div>
 
-          {/* Hub — RunCheck logo, stays upright (outside the rotating wheel) */}
+          {/* Hub - RunCheck logo, stays upright (outside the rotating wheel) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black border-4 border-green-500 shadow-[0_0_20px_rgba(34,197,94,0.6)] flex items-center justify-center p-2">
             <Image
               src="/runcheck-logo.png"
@@ -403,7 +403,7 @@ export function SpinWheel() {
       </div>
 
       {/* --------------------------------------------------------------- */}
-      {/* Admin / Dev panel — Demo / Controlled Reveal Mode                */}
+      {/* Admin / Dev panel - Demo / Controlled Reveal Mode                */}
       {/* Not shown in the public UI. Unlocked via ?admin=1 or Ctrl+Shift+A */}
       {/* --------------------------------------------------------------- */}
       {isAdmin && (
@@ -411,12 +411,12 @@ export function SpinWheel() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
             <h3 className="text-orange-400 font-bold text-xs uppercase tracking-widest">
-              Admin Panel — Demo / Controlled Reveal Mode
+              Admin Panel - Demo / Controlled Reveal Mode
             </h3>
           </div>
           <p className="text-zinc-400 text-xs leading-relaxed">
             For live demos and rehearsed reveals only. Do not use this to
-            predetermine the outcome of a real public giveaway — that belongs
+            predetermine the outcome of a real public giveaway, that belongs
             in Random Mode.
           </p>
 

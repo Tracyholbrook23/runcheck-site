@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
-import { Mail, Phone, Lock } from "lucide-react";
+import { Mail, Phone, Lock, ArrowRight } from "lucide-react";
 
 const PRIVACY_URL = "/privacy";
 
@@ -85,7 +85,7 @@ export default function Contact() {
                     className="inline-flex items-center gap-2 text-sm font-semibold text-orange-400 hover:text-orange-300 transition-colors group"
                   >
                     {cta}
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </a>
                 </motion.div>
               </Reveal>
@@ -101,7 +101,7 @@ export default function Contact() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-3">Based in</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Austin, Texas</h2>
             <p className="text-zinc-400 text-base leading-8 max-w-lg mt-4">
-              RunCheck is built in Austin, TX — home to some of the best pickup basketball communities in the country. We're local, we're players, and we're building for the culture.
+              RunCheck is built in Austin, TX, home to some of the best pickup basketball communities in the country. We're local, we're players, and we're building for the culture.
             </p>
           </Reveal>
         </section>

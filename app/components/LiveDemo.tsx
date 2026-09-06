@@ -15,11 +15,11 @@ type Run = {
 };
 
 const INITIAL_RUNS: Run[] = [
-  { id: 1, name: "Austin Rec Center",        city: "Austin",       type: "Indoor",   players: 12, active: true,  level: "Competitive" },
-  { id: 2, name: "Clay Madsen Rec",          city: "Round Rock",   type: "Indoor",   players: 8,  active: true,  level: "Balanced"    },
-  { id: 3, name: "Brushy Creek Sports Park", city: "Cedar Park",   type: "Outdoor",  players: 5,  active: true,  level: "Casual"      },
-  { id: 4, name: "Pflugerville Park",        city: "Pflugerville", type: "Outdoor",  players: 0,  active: false, level: "Casual"      },
-  { id: 5, name: "Maplewood Park",           city: "Austin",       type: "Outdoor",  players: 3,  active: true,  level: "Casual"      },
+  { id: 1, name: "Austin Rec Center", city: "Austin", type: "Indoor", players: 12, active: true, level: "Competitive" },
+  { id: 2, name: "Clay Madsen Rec", city: "Round Rock", type: "Indoor", players: 8, active: true, level: "Balanced"    },
+  { id: 3, name: "Brushy Creek Sports Park", city: "Cedar Park", type: "Outdoor", players: 5, active: true, level: "Casual"      },
+  { id: 4, name: "Pflugerville Park", city: "Pflugerville", type: "Outdoor", players: 0, active: false, level: "Casual"      },
+  { id: 5, name: "Maplewood Park", city: "Austin", type: "Outdoor", players: 3, active: true, level: "Casual"      },
 ];
 
 const LEVEL_COLORS: Record<string, string> = {
@@ -110,7 +110,7 @@ export function LiveDemo() {
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_#4ade80] animate-pulse" />
           <span className="text-xs font-semibold text-zinc-300 uppercase tracking-widest">
-            Live — updating in real time
+            Live - updating in real time
           </span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -156,7 +156,7 @@ export function LiveDemo() {
                 </p>
               </div>
 
-              {/* Player count — animates on change */}
+              {/* Player count - animates on change */}
               <div className="flex flex-col items-end flex-shrink-0">
                 <motion.span
                   key={run.players}
@@ -165,7 +165,7 @@ export function LiveDemo() {
                   transition={{ duration: 0.4 }}
                   className="text-lg font-extrabold leading-none"
                 >
-                  {run.active ? run.players : "—"}
+                  {run.active ? run.players : "-"}
                 </motion.span>
                 <span className="text-[9px] text-zinc-600 uppercase tracking-widest">
                   {run.active ? "checked in" : "no run"}

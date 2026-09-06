@@ -30,6 +30,7 @@ import {
   Check,
   Star,
   X,
+  ArrowRight,
 } from "lucide-react";
 
 function PlayIcon() {
@@ -154,7 +155,7 @@ export default function Home() {
             <div className="flex flex-col gap-5 lg:gap-6 max-w-xl text-center lg:text-left items-center lg:items-start flex-shrink-0 lg:w-1/2">
               <div className="anim-badge inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_#22c55e]" />
-                Now live — Available on the App Store
+                Now live - Available on the App Store
               </div>
 
               <h1 className="anim-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.95]">
@@ -164,7 +165,7 @@ export default function Home() {
               </h1>
 
               <p className="anim-desc text-base sm:text-lg leading-7 sm:leading-8 text-zinc-400 max-w-md">
-                Find pickup basketball runs near you. See who&apos;s checked in, where the run is, and when it tips off — before you ever leave the house.
+                Find pickup basketball runs near you. See who&apos;s checked in, where the run is, and when it tips off, before you ever leave the house.
               </p>
 
               {/* CTAs */}
@@ -183,7 +184,7 @@ export default function Home() {
 
               <p className="anim-stats text-xs text-zinc-600 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
-                Live in <span className="text-orange-400 font-medium">Austin, TX</span> — <span className="text-zinc-500">more cities coming soon</span>
+                Live in <span className="text-orange-400 font-medium">Austin, TX</span> - <span className="text-zinc-500">more cities coming soon</span>
               </p>
 
               {/* Stats card */}
@@ -222,7 +223,7 @@ export default function Home() {
               <div className="relative z-10">
                 <IridescentPhone
                   src="/mockups/live-runs.png"
-                  alt="RunCheck — see who's checked in and playing nearby"
+                  alt="RunCheck - see who's checked in and playing nearby"
                   className="h-[340px] sm:h-[420px] lg:h-[580px] w-auto object-contain"
                 />
               </div>
@@ -230,7 +231,7 @@ export default function Home() {
           </div>{/* end inner content wrapper */}
         </section>
 
-        {/* ══ MAP SECTION — REMOVED ════════════════════════════ */}
+        {/* ══ MAP SECTION - REMOVED ════════════════════════════ */}
         {false && <section className="w-full border-y border-zinc-800/60 bg-zinc-950">
           <div className="max-w-6xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-10 items-stretch">
 
@@ -310,7 +311,7 @@ export default function Home() {
 
               <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm border border-zinc-700 rounded-lg px-3 py-1.5 flex items-center gap-2 z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-                <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest">Austin, TX — Beta</span>
+                <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest">Austin, TX - Beta</span>
               </div>
 
               {/* Gym pins */}
@@ -343,7 +344,7 @@ export default function Home() {
               </div>
               <div className="absolute z-20" style={{left:"50%",top:"68%"}}>
                 <div className="relative flex flex-col items-center group cursor-pointer">
-                  <div className="w-7 h-7 rounded-full bg-zinc-700 border border-zinc-500 flex items-center justify-center text-zinc-400 text-[9px] font-bold">—</div>
+                  <div className="w-7 h-7 rounded-full bg-zinc-700 border border-zinc-500 flex items-center justify-center text-zinc-400 text-[9px] font-bold">-</div>
                   <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[7px] border-l-transparent border-r-transparent border-t-zinc-700" />
                   <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-zinc-900/95 border border-zinc-600 rounded-lg px-3 py-2 text-[11px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-30">
                     <p className="font-bold">Pflugerville Park</p><p className="text-zinc-500 text-[10px]">No active run</p>
@@ -361,10 +362,10 @@ export default function Home() {
             <div className="flex flex-col gap-3 flex-1 justify-center">
               <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500 mb-1">Courts near you</p>
               {[
-                {name:"Austin Rec Center",   city:"Austin",       players:12, level:"Competitive", active:true,  pct:90},
-                {name:"Clay Madsen Rec",     city:"Round Rock",   players:8,  level:"Balanced",    active:true,  pct:60},
-                {name:"Brushy Creek Park",   city:"Cedar Park",   players:3,  level:"Casual",      active:true,  pct:25},
-                {name:"Pflugerville Park",   city:"Pflugerville", players:0,  level:"Casual",      active:false, pct:0},
+                {name:"Austin Rec Center", city:"Austin", players:12, level:"Competitive", active:true, pct:90},
+                {name:"Clay Madsen Rec", city:"Round Rock", players:8, level:"Balanced", active:true, pct:60},
+                {name:"Brushy Creek Park", city:"Cedar Park", players:3, level:"Casual", active:true, pct:25},
+                {name:"Pflugerville Park", city:"Pflugerville", players:0, level:"Casual", active:false, pct:0},
               ].map(({name,city,players,level,active,pct})=>{
                 const levelColor = level==="Competitive"?"text-orange-400 bg-orange-500/10 border-orange-500/30":level==="Balanced"?"text-blue-400 bg-blue-500/10 border-blue-500/30":"text-green-400 bg-green-500/10 border-green-500/30";
                 const barColor  = level==="Competitive"?"bg-orange-500":level==="Balanced"?"bg-blue-500":"bg-green-500";
@@ -379,7 +380,7 @@ export default function Home() {
                         </div>
                         <div className="flex items-center gap-2 flex-shrink-0">
                           <span className={`text-[9px] font-bold uppercase tracking-wide border rounded-full px-2 py-0.5 ${levelColor}`}>{level}</span>
-                          <span className="text-sm font-extrabold text-orange-400 leading-none">{active?players:"—"}</span>
+                          <span className="text-sm font-extrabold text-orange-400 leading-none">{active?players:"-"}</span>
                         </div>
                       </div>
                       <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
@@ -390,7 +391,7 @@ export default function Home() {
                 );
               })}
               <p className="text-[10px] text-zinc-600 mt-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 flex-shrink-0" /> GPS-verified check-ins only — so the player count is always accurate. No check-in without being physically at the court.
+                <MapPin className="w-3 h-3 flex-shrink-0" /> GPS-verified check-ins only - so the player count is always accurate. No check-in without being physically at the court.
               </p>
             </div>
           </div>
@@ -405,11 +406,11 @@ export default function Home() {
         {/* ══ CORE FEATURES ═══════════════════════════════════ */}
         {(() => {
           const features = [
-            { icon: Eye, title: "Live Runs",          caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.",     screenshot: "/mockups/live-runs.png" },
-            { icon: Calendar, title: "Plan a Run",         caption: "Schedule runs and invite players. People actually commit — and you can see who's confirmed before tip-off.", screenshot: "/mockups/plan-a-run.png" },
-            { icon: MapIcon, title: "Gym Map",            caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.",             screenshot: "/mockups/map-screen.png" },
-            { icon: BasketballIcon, title: "Player Visibility",  caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.",              screenshot: "/mockups/player-profiles.png" },
-            { icon: CheckCircle2, title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.",     screenshot: "/mockups/reliability.png" },
+            { icon: Eye, title: "Live Runs", caption: "See exactly who's checked in and playing before you leave the house. No more showing up to an empty court.", screenshot: "/mockups/live-runs.png" },
+            { icon: Calendar, title: "Plan a Run", caption: "Schedule runs and invite players. People actually commit, and you can see who's confirmed before tip-off.", screenshot: "/mockups/plan-a-run.png" },
+            { icon: MapIcon, title: "Gym Map", caption: "Find every active court near you on a live map. Filter by distance, level of play, or number of players.", screenshot: "/mockups/map-screen.png" },
+            { icon: BasketballIcon, title: "Player Visibility", caption: "See player profiles, positions, and activity history. Know who you're running with before you step on the court.", screenshot: "/mockups/player-profiles.png" },
+            { icon: CheckCircle2, title: "Reliability System", caption: "Players earn reputation based on actual show-up rate. Run with people you can count on.", screenshot: "/mockups/reliability.png" },
           ];
           const af = features[activeFeature];
           return (
@@ -425,7 +426,7 @@ export default function Home() {
                 {/* Two-column: compact tabs (left) + dominant phone (right) */}
                 <div className="flex flex-col lg:flex-row items-start gap-3 lg:gap-10">
 
-                  {/* Left: compact feature list — staggered slide-in from left */}
+                  {/* Left: compact feature list - staggered slide-in from left */}
                   <motion.div
                     className="flex flex-col gap-2 w-full lg:w-[280px] flex-shrink-0 lg:pt-8 order-last lg:order-first"
                     initial="hidden"
@@ -467,7 +468,7 @@ export default function Home() {
                     ))}
                   </motion.div>
 
-                  {/* Right: phone — takes all remaining space, no max-w cap */}
+                  {/* Right: phone - takes all remaining space, no max-w cap */}
                   <div className="w-full h-[70vh] flex items-center justify-center order-first lg:order-last lg:h-auto lg:flex-1 lg:min-h-[820px]">
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -501,7 +502,7 @@ export default function Home() {
             <SectionLabel>The full experience</SectionLabel>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">See RunCheck in action</h2>
             <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">
-              Home feed, court check-in, and run planning — all in one place.
+              Home feed, court check-in, and run planning, all in one place.
             </p>
           </Reveal>
           <Reveal delay={100} className="w-full" variant="scale">
@@ -511,7 +512,7 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ HOW IT WORKS — THREE STEPS ══════════════════ */}
+        {/* ══ HOW IT WORKS, THREE STEPS ══════════════════ */}
         <section className="w-full py-24">
 
           {/* Header */}
@@ -520,7 +521,7 @@ export default function Home() {
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Three steps to your next run</h2>
           </Reveal>
 
-          {/* Card row — centered, horizontal scroll on small viewports */}
+          {/* Card row - centered, horizontal scroll on small viewports */}
           <div className="w-full overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="flex justify-center gap-4 w-fit mx-auto px-6 sm:px-10 lg:px-16 [scroll-snap-type:x_mandatory]">
 
@@ -530,21 +531,21 @@ export default function Home() {
                   headline: "See who’s playing",
                   desc: "Browse active runs and live check-in counts before you leave.",
                   mockup: "/mockups/find-a-run.png",
-                  alt: "RunCheck — Find a Run screen",
+                  alt: "RunCheck - Find a Run screen",
                 },
                 {
                   step: "02", label: "Check in",
                   headline: "Check into a court",
                   desc: "Tap in when you arrive. Your count goes live instantly.",
                   mockup: "/mockups/court-checkin.png",
-                  alt: "RunCheck — Court check-in screen",
+                  alt: "RunCheck - Court check-in screen",
                 },
                 {
                   step: "03", label: "Plan",
                   headline: "Plan your run",
                   desc: "Schedule games, invite your crew, see who confirms.",
                   mockup: "/mockups/plan-a-run.png",
-                  alt: "RunCheck — Plan a Visit screen",
+                  alt: "RunCheck - Plan a Visit screen",
                 },
               ].map((card, i) => (
                 <motion.div
@@ -579,7 +580,7 @@ export default function Home() {
                     </p>
                   </div>
 
-                  {/* Phone — bottom-anchored, fills the card body */}
+                  {/* Phone - bottom-anchored, fills the card body */}
                   <div className="flex-1 flex items-end justify-center px-4 pt-2 overflow-hidden">
                     <Image
                       src={card.mockup}
@@ -604,59 +605,59 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ MORE WAYS — SECONDARY FEATURE SHOWCASE ════════ */}
+        {/* ══ MORE WAYS - SECONDARY FEATURE SHOWCASE ════════ */}
         <section className="w-full py-20">
 
-          {/* Header — slightly smaller and less bold than main section */}
+          {/* Header - slightly smaller and less bold than main section */}
           <Reveal className="text-center px-4 sm:px-10 mb-10">
             <SectionLabel>Built for the full experience</SectionLabel>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
               More ways to stay in the game
             </h2>
             <p className="text-zinc-500 text-sm leading-relaxed mt-3 max-w-sm mx-auto">
-              RunCheck isn&apos;t just about finding runs — it&apos;s built for the full experience.
+              RunCheck isn&apos;t just about finding runs - it&apos;s built for the full experience.
             </p>
           </Reveal>
 
-          {/* Feature card row — horizontal scroll, slightly smaller than main cards */}
+          {/* Feature card row - horizontal scroll, slightly smaller than main cards */}
           <div className="w-full overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="flex justify-center gap-3 w-fit mx-auto px-6 sm:px-10 lg:px-16 [scroll-snap-type:x_mandatory]">
 
               {[
                 {
-                  label: "01 — Connect",
+                  label: "01 - Connect",
                   title: "Stay connected with your runs",
                   desc: "Chat with players before you arrive or coordinate in real time with run chats.",
                   mockup: "/mockups/messaging.png",
-                  alt: "RunCheck — Messaging screen",
+                  alt: "RunCheck - Messaging screen",
                 },
                 {
-                  label: "02 — Compete",
+                  label: "02 - Compete",
                   title: "Earn your reputation",
                   desc: "Climb the leaderboard, build your rank, and show the court you're consistent.",
                   mockup: "/mockups/leaderboard.png",
-                  alt: "RunCheck — Leaderboard screen",
+                  alt: "RunCheck - Leaderboard screen",
                 },
                 {
-                  label: "03 — Find Your Game",
+                  label: "03 - Find Your Game",
                   title: "Filter your perfect run",
                   desc: "Search by skill level, court type, location, and more to find games that match your vibe.",
                   mockup: "/mockups/filters.png",
-                  alt: "RunCheck — Filters screen",
+                  alt: "RunCheck - Filters screen",
                 },
                 {
-                  label: "04 — Your Crew",
+                  label: "04 - Your Crew",
                   title: "See where your friends play",
                   desc: "Add friends and stay in the loop with where your crew is running.",
                   mockup: "/mockups/your-crew.png",
-                  alt: "RunCheck — Your crew and profile screen",
+                  alt: "RunCheck - Your crew and profile screen",
                 },
                 {
-                  label: "05 — Show Your Game",
+                  label: "05 - Show Your Game",
                   title: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
                   mockup: "/mockups/start-run.png",
-                  alt: "RunCheck — Start a run and set your level screen",
+                  alt: "RunCheck - Start a run and set your level screen",
                 },
               ].map((card, i) => (
                 <motion.div
@@ -691,7 +692,7 @@ export default function Home() {
                     </p>
                   </div>
 
-                  {/* Phone — slightly smaller than the main step cards */}
+                  {/* Phone - slightly smaller than the main step cards */}
                   <div className="flex-1 flex items-end justify-center px-4 pt-2 overflow-hidden">
                     <Image
                       src={card.mockup}
@@ -727,7 +728,7 @@ export default function Home() {
               tc: "text-zinc-200",
               accentColor: "#a1a1aa",
               detail: {
-                who: "Everyday people who just want to move, sweat, and enjoy the game. Zero pressure, zero ego. You don't need to be good — you just need to show up.",
+                who: "Everyday people who just want to move, sweat, and enjoy the game. Zero pressure, zero ego. You don't need to be good - you just need to show up.",
                 vibe: "Relaxed pace, lots of laughs, and no trash talk. People pass up good shots to give someone else a turn. It's basketball at its most fun.",
                 players: ["Beginners & newcomers", "People returning after a long break", "Older players just staying active", "Anyone who plays for fun, not stats", "All ages and body types welcome"],
                 expect: "Don't be surprised if someone apologizes after a foul or if the teams get shuffled mid-game to keep it fair. Good vibes only.",
@@ -742,8 +743,8 @@ export default function Home() {
               tc: "text-blue-300",
               accentColor: "#60a5fa",
               detail: {
-                who: "A solid mix — some former high school players, recreational league regulars, and athletes who know the game and take it seriously without letting their ego run the floor.",
-                vibe: "Real basketball with accountability. People call fouls fairly, run actual plays, and compete hard — but shake hands after and grab food together.",
+                who: "A solid mix - some former high school players, recreational league regulars, and athletes who know the game and take it seriously without letting their ego run the floor.",
+                vibe: "Real basketball with accountability. People call fouls fairly, run actual plays, and compete hard, but shake hands after and grab food together.",
                 players: ["Former high school / JV players", "Rec-league regulars", "Athletes who are competitive but coachable", "Players who know fundamentals", "A healthy mix of ages & backgrounds"],
                 expect: "Expect real effort every possession. People here want to win, but not at the cost of the run. Skill check: can you handle the ball under pressure? You'll find out.",
                 warning: null,
@@ -790,7 +791,7 @@ export default function Home() {
                         <span className={"text-base font-bold " + tc}>{label}</span>
                         <p className="text-sm text-zinc-500 leading-6">{desc}</p>
                         {active && <span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-orange-500 border border-orange-500/50 rounded-full px-3 py-0.5">Most Popular</span>}
-                        <span className="text-[10px] text-zinc-600 mt-1 uppercase tracking-widest">Tap to learn more →</span>
+                        <span className="text-[10px] text-zinc-600 mt-1 uppercase tracking-widest inline-flex items-center gap-1">Tap to learn more <ArrowRight className="w-3 h-3" /></span>
                       </motion.button>
                     </Reveal>
                   ))}
@@ -815,8 +816,8 @@ export default function Home() {
                       className="relative z-10 w-full sm:max-w-lg bg-zinc-950 border border-t sm:border rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col"
                       style={{ borderColor: sel.accentColor + "55", maxHeight: "88vh" }}
                       initial={{ y: "100%", opacity: 1 }}
-                      animate={{ y: 0,      opacity: 1 }}
-                      exit={{ y: "100%",   opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: "100%", opacity: 0 }}
                       transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                       // desktop overrides via sm: classes handled by initial/animate above
                     >
@@ -839,7 +840,7 @@ export default function Home() {
                               <p className="text-xs font-semibold italic" style={{ color: sel.accentColor }}>{sel.tagline}</p>
                             </div>
                           </div>
-                          {/* desktop close — hidden on mobile (use bottom button instead) */}
+                          {/* desktop close - hidden on mobile (use bottom button instead) */}
                           <button
                             onClick={() => setSelectedLevel(null)}
                             className="hidden sm:flex w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 items-center justify-center text-zinc-400 hover:text-white text-sm flex-shrink-0 transition-colors"
@@ -887,7 +888,7 @@ export default function Home() {
                         )}
                       </div>
 
-                      {/* sticky close button — big and obvious on mobile */}
+                      {/* sticky close button - big and obvious on mobile */}
                       <div className="flex-shrink-0 px-6 sm:px-7 py-4 border-t border-zinc-800/60">
                         <button
                           onClick={() => setSelectedLevel(null)}
@@ -925,18 +926,18 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ BETA TESTER QUOTES ══════════════════════════════ */}
+        {/* ══ APP STORE REVIEWS ══════════════════════════════ */}
         <section className="flex flex-col items-center text-center px-6 py-28 gap-16 max-w-5xl mx-auto w-full">
-          <Reveal><SectionLabel>Beta Testers</SectionLabel>
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">What our beta testers are saying</h2>
-            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">We&apos;ve been running a closed beta in Austin. Here&apos;s what players had to say.</p>
+          <Reveal><SectionLabel>App Store Reviews</SectionLabel>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">What players are saying</h2>
+            <p className="text-zinc-400 mt-4 text-base leading-7 max-w-md mx-auto">Real reviews from real hoopers, straight from the App Store.</p>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
             {[
-              {quote:"Finally stopped wasting gas driving to empty gyms. I check RunCheck before I even put my shoes on.",name:"Marcus T.",location:"Austin, TX",level:"Competitive",initial:"M",color:"bg-orange-500/20 text-orange-400 border-orange-500/30"},
-              {quote:"The check-in system is genius. You actually know the run is real before you show up.",name:"DeShawn R.",location:"Round Rock, TX",level:"Balanced",initial:"D",color:"bg-blue-500/20 text-blue-400 border-blue-500/30"},
-              {quote:"Started a run at my local gym and within 20 min four more players checked in. This app is legit.",name:"Jordan K.",location:"Cedar Park, TX",level:"Casual",initial:"J",color:"bg-green-500/20 text-green-400 border-green-500/30"},
-            ].map(({quote,name,location,level,initial,color},i)=>(
+              {quote:"Makes life easier not always having to ask around to find a solid run, take a look at the app before i leave the house and it removes all my worries.",name:"lomax_swag_4life",initial:"L",color:"bg-orange-500/20 text-orange-400 border-orange-500/30"},
+              {quote:"Now I know how many people are at a gym playing basketball before I leave my house",name:"Traybballin",initial:"T",color:"bg-blue-500/20 text-blue-400 border-blue-500/30"},
+              {quote:"I will never waste time looking for a run again. Whoever made this app is a genius.",name:"Nila.bear",initial:"N",color:"bg-green-500/20 text-green-400 border-green-500/30"},
+            ].map(({quote,name,initial,color},i)=>(
               <Reveal key={name} delay={i*100} className="h-full">
                 <motion.div whileHover={{y:-4,borderColor:"rgba(249,115,22,.3)"}} transition={{duration:.2}}
                   className="h-full flex flex-col gap-4 bg-[#0d0d0d] rounded-2xl p-6 border border-zinc-800 text-left">
@@ -944,7 +945,7 @@ export default function Home() {
                   <p className="text-sm leading-7 text-zinc-300 flex-1">&ldquo;{quote}&rdquo;</p>
                   <div className="flex items-center gap-3 pt-2 border-t border-zinc-800">
                     <div className={`w-9 h-9 rounded-full border flex items-center justify-center flex-shrink-0 text-sm font-bold ${color}`}>{initial}</div>
-                    <div><p className="text-xs font-semibold text-white">{name}</p><p className="text-[10px] text-zinc-600">{location} · {level} · Beta Tester</p></div>
+                    <div><p className="text-xs font-semibold text-white">{name}</p><p className="text-[10px] text-zinc-600">App Store Review</p></div>
                   </div>
                 </motion.div>
               </Reveal>
@@ -995,7 +996,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-600">
                 <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" strokeWidth={3} /> Free to download</span>
                 <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" strokeWidth={3} /> Available on iOS</span>
-                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" strokeWidth={3} /> Austin, TX — more cities soon</span>
+                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" strokeWidth={3} /> Austin, TX - more cities soon</span>
               </div>
             </Reveal>
           </div>

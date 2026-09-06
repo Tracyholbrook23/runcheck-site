@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
@@ -220,7 +221,7 @@ function ProductSpotlight() {
               className="inline-flex items-center justify-center gap-2 bg-white text-black rounded-full px-8 py-4 text-base font-bold transition-all hover:bg-zinc-100 hover:scale-[1.02] active:scale-[0.98] group w-full sm:w-auto"
             >
               Buy now
-              <span className="transition-transform group-hover:translate-x-1">→</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
 
             <div className="border-t border-zinc-800 pt-6 flex flex-col gap-3">

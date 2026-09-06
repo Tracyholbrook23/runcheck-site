@@ -3,7 +3,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — RunCheck",
+  title: "Terms of Service - RunCheck",
   description:
     "Read the RunCheck Terms of Service, including our platform role, limitation of liability, and assumption of risk for pickup basketball runs.",
 };
@@ -19,7 +19,7 @@ const sections = [
   {
     id: "description",
     title: "Description of Service",
-    content: `RunCheck is a peer-to-peer platform that allows users to discover, organize, and join pickup basketball runs at gyms and courts near them. RunCheck provides technology to connect players — we are not a gym operator, sports facility manager, venue owner, or event organizer. We do not host, manage, or facilitate runs ourselves; all runs are created and organized by individual users.`,
+    content: `RunCheck is a peer-to-peer platform that allows users to discover, organize, and join pickup basketball runs at gyms and courts near them. RunCheck provides technology to connect players, we are not a gym operator, sports facility manager, venue owner, or event organizer. We do not host, manage, or facilitate runs ourselves; all runs are created and organized by individual users.`,
   },
   {
     id: "accounts",
@@ -49,7 +49,7 @@ const sections = [
   {
     id: "platform-role",
     title: "Platform Role & No Guarantee of Availability",
-    content: `RunCheck is a technology platform — not a gym, court operator, or athletic facility. This distinction is important and affects your rights and our responsibilities under these Terms.`,
+    content: `RunCheck is a technology platform, not a gym, court operator, or athletic facility. This distinction is important and affects your rights and our responsibilities under these Terms.`,
     subsections: [
       {
         title: "We Do Not Control Venues",
@@ -99,7 +99,7 @@ const sections = [
       "When you attend a run at a gym or court, you are subject to that venue's rules, policies, membership requirements, and fees.",
       "RunCheck is not responsible for ensuring that you meet the venue's requirements to enter or use the facility.",
       "Some venues may require a membership, day pass, or other credentials. It is your responsibility to understand and comply with those requirements.",
-      "Disputes with a gym or facility are between you and that venue — RunCheck is not a party to and has no responsibility in that relationship.",
+      "Disputes with a gym or facility are between you and that venue. RunCheck is not a party to and has no responsibility in that relationship.",
     ],
   },
   {

@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
 import { SpinWheel } from "../components/SpinWheel";
 
-// Duplicated from SpinWheel.tsx's GIVEAWAY constant rather than imported —
+// Duplicated from SpinWheel.tsx's GIVEAWAY constant rather than imported - 
 // importing a plain constant from a "use client" file into this server
 // component was silently evaluating stale/false on Vercel's Turbopack
 // build, even across fresh deployments. Keep these two in sync by hand.
@@ -14,7 +14,7 @@ const GIVEAWAY_IMAGE = "/spin-wheel/kobe-girl-dad-prize.jpg";
 const GIVEAWAY_TITLE = "Kobe Girl Dad Giveaway";
 
 export const metadata: Metadata = {
-  title: "RunCheck Spin Wheel — Pick the Next Hooper",
+  title: "RunCheck Spin Wheel - Pick the Next Hooper",
   description:
     "Enter names, spin the wheel, and reveal who's up next. RunCheck's basketball-themed spin wheel picker for pickup runs and events.",
 };
@@ -24,7 +24,7 @@ export default function SpinWheelPage() {
     <div className="bg-black text-white min-h-screen relative overflow-hidden">
       {GIVEAWAY_ACTIVE ? (
         <>
-          {/* Prize photo as the full-page background — big, behind
+          {/* Prize photo as the full-page background, big, behind
               everything, with the wheel sitting on top of it. */}
           <div className="fixed inset-0">
             <Image
@@ -35,15 +35,15 @@ export default function SpinWheelPage() {
               className="object-cover"
               priority
             />
-            {/* Dark overlay so nav/text/wheel stay legible over a busy photo
-                — darkest at the very top/bottom (nav, footer) and lightest
+            {/* Dark overlay so nav/text/wheel stay legible over a busy photo,
+                darkest at the very top/bottom (nav, footer) and lightest
                 in the middle where the wheel sits, so the photo still reads
                 clearly as the page background. */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/45 to-black/85" />
           </div>
         </>
       ) : (
-        /* Court-inspired background texture — subtle, neutral gray lines */
+        /* Court-inspired background texture - subtle, neutral gray lines */
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{
@@ -67,8 +67,8 @@ export default function SpinWheelPage() {
           </Reveal>
           <Reveal delay={120}>
             <p className="text-zinc-500 text-sm max-w-md">
-              Drop in your names, give it a spin, and lock in a winner —
-              built for pickup runs, giveaways, and event screens.
+              Drop in your names, give it a spin, and lock in a winner.
+              Built for pickup runs, giveaways, and event screens.
             </p>
           </Reveal>
         </section>

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const ERROR_COPY: Record<string, string> = {
-  wrong: "Wrong password — try again.",
+  wrong: "Wrong password - try again.",
   "not-configured":
     "Password isn't set up yet. Add SPIN_WHEEL_PASSWORD and SPIN_WHEEL_COOKIE_SECRET in your Vercel project's environment variables, then redeploy.",
 };
@@ -31,7 +31,7 @@ export default async function SpinWheelLoginPage({
         </p>
         {error && (
           <p className="text-red-400 text-xs text-center">
-            {ERROR_COPY[error] ?? "Something went wrong — try again."}
+            {ERROR_COPY[error] ?? "Something went wrong - try again."}
           </p>
         )}
         <input

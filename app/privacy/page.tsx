@@ -3,7 +3,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — RunCheck",
+  title: "Privacy Policy - RunCheck",
   description: "Learn how RunCheck collects, uses, and protects your personal information, including location data and email.",
 };
 
@@ -22,27 +22,27 @@ const sections = [
       {
         title: "Information You Provide Directly",
         items: [
-          "Email address — when you join our waitlist or create an account.",
-          "Name and username — when you set up a profile.",
-          "Profile photo — if you choose to upload one.",
-          "Run details — court name, run level, and check-in information you submit.",
+          "Email address - when you join our waitlist or create an account.",
+          "Name and username - when you set up a profile.",
+          "Profile photo - if you choose to upload one.",
+          "Run details - court name, run level, and check-in information you submit.",
         ],
       },
       {
         title: "Location Information",
         items: [
-          "Precise GPS location — collected when you use the check-in feature to verify your physical presence at a court. We do not allow remote check-ins.",
-          "General location — used to show nearby courts and active runs in your area.",
+          "Precise GPS location - collected when you use the check-in feature to verify your physical presence at a court. We do not allow remote check-ins.",
+          "General location - used to show nearby courts and active runs in your area.",
           "Location is only collected while the app is in use and with your explicit permission. You may revoke location access at any time through your device settings.",
         ],
       },
       {
         title: "Automatically Collected Information",
         items: [
-          "Device information — device type, operating system, and app version.",
-          "Usage data — features used, screens visited, and time spent in the app.",
-          "IP address — collected for security and analytics purposes.",
-          "Check-in timestamps — when and how often you check in at courts.",
+          "Device information - device type, operating system, and app version.",
+          "Usage data - features used, screens visited, and time spent in the app.",
+          "IP address - collected for security and analytics purposes.",
+          "Check-in timestamps - when and how often you check in at courts.",
         ],
       },
     ],
@@ -76,9 +76,9 @@ const sections = [
       {
         title: "With Service Providers",
         items: [
-          "Klaviyo — we use Klaviyo to manage our email waitlist and send launch communications. Your email address is shared with Klaviyo for this purpose.",
-          "Vercel — our website and API are hosted on Vercel's infrastructure.",
-          "Analytics providers — we may use third-party analytics tools to understand how users interact with the Service.",
+          "Klaviyo - we use Klaviyo to manage our email waitlist and send launch communications. Your email address is shared with Klaviyo for this purpose.",
+          "Vercel - our website and API are hosted on Vercel's infrastructure.",
+          "Analytics providers - we may use third-party analytics tools to understand how users interact with the Service.",
         ],
       },
       {
@@ -97,7 +97,7 @@ const sections = [
     items: [
       "GPS location is only accessed when you actively use the check-in feature.",
       "We do not track your location in the background.",
-      "Location data is used solely to verify court check-ins — we do not store a continuous history of your movements.",
+      "Location data is used solely to verify court check-ins. We do not store a continuous history of your movements.",
       "Check-in location data is associated with a specific court and timestamp, not a continuous GPS trail.",
       "You can disable location access at any time in your device's Settings > Privacy > Location Services.",
     ],
@@ -116,11 +116,11 @@ const sections = [
     id: "your-rights",
     title: "Your Rights & Choices",
     items: [
-      "Access — you may request a copy of the personal data we hold about you.",
-      "Correction — you may update or correct your account information at any time.",
-      "Deletion — you may request that we delete your personal data.",
-      "Opt-out of emails — every email we send includes an unsubscribe link. You may also email hello@theruncheck.app to opt out.",
-      "Location — you may revoke location permissions at any time through your device settings. Note that some features (check-in) require location to function.",
+      "Access - you may request a copy of the personal data we hold about you.",
+      "Correction - you may update or correct your account information at any time.",
+      "Deletion - you may request that we delete your personal data.",
+      "Opt-out of emails - every email we send includes an unsubscribe link. You may also email hello@theruncheck.app to opt out.",
+      "Location - you may revoke location permissions at any time through your device settings. Note that some features (check-in) require location to function.",
       "California residents may have additional rights under the CCPA. Please contact us to exercise them.",
     ],
   },

@@ -1,14 +1,14 @@
 "use client";
 
 /**
- * /open — Universal Link landing page
+ * /open - Universal Link landing page
  *
  * iOS intercepts navigation to theruncheck.app/open and opens the RunCheck
  * app directly (if installed) via Universal Links / AASA.
  *
  * This page is the fallback shown in a regular browser when:
- *   - The app is not installed, OR
- *   - Universal Links fail to activate (e.g. first launch before AASA caches)
+ * - The app is not installed, OR
+ * - Universal Links fail to activate (e.g. first launch before AASA caches)
  *
  * On load it immediately tries the custom URL scheme (runcheck://verified).
  * If the app opens, the user leaves this page. If not, after 2 seconds it
@@ -22,10 +22,10 @@ export default function OpenPage() {
   useEffect(() => {
     // Try to open the app via custom URL scheme.
     // Works in Safari. In Gmail WebView, Universal Links handle it before
-    // this page even loads — this is purely a belt-and-suspenders fallback.
+    // this page even loads - this is purely a belt-and-suspenders fallback.
     window.location.href = "runcheck://verified";
 
-    // If still here after 2 s, the app isn't installed — send to App Store.
+    // If still here after 2 s, the app isn't installed - send to App Store.
     const timer = setTimeout(() => {
       window.location.href =
         "https://apps.apple.com/us/app/runcheck-pickup-basketball/id6760801659";

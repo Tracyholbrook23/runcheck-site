@@ -28,6 +28,7 @@ import {
   Flame,
   Crown,
   CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -124,11 +125,11 @@ const TIERS = [
 
 const STATS = [
   { value: "12,480", label: "Marketplace visits tracked", icon: Eye, color: "#60A5FA" },
-  { value: "1,847",  label: "Profile views (demo partner)", icon: MapPin, color: "#F97316" },
-  { value: "934",    label: "Offer views recorded", icon: Tag, color: "#34D399" },
-  { value: "412",    label: "Website clicks driven", icon: Globe, color: "#A78BFA" },
-  { value: "341",    label: "Promo code reveals", icon: ClipboardList, color: "#FBBF24" },
-  { value: "203",    label: "Directions clicks", icon: MapPin, color: "#2DD4BF" },
+  { value: "1,847", label: "Profile views (demo partner)", icon: MapPin, color: "#F97316" },
+  { value: "934", label: "Offer views recorded", icon: Tag, color: "#34D399" },
+  { value: "412", label: "Website clicks driven", icon: Globe, color: "#A78BFA" },
+  { value: "341", label: "Promo code reveals", icon: ClipboardList, color: "#FBBF24" },
+  { value: "203", label: "Directions clicks", icon: MapPin, color: "#2DD4BF" },
 ];
 
 // ── What you get breakdown ───────────────────────────────────────────────────
@@ -137,28 +138,28 @@ const BENEFITS = [
   {
     icon: Eye,
     title: "Be Seen Every Time Players Open RunCheck",
-    desc: "Your brand lives inside the Player Perks section on the home screen. Every time a player opens the app to find a run, your offer is right there — not buried in a search result, not competing with a feed algorithm.",
+    desc: "Your brand lives inside the Player Perks section on the home screen. Every time a player opens the app to find a run, your offer is right there, not buried in a search result, not competing with a feed algorithm.",
     img: "/sponsor-assets/seen-3.png",
     alt: "RunCheck home screen showing Player Perks section",
   },
   {
     icon: Smartphone,
     title: "Your Own Profile in the Partner Marketplace",
-    desc: "Sponsors get a full partner profile page inside RunCheck: logo, tagline, description, exclusive offer, and direct action buttons — website, Instagram, phone, email, and directions. Players tap directly from the app into your world.",
+    desc: "Sponsors get a full partner profile page inside RunCheck: logo, tagline, description, exclusive offer, and direct action buttons, website, Instagram, phone, email, and directions. Players tap directly from the app into your world.",
     img: "/sponsor-assets/seen-5.png",
     alt: "RunCheck partner profile page",
   },
   {
     icon: Store,
     title: "Category Placement in the Marketplace",
-    desc: "Players browse the Marketplace by category — Gyms, Trainers, Leagues, Recovery, Barbers, Food, Apparel, and more. Your business shows up exactly where the right audience is looking.",
+    desc: "Players browse the Marketplace by category, Gyms, Trainers, Leagues, Recovery, Barbers, Food, Apparel, and more. Your business shows up exactly where the right audience is looking.",
     img: "/sponsor-assets/seen-1.png",
     alt: "RunCheck Partner Marketplace category browse",
   },
   {
     icon: BarChart3,
     title: "See Real Results From Your Sponsorship",
-    desc: "No guessing. Premium and Exclusive sponsors get access to a live analytics dashboard showing profile views, offer clicks, website visits, phone calls, Instagram taps, promo reveals, and more — tracked per month with a 6-month trend chart.",
+    desc: "No guessing. Premium and Exclusive sponsors get access to a live analytics dashboard showing profile views, offer clicks, website visits, phone calls, Instagram taps, promo reveals, and more, tracked per month with a 6-month trend chart.",
     img: "/sponsor-assets/growth.png",
     alt: "RunCheck Partner Analytics dashboard",
   },
@@ -272,9 +273,9 @@ export default function Sponsors() {
               <div className="sp-cta flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
                   href="mailto:hello@theruncheck.app?subject=RunCheck Sponsorship Inquiry"
-                  className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.35)] hover:shadow-[0_0_48px_rgba(249,115,22,.5)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.35)] hover:shadow-[0_0_48px_rgba(249,115,22,.5)]"
                 >
-                  Get Sponsor Info →
+                  Get Sponsor Info <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
                 </a>
                 <a
                   href="https://instagram.com/run.check"
@@ -295,12 +296,12 @@ export default function Sponsors() {
             <Reveal className="flex-shrink-0 flex justify-center w-full lg:w-auto">
               <Image
                 src="/sponsor-assets/looking.png"
-                alt="RunCheck — Looking for Sponsors"
+                alt="RunCheck - Looking for Sponsors"
                 width={1170}
                 height={2532}
                 className="phone-img cursor-zoom-in"
                 style={{ maxWidth: 380, height: "auto" }}
-                onClick={() => openLightbox("/sponsor-assets/looking.png", "RunCheck — Looking for Sponsors")}
+                onClick={() => openLightbox("/sponsor-assets/looking.png", "RunCheck - Looking for Sponsors")}
               />
             </Reveal>
             <Reveal delay={100} className="flex flex-col gap-6 flex-1">
@@ -309,14 +310,14 @@ export default function Sponsors() {
                 Real players. Real runs.<br />Real results.
               </h2>
               <p className="text-zinc-400 text-base leading-8">
-                Pickup basketball players are some of the most loyal, community-driven athletes around. They show up multiple times a week, spend money on their game, and trust recommendations from within the culture. RunCheck puts your business directly inside that culture — not as an ad they skip, but as a partner they actually want.
+                Pickup basketball players are some of the most loyal, community-driven athletes around. They show up multiple times a week, spend money on their game, and trust recommendations from within the culture. RunCheck puts your business directly inside that culture, not as an ad they skip, but as a partner they actually want.
               </p>
               <p className="text-zinc-400 text-base leading-8">
                 We're not selling banner ads. We're giving sponsors a real presence inside an app that players open every time they want to find a run. That's high-frequency, high-intent exposure to a hyper-local audience that's hard to reach anywhere else.
               </p>
               <div className="flex items-center gap-3 mt-2">
                 <div className="w-2 h-2 rounded-full bg-orange-500" />
-                <p className="text-sm text-zinc-500 uppercase tracking-widest font-semibold">Launching in Austin — limited spots available</p>
+                <p className="text-sm text-zinc-500 uppercase tracking-widest font-semibold">Launching in Austin - limited spots available</p>
               </div>
             </Reveal>
           </section>
@@ -439,7 +440,7 @@ export default function Sponsors() {
                 We work with any local business that serves athletes
               </h2>
               <p className="text-zinc-400 text-base leading-8 max-w-2xl mb-10">
-                If your customers play sports, stay active, or spend time in the community — RunCheck puts you in the right room.
+                If your customers play sports, stay active, or spend time in the community, RunCheck puts you in the right room.
               </p>
             </Reveal>
             <Reveal delay={80}>
@@ -469,7 +470,7 @@ export default function Sponsors() {
                 Pick the level that fits your goals
               </h2>
               <p className="text-zinc-400 text-base leading-8 max-w-xl mb-12">
-                Simple, transparent pricing. Every sponsor gets a real presence — not just a logo in a corner.
+                Simple, transparent pricing. Every sponsor gets a real presence, not just a logo in a corner.
               </p>
             </Reveal>
 
@@ -519,14 +520,14 @@ export default function Sponsors() {
                     <div className="mt-auto pt-4">
                       <button
                         onClick={scrollToForm}
-                        className="block w-full text-center rounded-full py-3 text-sm font-bold transition-all cursor-pointer"
+                        className="w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-sm font-bold transition-all cursor-pointer"
                         style={{
                           backgroundColor: highlight ? "#F97316" : "transparent",
                           color: highlight ? "#fff" : color,
                           border: highlight ? "none" : `1.5px solid ${color}`,
                         }}
                       >
-                        Get Started →
+                        Get Started <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
                       </button>
                     </div>
                   </motion.div>
@@ -560,7 +561,7 @@ export default function Sponsors() {
                 {
                   step: "03",
                   title: "Players start finding you",
-                  desc: "Your business is live in the app. Players see your offer, tap your profile, and take action — and you can watch the analytics in real time.",
+                  desc: "Your business is live in the app. Players see your offer, tap your profile, and take action, and you can watch the analytics in real time.",
                 },
               ].map(({ step, title, desc }) => (
                 <Reveal key={step} delay={80}>
@@ -695,9 +696,9 @@ export default function Sponsors() {
                         className="bg-[#0d0d0d] border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-orange-500/60 transition-colors appearance-none"
                       >
                         <option value="" disabled>Select a tier</option>
-                        <option value="Starter ($10/mo)">Starter — $10/mo</option>
-                        <option value="Growth ($25/mo)">Growth — $25/mo</option>
-                        <option value="Exclusive ($50/mo)">Exclusive — $50/mo</option>
+                        <option value="Starter ($10/mo)">Starter - $10/mo</option>
+                        <option value="Growth ($25/mo)">Growth - $25/mo</option>
+                        <option value="Exclusive ($50/mo)">Exclusive - $50/mo</option>
                       </select>
                     </div>
                   </div>
@@ -705,9 +706,9 @@ export default function Sponsors() {
                   {/* Row 4: billing preference */}
                   {(() => {
                     const TIER_PRICING: Record<string, { monthly: number; bundle: number }> = {
-                      "Starter ($10/mo)":   { monthly: 10,  bundle: 20 },
-                      "Growth ($25/mo)":    { monthly: 25,  bundle: 50 },
-                      "Exclusive ($50/mo)": { monthly: 50,  bundle: 90 },
+                      "Starter ($10/mo)":   { monthly: 10, bundle: 20 },
+                      "Growth ($25/mo)":    { monthly: 25, bundle: 50 },
+                      "Exclusive ($50/mo)": { monthly: 50, bundle: 90 },
                     };
                     const pricing = form.tier ? TIER_PRICING[form.tier] : null;
                     const monthlySaving = pricing ? (pricing.monthly * 3) - pricing.bundle : null;
@@ -791,9 +792,9 @@ export default function Sponsors() {
                   <button
                     type="submit"
                     disabled={formStatus === "submitting"}
-                    className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 disabled:opacity-60 disabled:cursor-not-allowed px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)] hover:shadow-[0_0_48px_rgba(249,115,22,.45)] mt-2"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 disabled:opacity-60 disabled:cursor-not-allowed px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)] hover:shadow-[0_0_48px_rgba(249,115,22,.45)] mt-2"
                   >
-                    {formStatus === "submitting" ? "Sending…" : "Submit Inquiry →"}
+                    {formStatus === "submitting" ? "Sending…" : (<>Submit Inquiry <ArrowRight className="w-4 h-4" strokeWidth={2.5} /></>)}
                   </button>
                 </form>
               </Reveal>
@@ -812,14 +813,14 @@ export default function Sponsors() {
                 Ready to reach your<br className="hidden sm:block" /> basketball community?
               </h2>
               <p className="text-zinc-400 text-base leading-8 max-w-lg">
-                Spots are limited. We're keeping the sponsor list small so every partner gets real visibility — not lost in a crowd. If this sounds like your kind of marketing, let's talk.
+                Spots are limited. We're keeping the sponsor list small so every partner gets real visibility, not lost in a crowd. If this sounds like your kind of marketing, let's talk.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <a
                   href="mailto:hello@theruncheck.app?subject=RunCheck Sponsorship Inquiry"
-                  className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.35)] hover:shadow-[0_0_48px_rgba(249,115,22,.5)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.35)] hover:shadow-[0_0_48px_rgba(249,115,22,.5)]"
                 >
-                  Email Us to Get Started →
+                  Email Us to Get Started <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
                 </a>
                 <a
                   href="https://instagram.com/run.check"

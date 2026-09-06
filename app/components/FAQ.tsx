@@ -6,19 +6,19 @@ import { motion, AnimatePresence } from "framer-motion";
 const FAQS = [
   {
     q: "Is RunCheck free?",
-    a: "Yes — the core app is completely free. Finding runs, checking in, browsing courts, and planning runs are all free. Premium features like Private Runs and Paid Runs will require a subscription when they launch.",
+    a: "Yes - the core app is completely free. Finding runs, checking in, browsing courts, and planning runs are all free. Premium features like Private Runs and Paid Runs will require a subscription when they launch.",
   },
   {
     q: "How do GPS check-ins work?",
-    a: "When you tap Check In, RunCheck uses your device's GPS to confirm you're physically near the court — usually within a few hundred feet. This prevents fake check-ins and keeps the data accurate for everyone.",
+    a: "When you tap Check In, RunCheck uses your device's GPS to confirm you're physically near the court, usually within a few hundred feet. This prevents fake check-ins and keeps the data accurate for everyone.",
   },
   {
     q: "What if I show up and no one is there?",
-    a: "Check the player count before you leave — if it shows zero, there's no active run. You can also use Plan a Run to schedule ahead, so courts show upcoming interest before anyone checks in.",
+    a: "Check the player count before you leave. If it shows zero, there's no active run. You can also use Plan a Run to schedule ahead, so courts show upcoming interest before anyone checks in.",
   },
   {
     q: "Can I find games near me even if I just moved to a new city?",
-    a: "RunCheck is launching in Austin, TX first, with more cities on the roadmap after launch. If you're in Austin, you'll see every tracked court near you — with real-time player counts for active runs. More cities are coming soon.",
+    a: "RunCheck is launching in Austin, TX first, with more cities on the roadmap after launch. If you're in Austin, you'll see every tracked court near you, with real-time player counts for active runs. More cities are coming soon.",
   },
   {
     q: "Can I start my own run?",
@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "What is a Reliability Score?",
-    a: "It tracks your attendance rate — whether you show up when you've planned a visit or started a run. A higher score builds trust in the community and shows you're not a ghost.",
+    a: "It tracks your attendance rate, whether you show up when you've planned a visit or started a run. A higher score builds trust in the community and shows you're not a ghost.",
   },
 ];
 
