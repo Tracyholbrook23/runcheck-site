@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Learn how RunCheck collects, uses, and protects your personal information, including location data and email.",
 };
 
-const LAST_UPDATED = "April 6, 2026";
+const LAST_UPDATED = "September 7, 2026";
 
 const sections = [
   {
@@ -78,7 +78,7 @@ const sections = [
         items: [
           "Klaviyo - we use Klaviyo to manage our email waitlist and send launch communications. Your email address is shared with Klaviyo for this purpose.",
           "Vercel - our website and API are hosted on Vercel's infrastructure.",
-          "Analytics providers - we may use third-party analytics tools to understand how users interact with the Service.",
+          "Google Analytics - with your permission, our website uses Google Analytics to understand visits, pages viewed, approximate location, device and browser information, and interactions such as scrolling and outbound link clicks. Google may process IP addresses to provide the service. We disable Google Signals and advertising personalization in our website configuration.",
         ],
       },
       {
@@ -89,6 +89,11 @@ const sections = [
         ],
       },
     ],
+  },
+  {
+    id: "analytics-cookies",
+    title: "Analytics & Cookies",
+    content: "We ask for your permission before loading Google Analytics. If you accept, Google Analytics stores identifiers in your browser and measures how you use our website. If you reject, the analytics tag does not load. You can revisit your choice through the Cookie Settings control in the website footer. Essential storage used for security or features you request does not require analytics consent.",
   },
   {
     id: "location-data",

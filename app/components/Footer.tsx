@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { CookieSettingsButton } from "./CookieSettingsButton";
 
 const PRIVACY_URL = "/privacy";
 const TERMS_URL = "/terms";
@@ -39,6 +40,7 @@ export function Footer() {
             <Link href={TERMS_URL} className="hover:text-white transition-colors">
               Terms of Service
             </Link>
+            <CookieSettingsButton />
           </div>
 
           {/* Social icons */}
