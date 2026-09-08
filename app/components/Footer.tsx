@@ -65,9 +65,10 @@ export function Footer() {
 
         {/* Built by */}
         <a
-          href="https://www.instagram.com/szhimuptray"
+          href="https://www.instagram.com/trayfolio"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Built by Tracy on Trayfolio Instagram"
           className="text-center text-xs text-zinc-500 hover:text-orange-400 underline underline-offset-4 decoration-zinc-700 hover:decoration-orange-400 transition-colors"
         >
           Built by Tracy
