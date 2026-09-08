@@ -139,35 +139,35 @@ const BENEFITS = [
     icon: Eye,
     title: "Be Seen Every Time Players Open RunCheck",
     desc: "Your brand lives inside the Player Perks section on the home screen. Every time a player opens the app to find a run, your offer is right there, not buried in a search result, not competing with a feed algorithm.",
-    img: "/sponsor-assets/seen-3.png",
+    img: "/sponsor-assets/seen-3.webp",
     alt: "RunCheck home screen showing Player Perks section",
   },
   {
     icon: Smartphone,
     title: "Your Own Profile in the Partner Marketplace",
     desc: "Sponsors get a full partner profile page inside RunCheck: logo, tagline, description, exclusive offer, and direct action buttons, website, Instagram, phone, email, and directions. Players tap directly from the app into your world.",
-    img: "/sponsor-assets/seen-5.png",
+    img: "/sponsor-assets/seen-5.webp",
     alt: "RunCheck partner profile page",
   },
   {
     icon: Store,
     title: "Category Placement in the Marketplace",
     desc: "Players browse the Marketplace by category, Gyms, Trainers, Leagues, Recovery, Barbers, Food, Apparel, and more. Your business shows up exactly where the right audience is looking.",
-    img: "/sponsor-assets/seen-1.png",
+    img: "/sponsor-assets/seen-1.webp",
     alt: "RunCheck Partner Marketplace category browse",
   },
   {
     icon: BarChart3,
     title: "See Real Results From Your Sponsorship",
     desc: "No guessing. Premium and Exclusive sponsors get access to a live analytics dashboard showing profile views, offer clicks, website visits, phone calls, Instagram taps, promo reveals, and more, tracked per month with a 6-month trend chart.",
-    img: "/sponsor-assets/growth.png",
+    img: "/sponsor-assets/growth.webp",
     alt: "RunCheck Partner Analytics dashboard",
   },
   {
     icon: Phone,
     title: "Drive Calls, Emails & Social Media Traffic",
     desc: "Every partner profile includes call-to-action buttons players can tap instantly: call your number, send you an email, follow on Instagram, get directions, or visit your website. High-intent actions tracked in real time.",
-    img: "/sponsor-assets/drive.png",
+    img: "/sponsor-assets/drive.webp",
     alt: "RunCheck partner profile action buttons",
   },
 ];
@@ -295,13 +295,13 @@ export default function Sponsors() {
           <section className="max-w-5xl mx-auto px-6 py-20 w-full flex flex-col lg:flex-row items-center gap-14">
             <Reveal className="flex-shrink-0 flex justify-center w-full lg:w-auto">
               <Image
-                src="/sponsor-assets/looking.png"
+                src="/sponsor-assets/looking.webp"
                 alt="RunCheck - Looking for Sponsors"
                 width={1170}
                 height={2532}
                 className="phone-img cursor-zoom-in"
                 style={{ maxWidth: 380, height: "auto" }}
-                onClick={() => openLightbox("/sponsor-assets/looking.png", "RunCheck - Looking for Sponsors")}
+                onClick={() => openLightbox("/sponsor-assets/looking.webp", "RunCheck - Looking for Sponsors")}
               />
             </Reveal>
             <Reveal delay={100} className="flex flex-col gap-6 flex-1">
@@ -407,10 +407,10 @@ export default function Sponsors() {
             <Reveal delay={80}>
               <div className="flex gap-6 overflow-x-auto pb-4 -mx-2 px-2 snap-x snap-mandatory">
                 {[
-                  { src: "/sponsor-assets/seen-1.png", caption: "Browse by category" },
-                  { src: "/sponsor-assets/seen-2.png", caption: "Featured offers" },
-                  { src: "/sponsor-assets/seen-4.png", caption: "Category results" },
-                  { src: "/sponsor-assets/seen-5.png", caption: "Full partner profile" },
+                  { src: "/sponsor-assets/seen-1.webp", caption: "Browse by category" },
+                  { src: "/sponsor-assets/seen-2.webp", caption: "Featured offers" },
+                  { src: "/sponsor-assets/seen-4.webp", caption: "Category results" },
+                  { src: "/sponsor-assets/seen-5.webp", caption: "Full partner profile" },
                 ].map(({ src, caption }) => (
                   <div key={src} className="flex flex-col items-center gap-3 flex-shrink-0 snap-start" style={{ width: "clamp(260px, 36vw, 400px)" }}>
                     <Image

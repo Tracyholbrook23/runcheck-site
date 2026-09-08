@@ -10,7 +10,7 @@ import { SpinWheel } from "../components/SpinWheel";
 // component was silently evaluating stale/false on Vercel's Turbopack
 // build, even across fresh deployments. Keep these two in sync by hand.
 const GIVEAWAY_ACTIVE = true;
-const GIVEAWAY_IMAGE = "/spin-wheel/kobe-girl-dad-prize.jpg";
+const GIVEAWAY_IMAGE = "/spin-wheel/kobe-girl-dad-prize.webp";
 const GIVEAWAY_TITLE = "Kobe Girl Dad Giveaway";
 
 export const metadata: Metadata = {

@@ -90,15 +90,17 @@ export default function GoogleAnalytics() {
       )}
 
       {(consent === null || showSettings) && (
-        <div className="fixed inset-x-4 bottom-4 z-[100] mx-auto max-w-2xl rounded-2xl border border-zinc-700 bg-zinc-950 p-5 text-white shadow-2xl" role="dialog" aria-label="Analytics cookie choices">
-          <p className="font-bold">Help us improve RunCheck</p>
-          <p className="mt-2 text-sm leading-6 text-zinc-300">
-            With your permission, Google Analytics measures visits and how people use this website. We do not use it for advertising.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <button type="button" onClick={() => choose("accepted")} className="rounded-full bg-orange-500 px-5 py-2.5 text-sm font-bold text-black hover:bg-orange-400">Accept analytics</button>
-            <button type="button" onClick={() => choose("rejected")} className="rounded-full border border-zinc-600 px-5 py-2.5 text-sm font-bold hover:border-zinc-400">Reject analytics</button>
-            <a href="/privacy#analytics-cookies" className="self-center text-sm text-zinc-300 underline underline-offset-4 hover:text-white">Learn more</a>
+        <div className="cookie-basketball" role="dialog" aria-label="Analytics cookie choices">
+          <div className="cookie-basketball-content">
+            <p className="cookie-basketball-title">Help us improve RunCheck</p>
+            <p className="cookie-basketball-copy">
+              With your permission, Google Analytics measures visits and how people use this website. We do not use it for advertising.
+            </p>
+            <div className="cookie-basketball-actions">
+              <button type="button" onClick={() => choose("accepted")} className="cookie-accept">Accept analytics</button>
+              <button type="button" onClick={() => choose("rejected")} className="cookie-reject">Reject analytics</button>
+              <a href="/privacy#analytics-cookies" className="cookie-learn">Learn more</a>
+            </div>
           </div>
         </div>
       )}

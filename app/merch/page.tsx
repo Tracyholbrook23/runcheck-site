@@ -24,12 +24,12 @@ const COLORWAYS: Colorway[] = [
     swatch: "#0a0a0a",
     buyUrl: "https://runcheck-shop.fourthwall.com/products/runcheck-snapback-hat-black",
     spinFrames: [
-      { src: "/merch/snapback-black.jpg", alt: "RunCheck Snapback in black, front view" },
-      { src: "/merch/snapback-black-left.jpg", alt: "RunCheck Snapback in black, angled view showing the left panel" },
-      { src: "/merch/snapback-black-back.jpg", alt: "RunCheck Snapback in black, back view with strap" },
-      { src: "/merch/snapback-black-right.jpg", alt: "RunCheck Snapback in black, angled view showing the right panel" },
+      { src: "/merch/snapback-black.webp", alt: "RunCheck Snapback in black, front view" },
+      { src: "/merch/snapback-black-left.webp", alt: "RunCheck Snapback in black, angled view showing the left panel" },
+      { src: "/merch/snapback-black-back.webp", alt: "RunCheck Snapback in black, back view with strap" },
+      { src: "/merch/snapback-black-right.webp", alt: "RunCheck Snapback in black, angled view showing the right panel" },
     ],
-    modelShot: { src: "/merch/snapback-black-model.jpg", alt: "RunCheck Snapback in black, worn on model" },
+    modelShot: { src: "/merch/snapback-black-model.webp", alt: "RunCheck Snapback in black, worn on model" },
   },
   {
     id: "tan",
@@ -37,12 +37,12 @@ const COLORWAYS: Colorway[] = [
     swatch: "#dcc9a3",
     buyUrl: "https://runcheck-shop.fourthwall.com/products/runcheck-snapback-hat-tan",
     spinFrames: [
-      { src: "/merch/snapback-tan.jpg", alt: "RunCheck Snapback in tan with a navy brim, front view" },
-      { src: "/merch/snapback-tan-left.jpg", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the left panel" },
-      { src: "/merch/snapback-tan-back.jpg", alt: "RunCheck Snapback in tan with a navy brim, back view with strap" },
-      { src: "/merch/snapback-tan-right.jpg", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the right panel" },
+      { src: "/merch/snapback-tan.webp", alt: "RunCheck Snapback in tan with a navy brim, front view" },
+      { src: "/merch/snapback-tan-left.webp", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the left panel" },
+      { src: "/merch/snapback-tan-back.webp", alt: "RunCheck Snapback in tan with a navy brim, back view with strap" },
+      { src: "/merch/snapback-tan-right.webp", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the right panel" },
     ],
-    modelShot: { src: "/merch/snapback-tan-model.jpg", alt: "RunCheck Snapback in tan with a navy brim, worn on model" },
+    modelShot: { src: "/merch/snapback-tan-model.webp", alt: "RunCheck Snapback in tan with a navy brim, worn on model" },
   },
 ];
 

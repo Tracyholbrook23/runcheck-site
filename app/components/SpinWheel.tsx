@@ -43,7 +43,7 @@ export const GIVEAWAY = {
   title: "Kobe Girl Dad Giveaway",
   description:
     "This spin is for the Kobe “Girl Dad” giveaway. One lucky hooper walks away with the pair.",
-  prizeImage: "/spin-wheel/kobe-girl-dad-prize.jpg",
+  prizeImage: "/spin-wheel/kobe-girl-dad-prize.webp",
   claimInstructions:
     "Check your notifications in the RunCheck app to claim your prize.",
 };

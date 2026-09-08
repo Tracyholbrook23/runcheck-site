@@ -56,7 +56,7 @@ export default function Home() {
   return <main className="era-home">
     <motion.div className="era-scroll-progress" style={{ scaleX: progress }} /><Nav activePath="/" />
     <section ref={heroRef} className="era-hero">
-      <motion.figure className="era-hero-photo" style={{ y: heroPhotoY }} aria-hidden="true"><Image src="/photos/pickup-night.jpg" alt="" fill priority sizes="100vw" /></motion.figure>
+      <motion.figure className="era-hero-photo" style={{ y: heroPhotoY }} aria-hidden="true"><Image src="/photos/pickup-night.webp" alt="" fill priority sizes="100vw" /></motion.figure>
       <motion.div className="era-hero-glow" style={{ y: heroY, scale: heroScale }} />
       <motion.div className="era-hero-inner" style={{ opacity: heroOpacity }}>
         <div className="era-hero-copy"><Kicker>Pickup basketball, finally connected</Kicker>
@@ -64,7 +64,7 @@ export default function Home() {
           <div className="era-hero-bottom"><p>See who&apos;s checked in, where the game is, and when it tips off-before you ever leave the house.</p><StoreButton /></div>
         </div>
         <motion.div className="era-hero-phone" initial={{ opacity: 0, y: 80, rotate: 4 }} animate={{ opacity: 1, y: 0, rotate: -2 }} transition={{ duration: 1.2, delay: .25, ease: [.16, 1, .3, 1] }}>
-          <Image src="/mockups/live-runs.png" alt="RunCheck live runs screen" width={1080} height={1920} priority /><div className="era-live-pill"><span />Live in Austin</div>
+          <Image src="/mockups/live-runs.webp" alt="RunCheck live runs screen" width={1080} height={1920} priority /><div className="era-live-pill"><span />Live in Austin</div>
         </motion.div>
       </motion.div>
       <a href="#why" className="era-scroll-cue"><ArrowDown />Scroll to check in</a>
@@ -77,21 +77,21 @@ export default function Home() {
 
     <section ref={sceneRef} className="era-layer-scene">
       <motion.div className="era-layer-bg" style={{ backgroundColor: sceneHue }}>
-        <motion.figure className="era-layer-photo-bg" style={{ y: scenePhotoY, scale: scenePhotoScale }} aria-hidden="true"><Image src="/photos/pickup-action.jpg" alt="" fill sizes="100vw" /></motion.figure>
+        <motion.figure className="era-layer-photo-bg" style={{ y: scenePhotoY, scale: scenePhotoScale }} aria-hidden="true"><Image src="/photos/pickup-action.webp" alt="" fill sizes="100vw" /></motion.figure>
         <div className="era-layer-orb era-layer-orb-a" /><div className="era-layer-orb era-layer-orb-b" />
       </motion.div>
       <div className="era-layer-sticky">
-        <motion.figure className="era-photo-card era-photo-card-left" style={{ y: sceneTwoY, rotate: sceneOneRotate }} aria-hidden="true"><Image src="/photos/pickup-community.jpg" alt="" fill sizes="(max-width: 800px) 48vw, 24vw" /></motion.figure>
-        <motion.figure className="era-photo-card era-photo-card-right" style={{ y: sceneThreeY, rotate: sceneTwoRotate }} aria-hidden="true"><Image src="/photos/pickup-night.jpg" alt="" fill sizes="(max-width: 800px) 40vw, 19vw" /></motion.figure>
+        <motion.figure className="era-photo-card era-photo-card-left" style={{ y: sceneTwoY, rotate: sceneOneRotate }} aria-hidden="true"><Image src="/photos/pickup-community.webp" alt="" fill sizes="(max-width: 800px) 48vw, 24vw" /></motion.figure>
+        <motion.figure className="era-photo-card era-photo-card-right" style={{ y: sceneThreeY, rotate: sceneTwoRotate }} aria-hidden="true"><Image src="/photos/pickup-night.webp" alt="" fill sizes="(max-width: 800px) 40vw, 19vw" /></motion.figure>
         <motion.div className="era-layer-title" style={{ y: sceneTitleY }}><span>Every court.</span><strong>One live city.</strong></motion.div>
         <motion.figure className="era-layer-card era-layer-card-one" style={{ y: sceneOneY, rotate: sceneOneRotate, clipPath: sceneClip }}>
-          <Image src="/mockups/find-a-run.png" alt="RunCheck map showing live basketball runs" width={1080} height={1920} />
+          <Image src="/mockups/find-a-run.webp" alt="RunCheck map showing live basketball runs" width={1080} height={1920} />
         </motion.figure>
         <motion.figure className="era-layer-card era-layer-card-two" style={{ x: sceneTwoX, y: sceneTwoY, rotate: sceneTwoRotate }}>
-          <Image src="/mockups/your-crew.png" alt="Your basketball crew in RunCheck" width={1080} height={1920} />
+          <Image src="/mockups/your-crew.webp" alt="Your basketball crew in RunCheck" width={1080} height={1920} />
         </motion.figure>
         <motion.figure className="era-layer-card era-layer-card-three" style={{ x: sceneThreeX, y: sceneThreeY }}>
-          <Image src="/mockups/leaderboard.png" alt="RunCheck player leaderboard" width={1080} height={1920} />
+          <Image src="/mockups/leaderboard.webp" alt="RunCheck player leaderboard" width={1080} height={1920} />
         </motion.figure>
         <div className="era-layer-caption"><span>Live runs</span><span>Real players</span><span>One tap away</span></div>
       </div>
@@ -105,11 +105,11 @@ export default function Home() {
           [Zap, "Make it live", "Check in, invite your crew, and turn a court into a run."],
         ].map(([Icon, title, copy], index) => { const StepIcon = Icon as typeof MapPin; return <motion.article key={String(title)} initial={{ opacity: .25, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: .8 }} transition={{ duration: .55 }}><span>0{index + 1}</span><StepIcon /><div><h3>{String(title)}</h3><p>{String(copy)}</p></div></motion.article>; })}</div>
       </div>
-      <motion.div className="era-process-visual" style={{ rotate: phoneRotate, y: phoneY }}><div className="era-court-lines" aria-hidden="true" /><Image src="/mockups/find-a-run.png" alt="Find a pickup game near you in RunCheck" width={1080} height={1920} /></motion.div>
+      <motion.div className="era-process-visual" style={{ rotate: phoneRotate, y: phoneY }}><div className="era-court-lines" aria-hidden="true" /><Image src="/mockups/find-a-run.webp" alt="Find a pickup game near you in RunCheck" width={1080} height={1920} /></motion.div>
     </div></section>
 
     <section className="era-culture"><div className="era-culture-track" aria-hidden="true">THE CITY IS YOUR COURT · THE CITY IS YOUR COURT ·</div><div className="era-culture-grid">
-      <div className="era-culture-stack"><motion.figure className="era-culture-photo" initial={{ y: 80, rotate: -8 }} whileInView={{ y: 0, rotate: -4 }} viewport={{ amount: .25 }} transition={{ duration: .9, ease: [.16, 1, .3, 1] }}><Image src="/photos/pickup-community.jpg" alt="Pickup basketball players competing on an outdoor court" fill sizes="(max-width: 800px) 76vw, 34vw" /></motion.figure><div className="era-culture-image"><Image src="/mockups/plan-a-run.png" alt="Plan a Run in RunCheck" width={1080} height={1920} /></div></div>
+      <div className="era-culture-stack"><motion.figure className="era-culture-photo" initial={{ y: 80, rotate: -8 }} whileInView={{ y: 0, rotate: -4 }} viewport={{ amount: .25 }} transition={{ duration: .9, ease: [.16, 1, .3, 1] }}><Image src="/photos/pickup-community.webp" alt="Pickup basketball players competing on an outdoor court" fill sizes="(max-width: 800px) 76vw, 34vw" /></motion.figure><div className="era-culture-image"><Image src="/mockups/plan-a-run.webp" alt="Plan a Run in RunCheck" width={1080} height={1920} /></div></div>
       <div className="era-culture-copy"><div className="era-section-number">03</div><Kicker>Built for the way ballers move</Kicker><h2>Plan less.<br /><em>Play more.</em></h2><p>Create a run in seconds. Set the time, invite your people, and give every player one place to know what&apos;s happening.</p><Link href="/how-it-works" className="era-text-link">See how it works <ArrowUpRight /></Link></div>
     </div></section>
 

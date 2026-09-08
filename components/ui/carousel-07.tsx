@@ -20,14 +20,14 @@ interface Slide {
 
 // RunCheck app screens - pulled from /public/mockups (already-framed phone cutouts)
 const slides: Slide[] = [
-  { image: "/mockups/live-runs.png", title: "Live Runs" },
-  { image: "/mockups/plan-a-run.png", title: "Plan a Run" },
-  { image: "/mockups/map-screen.png", title: "Find Courts" },
-  { image: "/mockups/player-profiles.png", title: "Player Profiles" },
-  { image: "/mockups/reliability.png", title: "Reliability Score" },
-  { image: "/mockups/find-a-run.png", title: "Find a Run" },
-  { image: "/mockups/court-checkin.png", title: "Court Check-In" },
-  { image: "/mockups/messaging.png", title: "Messaging" },
+  { image: "/mockups/live-runs.webp", title: "Live Runs" },
+  { image: "/mockups/plan-a-run.webp", title: "Plan a Run" },
+  { image: "/mockups/map-screen.webp", title: "Find Courts" },
+  { image: "/mockups/player-profiles.webp", title: "Player Profiles" },
+  { image: "/mockups/reliability.webp", title: "Reliability Score" },
+  { image: "/mockups/find-a-run.webp", title: "Find a Run" },
+  { image: "/mockups/court-checkin.webp", title: "Court Check-In" },
+  { image: "/mockups/messaging.webp", title: "Messaging" },
 ];
 
 interface CarouselConfig {

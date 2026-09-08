@@ -94,7 +94,7 @@ export default function About() {
               {/* Large photo */}
               <div className="relative lg:w-1/2 min-h-[420px] lg:min-h-[600px] overflow-hidden bg-zinc-900">
                 <Image
-                  src="/founder.jpg"
+                  src="/founder.webp"
                   alt="Tracy Holbrook, Founder of RunCheck"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

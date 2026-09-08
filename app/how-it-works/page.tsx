@@ -12,7 +12,7 @@ const steps = [
   {
     step: "01", label: "Browse",
     title: "Open the app and browse nearby courts",
-    mockup: "/mockups/map-screen.png",
+    mockup: "/mockups/map-screen.webp",
     alt: "RunCheck - Nearby courts map screen",
     detail: {
       headline: "Every court near you, live.",
@@ -23,7 +23,7 @@ const steps = [
   {
     step: "02", label: "See what’s happening",
     title: "See who’s playing and what’s going on",
-    mockup: "/mockups/find-a-run.png",
+    mockup: "/mockups/find-a-run.webp",
     alt: "RunCheck - Find a Run screen",
     detail: {
       headline: "Real info, before you leave.",
@@ -34,7 +34,7 @@ const steps = [
   {
     step: "03", label: "Check in",
     title: "Check in when you arrive",
-    mockup: "/mockups/court-checkin.png",
+    mockup: "/mockups/court-checkin.webp",
     alt: "RunCheck - Court check-in screen",
     detail: {
       headline: "Let the court know you’re there.",
@@ -45,7 +45,7 @@ const steps = [
   {
     step: "04", label: "Run or plan",
     title: "Start a run or join one",
-    mockup: "/mockups/plan-a-run.png",
+    mockup: "/mockups/plan-a-run.webp",
     alt: "RunCheck - Plan a Run screen",
     detail: {
       headline: "Your crew, coordinated.",
@@ -56,7 +56,7 @@ const steps = [
   {
     step: "05", label: "Know your players",
     title: "See who you’re running with",
-    mockup: "/mockups/player-profiles.png",
+    mockup: "/mockups/player-profiles.webp",
     alt: "RunCheck - Activity feed screen",
     detail: {
       headline: "No more mystery players.",
@@ -324,35 +324,35 @@ export default function HowItWorksPage() {
                   label: "01 - Connect",
                   headline: "Stay connected with your runs",
                   desc: "Chat with players before you arrive or coordinate in real time with run chats.",
-                  mockup: "/mockups/messaging.png",
+                  mockup: "/mockups/messaging.webp",
                   alt: "RunCheck - Messaging screen",
                 },
                 {
                   label: "02 - Compete",
                   headline: "Earn your reputation",
                   desc: "Climb the leaderboard, build your rank, and show the court you're consistent.",
-                  mockup: "/mockups/leaderboard.png",
+                  mockup: "/mockups/leaderboard.webp",
                   alt: "RunCheck - Leaderboard screen",
                 },
                 {
                   label: "03 - Find Your Game",
                   headline: "Filter your perfect run",
                   desc: "Search by skill level, court type, location, and more to find games that match your vibe.",
-                  mockup: "/mockups/filters.png",
+                  mockup: "/mockups/filters.webp",
                   alt: "RunCheck - Filters screen",
                 },
                 {
                   label: "04 - Your Crew",
                   headline: "See where your friends play",
                   desc: "Add friends and stay in the loop with where your crew is running.",
-                  mockup: "/mockups/your-crew.png",
+                  mockup: "/mockups/your-crew.webp",
                   alt: "RunCheck - Your crew and profile screen",
                 },
                 {
                   label: "05 - Show Your Game",
                   headline: "Build your player profile",
                   desc: "Post clips, track your activity, and build your presence on the court.",
-                  mockup: "/mockups/start-run.png",
+                  mockup: "/mockups/start-run.webp",
                   alt: "RunCheck - Start a run and set your level screen",
                 },
               ].map((card, i) => (
