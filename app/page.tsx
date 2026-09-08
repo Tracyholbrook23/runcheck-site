@@ -33,6 +33,7 @@ export default function Home() {
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(heroProgress, [0, 1], ["0%", reduced ? "0%" : "30%"]);
   const heroScale = useTransform(heroProgress, [0, 1], [1, reduced ? 1 : 1.28]);
+  const heroPhotoY = useTransform(heroProgress, [0, 1], ["0%", reduced ? "0%" : "18%"]);
   const heroOpacity = useTransform(heroProgress, [0, .72], [1, 0]);
   const { scrollYProgress: sceneProgress } = useScroll({ target: sceneRef, offset: ["start start", "end end"] });
   const sceneHue = useTransform(sceneProgress, [0, .45, 1], ["#2256c8", "#7b32c8", "#f36025"]);
@@ -45,6 +46,8 @@ export default function Home() {
   const sceneThreeY = useTransform(sceneProgress, [0, 1], ["110vh", "-28vh"]);
   const sceneThreeX = useTransform(sceneProgress, [0, 1], ["-28vw", "18vw"]);
   const sceneClip = useTransform(sceneProgress, [0, .2, .72, 1], ["inset(48% 48% 48% 48% round 50%)", "inset(0% 0% 0% 0% round 2rem)", "inset(0% 0% 0% 0% round 2rem)", "inset(42% 42% 42% 42% round 50%)"]);
+  const scenePhotoY = useTransform(sceneProgress, [0, 1], ["0%", reduced ? "0%" : "16%"]);
+  const scenePhotoScale = useTransform(sceneProgress, [0, 1], [1.04, reduced ? 1.04 : 1.2]);
   const { scrollYProgress: processProgress } = useScroll({ target: processRef, offset: ["start end", "end start"] });
   const phoneRotate = useTransform(processProgress, [0, .5, 1], [-8, 0, 7]);
   const phoneY = useTransform(processProgress, [0, 1], [90, -70]);
@@ -53,6 +56,7 @@ export default function Home() {
   return <main className="era-home">
     <motion.div className="era-scroll-progress" style={{ scaleX: progress }} /><Nav activePath="/" />
     <section ref={heroRef} className="era-hero">
+      <motion.figure className="era-hero-photo" style={{ y: heroPhotoY }} aria-hidden="true"><Image src="/photos/pickup-night.jpg" alt="" fill priority sizes="100vw" /></motion.figure>
       <motion.div className="era-hero-glow" style={{ y: heroY, scale: heroScale }} />
       <motion.div className="era-hero-inner" style={{ opacity: heroOpacity }}>
         <div className="era-hero-copy"><Kicker>Pickup basketball, finally connected</Kicker>
@@ -73,9 +77,12 @@ export default function Home() {
 
     <section ref={sceneRef} className="era-layer-scene">
       <motion.div className="era-layer-bg" style={{ backgroundColor: sceneHue }}>
+        <motion.figure className="era-layer-photo-bg" style={{ y: scenePhotoY, scale: scenePhotoScale }} aria-hidden="true"><Image src="/photos/pickup-action.jpg" alt="" fill sizes="100vw" /></motion.figure>
         <div className="era-layer-orb era-layer-orb-a" /><div className="era-layer-orb era-layer-orb-b" />
       </motion.div>
       <div className="era-layer-sticky">
+        <motion.figure className="era-photo-card era-photo-card-left" style={{ y: sceneTwoY, rotate: sceneOneRotate }} aria-hidden="true"><Image src="/photos/pickup-community.jpg" alt="" fill sizes="(max-width: 800px) 48vw, 24vw" /></motion.figure>
+        <motion.figure className="era-photo-card era-photo-card-right" style={{ y: sceneThreeY, rotate: sceneTwoRotate }} aria-hidden="true"><Image src="/photos/pickup-night.jpg" alt="" fill sizes="(max-width: 800px) 40vw, 19vw" /></motion.figure>
         <motion.div className="era-layer-title" style={{ y: sceneTitleY }}><span>Every court.</span><strong>One live city.</strong></motion.div>
         <motion.figure className="era-layer-card era-layer-card-one" style={{ y: sceneOneY, rotate: sceneOneRotate, clipPath: sceneClip }}>
           <Image src="/mockups/find-a-run.png" alt="RunCheck map showing live basketball runs" width={1080} height={1920} />
@@ -102,7 +109,7 @@ export default function Home() {
     </div></section>
 
     <section className="era-culture"><div className="era-culture-track" aria-hidden="true">THE CITY IS YOUR COURT · THE CITY IS YOUR COURT ·</div><div className="era-culture-grid">
-      <div className="era-culture-image"><Image src="/mockups/plan-a-run.png" alt="Plan a Run in RunCheck" width={1080} height={1920} /></div>
+      <div className="era-culture-stack"><motion.figure className="era-culture-photo" initial={{ y: 80, rotate: -8 }} whileInView={{ y: 0, rotate: -4 }} viewport={{ amount: .25 }} transition={{ duration: .9, ease: [.16, 1, .3, 1] }}><Image src="/photos/pickup-community.jpg" alt="Pickup basketball players competing on an outdoor court" fill sizes="(max-width: 800px) 76vw, 34vw" /></motion.figure><div className="era-culture-image"><Image src="/mockups/plan-a-run.png" alt="Plan a Run in RunCheck" width={1080} height={1920} /></div></div>
       <div className="era-culture-copy"><div className="era-section-number">03</div><Kicker>Built for the way ballers move</Kicker><h2>Plan less.<br /><em>Play more.</em></h2><p>Create a run in seconds. Set the time, invite your people, and give every player one place to know what&apos;s happening.</p><Link href="/how-it-works" className="era-text-link">See how it works <ArrowUpRight /></Link></div>
     </div></section>
 
