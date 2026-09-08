@@ -108,7 +108,7 @@ function fireConfetti() {
     return;
   }
 
-  const colors = ["#22c55e", "#4ade80", "#f97316", "#ffffff", "#16a34a", "#2882d7"];
+  const colors = ["#22c55e", "#4ade80", "#F36025", "#ffffff", "#16a34a", "#2882d7"];
   const count = 260;
   const particles = Array.from({ length: count }, () => ({
     // Half burst outward from center, half rain down from the top, makes

@@ -9,11 +9,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "RunCheck — Know the Run Before You Go",
+  title: "RunCheck - Know the Run Before You Go",
   description: "Find live pickup basketball runs near you, see who's checked in, and know when the game tips off.",
   metadataBase: new URL("https://www.theruncheck.app"),
   openGraph: {
-    title: "RunCheck — Know the Run Before You Go",
+    title: "RunCheck - Know the Run Before You Go",
     description: "Never show up to an empty gym again. RunCheck lets you see who's playing, where the run is, and when it tips off, before you leave the house.",
     url: "https://www.theruncheck.app",
     siteName: "RunCheck",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "RunCheck — Know the Run Before You Go",
+    title: "RunCheck - Know the Run Before You Go",
     description: "Find live pickup basketball runs near you and see who's checked in before you leave.",
     images: ["/runcheck-logo1.png"],
   },

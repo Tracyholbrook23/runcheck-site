@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     });
 
     const emailBody = `
-New Sponsor Inquiry — RunCheck Website
+New Sponsor Inquiry - RunCheck Website
 
 Business Name:    ${businessName}
 Contact Name:     ${contactName}
@@ -39,7 +39,7 @@ Submitted: ${submittedAt} CT
         from: "RunCheck Website <noreply@theruncheck.app>",
         to: ["hello@theruncheck.app"],
         reply_to: email,
-        subject: `New Sponsor Inquiry — ${businessName} (${tier})`,
+        subject: `New Sponsor Inquiry - ${businessName} (${tier})`,
         text: emailBody,
       }),
     });

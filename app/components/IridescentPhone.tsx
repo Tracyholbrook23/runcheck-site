@@ -88,7 +88,7 @@ export function IridescentPhone({ src, alt, className = "" }: IridescentPhonePro
           height={2532}
           className={className}
           style={{
-            filter: `drop-shadow(0 0 ${glowSz} rgba(249,115,22,${hovered ? glowAlpha : "0"})) drop-shadow(0 ${shadowY}px ${shadowSz}px rgba(0,0,0,0.92))`,
+            filter: `drop-shadow(0 0 ${glowSz} rgba(243,96,37,${hovered ? glowAlpha : "0"})) drop-shadow(0 ${shadowY}px ${shadowSz}px rgba(0,0,0,0.92))`,
             transition: hovered ? "none" : "filter 0.45s ease",
             display: "block",
           }}

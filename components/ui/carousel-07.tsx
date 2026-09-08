@@ -18,7 +18,7 @@ interface Slide {
   title: string;
 }
 
-// RunCheck app screens — pulled from /public/mockups (already-framed phone cutouts)
+// RunCheck app screens - pulled from /public/mockups (already-framed phone cutouts)
 const slides: Slide[] = [
   { image: "/mockups/live-runs.png", title: "Live Runs" },
   { image: "/mockups/plan-a-run.png", title: "Plan a Run" },
@@ -117,12 +117,12 @@ const CarouselStacked = () => {
       damping: 30,
       mass: 1,
     });
-    // Reset for the next interaction — otherwise a tap right after a drag
+    // Reset for the next interaction - otherwise a tap right after a drag
     // stays blocked forever, since a clean tap never re-fires onDragStart.
     dragMoved.current = false;
   };
 
-  // A tap on the drag surface — figure out which card sits closest to the
+  // A tap on the drag surface - figure out which card sits closest to the
   // tap point (using the same offset math each Card uses to position itself)
   // and open that one. Ignored if the pointer actually dragged first.
   const handleTap = (point: { x: number; y: number }) => {
@@ -259,7 +259,7 @@ const Card = ({ slide, index, total, progress, config }: CardProps) => {
   const filter = useTransform(
     glow,
     (g) =>
-      `drop-shadow(0 -6px ${18 + g * 24}px rgba(249,115,22,${(0.12 + g * 0.28).toFixed(2)})) drop-shadow(0 16px 40px rgba(0,0,0,0.92))`,
+      `drop-shadow(0 -6px ${18 + g * 24}px rgba(243,96,37,${(0.12 + g * 0.28).toFixed(2)})) drop-shadow(0 16px 40px rgba(0,0,0,0.92))`,
   );
 
   return (

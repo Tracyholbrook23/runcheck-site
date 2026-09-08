@@ -4,11 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 // POST /api/subscribe  { email: string }
 //
 // Required Vercel environment variables (Settings → Environment Variables):
-//   KLAVIYO_PUBLIC_KEY   — your Klaviyo public/company ID  (e.g. X9v6kc)
-//   KLAVIYO_LIST_ID      — the ID of your "RunCheck Waitlist" list
+//   KLAVIYO_PUBLIC_KEY   - your Klaviyo public/company ID  (e.g. X9v6kc)
+//   KLAVIYO_LIST_ID      - the ID of your "RunCheck Waitlist" list
 //                          found at: app.klaviyo.com/list/XXXXXX
 //
-// Uses Klaviyo's public client subscriptions endpoint — no private key needed.
+// Uses Klaviyo's public client subscriptions endpoint - no private key needed.
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

@@ -90,7 +90,7 @@ const TIERS = [
   },
   {
     name: "Growth",
-    color: "#F97316",
+    color: "#F36025",
     badge: Flame,
     price: "$25 / mo",
     billing: "$50 for 3 months",
@@ -125,7 +125,7 @@ const TIERS = [
 
 const STATS = [
   { value: "12,480", label: "Marketplace visits tracked", icon: Eye, color: "#60A5FA" },
-  { value: "1,847", label: "Profile views (demo partner)", icon: MapPin, color: "#F97316" },
+  { value: "1,847", label: "Profile views (demo partner)", icon: MapPin, color: "#F36025" },
   { value: "934", label: "Offer views recorded", icon: Tag, color: "#34D399" },
   { value: "412", label: "Website clicks driven", icon: Globe, color: "#A78BFA" },
   { value: "341", label: "Promo code reveals", icon: ClipboardList, color: "#FBBF24" },
@@ -244,7 +244,7 @@ export default function Sponsors() {
         .sp-sub   { animation: fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both; }
         .sp-cta   { animation: fadeUp .85s cubic-bezier(.16,1,.3,1) .4s both; }
         .tier-highlight {
-          background: linear-gradient(135deg, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0.04) 100%);
+          background: linear-gradient(135deg, rgba(243,96,37,0.12) 0%, rgba(243,96,37,0.04) 100%);
         }
         .phone-img {
           width: 100%;
@@ -273,7 +273,7 @@ export default function Sponsors() {
               <div className="sp-cta flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
                   href="mailto:hello@theruncheck.app?subject=RunCheck Sponsorship Inquiry"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.35)] hover:shadow-[0_0_48px_rgba(249,115,22,.5)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(243,96,37,.35)] hover:shadow-[0_0_48px_rgba(243,96,37,.5)]"
                 >
                   Get Sponsor Info <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
                 </a>
@@ -522,7 +522,7 @@ export default function Sponsors() {
                         onClick={scrollToForm}
                         className="w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-sm font-bold transition-all cursor-pointer"
                         style={{
-                          backgroundColor: highlight ? "#F97316" : "transparent",
+                          backgroundColor: highlight ? "#F36025" : "transparent",
                           color: highlight ? "#fff" : color,
                           border: highlight ? "none" : `1.5px solid ${color}`,
                         }}
@@ -792,7 +792,7 @@ export default function Sponsors() {
                   <button
                     type="submit"
                     disabled={formStatus === "submitting"}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 disabled:opacity-60 disabled:cursor-not-allowed px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.3)] hover:shadow-[0_0_48px_rgba(249,115,22,.45)] mt-2"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 disabled:opacity-60 disabled:cursor-not-allowed px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(243,96,37,.3)] hover:shadow-[0_0_48px_rgba(243,96,37,.45)] mt-2"
                   >
                     {formStatus === "submitting" ? "Sending…" : (<>Submit Inquiry <ArrowRight className="w-4 h-4" strokeWidth={2.5} /></>)}
                   </button>
@@ -818,7 +818,7 @@ export default function Sponsors() {
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <a
                   href="mailto:hello@theruncheck.app?subject=RunCheck Sponsorship Inquiry"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(249,115,22,.35)] hover:shadow-[0_0_48px_rgba(249,115,22,.5)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(243,96,37,.35)] hover:shadow-[0_0_48px_rgba(243,96,37,.5)]"
                 >
                   Email Us to Get Started <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
                 </a>

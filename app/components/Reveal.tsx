@@ -7,12 +7,12 @@ export type RevealVariant = "up" | "fade" | "scale" | "left";
 /**
  * Scroll-triggered reveal wrapper.
  *
- * variant="up"    — fade + translate-up (default, most text/headers)
- * variant="fade"  — opacity only (subtle, for decorative elements)
- * variant="scale" — scale 0.94→1 + fade (large visual assets / CTAs)
- * variant="left"  — slide from left + fade (lists, tab rows)
+ * variant="up"    - fade + translate-up (default, most text/headers)
+ * variant="fade"  - opacity only (subtle, for decorative elements)
+ * variant="scale" - scale 0.94→1 + fade (large visual assets / CTAs)
+ * variant="left"  - slide from left + fade (lists, tab rows)
  *
- * Respects `prefers-reduced-motion` — collapses all transforms to zero
+ * Respects `prefers-reduced-motion` - collapses all transforms to zero
  * and sets duration to 0 so the element appears instantly.
  */
 export function Reveal({

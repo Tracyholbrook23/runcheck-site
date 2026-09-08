@@ -162,7 +162,7 @@ export default function Terms() {
           className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full opacity-20"
           style={{
             background:
-              "radial-gradient(ellipse,rgba(249,115,22,.5) 0%,transparent 70%)",
+              "radial-gradient(ellipse,rgba(243,96,37,.5) 0%,transparent 70%)",
           }}
         />
         <div className="relative z-10 max-w-2xl">

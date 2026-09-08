@@ -50,7 +50,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="RunCheck on Instagram"
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-500 hover:shadow-[0_0_12px_rgba(249,115,22,.2)] transition-all"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-500 hover:shadow-[0_0_12px_rgba(243,96,37,.2)] transition-all"
             >
               <InstagramIcon />
             </a>

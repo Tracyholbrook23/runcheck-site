@@ -163,7 +163,7 @@ export default function Privacy() {
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-20 overflow-hidden">
         <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full opacity-20"
-          style={{background:"radial-gradient(ellipse,rgba(249,115,22,.5) 0%,transparent 70%)"}} />
+          style={{background:"radial-gradient(ellipse,rgba(243,96,37,.5) 0%,transparent 70%)"}} />
         <div className="relative z-10 max-w-2xl">
           <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-4">Legal</p>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">Privacy Policy</h1>

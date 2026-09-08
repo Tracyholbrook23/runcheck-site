@@ -68,7 +68,7 @@ export default function Contact() {
             {contactMethods.map(({ icon: Icon, label, value, href, desc, cta }, i) => (
               <Reveal key={label} delay={i * 100}>
                 <motion.div
-                  whileHover={{ y: -4, borderColor: "rgba(249,115,22,.35)" }}
+                  whileHover={{ y: -4, borderColor: "rgba(243,96,37,.35)" }}
                   transition={{ duration: .2 }}
                   className="flex flex-col gap-5 bg-[#0d0d0d] rounded-2xl p-7 border border-zinc-800 h-full"
                 >

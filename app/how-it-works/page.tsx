@@ -119,7 +119,7 @@ function DetailModal({
                 width={1170}
                 height={2532}
                 className="h-[400px] sm:h-[520px] w-auto object-contain max-w-none
-                           [filter:drop-shadow(0_0_50px_rgba(249,115,22,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
+                           [filter:drop-shadow(0_0_50px_rgba(243,96,37,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
               />
             </div>
           </div>
@@ -194,7 +194,7 @@ function FeatureModal({
                 width={1170}
                 height={2532}
                 className="h-[400px] sm:h-[520px] w-auto object-contain max-w-none
-                           [filter:drop-shadow(0_0_50px_rgba(249,115,22,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
+                           [filter:drop-shadow(0_0_50px_rgba(243,96,37,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
               />
             </div>
           </div>
@@ -284,8 +284,8 @@ export default function HowItWorksPage() {
                       height={2532}
                       className="
                         h-[440px] sm:h-[500px] w-auto object-contain max-w-none
-                        [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.14))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
-                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(249,115,22,0.32))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
+                        [filter:drop-shadow(0_-6px_28px_rgba(243,96,37,0.14))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
+                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(243,96,37,0.32))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
                         transition-all duration-500
                       "
                     />
@@ -399,8 +399,8 @@ export default function HowItWorksPage() {
                       height={2532}
                       className="
                         h-[400px] sm:h-[460px] w-auto object-contain max-w-none
-                        [filter:drop-shadow(0_-6px_28px_rgba(249,115,22,0.10))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
-                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(249,115,22,0.28))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
+                        [filter:drop-shadow(0_-6px_28px_rgba(243,96,37,0.10))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
+                        group-hover:[filter:drop-shadow(0_-6px_48px_rgba(243,96,37,0.28))_drop-shadow(0_20px_50px_rgba(0,0,0,0.95))]
                         transition-all duration-500
                       "
                     />

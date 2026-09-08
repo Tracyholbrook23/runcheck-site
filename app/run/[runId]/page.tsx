@@ -52,7 +52,7 @@ export async function generateMetadata({
   const title = preview ? `${preview.title} at ${preview.gymName}` : 'A run on RunCheck';
   const time = preview ? formatStartTime(preview.startTime) : null;
   const description = preview
-    ? `${preview.visibility === 'invite_only' ? 'Private run' : 'Pickup basketball'}${time ? ` · ${time}` : ''}${preview.description ? ` — ${preview.description}` : ''}`
+    ? `${preview.visibility === 'invite_only' ? 'Private run' : 'Pickup basketball'}${time ? ` · ${time}` : ''}${preview.description ? ` - ${preview.description}` : ''}`
     : 'Someone shared a pickup basketball run with you on RunCheck. Open the app to see the details and request to join.';
   const url = `${SITE_URL}/run/${encodeURIComponent(runId)}`;
   const image = preview?.photoUrl ?? `${SITE_URL}/runcheck-logo1.png`;

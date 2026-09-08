@@ -160,8 +160,8 @@ export function LiveDemo() {
               <div className="flex flex-col items-end flex-shrink-0">
                 <motion.span
                   key={run.players}
-                  initial={{ scale: 1.4, color: "#f97316" }}
-                  animate={{ scale: 1, color: run.active ? "#fb923c" : "#52525b" }}
+                  initial={{ scale: 1.4, color: "#F36025" }}
+                  animate={{ scale: 1, color: run.active ? "#FF7A45" : "#52525b" }}
                   transition={{ duration: 0.4 }}
                   className="text-lg font-extrabold leading-none"
                 >
@@ -176,7 +176,7 @@ export function LiveDemo() {
               <span
                 className={`w-2 h-2 rounded-full flex-shrink-0 ${
                   run.active
-                    ? "bg-orange-400 shadow-[0_0_6px_rgba(249,115,22,0.6)]"
+                    ? "bg-orange-400 shadow-[0_0_6px_rgba(243,96,37,0.6)]"
                     : "bg-zinc-700"
                 }`}
               />
