@@ -64,7 +64,7 @@ export default function Home() {
           <div className="era-hero-bottom"><p>See who&apos;s checked in, where the game is, and when it tips off-before you ever leave the house.</p><StoreButton /></div>
         </div>
         <motion.div className="era-hero-phone" initial={{ opacity: 0, y: 80, rotate: 4 }} animate={{ opacity: 1, y: 0, rotate: -2 }} transition={{ duration: 1.2, delay: .25, ease: [.16, 1, .3, 1] }}>
-          <span className="era-orbit" /><Image src="/mockups/live-runs.png" alt="RunCheck live runs screen" width={1080} height={1920} priority /><div className="era-live-pill"><span />Live in Austin</div>
+          <Image src="/mockups/live-runs.png" alt="RunCheck live runs screen" width={1080} height={1920} priority /><div className="era-live-pill"><span />Live in Austin</div>
         </motion.div>
       </motion.div>
       <a href="#why" className="era-scroll-cue"><ArrowDown />Scroll to check in</a>
