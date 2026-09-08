@@ -79,3 +79,29 @@
 .era-subpage nav .text-zinc-400{color:#b8b1a7!important}
 .era-subpage nav a[class*="bg-white"]{background:white!important;color:var(--ink)!important}
 @media(max-width:800px){.era-subpage:before{background:radial-gradient(circle at 0 12%,rgba(40,130,215,.17),transparent 18rem),radial-gradient(circle at 100% 52%,rgba(243,96,37,.22),transparent 22rem),var(--paper)}}
+
+/* Readable product type and resilient layouts at every viewport width. */
+.era-subpage .merch-product-title{font-size:clamp(3rem,5.2vw,5.25rem)!important;line-height:.9!important;max-width:100%;overflow-wrap:normal;word-break:normal}
+.era-subpage section{max-width:100%;overflow-x:clip}
+.era-subpage img,.era-home img{max-width:100%}
+.era-subpage a,.era-subpage button,.era-home a,.era-home button{touch-action:manipulation}
+.era-subpage nav,
+.era-subpage nav[class*="bg-black"]{background-color:rgba(21,19,15,.94)!important}
+@supports (animation-timeline:view()){
+  .era-subpage>section:first-of-type,
+  .era-subpage>div>section:first-of-type{animation:none!important;opacity:1!important;transform:none!important}
+}
+@media(max-width:1024px){
+  .era-subpage h1{font-size:clamp(3rem,9vw,5.75rem)!important;overflow-wrap:anywhere}
+  .era-subpage .merch-product-title{font-size:clamp(2.75rem,8vw,4.5rem)!important;overflow-wrap:normal}
+}
+@media(max-width:640px){
+  .era-subpage h1{font-size:clamp(2.65rem,14vw,4.6rem)!important;line-height:.88!important}
+  .era-subpage .merch-product-title{font-size:clamp(2.65rem,12vw,3.8rem)!important;line-height:.9!important}
+  .era-subpage section{padding-left:1.25rem!important;padding-right:1.25rem!important}
+  .era-subpage nav>div{height:4.5rem;padding-left:1rem!important;padding-right:1rem!important}
+  .era-subpage nav img{height:3.5rem!important;width:auto!important}
+  .era-subpage a,.era-subpage button,.era-home a,.era-home button{min-height:44px}
+  .era-subpage input,.era-subpage textarea,.era-subpage select{font-size:16px!important}
+  .era-proof-row strong{font-size:clamp(3.5rem,18vw,5rem)}
+}

@@ -181,7 +181,7 @@ function ProductSpotlight() {
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
                 In stock now
               </span>
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-3">
+              <h1 className="merch-product-title text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-3">
                 RunCheck Snapback
               </h1>
               <p className="text-zinc-400 text-lg leading-8">
