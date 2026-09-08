@@ -122,22 +122,21 @@
 }
 @media(prefers-reduced-motion:reduce){.era-hero-photo,.era-layer-photo-bg,.era-photo-card,.era-culture-photo{transform:none!important}}
 
-/* Basketball-inspired cookie consent, with clear controls above the seams. */
-.cookie-basketball{position:fixed;right:1.25rem;bottom:1.25rem;z-index:100;width:min(23rem,calc(100vw - 2rem));aspect-ratio:1;border:4px solid #15130f;border-radius:50%;overflow:hidden;color:#15130f;background:radial-gradient(circle at 32% 24%,#ff9a63 0,#f36025 42%,#d94312 100%);box-shadow:0 24px 70px rgba(0,0,0,.38),inset -18px -18px 35px rgba(95,20,0,.22),inset 12px 10px 20px rgba(255,213,183,.2);animation:cookie-ball-pop .65s cubic-bezier(.2,1.35,.45,1) both}
-.cookie-basketball:before,.cookie-basketball:after{content:"";position:absolute;z-index:0;border:4px solid rgba(21,19,15,.72);border-radius:50%;pointer-events:none}
-.cookie-basketball:before{width:125%;height:48%;left:-13%;top:24%;transform:rotate(-18deg)}
-.cookie-basketball:after{width:48%;height:125%;left:24%;top:-13%;transform:rotate(18deg)}
-.cookie-basketball-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3.25rem 3.1rem;background:radial-gradient(circle,rgba(243,96,37,.94) 0 55%,rgba(243,96,37,.72) 72%,transparent 73%)}
-.cookie-basketball-title{margin:0;font-family:var(--font-runcheck);font-size:1.55rem;font-style:italic;font-weight:900;line-height:1;text-transform:uppercase}
-.cookie-basketball-copy{margin:.8rem 0 0;font-size:.85rem;font-weight:650;line-height:1.45}
-.cookie-basketball-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin-top:1rem}
-.cookie-basketball-actions button,.cookie-basketball-actions a{min-height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:.65rem 1rem;font-size:.78rem;font-weight:850;transition:transform .2s,background-color .2s,color .2s}
+/* Compact courtside cookie card with a basketball emblem. */
+.cookie-basketball{position:fixed;right:1.25rem;bottom:1.25rem;z-index:100;width:min(39rem,calc(100vw - 2rem));color:white;background:rgba(16,15,13,.96);border:1px solid rgba(255,255,255,.18);border-radius:1.5rem;box-shadow:0 24px 70px rgba(0,0,0,.45);overflow:visible;animation:cookie-ball-pop .55s cubic-bezier(.2,1.15,.45,1) both}
+.cookie-basketball:before{content:"";position:absolute;z-index:2;left:-1.35rem;top:50%;width:6.8rem;height:6.8rem;border:4px solid #15130f;border-radius:50%;transform:translateY(-50%) rotate(-12deg);background:linear-gradient(90deg,transparent 47%,rgba(21,19,15,.8) 48% 52%,transparent 53%),linear-gradient(15deg,transparent 47%,rgba(21,19,15,.8) 48% 52%,transparent 53%),radial-gradient(circle at 30% 25%,#ff9a63,#f36025 48%,#cf3c10);box-shadow:0 12px 30px rgba(0,0,0,.38);pointer-events:none}
+.cookie-basketball:after{content:"";position:absolute;z-index:3;left:-.85rem;top:50%;width:5.8rem;height:3rem;border:3px solid rgba(21,19,15,.8);border-left:0;border-right:0;border-radius:50%;transform:translateY(-50%) rotate(-12deg);pointer-events:none}
+.cookie-basketball-content{position:relative;z-index:1;padding:1.25rem 1.35rem 1.25rem 6.6rem}
+.cookie-basketball-title{margin:0;font-family:var(--font-runcheck);font-size:1.15rem;font-style:italic;font-weight:900;line-height:1;text-transform:uppercase;color:#ff8a5a}
+.cookie-basketball-copy{margin:.45rem 0 0;max-width:30rem;color:#d7d3cc;font-size:.82rem;font-weight:550;line-height:1.45}
+.cookie-basketball-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.cookie-basketball-actions button,.cookie-basketball-actions a{min-height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:.55rem .9rem;font-size:.75rem;font-weight:850;transition:transform .2s,background-color .2s,color .2s}
 .cookie-basketball-actions button:hover,.cookie-basketball-actions a:hover{transform:translateY(-2px)}
-.cookie-accept{border:2px solid #15130f;background:#15130f;color:white}
-.cookie-reject{border:2px solid #15130f;background:rgba(255,255,255,.78);color:#15130f}
-.cookie-learn{width:100%;color:#15130f;text-decoration:underline;text-underline-offset:4px}
-@keyframes cookie-ball-pop{0%{opacity:0;transform:translateY(45px) scale(.55) rotate(-12deg)}70%{opacity:1;transform:translateY(-8px) scale(1.03) rotate(2deg)}100%{opacity:1;transform:none}}
-@media(max-width:480px){.cookie-basketball{right:1rem;bottom:1rem;width:calc(100vw - 2rem)}.cookie-basketball-content{padding:2.7rem 2.8rem}.cookie-basketball-title{font-size:1.35rem}.cookie-basketball-copy{font-size:.8rem;line-height:1.4}.cookie-basketball-actions{gap:.4rem;margin-top:.75rem}.cookie-basketball-actions button,.cookie-basketball-actions a{font-size:.74rem;padding:.55rem .8rem}}
+.cookie-accept{border:2px solid #f36025;background:#f36025;color:#15130f}
+.cookie-reject{border:1px solid rgba(255,255,255,.35);background:transparent;color:white}
+.cookie-learn{color:#c9c4bc;text-decoration:underline;text-underline-offset:4px}
+@keyframes cookie-ball-pop{0%{opacity:0;transform:translateY(30px) scale(.9)}70%{opacity:1;transform:translateY(-5px) scale(1.01)}100%{opacity:1;transform:none}}
+@media(max-width:560px){.cookie-basketball{right:1rem;bottom:1rem;width:calc(100vw - 2rem);border-radius:1.25rem}.cookie-basketball:before{left:1rem;top:-2.2rem;width:5rem;height:5rem;transform:rotate(-12deg)}.cookie-basketball:after{left:1.35rem;top:-.8rem;width:4.3rem;height:2.2rem;transform:rotate(-12deg)}.cookie-basketball-content{padding:3.15rem 1rem 1rem}.cookie-basketball-title{font-size:1.05rem}.cookie-basketball-copy{font-size:.78rem}.cookie-basketball-actions{gap:.4rem}.cookie-basketball-actions button,.cookie-basketball-actions a{min-height:44px;font-size:.72rem;padding:.55rem .75rem}}
 @media(prefers-reduced-motion:reduce){.cookie-basketball{animation:none}.cookie-basketball-actions button:hover,.cookie-basketball-actions a:hover{transform:none}}
 @media(max-width:1024px){
   .era-subpage h1{font-size:clamp(3rem,9vw,5.75rem)!important;overflow-wrap:anywhere}
