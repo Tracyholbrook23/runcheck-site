@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function SpinWheelPage() {
   return (
-    <div className="bg-black text-white min-h-screen relative overflow-hidden">
+    <div className="era-subpage bg-black text-white min-h-screen relative overflow-hidden">
       {GIVEAWAY_ACTIVE ? (
         <>
           {/* Prize photo as the full-page background, big, behind

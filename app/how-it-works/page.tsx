@@ -211,7 +211,7 @@ export default function HowItWorksPage() {
 
   return (
     <>
-      <div className="bg-black text-white min-h-screen relative">
+      <div className="era-subpage bg-black text-white min-h-screen relative">
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/how-it-works" />
 

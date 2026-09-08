@@ -20,7 +20,7 @@ export default async function SpinWheelLoginPage({
   const { error } = await searchParams;
 
   return (
-    <div className="bg-black text-white min-h-screen flex items-center justify-center px-6">
+    <div className="era-subpage bg-black text-white min-h-screen flex items-center justify-center px-6">
       <form
         action={verifyPassword}
         className="w-full max-w-sm flex flex-col gap-4 bg-[#0d0d0d] border border-zinc-800 rounded-2xl p-8"

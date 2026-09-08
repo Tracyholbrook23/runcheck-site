@@ -43,7 +43,7 @@ export default function Contact() {
         .ct-title{animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .1s both}
         .ct-sub  {animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both}
       `}</style>
-      <div className="bg-black text-white min-h-screen relative">
+      <div className="era-subpage bg-black text-white min-h-screen relative">
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/contact" />
 

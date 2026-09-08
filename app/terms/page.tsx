@@ -153,7 +153,7 @@ const sections = [
 
 export default function Terms() {
   return (
-    <div className="bg-black text-white flex flex-col min-h-screen">
+    <div className="era-subpage bg-black text-white flex flex-col min-h-screen">
       <Nav activePath="/terms" />
 
       {/* Hero */}
