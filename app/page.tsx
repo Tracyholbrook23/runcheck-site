@@ -27,12 +27,24 @@ function LineReveal({ children, className = "" }: { children: React.ReactNode; c
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
+  const sceneRef = useRef<HTMLElement>(null);
   const processRef = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(heroProgress, [0, 1], ["0%", reduced ? "0%" : "30%"]);
   const heroScale = useTransform(heroProgress, [0, 1], [1, reduced ? 1 : 1.28]);
   const heroOpacity = useTransform(heroProgress, [0, .72], [1, 0]);
+  const { scrollYProgress: sceneProgress } = useScroll({ target: sceneRef, offset: ["start start", "end end"] });
+  const sceneHue = useTransform(sceneProgress, [0, .45, 1], ["#2256c8", "#7b32c8", "#f36025"]);
+  const sceneTitleY = useTransform(sceneProgress, [0, 1], ["32vh", "-44vh"]);
+  const sceneOneY = useTransform(sceneProgress, [0, 1], ["58vh", "-68vh"]);
+  const sceneOneRotate = useTransform(sceneProgress, [0, .5, 1], [-11, 3, 10]);
+  const sceneTwoY = useTransform(sceneProgress, [0, 1], ["78vh", "-50vh"]);
+  const sceneTwoX = useTransform(sceneProgress, [0, .45, 1], ["30vw", "7vw", "-24vw"]);
+  const sceneTwoRotate = useTransform(sceneProgress, [0, 1], [14, -8]);
+  const sceneThreeY = useTransform(sceneProgress, [0, 1], ["110vh", "-28vh"]);
+  const sceneThreeX = useTransform(sceneProgress, [0, 1], ["-28vw", "18vw"]);
+  const sceneClip = useTransform(sceneProgress, [0, .2, .72, 1], ["inset(48% 48% 48% 48% round 50%)", "inset(0% 0% 0% 0% round 2rem)", "inset(0% 0% 0% 0% round 2rem)", "inset(42% 42% 42% 42% round 50%)"]);
   const { scrollYProgress: processProgress } = useScroll({ target: processRef, offset: ["start end", "end start"] });
   const phoneRotate = useTransform(processProgress, [0, .5, 1], [-8, 0, 7]);
   const phoneY = useTransform(processProgress, [0, 1], [90, -70]);
@@ -57,6 +69,25 @@ export default function Home() {
     <section id="why" className="era-manifesto"><div className="era-section-number">01</div><Kicker>The problem</Kicker>
       <h2><LineReveal>Empty gyms waste time.</LineReveal><LineReveal className="era-serif">Good runs shouldn&apos;t be luck.</LineReveal></h2>
       <motion.p initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: .5 }} transition={{ duration: .8 }}>RunCheck turns word-of-mouth into a live signal. Open the map. See the players. Make the call.</motion.p>
+    </section>
+
+    <section ref={sceneRef} className="era-layer-scene">
+      <motion.div className="era-layer-bg" style={{ backgroundColor: sceneHue }}>
+        <div className="era-layer-orb era-layer-orb-a" /><div className="era-layer-orb era-layer-orb-b" />
+      </motion.div>
+      <div className="era-layer-sticky">
+        <motion.div className="era-layer-title" style={{ y: sceneTitleY }}><span>Every court.</span><strong>One live city.</strong></motion.div>
+        <motion.figure className="era-layer-card era-layer-card-one" style={{ y: sceneOneY, rotate: sceneOneRotate, clipPath: sceneClip }}>
+          <Image src="/mockups/find-a-run.png" alt="RunCheck map showing live basketball runs" width={1080} height={1920} />
+        </motion.figure>
+        <motion.figure className="era-layer-card era-layer-card-two" style={{ x: sceneTwoX, y: sceneTwoY, rotate: sceneTwoRotate }}>
+          <Image src="/mockups/your-crew.png" alt="Your basketball crew in RunCheck" width={1080} height={1920} />
+        </motion.figure>
+        <motion.figure className="era-layer-card era-layer-card-three" style={{ x: sceneThreeX, y: sceneThreeY }}>
+          <Image src="/mockups/leaderboard.png" alt="RunCheck player leaderboard" width={1080} height={1920} />
+        </motion.figure>
+        <div className="era-layer-caption"><span>Live runs</span><span>Real players</span><span>One tap away</span></div>
+      </div>
     </section>
 
     <section ref={processRef} className="era-process"><div className="era-process-sticky">
