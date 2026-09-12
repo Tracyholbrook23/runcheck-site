@@ -27,6 +27,7 @@ function LineReveal({ children, className = "" }: { children: React.ReactNode; c
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
+  const manifestoRef = useRef<HTMLElement>(null);
   const sceneRef = useRef<HTMLElement>(null);
   const processRef = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
@@ -35,6 +36,8 @@ export default function Home() {
   const heroScale = useTransform(heroProgress, [0, 1], [1, reduced ? 1 : 1.28]);
   const heroPhotoY = useTransform(heroProgress, [0, 1], ["0%", reduced ? "0%" : "18%"]);
   const heroOpacity = useTransform(heroProgress, [0, .72], [1, 0]);
+  const { scrollYProgress: manifestoProgress } = useScroll({ target: manifestoRef, offset: ["start end", "end start"] });
+  const manifestoSpacing = useTransform(manifestoProgress, [0, .5, 1], ["-.05em", ".5em", "-.05em"]);
   const { scrollYProgress: sceneProgress } = useScroll({ target: sceneRef, offset: ["start start", "end end"] });
   const sceneHue = useTransform(sceneProgress, [0, .45, 1], ["#2256c8", "#7b32c8", "#f36025"]);
   const sceneTitleY = useTransform(sceneProgress, [0, 1], ["32vh", "-44vh"]);
@@ -70,9 +73,9 @@ export default function Home() {
       <a href="#why" className="era-scroll-cue"><ArrowDown />Scroll to check in</a>
     </section>
 
-    <section id="why" className="era-manifesto"><div className="era-section-number">01</div><Kicker>The problem</Kicker>
+    <section id="why" ref={manifestoRef} className="era-manifesto"><div className="era-section-number">01</div><Kicker>The problem</Kicker>
       <h2><LineReveal>Empty gyms waste time.</LineReveal><LineReveal className="era-serif">Good runs shouldn&apos;t be luck.</LineReveal></h2>
-      <motion.p initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: .5 }} transition={{ duration: .8 }}>RunCheck turns word-of-mouth into a live signal. Open the map. See the players. Make the call.</motion.p>
+      <motion.p className="era-manifesto-stretch" style={{ wordSpacing: manifestoSpacing }} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: .5 }} transition={{ duration: .8 }}>RunCheck turns word-of-mouth into a live signal. Open the map. See the players. Make the call.</motion.p>
     </section>
 
     <section ref={sceneRef} className="era-layer-scene">

@@ -3,7 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useScroll,
+  useVelocity,
+  useSpring,
+  useAnimationFrame,
+  useReducedMotion,
+} from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -13,6 +22,35 @@ const navLinks = [
   { label: "Merch", href: "/merch" },
   { label: "Contact", href: "/contact" },
 ];
+
+
+/**
+ * Ambient scroll feedback: the mark spins at a slow resting speed and
+ * spins up in proportion to scroll velocity, easing back down once the
+ * page settles -- same "always live" signal used for the nav mark in the
+ * Era Residence scroll-choreography reference.
+ */
+function SpinningMark() {
+  const reduced = useReducedMotion();
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, { stiffness: 110, damping: 28, mass: 0.5 });
+  const rotate = useMotionValue(0);
+
+  useAnimationFrame((_, delta) => {
+    if (reduced) return;
+    const dt = delta / 1000;
+    const idleDegPerSec = 14; // gentle rest spin
+    const boost = Math.min(Math.abs(smoothVelocity.get()) * 0.06, 340); // spins up on hard flicks
+    rotate.set(rotate.get() + (idleDegPerSec + boost) * dt);
+  });
+
+  return (
+    <motion.div style={{ rotate: reduced ? 0 : rotate }} className="h-16 w-16 shrink-0 will-change-transform">
+      <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} priority className="h-16 w-16 object-contain" />
+    </motion.div>
+  );
+}
 
 export function Nav({ activePath = "/" }: { activePath?: string }) {
   const [scrolled, setScrolled] = useState(false);
@@ -42,7 +80,7 @@ export function Nav({ activePath = "/" }: { activePath?: string }) {
         <div className="max-w-6xl mx-auto px-8 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center select-none">
-            <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} priority className="h-16 w-auto" />
+            <SpinningMark />
           </Link>
 
           {/* Desktop links */}
