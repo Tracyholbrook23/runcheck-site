@@ -38,7 +38,7 @@ export default function About() {
         {/* ── Mission & Vision ─────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-6 py-24 w-full grid grid-cols-1 sm:grid-cols-2 gap-12">
           <Reveal>
-            <div className="flex flex-col gap-5 h-full bg-[#0d0d0d] rounded-2xl p-8 border border-zinc-800">
+            <div className="flex flex-col gap-5 h-full bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
               <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center"><Target className="w-5 h-5 text-orange-400" strokeWidth={1.75} /></div>
               <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Mission</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">Make pickup basketball accessible for everyone</h2>
@@ -48,7 +48,7 @@ export default function About() {
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <div className="flex flex-col gap-5 h-full bg-[#0d0d0d] rounded-2xl p-8 border border-zinc-800">
+            <div className="flex flex-col gap-5 h-full bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
               <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center"><Telescope className="w-5 h-5 text-orange-400" strokeWidth={1.75} /></div>
               <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Vision</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">A world where no hooper ever shows up to an empty court</h2>
@@ -76,7 +76,7 @@ export default function About() {
                 {icon:Zap,label:"No fluff",desc:"We build what players actually need. Fewer features, more usefulness."},
               ].map(({icon:Icon,label,desc})=>(
                 <motion.div key={label} whileHover={{x:4}} transition={{duration:.2}}
-                  className="flex items-start gap-4 bg-[#111] rounded-2xl p-6 border border-zinc-800">
+                  className="flex items-start gap-4 bg-zinc-900 rounded-2xl p-6 border border-zinc-800">
                   <Icon className="w-6 h-6 flex-shrink-0 mt-0.5 text-orange-400" strokeWidth={1.75} />
                   <div><p className="font-bold text-base mb-1.5">{label}</p><p className="text-sm text-zinc-400 leading-6">{desc}</p></div>
                 </motion.div>
