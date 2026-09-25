@@ -55,6 +55,9 @@ export default function Home() {
   const phoneRotate = useTransform(processProgress, [0, .5, 1], [-8, 0, 7]);
   const phoneY = useTransform(processProgress, [0, 1], [90, -70]);
   const progress = useSpring(heroProgress, { stiffness: 90, damping: 22 });
+  const { scrollY } = useScroll();
+  const cueOpacity = useTransform(scrollY, [0, 60], [1, 0]);
+  const cuePointer = useTransform(scrollY, (y) => (y > 60 ? "none" : "auto"));
 
   return <main className="era-home">
     <motion.div className="era-scroll-progress" style={{ scaleX: progress }} /><Nav activePath="/" />
@@ -70,7 +73,7 @@ export default function Home() {
           <Image src="/mockups/live-runs.webp" alt="RunCheck live runs screen" width={1080} height={1920} priority /><div className="era-live-pill"><span />Live in Austin</div>
         </motion.div>
       </motion.div>
-      <a href="#why" className="era-scroll-cue"><ArrowDown />Scroll to check in</a>
+      <motion.a href="#why" className="era-scroll-cue" style={{ opacity: cueOpacity, pointerEvents: cuePointer }}><ArrowDown />Scroll to check in</motion.a>
     </section>
 
     <section id="why" ref={manifestoRef} className="era-manifesto"><div className="era-section-number">01</div><Kicker>The problem</Kicker>
