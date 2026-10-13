@@ -42,6 +42,7 @@ const sections = [
     content: "You get everything back, service fee included, when:",
     items: [
       "The host cancels the run. Every player is refunded in full automatically.",
+      "The host changes the date, time or place after you booked. You'll get a push and an email, and you can leave from the run page within 24 hours of the change (or before the run starts, if that's sooner) and get everything back.",
       "The run didn't happen (the host didn't show, or the gym was locked) and you report it in time. See Something Went Wrong below.",
     ],
     subsections: [
@@ -56,7 +57,7 @@ const sections = [
   {
     id: "service-fee",
     title: "The Service Fee",
-    content: `The service fee (3% of the run price) covers payment processing and keeping RunCheck running. It's included in the price you see before you join. It's refunded when the host cancels or when a run didn't happen.`,
+    content: `The service fee (3% of the run price) covers payment processing and keeping RunCheck running. It's included in the price you see before you join. It's refunded when the host cancels, when the host changes the date, time or place and you leave, or when a run didn't happen.`,
   },
   {
     id: "no-shows",
@@ -96,6 +97,7 @@ const sections = [
       "If you can't run it, you cancel in the app as early as you can. Every player is refunded in full automatically. Not showing up is not the same as cancelling.",
       "If you don't show up to a locked run, players are refunded in full, your payout for that run is cancelled, and your hosting account may be frozen.",
       "Cancelling after a run locks lowers your host reliability score.",
+      "If you change the date, time or place after players booked, every player is told and can leave with a full refund for 24 hours (or until the run starts). You aren't paid for players who leave this way.",
       "You're paid after the run, once the 24-hour report window closes. Your first 5 runs are held for 48 hours. If a player reports a problem, we may hold your payout for that run until it's sorted out.",
       "Your price is final. Don't ask players who paid in the app to pay again in person, and don't charge anyone twice for the same spot.",
       "You're responsible for your run: the court, following the venue's rules, and keeping the run safe.",
