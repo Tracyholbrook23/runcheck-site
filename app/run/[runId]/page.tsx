@@ -14,6 +14,14 @@ type RunPreview = {
   photoUrl: string | null;
   visibility: 'invite_only' | 'public';
   isUpcoming: boolean;
+  isPaid?: boolean;
+  playerTotalCents?: number | null;
+  spotsTaken?: number | null;
+  capacity?: number | null;
+  minToLock?: number | null;
+  isLocked?: boolean;
+  isFull?: boolean;
+  areaLabel?: string | null;
 };
 
 const RUN_ID_RE = /^[A-Za-z0-9_-]{1,128}$/;
@@ -38,7 +46,9 @@ function formatStartTime(value: string | null) {
   if (Number.isNaN(date.getTime())) return null;
   return new Intl.DateTimeFormat('en-US', {
     weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
-    timeZoneName: 'short',
+    // Link previews are built on the server, so pick the app's home time zone
+    // instead of the server's UTC. The page itself re-formats in the viewer's zone.
+    timeZone: 'America/Chicago', timeZoneName: 'short',
   }).format(date);
 }
 
@@ -51,8 +61,16 @@ export async function generateMetadata({
   const preview = await getRunPreview(runId);
   const title = preview ? `${preview.title} at ${preview.gymName}` : 'A run on RunCheck';
   const time = preview ? formatStartTime(preview.startTime) : null;
+  const price = preview?.isPaid && preview.playerTotalCents != null ? `$${(preview.playerTotalCents / 100).toFixed(2)} to play` : null;
+  const spotsLeft = preview?.isPaid && preview.capacity ? Math.max(0, preview.capacity - (preview.spotsTaken ?? 0)) : null;
   const description = preview
-    ? `${preview.visibility === 'invite_only' ? 'Private run' : 'Pickup basketball'}${time ? ` · ${time}` : ''}${preview.description ? ` - ${preview.description}` : ''}`
+    ? [
+      preview.isPaid ? 'Paid run' : preview.visibility === 'invite_only' ? 'Private run' : 'Pickup basketball',
+      time,
+      price,
+      spotsLeft != null ? (spotsLeft > 0 ? `${spotsLeft} spots left` : 'Full') : null,
+      preview.areaLabel,
+    ].filter(Boolean).join(' · ') + (preview.description ? ` - ${preview.description}` : '')
     : 'Someone shared a pickup basketball run with you on RunCheck. Open the app to see the details and request to join.';
   const url = `${SITE_URL}/run/${encodeURIComponent(runId)}`;
   const image = preview?.photoUrl ?? `${SITE_URL}/runcheck-logo1.png`;
