@@ -40,6 +40,9 @@ export function Footer() {
             <Link href={TERMS_URL} className="hover:text-white transition-colors">
               Terms of Service
             </Link>
+            <Link href="/refunds" className="hover:text-white transition-colors">
+              Refund Policy
+            </Link>
             <CookieSettingsButton />
           </div>
 

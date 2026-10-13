@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://www.theruncheck.app";
 
-const routes = ["", "/about", "/how-it-works", "/contact", "/merch", "/sponsors", "/privacy", "/terms"];
+const routes = ["", "/about", "/how-it-works", "/contact", "/merch", "/sponsors", "/privacy", "/terms", "/refunds"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
