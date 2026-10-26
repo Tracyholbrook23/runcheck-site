@@ -8,53 +8,138 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
 
+type ProductImage = { src: string; alt: string };
+
 type Colorway = {
   id: string;
   label: string;
   swatch: string;
   buyUrl: string;
-  spinFrames: { src: string; alt: string }[];
-  modelShot: { src: string; alt: string };
+  spinFrames: ProductImage[];
+  modelShot?: ProductImage;
 };
 
-const COLORWAYS: Colorway[] = [
-  {
-    id: "black",
-    label: "Black",
-    swatch: "#0a0a0a",
-    buyUrl: "https://runcheck-shop.fourthwall.com/products/runcheck-snapback-hat-black",
-    spinFrames: [
-      { src: "/merch/snapback-black.webp", alt: "RunCheck Snapback in black, front view" },
-      { src: "/merch/snapback-black-left.webp", alt: "RunCheck Snapback in black, angled view showing the left panel" },
-      { src: "/merch/snapback-black-back.webp", alt: "RunCheck Snapback in black, back view with strap" },
-      { src: "/merch/snapback-black-right.webp", alt: "RunCheck Snapback in black, angled view showing the right panel" },
-    ],
-    modelShot: { src: "/merch/snapback-black-model.webp", alt: "RunCheck Snapback in black, worn on model" },
-  },
-  {
-    id: "tan",
-    label: "Tan",
-    swatch: "#dcc9a3",
-    buyUrl: "https://runcheck-shop.fourthwall.com/products/runcheck-snapback-hat-tan",
-    spinFrames: [
-      { src: "/merch/snapback-tan.webp", alt: "RunCheck Snapback in tan with a navy brim, front view" },
-      { src: "/merch/snapback-tan-left.webp", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the left panel" },
-      { src: "/merch/snapback-tan-back.webp", alt: "RunCheck Snapback in tan with a navy brim, back view with strap" },
-      { src: "/merch/snapback-tan-right.webp", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the right panel" },
-    ],
-    modelShot: { src: "/merch/snapback-tan-model.webp", alt: "RunCheck Snapback in tan with a navy brim, worn on model" },
-  },
-];
+type Product = {
+  id: string;
+  name: string;
+  badge: string;
+  description: string;
+  price: string;
+  priceNote: string;
+  details: string[];
+  colorways: Colorway[];
+};
 
-const DETAILS = [
-  "Structured mid-profile fit with a curved brim",
-  "RunCheck logo, embroidered, not printed",
-  "Adjustable snapback strap, one size fits most",
+const SHOP_URL = "https://runcheck-shop.fourthwall.com/products";
+
+const PRODUCTS: Product[] = [
+  {
+    id: "snapback",
+    name: "RunCheck Snapback",
+    badge: "In stock now",
+    description:
+      "The same snapback from the original run, now open to everyone. Structured mid-profile fit with a curved brim and the RunCheck logo stitched across the front.",
+    price: "$27.99",
+    priceNote: "one size, adjustable strap",
+    details: [
+      "Structured mid-profile fit with a curved brim",
+      "RunCheck logo, embroidered, not printed",
+      "Adjustable snapback strap, one size fits most",
+    ],
+    colorways: [
+      {
+        id: "black",
+        label: "Black",
+        swatch: "#0a0a0a",
+        buyUrl: `${SHOP_URL}/runcheck-snapback-hat-black`,
+        spinFrames: [
+          { src: "/merch/snapback-black.webp", alt: "RunCheck Snapback in black, front view" },
+          { src: "/merch/snapback-black-left.webp", alt: "RunCheck Snapback in black, angled view showing the left panel" },
+          { src: "/merch/snapback-black-back.webp", alt: "RunCheck Snapback in black, back view with strap" },
+          { src: "/merch/snapback-black-right.webp", alt: "RunCheck Snapback in black, angled view showing the right panel" },
+        ],
+        modelShot: { src: "/merch/snapback-black-model.webp", alt: "RunCheck Snapback in black, worn on model" },
+      },
+      {
+        id: "tan",
+        label: "Tan",
+        swatch: "#dcc9a3",
+        buyUrl: `${SHOP_URL}/runcheck-snapback-hat-tan`,
+        spinFrames: [
+          { src: "/merch/snapback-tan.webp", alt: "RunCheck Snapback in tan with a navy brim, front view" },
+          { src: "/merch/snapback-tan-left.webp", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the left panel" },
+          { src: "/merch/snapback-tan-back.webp", alt: "RunCheck Snapback in tan with a navy brim, back view with strap" },
+          { src: "/merch/snapback-tan-right.webp", alt: "RunCheck Snapback in tan with a navy brim, angled view showing the right panel" },
+        ],
+        modelShot: { src: "/merch/snapback-tan-model.webp", alt: "RunCheck Snapback in tan with a navy brim, worn on model" },
+      },
+      {
+        id: "white",
+        label: "White",
+        swatch: "#f5f5f5",
+        buyUrl: `${SHOP_URL}/runcheck-snapback-hat-white`,
+        spinFrames: [
+          { src: "/merch/snapback-white.webp", alt: "RunCheck Snapback in white, front view" },
+          { src: "/merch/snapback-white-angle.webp", alt: "RunCheck Snapback in white, angled view" },
+          { src: "/merch/snapback-white-back.webp", alt: "RunCheck Snapback in white, back view with strap" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "logo-tee",
+    name: "RunCheck Logo Tee",
+    badge: "New drop",
+    description:
+      "Super soft Bella+Canvas tee with the RunCheck logo on the chest. Lightweight, classic fit, and made for game day or any day.",
+    price: "$24.99",
+    priceNote: "pick your size at checkout",
+    details: [
+      "Super soft Bella+Canvas cotton",
+      "Full-color RunCheck logo on the chest",
+      "Lightweight, classic fit",
+    ],
+    colorways: [
+      {
+        id: "black",
+        label: "Black",
+        swatch: "#0a0a0a",
+        buyUrl: `${SHOP_URL}/runcheck-logo-tee`,
+        spinFrames: [
+          { src: "/merch/tee-black.webp", alt: "RunCheck Logo Tee in black, front view" },
+          { src: "/merch/tee-black-angle.webp", alt: "RunCheck Logo Tee in black, angled view" },
+          { src: "/merch/tee-black-back.webp", alt: "RunCheck Logo Tee in black, back view" },
+        ],
+      },
+      {
+        id: "orange",
+        label: "Orange",
+        swatch: "#f26b2a",
+        buyUrl: `${SHOP_URL}/runcheck-logo-tee-orange`,
+        spinFrames: [
+          { src: "/merch/tee-orange.webp", alt: "RunCheck Logo Tee in orange, front view" },
+          { src: "/merch/tee-orange-angle.webp", alt: "RunCheck Logo Tee in orange, angled view" },
+          { src: "/merch/tee-orange-back.webp", alt: "RunCheck Logo Tee in orange, back view" },
+        ],
+      },
+      {
+        id: "white",
+        label: "White",
+        swatch: "#f5f5f5",
+        buyUrl: `${SHOP_URL}/runcheck-logo-tee-white`,
+        spinFrames: [
+          { src: "/merch/tee-white.webp", alt: "RunCheck Logo Tee in white, front view" },
+          { src: "/merch/tee-white-angle.webp", alt: "RunCheck Logo Tee in white, angled view" },
+          { src: "/merch/tee-white-back.webp", alt: "RunCheck Logo Tee in white, back view" },
+        ],
+      },
+    ],
+  },
 ];
 
 const DRAG_STEP_PX = 70;
 
-function ProductGallery({ colorway }: { colorway: Colorway }) {
+function ProductGallery({ colorway, priority }: { colorway: Colorway; priority: boolean }) {
   const [frame, setFrame] = useState(0);
   const [showModel, setShowModel] = useState(false);
   const dragState = useRef({ startX: 0, lastStepX: 0, dragging: false });
@@ -89,7 +174,8 @@ function ProductGallery({ colorway }: { colorway: Colorway }) {
     dragState.current.dragging = false;
   }
 
-  const current = showModel ? colorway.modelShot : frames[frame];
+  const model = colorway.modelShot;
+  const current = showModel && model ? model : frames[Math.min(frame, frames.length - 1)];
 
   return (
     <div className="flex flex-col gap-4">
@@ -116,7 +202,7 @@ function ProductGallery({ colorway }: { colorway: Colorway }) {
               src={current.src}
               alt={current.alt}
               fill
-              priority
+              priority={priority}
               draggable={false}
               className={`object-cover pointer-events-none ${showModel ? "object-top" : ""}`}
             />
@@ -149,50 +235,53 @@ function ProductGallery({ colorway }: { colorway: Colorway }) {
             <Image src={img.src} alt={img.alt} fill className="object-cover" />
           </button>
         ))}
-        <button
-          onClick={() => setShowModel(true)}
-          className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
-            showModel ? "border-orange-500" : "border-zinc-800 opacity-60 hover:opacity-100"
-          }`}
-          aria-label="Show worn on model"
-        >
-          <Image src={colorway.modelShot.src} alt={colorway.modelShot.alt} fill className="object-cover object-top" />
-        </button>
+        {model && (
+          <button
+            onClick={() => setShowModel(true)}
+            className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
+              showModel ? "border-orange-500" : "border-zinc-800 opacity-60 hover:opacity-100"
+            }`}
+            aria-label="Show worn on model"
+          >
+            <Image src={model.src} alt={model.alt} fill className="object-cover object-top" />
+          </button>
+        )}
       </div>
     </div>
   );
 }
 
-function ProductSpotlight() {
-  const [colorwayId, setColorwayId] = useState(COLORWAYS[0].id);
-  const colorway = COLORWAYS.find((c) => c.id === colorwayId) ?? COLORWAYS[0];
+function ProductSpotlight({ product, index }: { product: Product; index: number }) {
+  const [colorwayId, setColorwayId] = useState(product.colorways[0].id);
+  const colorway = product.colorways.find((c) => c.id === colorwayId) ?? product.colorways[0];
+  const Heading = index === 0 ? "h1" : "h2";
+  const flip = index % 2 === 1;
 
   return (
-    <section className="max-w-6xl mx-auto px-6 pt-8 pb-24 w-full">
+    <section id={product.id} className={`max-w-6xl mx-auto px-6 ${index === 0 ? "pt-8" : "pt-24"} pb-24 w-full scroll-mt-28`}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-        <Reveal variant="scale">
-          <ProductGallery colorway={colorway} />
+        <Reveal variant="scale" className={flip ? "lg:order-2" : ""}>
+          <ProductGallery key={colorway.id} colorway={colorway} priority={index === 0} />
         </Reveal>
 
-        <Reveal delay={100}>
+        <Reveal delay={100} className={flip ? "lg:order-1" : ""}>
           <div className="flex flex-col gap-6 lg:pt-4">
             <div>
               <span className="inline-flex items-center gap-2 bg-orange-500/15 border border-orange-500/40 text-orange-300 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-                In stock now
+                {product.badge}
               </span>
-              <h1 className="merch-product-title text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-3">
-                RunCheck Snapback
-              </h1>
+              <Heading className="merch-product-title text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-3">
+                {product.name}
+              </Heading>
               <p className="text-zinc-400 text-lg leading-8">
-                The same snapback from the original run, now open to everyone. Structured
-                mid-profile fit with a curved brim and the RunCheck logo stitched across the front.
+                {product.description}
               </p>
             </div>
 
             <div className="flex items-baseline gap-3">
-              <span className="text-4xl font-extrabold text-white">$30</span>
-              <span className="text-sm text-zinc-500">one size, adjustable strap</span>
+              <span className="text-4xl font-extrabold text-white">{product.price}</span>
+              <span className="text-sm text-zinc-500">{product.priceNote}</span>
             </div>
 
             <div className="flex flex-col gap-2.5">
@@ -200,11 +289,11 @@ function ProductSpotlight() {
                 Color: <span className="text-zinc-300 normal-case tracking-normal">{colorway.label}</span>
               </p>
               <div className="flex items-center gap-3">
-                {COLORWAYS.map((c) => (
+                {product.colorways.map((c) => (
                   <button
                     key={c.id}
                     onClick={() => setColorwayId(c.id)}
-                    aria-label={`Select ${c.label} colorway`}
+                    aria-label={`Select ${c.label} ${product.name}`}
                     className={`w-9 h-9 rounded-full border-2 transition-all ${
                       colorwayId === c.id ? "border-orange-500 scale-110" : "border-zinc-700 hover:border-zinc-500"
                     }`}
@@ -227,7 +316,7 @@ function ProductSpotlight() {
             <div className="border-t border-zinc-800 pt-6 flex flex-col gap-3">
               <p className="text-[11px] font-bold uppercase tracking-widest text-zinc-500">Details</p>
               <ul className="flex flex-col gap-2.5">
-                {DETAILS.map((detail) => (
+                {product.details.map((detail) => (
                   <li key={detail} className="flex items-start gap-3 text-sm text-zinc-300">
                     <svg viewBox="0 0 20 20" className="w-4 h-4 mt-0.5 shrink-0 text-orange-500" fill="currentColor">
                       <path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" />
@@ -346,7 +435,12 @@ export default function Merch() {
 
           <div className="w-full border-t border-zinc-800/60" />
 
-          <ProductSpotlight />
+          {PRODUCTS.map((product, i) => (
+            <div key={product.id}>
+              {i > 0 && <div className="w-full border-t border-zinc-800/60" />}
+              <ProductSpotlight product={product} index={i} />
+            </div>
+          ))}
 
           <div className="w-full border-t border-zinc-800/60" />
 
