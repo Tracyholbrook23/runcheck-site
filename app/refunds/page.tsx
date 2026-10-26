@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "How paying for a run on RunCheck works: card holds, when you're charged, leaving a run, refunds, and what hosts agree to.",
 };
 
-const LAST_UPDATED = "October 13, 2026";
+const LAST_UPDATED = "October 26, 2026";
 
 const SUMMARY =
   "You're only charged if the run locks. Free to leave until then. After it locks, your spot is paid, and you get a full refund if the host cancels.";
@@ -31,9 +31,19 @@ const sections = [
   {
     id: "after-lock",
     title: "After the Run Locks",
-    content: `Once a run locks, your payment is final. The host is counting on that money to pay for the court, so there's no refund button. If you can't make it, let the host know in the run chat.`,
+    content: `Once a run locks, your payment is final. The host is counting on that money to pay for the court, so there's no refund button. If you can't make it, tap Give up my spot on the run in the RunCheck app.`,
     items: [
-      "We're adding more options, like giving your spot to a player on the waitlist. This page will be updated when they're live.",
+      "Your spot opens up for another player. If someone takes it, you get the run price back. The service fee isn't refunded.",
+      "If nobody takes it, there's no refund, and the host is still paid for that spot.",
+      "Changed your mind? Tap Keep my spot anytime before someone takes it.",
+    ],
+    subsections: [
+      {
+        title: "Refunds from the host",
+        items: [
+          "The host can refund any player, for any reason, from the run's roster until they've been paid for the run. You get the run price back. The service fee isn't refunded.",
+        ],
+      },
     ],
   },
   {
@@ -98,6 +108,8 @@ const sections = [
       "If you don't show up to a locked run, players are refunded in full, your payout for that run is cancelled, and your hosting account may be frozen.",
       "Cancelling after a run locks lowers your host reliability score.",
       "If you change the date, time or place after players booked, every player is told and can leave with a full refund for 24 hours (or until the run starts). You aren't paid for players who leave this way.",
+      "Refunds you give a player come out of your earnings for that player. You can refund players until you've been paid for the run.",
+      "If a player gives up their spot and another player takes it, you're paid for the new player instead.",
       "You're paid after the run, once the 24-hour report window closes. Your first 5 runs are held for 48 hours. If a player reports a problem, we may hold your payout for that run until it's sorted out.",
       "Your price is final. Don't ask players who paid in the app to pay again in person, and don't charge anyone twice for the same spot.",
       "You're responsible for your run: the court, following the venue's rules, and keeping the run safe.",
