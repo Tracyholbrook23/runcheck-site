@@ -21,6 +21,24 @@ const sections = [
     items: [
       "If you join a run that has already locked, your card is charged right away.",
       "You'll get an email when you join and another when the run locks, with the run details and what you paid.",
+      "Runs more than 6 days away: we save your card when you join and put the hold on it about 6 days before the run. If the hold doesn't go through, you have 24 hours to update your card, or your spot goes to someone else. You're never charged in that case.",
+    ],
+    subsections: [
+      {
+        title: "Runs where the host approves players",
+        items: [
+          "Requesting to join puts a hold on your card. You're only charged if the host approves you and the run locks.",
+          "If the host declines, or doesn't answer within 24 hours (or by the lock cutoff), the hold is released and you pay nothing.",
+        ],
+      },
+      {
+        title: "Waitlist",
+        items: [
+          "When a run is full, you can join the waitlist. We save your card, and nothing is charged.",
+          "If a spot opens, you're put in automatically and your card is held (or charged, if the run already locked). On runs where the host approves players, the host picks who gets the spot.",
+          "You can leave the waitlist anytime for free. The waitlist closes when the run starts.",
+        ],
+      },
     ],
   },
   {
@@ -77,7 +95,7 @@ const sections = [
   {
     id: "problems",
     title: "Something Went Wrong",
-    content: `If the host didn't show, the gym was locked, or you were charged for something that's not right, email us within 24 hours after the run's end time. Hosts aren't paid until after that window, so we can still fix it. We'll look at the roster, check-ins and anything else we have, and get back to you.`,
+    content: `If the host didn't show, the gym was locked, or you were charged for something that's not right, tap Report on the run in the RunCheck app, or email us, within 24 hours after the run's end time. Reporting pauses the host's payout while we look into it. Hosts aren't paid until after that window, so we can still fix it. We'll look at the roster, check-ins and anything else we have, and get back to you.`,
     contact: {
       email: "support@theruncheck.app",
       address: "Include the run name, the date and what happened.",
