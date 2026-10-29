@@ -18,6 +18,7 @@ type RunPreview = {
   isUpcoming: boolean;
   isPaid?: boolean;
   playerTotalCents?: number | null;
+  priceCents?: number | null;
   spotsTaken?: number | null;
   capacity?: number | null;
   minToLock?: number | null;
@@ -26,7 +27,7 @@ type RunPreview = {
   areaLabel?: string | null;
 };
 
-const money = (cents: number) => `$${(cents / 100).toFixed(2)}`;
+const money = (cents: number) => `$${cents % 100 === 0 ? cents / 100 : (cents / 100).toFixed(2)}`;
 const noopSubscribe = () => () => {};
 function localTime(iso: string | null) {
   if (!iso) return null;
@@ -82,7 +83,10 @@ export default function RunRedirectClient({ runId, preview }: { runId: string; p
           {paid && !status && (
             <div style={{ marginTop: 18, padding: 16, borderRadius: 16, background: 'rgba(34,197,94,.08)', border: '1px solid rgba(34,197,94,.3)' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
-                <span style={{ fontSize: 26, fontWeight: 800 }}>{money(preview!.playerTotalCents!)}</span>
+                <span style={{ fontSize: 26, fontWeight: 800 }}>{money(preview!.priceCents ?? preview!.playerTotalCents!)}</span>
+                {preview!.priceCents != null && preview!.playerTotalCents! > preview!.priceCents && (
+                  <span style={{ color: '#AAB6C8', fontSize: 14 }}>+ {money(preview!.playerTotalCents! - preview!.priceCents)} fee</span>
+                )}
                 {spotsLeft != null && (
                   <span style={{ color: '#D5DCE8', fontSize: 15, display: 'flex', alignItems: 'center', gap: 6 }}>
                     <Users size={15} /> {spotsLeft > 0 ? `${spotsLeft} spot${spotsLeft === 1 ? '' : 's'} left` : 'Full'}

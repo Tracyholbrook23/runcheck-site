@@ -16,6 +16,7 @@ type RunPreview = {
   isUpcoming: boolean;
   isPaid?: boolean;
   playerTotalCents?: number | null;
+  priceCents?: number | null;
   spotsTaken?: number | null;
   capacity?: number | null;
   minToLock?: number | null;
@@ -61,7 +62,8 @@ export async function generateMetadata({
   const preview = await getRunPreview(runId);
   const title = preview ? `${preview.title} at ${preview.gymName}` : 'A run on RunCheck';
   const time = preview ? formatStartTime(preview.startTime) : null;
-  const price = preview?.isPaid && preview.playerTotalCents != null ? `$${(preview.playerTotalCents / 100).toFixed(2)} to play` : null;
+  const headline = preview?.priceCents ?? preview?.playerTotalCents ?? null;
+  const price = preview?.isPaid && headline != null ? `$${headline % 100 === 0 ? headline / 100 : (headline / 100).toFixed(2)} to play` : null;
   const spotsLeft = preview?.isPaid && preview.capacity ? Math.max(0, preview.capacity - (preview.spotsTaken ?? 0)) : null;
   const description = preview
     ? [
