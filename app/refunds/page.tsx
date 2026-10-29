@@ -85,7 +85,7 @@ const sections = [
   {
     id: "service-fee",
     title: "The Service Fee",
-    content: `The service fee (3% of the run price) covers payment processing and keeping RunCheck running. It's shown next to the run price before you join and listed at checkout. It's refunded when the host cancels, when the host changes the date, time or place and you leave, or when a run didn't happen.`,
+    content: `The service fee (3% of the run price) covers payment processing and keeping RunCheck running. It's listed at checkout, before you pay. It's refunded when the host cancels, when the host changes the date, time or place and you leave, or when a run didn't happen.`,
   },
   {
     id: "no-shows",
