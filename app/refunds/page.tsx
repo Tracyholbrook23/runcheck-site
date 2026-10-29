@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "How paying for a run on RunCheck works: card holds, when you're charged, leaving a run, refunds, and what hosts agree to.",
 };
 
-const LAST_UPDATED = "October 26, 2026";
+const LAST_UPDATED = "October 29, 2026";
 
 const SUMMARY =
   "You're only charged if the run locks. Free to leave until then. After it locks, your spot is paid, and you get a full refund if the host cancels.";
@@ -85,7 +85,7 @@ const sections = [
   {
     id: "service-fee",
     title: "The Service Fee",
-    content: `The service fee (3% of the run price) covers payment processing and keeping RunCheck running. It's included in the price you see before you join. It's refunded when the host cancels, when the host changes the date, time or place and you leave, or when a run didn't happen.`,
+    content: `The service fee (3% of the run price) covers payment processing and keeping RunCheck running. It's shown next to the run price before you join and listed at checkout. It's refunded when the host cancels, when the host changes the date, time or place and you leave, or when a run didn't happen.`,
   },
   {
     id: "no-shows",
@@ -124,7 +124,7 @@ const sections = [
       "You have the right to use the court for the time and place you list.",
       "If you can't run it, you cancel in the app as early as you can. Every player is refunded in full automatically. Not showing up is not the same as cancelling.",
       "If you don't show up to a locked run, players are refunded in full, your payout for that run is cancelled, and your hosting account may be frozen.",
-      "Cancelling after a run locks lowers your host reliability score.",
+      "Cancelling after a run locks lowers your host reliability score, and the card fees RunCheck still pays on those refunds (about 2.9% + 30 cents per player) come out of your next payout.",
       "If you change the date, time or place after players booked, every player is told and can leave with a full refund for 24 hours (or until the run starts). You aren't paid for players who leave this way.",
       "Refunds you give a player come out of your earnings for that player. You can refund players until you've been paid for the run.",
       "If a player gives up their spot and another player takes it, you're paid for the new player instead.",
