@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { businessName, contactName, email, phone, category, tier, city } =
+    const { businessName, contactName, email, phone, category, city, website, message, tier } =
       await request.json();
 
-    if (!businessName || !contactName || !email || !category || !tier || !city) {
+    if (!businessName || !contactName || !email || !category || !city) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -16,15 +16,18 @@ export async function POST(request: Request) {
     });
 
     const emailBody = `
-New Sponsor Inquiry - RunCheck Website
+New Partner Inquiry - RunCheck Website
 
-Business Name:    ${businessName}
-Contact Name:     ${contactName}
-Email:            ${email}
-Phone:            ${phone || "Not provided"}
-Business Category: ${category}
-Tier Interest:    ${tier}
-Target City:      ${city}
+Business Name:     ${businessName}
+Contact Name:      ${contactName}
+Email:             ${email}
+Phone:             ${phone || "Not provided"}
+Type of Business:  ${category}
+City or Area:      ${city}
+Website/Instagram: ${website || "Not provided"}${tier ? `\nTier Interest:     ${tier}` : ""}
+
+Message:
+${message || "None"}
 
 Submitted: ${submittedAt} CT
     `.trim();
@@ -39,7 +42,7 @@ Submitted: ${submittedAt} CT
         from: "RunCheck Website <noreply@theruncheck.app>",
         to: ["hello@theruncheck.app"],
         reply_to: email,
-        subject: `New Sponsor Inquiry - ${businessName} (${tier})`,
+        subject: `New Partner Inquiry - ${businessName}`,
         text: emailBody,
       }),
     });
