@@ -13,6 +13,7 @@ type RunPreview = {
   startTime: string | null;
   formattedStartTime: string | null;
   description: string | null;
+  rules?: string | null;
   photoUrl: string | null;
   visibility: 'invite_only' | 'public';
   isUpcoming: boolean;
@@ -100,7 +101,15 @@ export default function RunRedirectClient({ runId, preview }: { runId: string; p
             </div>
           )}
 
-          {preview?.description && <p style={{ margin: '18px 0 0', color: '#AAB6C8', lineHeight: 1.5 }}>{preview.description}</p>}
+          {preview?.description && !preview?.rules && <p style={{ margin: '18px 0 0', color: '#AAB6C8', lineHeight: 1.5 }}>{preview.description}</p>}
+          {preview?.rules && (
+            <div style={{ marginTop: 18, padding: 16, borderRadius: 16, background: '#0D131B', border: '1px solid #273243' }}>
+              <div style={{ fontWeight: 800, fontSize: 13, letterSpacing: 0.6, color: '#8693A8', marginBottom: 8 }}>RUN RULES</div>
+              <ul style={{ margin: 0, paddingLeft: 20, color: '#D5DCE8', fontSize: 15, lineHeight: 1.6 }}>
+                {preview.rules.split('\n').map((l) => l.trim()).filter(Boolean).map((line, i) => <li key={i}>{line}</li>)}
+              </ul>
+            </div>
+          )}
           {status && <p style={{ margin: '18px 0 0', color: '#FFB4BE', fontWeight: 700 }}>{status}</p>}
 
           {!status && (
