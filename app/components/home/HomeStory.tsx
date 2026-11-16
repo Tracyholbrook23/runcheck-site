@@ -293,7 +293,7 @@ export function HomeStory() {
       if (endRef.current && endWord.current && endBall.current) {
         const r = endRef.current.getBoundingClientRect();
         const k = clamp(1 - r.top / innerHeight);
-        endWord.current.style.transform = `translateX(${lerp(18, -18, clamp((innerHeight - r.top) / (innerHeight + r.height)))}%)`;
+        endWord.current.style.transform = `translateX(${lerp(5, -5, clamp((innerHeight - r.top) / (innerHeight + r.height)))}%)`;
         endBall.current.style.setProperty("--drop", String(ease(seg(k, 0.35, 0.8))));
         endBall.current.style.setProperty("--check", String(ease(seg(k, 0.75, 1))));
         if (floatBar.current) {
@@ -501,15 +501,16 @@ export function HomeStory() {
       </section>
 
       <section ref={endRef} className="rc-end">
-        <div ref={endWord} className="rc-end-word" aria-hidden="true">
-          <span>RUN</span>CHECK
-        </div>
-        <div ref={endBall} className="rc-end-ball" aria-hidden="true">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/home/ball.webp" alt="" />
-          <svg viewBox="0 0 100 100">
-            <path d="M18 52 L42 72 L92 14" />
-          </svg>
+        <div className="rc-end-lockup" aria-hidden="true">
+          <div ref={endBall} className="rc-end-ball">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="rc-end-ball-img" src="/home/ball.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="rc-end-check" src="/home/logo-check.webp" alt="" />
+          </div>
+          <div ref={endWord} className="rc-end-word">
+            <span>RUN</span>CHECK
+          </div>
         </div>
         <h2 className="rc-end-line">Know the run before you go.</h2>
         <StoreButton />
