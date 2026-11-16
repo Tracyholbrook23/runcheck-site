@@ -5,11 +5,6 @@
    action #FF5A1F  the button, the stamps, the counters
    live   #2B5FEE  only the check mark and live signals */
 
-@font-face { font-family: "Anton"; src: url("/fonts/anton.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Oswald"; src: url("/fonts/oswald-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Oswald"; src: url("/fonts/oswald-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "Oswald"; src: url("/fonts/oswald-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
-@font-face { font-family: "Doto"; src: url("/fonts/doto-800.woff2") format("woff2"); font-weight: 800; font-display: swap; }
 
 .rc-home {
   --g: #0A0A0A;

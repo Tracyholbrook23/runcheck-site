@@ -43,14 +43,13 @@ export default function Contact() {
         .ct-title{animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .1s both}
         .ct-sub  {animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both}
       `}</style>
-      <div className="era-subpage bg-black text-white min-h-screen relative">
+      <div className="rc-sub bg-black text-white min-h-screen relative">
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/contact" />
 
         {/* ── Hero ─────────────────────────────────────────────── */}
         <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 overflow-hidden">
           <div className="relative z-10 max-w-xl">
-            <p className="ct-sub text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-5">Contact</p>
             <h1 className="ct-title text-5xl sm:text-6xl font-extrabold tracking-tighter leading-tight mb-6">
               Get in touch
             </h1>
@@ -98,7 +97,6 @@ export default function Contact() {
         {/* ── Also find us ─────────────────────────────────────── */}
         <section className="max-w-4xl mx-auto px-6 py-20 w-full flex flex-col gap-8">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-3">Based in</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Austin, Texas</h2>
             <p className="text-zinc-400 text-base leading-8 max-w-lg mt-4">
               RunCheck is built in Austin, TX, home to some of the best pickup basketball communities in the country. We're local, we're players, and we're building for the culture.

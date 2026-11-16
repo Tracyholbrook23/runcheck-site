@@ -148,7 +148,7 @@ const sections = [
 
 export default function Refunds() {
   return (
-    <div className="era-subpage bg-black text-white flex flex-col min-h-screen">
+    <div className="rc-sub bg-black text-white flex flex-col min-h-screen">
       <Nav activePath="/refunds" />
 
       {/* Hero */}
@@ -161,9 +161,6 @@ export default function Refunds() {
           }}
         />
         <div className="relative z-10 max-w-2xl">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-4">
-            Paid Runs
-          </p>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
             Refund and Cancellation Policy
           </h1>

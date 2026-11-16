@@ -16,14 +16,13 @@ export default function About() {
         .au-title{animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .1s both}
         .au-sub  {animation:fadeUp .85s cubic-bezier(.16,1,.3,1) .25s both}
       `}</style>
-      <div className="era-subpage bg-black text-white min-h-screen relative">
+      <div className="rc-sub bg-black text-white min-h-screen relative">
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/about" />
 
         {/* ── Hero ─────────────────────────────────────────────── */}
         <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 overflow-hidden">
           <div className="relative z-10 max-w-2xl">
-            <p className="au-sub text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-5">About RunCheck</p>
             <h1 className="au-title text-5xl sm:text-7xl font-extrabold tracking-tighter leading-tight mb-6">
               We built RunCheck<br />because we hated<br />empty gyms
             </h1>
@@ -40,7 +39,6 @@ export default function About() {
           <Reveal>
             <div className="flex flex-col gap-5 h-full bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
               <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center"><Target className="w-5 h-5 text-orange-400" strokeWidth={1.75} /></div>
-              <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Mission</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">Make pickup basketball accessible for everyone</h2>
               <p className="text-zinc-400 text-base leading-8">
                 Pickup basketball is one of the purest forms of the game. No refs, no fees, no politics, just run. But finding a good game has always been hit or miss. RunCheck builds the layer of real-time information the pickup community has always been missing, so any player, anywhere, can find a game.
@@ -50,7 +48,6 @@ export default function About() {
           <Reveal delay={120}>
             <div className="flex flex-col gap-5 h-full bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
               <div className="w-10 h-10 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center"><Telescope className="w-5 h-5 text-orange-400" strokeWidth={1.75} /></div>
-              <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">Our Vision</p>
               <h2 className="text-2xl font-extrabold tracking-tight leading-snug">A world where no hooper ever shows up to an empty court</h2>
               <p className="text-zinc-400 text-base leading-8">
                 We envision a future where pickup basketball has the same infrastructure as organized sports, where players can see live court activity, connect with their community, and trust that the run is real before they leave home.
@@ -64,7 +61,6 @@ export default function About() {
         {/* ── Values ───────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-6 py-24 w-full flex flex-col gap-10">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-2">What we stand for</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Built on four beliefs</h2>
           </Reveal>
           <Reveal delay={100}>
@@ -107,7 +103,6 @@ export default function About() {
 
               {/* Story text */}
               <div className="lg:w-1/2 flex flex-col justify-center px-8 sm:px-14 py-16 gap-6 bg-black">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500">The Builder</p>
                 <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
                   Tracy Holbrook
                 </h2>
@@ -134,8 +129,8 @@ export default function About() {
         <section className="flex flex-col items-center text-center px-6 py-24 gap-6">
           <Reveal className="flex flex-col items-center gap-6">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Join the run</h2>
-            <p className="text-zinc-400 text-base max-w-sm leading-7">Get early access when RunCheck launches in Austin, sign up for the waitlist.</p>
-            <a href="/#waitlist" className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all shadow-[0_0_32px_rgba(243,96,37,.3)]">Join the Waitlist <ArrowRight className="w-4 h-4" strokeWidth={2.5} /></a>
+            <p className="text-zinc-400 text-base max-w-sm leading-7">RunCheck is free on iPhone. See who&apos;s playing near you before you leave the house.</p>
+            <a href="https://apps.apple.com/us/app/runcheck-pickup-basketball/id6760801659" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 px-10 py-4 text-base font-bold text-white transition-all">Download on the App Store <ArrowRight className="w-4 h-4" strokeWidth={2.5} /></a>
           </Reveal>
         </section>
 

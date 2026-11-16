@@ -125,14 +125,13 @@ export default function Sponsors() {
   }
 
   return (
-    <div className="era-subpage bg-black text-white min-h-screen relative">
+    <div className="rc-sub bg-black text-white min-h-screen relative">
       <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/sponsors" />
 
         {/* ── Hero ──────────────────────────────────────────────────── */}
         <section className="flex flex-col items-center text-center px-6 pt-44 pb-24">
           <Reveal className="max-w-3xl flex flex-col items-center">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-5">Partner with RunCheck</p>
             <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tighter leading-tight mb-6">
               Back the hoopers<br className="hidden sm:block" /> in your city
             </h1>
@@ -162,7 +161,6 @@ export default function Sponsors() {
         {/* ── Our partners ──────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-6 py-16 w-full">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-2">Our partners</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10">The businesses behind RunCheck</h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -195,7 +193,6 @@ export default function Sponsors() {
         {/* ── What partners get ─────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-6 py-16 w-full">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-2">What partners get</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10">A real presence, not a banner ad</h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -216,7 +213,6 @@ export default function Sponsors() {
         {/* ── Who we work with ──────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-6 py-16 w-full">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-2">Who we work with</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">Local businesses and basketball brands</h2>
             <p className="text-zinc-400 text-base leading-8 max-w-2xl mb-10">
               If your customers play ball, train, or spend time in the community, you belong in front of RunCheck players.
@@ -237,7 +233,6 @@ export default function Sponsors() {
         {/* ── How it works ──────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-6 py-16 w-full">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-2">How it works</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10">Three simple steps</h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -256,7 +251,6 @@ export default function Sponsors() {
         {/* ── Interest form ─────────────────────────────────────────── */}
         <section id="partner-form" className="max-w-2xl mx-auto px-6 py-20 w-full scroll-mt-24">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-2">Become a partner</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">Tell us about your business</h2>
             <p className="text-zinc-400 text-base leading-8 mb-10">
               We will follow up within a few days to talk through options. No commitment.

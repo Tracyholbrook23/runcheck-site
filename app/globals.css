@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@font-face { font-family: "Anton"; src: url("/fonts/anton.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Oswald"; src: url("/fonts/oswald-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Oswald"; src: url("/fonts/oswald-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Oswald"; src: url("/fonts/oswald-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Doto"; src: url("/fonts/doto-800.woff2") format("woff2"); font-weight: 800; font-display: swap; }
 :root{--font-runcheck:"Arial Black","Helvetica Neue",Arial,sans-serif}
 @theme {
   --color-orange-300: #ff9b73;
@@ -76,8 +81,8 @@
 .era-subpage .bg-orange-500{background-color:var(--clay)!important;color:white!important}
 .era-subpage footer{background:var(--ink)!important;color:white}
 .era-subpage footer .text-white{color:white!important}
-.era-subpage nav{background:rgba(21,19,15,.94)!important;border-bottom-color:rgba(255,255,255,.12)!important;backdrop-filter:blur(18px)}
-.era-subpage nav .text-white{color:white!important}
+.era-subpage nav:not(.rc-gnav){background:rgba(21,19,15,.94)!important;border-bottom-color:rgba(255,255,255,.12)!important;backdrop-filter:blur(18px)}
+.era-subpage nav:not(.rc-gnav) .text-white{color:white!important}
 .era-subpage nav .text-zinc-400{color:#b8b1a7!important}
 .era-subpage nav a[class*="bg-white"]{background:white!important;color:var(--ink)!important}
 @media(max-width:800px){.era-subpage:before{background:radial-gradient(circle at 0 12%,rgba(40,130,215,.17),transparent 18rem),radial-gradient(circle at 100% 52%,rgba(243,96,37,.22),transparent 22rem),var(--paper)}}
@@ -87,8 +92,8 @@
 .era-subpage section{max-width:100%;overflow-x:clip}
 .era-subpage img,.era-home img{max-width:100%}
 .era-subpage a,.era-subpage button,.era-home a,.era-home button{touch-action:manipulation}
-.era-subpage nav,
-.era-subpage nav[class*="bg-black"]{background-color:rgba(21,19,15,.94)!important}
+.era-subpage nav:not(.rc-gnav),
+.era-subpage nav:not(.rc-gnav)[class*="bg-black"]{background-color:rgba(21,19,15,.94)!important}
 @supports (animation-timeline:view()){
   .era-subpage>section:first-of-type,
   .era-subpage>div>section:first-of-type{animation:none!important;opacity:1!important;transform:none!important}
@@ -147,9 +152,83 @@
   .era-subpage h1{font-size:clamp(2.65rem,14vw,4.6rem)!important;line-height:.88!important}
   .era-subpage .merch-product-title{font-size:clamp(2.65rem,12vw,3.8rem)!important;line-height:.9!important}
   .era-subpage section{padding-left:1.25rem!important;padding-right:1.25rem!important}
-  .era-subpage nav>div{height:4.5rem;padding-left:1rem!important;padding-right:1rem!important}
-  .era-subpage nav img{height:3.5rem!important;width:auto!important}
+  .era-subpage nav:not(.rc-gnav)>div{height:4.5rem;padding-left:1rem!important;padding-right:1rem!important}
+  .era-subpage nav:not(.rc-gnav) img{height:3.5rem!important;width:auto!important}
   .era-subpage a,.era-subpage button,.era-home a,.era-home button{min-height:44px}
   .era-subpage input,.era-subpage textarea,.era-subpage select{font-size:16px!important}
   .era-proof-row strong{font-size:clamp(3.5rem,18vw,5rem)}
 }
+
+
+/* ==========================================================================
+   Site style, matching the homepage.
+   ground #0A0A0A, ink #F2EFE7, frames #7A7A7A, action #FF5A1F
+   ========================================================================== */
+
+/* Shared nav: logo, glass link pill, one action button. */
+.rc-gnav{position:fixed;z-index:50;top:1.1rem;left:clamp(1rem,3vw,2.2rem);right:clamp(1rem,3vw,2.2rem);font-family:"Oswald","Arial Narrow",Arial,sans-serif;pointer-events:none}
+.rc-gnav-row{display:flex;align-items:center;justify-content:space-between}
+.rc-gnav-row>*,.rc-gnav-menu{pointer-events:auto}
+.rc-gnav-mark{width:58px;height:58px;will-change:transform}
+.rc-gnav-mark img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45))}
+.rc-gnav-right{display:flex;align-items:center;gap:.55rem}
+.rc-gnav-glass{background:rgba(10,10,10,.56);border:1px solid rgba(242,239,231,.19);-webkit-backdrop-filter:blur(17px) saturate(1.35);backdrop-filter:blur(17px) saturate(1.35);border-radius:999px}
+.rc-gnav-links{display:flex;gap:.2rem;padding:.3rem}
+.rc-gnav-links a,.rc-gnav-menu a{padding:.5rem .9rem;border-radius:999px;color:rgba(242,239,231,.72);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.03em;transition:color .2s,background-color .2s}
+.rc-gnav-links a:hover,.rc-gnav-menu a:hover{color:#F2EFE7;background:rgba(242,239,231,.08)}
+.rc-gnav-links a.is-active,.rc-gnav-menu a.is-active{color:#F2EFE7;background:rgba(242,239,231,.12)}
+.rc-gnav-action{display:inline-flex;align-items:center;gap:.5rem;padding:.68rem 1.1rem;border-radius:999px;background:#FF5A1F;color:#0A0A0A;font-weight:600;font-size:.88rem;letter-spacing:.02em;text-decoration:none;white-space:nowrap;transition:transform .25s,background-color .25s}
+.rc-gnav-action:hover{transform:translateY(-2px);background:#ff6f3b}
+.rc-gnav-action svg{width:1rem;height:1rem;fill:currentColor}
+.rc-gnav-action-short{display:none}
+.rc-gnav-burger{display:none;position:relative;width:44px;height:44px;cursor:pointer;color:#F2EFE7}
+.rc-gnav-burger span,.rc-gnav-burger span:before,.rc-gnav-burger span:after{position:absolute;left:50%;top:50%;width:18px;height:2px;margin-left:-9px;background:currentColor;border-radius:2px;transition:transform .2s,opacity .2s}
+.rc-gnav-burger span:before,.rc-gnav-burger span:after{content:"";margin-left:-9px}
+.rc-gnav-burger span:before{transform:translateY(-6px)}
+.rc-gnav-burger span:after{transform:translateY(6px)}
+.rc-gnav-burger span.is-open{background:transparent}
+.rc-gnav-burger span.is-open:before{transform:rotate(45deg)}
+.rc-gnav-burger span.is-open:after{transform:rotate(-45deg)}
+.rc-gnav-menu{display:none;flex-direction:column;gap:.15rem;width:min(260px,100%);margin:.6rem 0 0 auto;padding:.45rem;border-radius:22px}
+.rc-gnav-menu a{padding:.8rem 1rem;border-radius:14px;font-size:1rem}
+@media(max-width:900px){.rc-gnav-links{display:none}.rc-gnav-burger{display:block}.rc-gnav-menu{display:flex}.rc-gnav-action-long{display:none}.rc-gnav-action-short{display:inline}.rc-gnav-mark{width:50px;height:50px}}
+
+/* Page theme. Unlayered, so it wins over the Tailwind utilities on the pages. */
+.rc-sub{background:#0A0A0A;color:#F2EFE7;font-family:"Oswald","Arial Narrow",Arial,sans-serif;letter-spacing:.01em}
+.rc-sub h1,.rc-sub h2{font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;font-style:normal;text-transform:uppercase;letter-spacing:0;line-height:.92}
+.rc-sub h1{font-size:clamp(3.4rem,8.2vw,8.2rem);line-height:.9}
+.rc-sub h2{font-size:clamp(2.3rem,4.6vw,4.3rem)}
+.rc-sub h2.text-2xl,.rc-sub h2.text-xl{font-size:clamp(1.6rem,2.4vw,2.15rem);line-height:1}
+.rc-sub h3{font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-style:normal;text-transform:uppercase;letter-spacing:.03em}
+.rc-sub strong,.rc-sub b{font-weight:600}
+.rc-sub .text-white{color:#F2EFE7}
+.rc-sub .text-zinc-300{color:rgba(242,239,231,.84)}
+.rc-sub .text-zinc-400{color:rgba(242,239,231,.7)}
+.rc-sub .text-zinc-500{color:rgba(242,239,231,.58)}
+.rc-sub .text-zinc-600,.rc-sub .text-zinc-700{color:rgba(242,239,231,.46)}
+.rc-sub .text-orange-300,.rc-sub .text-orange-400,.rc-sub .text-orange-500{color:#FF5A1F}
+.rc-sub .bg-orange-500{background-color:#FF5A1F;box-shadow:none}
+.rc-sub a.bg-orange-500,.rc-sub button.bg-orange-500{color:#0A0A0A;font-weight:600;letter-spacing:.02em}
+.rc-sub a.bg-orange-500:hover,.rc-sub button.bg-orange-500:hover:not(:disabled){background-color:#ff6f3b}
+.rc-sub [class*="bg-orange-500/"]{background-color:rgba(255,90,31,.12)}
+.rc-sub [class*="border-orange-500"]{border-color:rgba(255,90,31,.3)}
+.rc-sub .bg-black{background-color:#0A0A0A}
+.rc-sub [class*="bg-zinc-9"]{background-color:rgba(242,239,231,.045)}
+.rc-sub .bg-zinc-800{background-color:rgba(242,239,231,.08)}
+.rc-sub .bg-zinc-800:hover,.rc-sub .hover\:bg-zinc-700:hover{background-color:rgba(242,239,231,.14)}
+.rc-sub [class*="border-zinc-"]{border-color:rgba(242,239,231,.12)}
+.rc-sub .bg-white{background-color:#F2EFE7;color:#0A0A0A}
+.rc-sub .rounded-xl{border-radius:14px}
+.rc-sub .rounded-2xl{border-radius:22px}
+.rc-sub .rounded-3xl{border-radius:26px}
+.rc-sub input,.rc-sub textarea,.rc-sub select{background:rgba(242,239,231,.05);color:#F2EFE7;border-color:rgba(242,239,231,.18);border-radius:14px;font-family:inherit}
+.rc-sub input::placeholder,.rc-sub textarea::placeholder{color:rgba(242,239,231,.4)}
+.rc-sub input:focus,.rc-sub textarea:focus,.rc-sub select:focus{border-color:#FF5A1F;outline:none}
+.rc-sub select option{background:#0A0A0A}
+/* No decorative glows: colour comes from the content, not gradients. */
+.rc-sub [style*="radial-gradient"]{display:none}
+.rc-sub footer{background:#0A0A0A;border-top-color:rgba(242,239,231,.12)}
+.rc-sub ::selection{background:#FF5A1F;color:#0A0A0A}
+.rc-sub h1{max-width:min(72rem,100%);margin-left:auto;margin-right:auto;font-size:clamp(3.2rem,7.2vw,7.4rem)}
+.rc-sub .max-w-2xl:has(> h1),.rc-sub .max-w-2xl:has(> * > h1){max-width:min(72rem,100%)}
+.rc-sub h1.text-4xl{font-size:clamp(3rem,6vw,5.6rem)}

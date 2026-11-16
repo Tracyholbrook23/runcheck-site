@@ -207,7 +207,7 @@ const sections = [
 
 export default function Terms() {
   return (
-    <div className="era-subpage bg-black text-white flex flex-col min-h-screen">
+    <div className="rc-sub bg-black text-white flex flex-col min-h-screen">
       <Nav activePath="/terms" />
 
       {/* Hero */}
@@ -220,9 +220,6 @@ export default function Terms() {
           }}
         />
         <div className="relative z-10 max-w-2xl">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-4">
-            Legal
-          </p>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
             Terms of Service
           </h1>

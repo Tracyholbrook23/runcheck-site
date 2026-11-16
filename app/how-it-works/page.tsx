@@ -211,16 +211,13 @@ export default function HowItWorksPage() {
 
   return (
     <>
-      <div className="era-subpage bg-black text-white min-h-screen relative">
+      <div className="rc-sub bg-black text-white min-h-screen relative">
         <div className="relative z-10 flex flex-col min-h-screen">
         <Nav activePath="/how-it-works" />
 
         {/* Headline */}
         <section className="flex flex-col items-center text-center px-6 pt-32 pb-8 gap-3">
           <Reveal>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">
-              How it works
-            </p>
             <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight max-w-2xl leading-tight">
               From couch to court in under a minute.
             </h1>
@@ -304,9 +301,6 @@ export default function HowItWorksPage() {
 
           {/* Sub-header - smaller than main headline, same visual language */}
           <Reveal className="flex flex-col items-center text-center px-6 pb-10 gap-2">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-orange-500">
-              Built for the full experience
-            </p>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
               More ways to stay in the game
             </h2>

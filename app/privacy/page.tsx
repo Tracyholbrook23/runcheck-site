@@ -157,7 +157,7 @@ const sections = [
 
 export default function Privacy() {
   return (
-    <div className="era-subpage bg-black text-white flex flex-col min-h-screen">
+    <div className="rc-sub bg-black text-white flex flex-col min-h-screen">
       <Nav activePath="/privacy" />
 
       {/* Hero */}
@@ -165,7 +165,6 @@ export default function Privacy() {
         <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full opacity-20"
           style={{background:"radial-gradient(ellipse,rgba(243,96,37,.5) 0%,transparent 70%)"}} />
         <div className="relative z-10 max-w-2xl">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-orange-500 mb-4">Legal</p>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">Privacy Policy</h1>
           <p className="text-zinc-400 text-base">Last updated: {LAST_UPDATED}</p>
         </div>
