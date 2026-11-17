@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    // Keep resized images cached for a week. Give a replaced photo a new file name so it shows right away.
+    minimumCacheTTL: 604800,
+  },
   async headers() {
     return [
       {

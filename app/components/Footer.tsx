@@ -24,7 +24,7 @@ export function Footer() {
         {/* Top row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
           <div className="flex flex-col items-center sm:items-start gap-2">
-            <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} className="h-10 w-auto" />
+            <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} sizes="40px" className="h-10 w-auto" />
             <span className="text-xs text-zinc-600">Find pickup basketball runs near you</span>
           </div>
 

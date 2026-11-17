@@ -50,7 +50,7 @@ function SpinningMark() {
 
   return (
     <motion.div style={{ rotate: reduced ? 0 : rotate }} className="rc-gnav-mark">
-      <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} priority />
+      <Image src="/runcheck-logo.png" alt="RunCheck" width={512} height={512} sizes="58px" priority />
     </motion.div>
   );
 }

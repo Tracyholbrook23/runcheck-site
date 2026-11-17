@@ -298,3 +298,15 @@
 .rc-post-gallery figure:hover img{transform:scale(1.04)}
 @media(max-width:800px){.rc-post-gallery,.rc-post-gallery.is-2{grid-template-columns:repeat(2,1fr)}}
 .rc-gnav-menu.rc-gnav-glass{background:rgba(10,10,10,.9)}
+
+/* Each update is one boxed card, so the photo clearly belongs to the text under it. */
+.rc-update-card{overflow:hidden;padding-bottom:1.5rem;border-radius:22px;background:rgba(242,239,231,.05);border:1px solid rgba(242,239,231,.1);transition:border-color .25s,background-color .25s}
+.rc-update-card:hover{border-color:rgba(242,239,231,.22);background:rgba(242,239,231,.07)}
+.rc-update-card .rc-update-img{border-radius:0;margin-bottom:1.2rem}
+.rc-update-card>time,.rc-update-card>h2,.rc-update-card>h3,.rc-update-card>p{margin-left:1.4rem!important;margin-right:1.4rem!important}
+@media(max-width:800px){
+  .rc-update-feature{overflow:hidden;gap:0;margin-bottom:1.4rem;padding-bottom:1.6rem;border-radius:22px;background:rgba(242,239,231,.05);border:1px solid rgba(242,239,231,.1)}
+  .rc-update-feature .rc-update-img{border-radius:0}
+  .rc-update-feature .rc-update-text{padding:1.3rem 1.4rem 0}
+  .rc-update-grid{gap:1.4rem}
+}

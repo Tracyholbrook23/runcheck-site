@@ -91,6 +91,10 @@ export function HomeStory() {
 
   const [world, setWorld] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  // Load the photos for later scenes only once the visitor starts heading toward them,
+  // so the hero gets the connection to itself first.
+  const [phoneReady, setPhoneReady] = useState(false);
+  const [worldsReady, setWorldsReady] = useState(false);
 
   // Close the phone menu when the page scrolls or Escape is pressed.
   useEffect(() => {
@@ -149,6 +153,8 @@ export function HomeStory() {
     let crewN = -1;
     let lastDive = -1;
     let lastShow = true;
+    let loadPhone = false;
+    let loadWorlds = false;
 
     import("./courtScene").then(({ createCourtScene }) => {
       if (!alive || !canvas.current) return;
@@ -208,6 +214,14 @@ export function HomeStory() {
       cur.c += (progress(stageC.current) - cur.c) * chase;
       cur.landD += (landing(freeRef.current) - cur.landD) * chase;
       const t = cur.a;
+      if (!loadPhone && t > 0.15) {
+        loadPhone = true;
+        setPhoneReady(true);
+      }
+      if (!loadWorlds && stageC.current && stageC.current.getBoundingClientRect().top < innerHeight * 3) {
+        loadWorlds = true;
+        setWorldsReady(true);
+      }
 
       // Hero: the camera dives to the ball, then the court fades out behind it.
       const dive = seg(t, 0.3, 1.5);
@@ -398,7 +412,7 @@ export function HomeStory() {
             <div ref={phone} className="rc-phone">
               {SCREENS.map((s, i) => (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img key={s.img} src={s.img} alt={i === 0 ? "RunCheck app screens" : ""} data-i={i} loading="lazy" />
+                <img key={s.img} src={phoneReady ? s.img : undefined} alt={i === 0 ? "RunCheck app screens" : ""} data-i={i} decoding="async" />
               ))}
               <span ref={badgeSlot} className="rc-badge-slot" aria-hidden="true">
                 <span className="rc-live-ring" />
@@ -471,7 +485,7 @@ export function HomeStory() {
               <div
                 key={x.id}
                 className={`rc-world-bg${i === world ? " is-active" : ""}${i === prevWorld && i !== world ? " is-leaving" : ""}`}
-                style={{ backgroundImage: `url(${x.photo})`, backgroundPosition: x.pos }}
+                style={{ backgroundImage: worldsReady ? `url(${x.photo})` : undefined, backgroundPosition: x.pos }}
               />
             ))}
             <div className="rc-world-shade" />

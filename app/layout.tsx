@@ -53,6 +53,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased overflow-x-hidden">
+        <link rel="preload" href="/fonts/anton.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/oswald-400.woff2" as="font" type="font/woff2" crossOrigin="" />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -60,10 +62,10 @@ export default function RootLayout({
         />
         {children}
 
-        {/* Klaviyo onsite tracking, loads on every page, non-blocking */}
+        {/* Klaviyo onsite tracking. Loads after the page is idle so it never slows down photos. */}
         <Script
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=X9v6kc"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <GoogleAnalytics />
       </body>

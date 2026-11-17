@@ -118,6 +118,7 @@ function DetailModal({
                 alt={step.alt}
                 width={1170}
                 height={2532}
+                sizes="(max-width: 640px) 230px, 300px"
                 className="h-[400px] sm:h-[520px] w-auto object-contain max-w-none
                            [filter:drop-shadow(0_0_50px_rgba(243,96,37,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
               />
@@ -193,6 +194,7 @@ function FeatureModal({
                 alt={alt}
                 width={1170}
                 height={2532}
+                sizes="(max-width: 640px) 230px, 300px"
                 className="h-[400px] sm:h-[520px] w-auto object-contain max-w-none
                            [filter:drop-shadow(0_0_50px_rgba(243,96,37,0.28))_drop-shadow(0_-10px_40px_rgba(0,0,0,0.7))]"
               />
@@ -279,6 +281,9 @@ export default function HowItWorksPage() {
                       alt={step.alt}
                       width={1170}
                       height={2532}
+                      sizes="(max-width: 640px) 230px, 300px"
+                      loading={i < 2 ? "eager" : "lazy"}
+                      fetchPriority={i < 2 ? "high" : "auto"}
                       className="
                         h-[440px] sm:h-[500px] w-auto object-contain max-w-none
                         [filter:drop-shadow(0_-6px_28px_rgba(243,96,37,0.14))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]
@@ -391,6 +396,7 @@ export default function HowItWorksPage() {
                       alt={card.alt}
                       width={1170}
                       height={2532}
+                      sizes="(max-width: 640px) 230px, 300px"
                       className="
                         h-[400px] sm:h-[460px] w-auto object-contain max-w-none
                         [filter:drop-shadow(0_-6px_28px_rgba(243,96,37,0.10))_drop-shadow(0_16px_40px_rgba(0,0,0,0.9))]

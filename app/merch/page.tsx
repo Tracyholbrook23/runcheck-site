@@ -202,6 +202,7 @@ function ProductGallery({ colorway, priority }: { colorway: Colorway; priority: 
               src={current.src}
               alt={current.alt}
               fill
+              sizes="(max-width: 1024px) 100vw, 560px"
               priority={priority}
               draggable={false}
               className={`object-cover pointer-events-none ${showModel ? "object-top" : ""}`}
@@ -232,7 +233,7 @@ function ProductGallery({ colorway, priority }: { colorway: Colorway; priority: 
               !showModel && frame === i ? "border-orange-500" : "border-zinc-800 opacity-60 hover:opacity-100"
             }`}
           >
-            <Image src={img.src} alt={img.alt} fill className="object-cover" />
+            <Image src={img.src} alt={img.alt} fill sizes="64px" className="object-cover" />
           </button>
         ))}
         {model && (
@@ -243,7 +244,7 @@ function ProductGallery({ colorway, priority }: { colorway: Colorway; priority: 
             }`}
             aria-label="Show worn on model"
           >
-            <Image src={model.src} alt={model.alt} fill className="object-cover object-top" />
+            <Image src={model.src} alt={model.alt} fill sizes="64px" className="object-cover object-top" />
           </button>
         )}
       </div>
