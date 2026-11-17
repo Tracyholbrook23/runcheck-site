@@ -55,6 +55,12 @@
 .rc-nav-links a { padding: .5rem .9rem; border-radius: 999px; color: rgba(242, 239, 231, .72); text-decoration: none; font-size: .88rem; font-weight: 500; letter-spacing: .03em; transition: color .2s, background-color .2s; }
 .rc-nav-links a:hover { color: var(--i); background: rgba(242, 239, 231, .08); }
 
+/* Phone menu on the homepage. Burger and panel styles are shared with the site nav. */
+.rc-nav .rc-home-burger { display: none; }
+@media (max-width: 900px) { .rc-nav .rc-nav-links { display: none; } .rc-nav .rc-home-burger { display: block; } }
+.rc-nav .rc-home-menu { position: absolute; top: calc(100% + .6rem); right: 0; margin: 0; display: flex; }
+.rc-home-menu-action { margin-top: .35rem; padding: .85rem 1rem !important; border-radius: 14px !important; background: var(--a); color: var(--g) !important; font-weight: 600 !important; text-align: center; }
+
 /* Stages and pins: tall runways with a sticky screen inside. */
 .rc-stage { position: relative; }
 .rc-stage-a { height: 620vh; }

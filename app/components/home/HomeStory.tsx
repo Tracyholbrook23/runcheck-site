@@ -90,6 +90,20 @@ export function HomeStory() {
   const floatBar = useRef<HTMLDivElement>(null);
 
   const [world, setWorld] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Close the phone menu when the page scrolls or Escape is pressed.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const close = () => setMenuOpen(false);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
+    window.addEventListener("scroll", close, { passive: true });
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("scroll", close);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
   const [phase, setPhase] = useState<"idle" | "out" | "in">("idle");
   const [prevWorld, setPrevWorld] = useState(0);
   const busy = useRef(false);
@@ -330,6 +344,28 @@ export function HomeStory() {
             </Link>
           ))}
         </nav>
+        <button
+          type="button"
+          className="rc-gnav-glass rc-gnav-burger rc-home-burger"
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-label="Open menu"
+          aria-expanded={menuOpen}
+          aria-controls="rc-home-menu"
+        >
+          <span className={menuOpen ? "is-open" : ""} />
+        </button>
+        {menuOpen && (
+          <nav id="rc-home-menu" className="rc-gnav-glass rc-gnav-menu rc-home-menu" aria-label="Menu">
+            {NAV_LINKS.map((l) => (
+              <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
+                {l.label}
+              </Link>
+            ))}
+            <a className="rc-home-menu-action" href={APP_STORE_URL} target="_blank" rel="noreferrer">
+              Download the App
+            </a>
+          </nav>
+        )}
       </header>
 
       <section ref={stageA} className="rc-stage rc-stage-a" aria-label="Know the run before you go">
