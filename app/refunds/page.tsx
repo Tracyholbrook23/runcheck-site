@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "How paying for a run on RunCheck works: card holds, when you're charged, leaving a run, refunds, and what hosts agree to.",
 };
 
-const LAST_UPDATED = "October 29, 2026";
+const LAST_UPDATED = "November 17, 2026";
 
 const SUMMARY =
   "You're only charged if the run locks. Free to leave until then. After it locks, your spot is paid, and you get a full refund if the host cancels.";
@@ -37,6 +37,16 @@ const sections = [
           "When a run is full, you can join the waitlist. We save your card, and nothing is charged.",
           "If a spot opens, you're put in automatically and your card is held (or charged, if the run already locked). On runs where the host approves players, the host picks who gets the spot.",
           "You can leave the waitlist anytime for free. The waitlist closes when the run starts.",
+        ],
+      },
+      {
+        title: "Paying at the door",
+        items: [
+          "Some hosts let you ask to pay at the door if you can't pay in the app. The host approves each request. Nothing is held or charged on your card, so there's nothing to refund.",
+          "If the host approves you, your spot is held until the run starts. Check in by 10 minutes after the start time, or your spot goes to someone else.",
+          "You can pay in the app anytime with Pay now. Once you do, it works like any other paid spot. You can also pay the host in person.",
+          "You can leave for free until 2 hours before the run starts. If you leave after that, or don't check in, you can't ask to pay at the door again for 30 days (90 days if it happens twice in 90 days). You can still join runs and pay in the app. If the host changes the date, time or place, you can leave without it counting against you.",
+          "Pay-at-the-door requests open 6 days before a run and close 3 hours before it starts. You need at least one completed run on RunCheck to ask.",
         ],
       },
     ],
@@ -130,6 +140,7 @@ const sections = [
       "If a player gives up their spot and another player takes it, you're paid for the new player instead.",
       "You're paid after the run, once the 24-hour report window closes. Your first 5 runs are held for 48 hours. If a player reports a problem, we may hold your payout for that run until it's sorted out.",
       "Your price is final. Don't ask players who paid in the app to pay again in person, and don't charge anyone twice for the same spot.",
+      "If you let players pay at the door, they hold a spot but don't count toward your minimum, and you're only paid through RunCheck for the ones who pay in the app. If a door player pays you in person, mark them Paid in person. Don't charge someone who already paid in the app at the door.",
       "You're responsible for your run: the court, following the venue's rules, and keeping the run safe.",
       "You're responsible for reporting your earnings for taxes.",
       "RunCheck keeps 8% of your price (60 cents minimum per player) from each paid player. Players also pay RunCheck a 3% service fee.",
