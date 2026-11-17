@@ -9,7 +9,8 @@ import path from "node:path";
 export type Block =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
-  | { type: "ul"; items: string[] };
+  | { type: "ul"; items: string[] }
+  | { type: "gallery"; images: { src: string; alt: string }[] };
 
 export type Update = {
   slug: string;
@@ -38,24 +39,31 @@ function parse(slug: string, raw: string): Update {
   const blocks: Block[] = [];
   let para: string[] = [];
   let list: string[] = [];
+  let gallery: { src: string; alt: string }[] = [];
   const flush = () => {
     if (para.length) blocks.push({ type: "p", text: para.join(" ") });
     if (list.length) blocks.push({ type: "ul", items: list });
+    if (gallery.length) blocks.push({ type: "gallery", images: gallery });
     para = [];
     list = [];
+    gallery = [];
   };
   for (const rawLine of body.split("\n")) {
     const line = rawLine.trim();
+    const img = line.match(/^!\[(.*?)\]\((.+?)\)$/);
     if (!line) {
-      flush();
+      if (!gallery.length) flush();
+    } else if (img) {
+      if (para.length || list.length) flush();
+      gallery.push({ alt: img[1], src: img[2] });
     } else if (line.startsWith("## ")) {
       flush();
       blocks.push({ type: "h2", text: line.slice(3) });
     } else if (line.startsWith("- ")) {
-      if (para.length) flush();
+      if (para.length || gallery.length) flush();
       list.push(line.slice(2));
     } else {
-      if (list.length) flush();
+      if (list.length || gallery.length) flush();
       para.push(line);
     }
   }

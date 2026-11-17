@@ -20,4 +20,6 @@ A lot of the best runs happen in gyms that cost money to rent. Now the host can 
 - If the host changes the date, time or place after you joined, you can leave and get everything back.
 - After the run locks, tap **Give up my spot**. If another player takes it, you get the run price back.
 
+Want to see it in action? [Open Run Elite](/updates/open-run-elite) at Round Rock Sports Center is already using it.
+
 Every detail is on our [refund policy](/refunds). Hosts, this means the court gets paid for before anybody steps on it.

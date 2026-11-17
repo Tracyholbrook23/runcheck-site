@@ -60,6 +60,14 @@ export default async function UpdatePost({ params }: { params: Promise<{ slug: s
               <h2 key={i}>
                 <Inline text={b.text} />
               </h2>
+            ) : b.type === "gallery" ? (
+              <div key={i} className={`rc-post-gallery is-${Math.min(b.images.length, 3)}`}>
+                {b.images.map((g) => (
+                  <figure key={g.src}>
+                    <Image src={g.src} alt={g.alt} fill sizes="(max-width: 800px) 50vw, 300px" />
+                  </figure>
+                ))}
+              </div>
             ) : b.type === "ul" ? (
               <ul key={i}>
                 {b.items.map((item, j) => (
