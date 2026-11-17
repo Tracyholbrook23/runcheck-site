@@ -18,6 +18,7 @@ const NAV_LINKS = [
   { label: "How it works", href: "/how-it-works" },
   { label: "About", href: "/about" },
   { label: "Partners", href: "/sponsors" },
+  { label: "Updates", href: "/updates" },
   { label: "Merch", href: "/merch" },
   { label: "Contact", href: "/contact" },
 ];
@@ -32,9 +33,9 @@ const SCREENS = [
 const CREW = ["MH", "TM", "CH", "JD", "TB", "DR", "MK", "NR", "CJ", "AS"];
 
 const WORLDS = [
-  { id: "casual", label: "Casual", word: "CASUAL", photo: "/photos/pickup-action.webp", gym: "Clay Madsen Recreation Center", when: "Tonight, 9:00 PM", going: 9, line: "Run it back, no pressure." },
-  { id: "balanced", label: "Balanced", word: "BALANCED", photo: "/photos/pickup-gym.webp", gym: "Hutto Family YMCA", when: "Tonight, 8:30 PM", going: 11, line: "Good runs, even teams." },
-  { id: "competitive", label: "Competitive", word: "COMPETITIVE", photo: "/photos/pickup-night.webp", gym: "Gregory Gymnasium", when: "Tonight, 6:00 PM", going: 14, line: "Bring your game. Call your fouls." },
+  { id: "casual", label: "Casual", word: "CASUAL", photo: "/photos/rr/rr-iso.webp", pos: "50% 50%", gym: "Clay Madsen Recreation Center", when: "Tonight, 9:00 PM", going: 9, line: "Run it back, no pressure." },
+  { id: "balanced", label: "Balanced", word: "BALANCED", photo: "/photos/rr/rr-shootaround.webp", pos: "50% 62%", gym: "Hutto Family YMCA", when: "Tonight, 8:30 PM", going: 11, line: "Good runs, even teams." },
+  { id: "competitive", label: "Competitive", word: "COMPETITIVE", photo: "/photos/rr/rr-jumper.webp", pos: "50% 40%", gym: "Gregory Gymnasium", when: "Tonight, 6:00 PM", going: 14, line: "Bring your game. Call your fouls." },
 ] as const;
 
 const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -434,7 +435,7 @@ export function HomeStory() {
               <div
                 key={x.id}
                 className={`rc-world-bg${i === world ? " is-active" : ""}${i === prevWorld && i !== world ? " is-leaving" : ""}`}
-                style={{ backgroundImage: `url(${x.photo})` }}
+                style={{ backgroundImage: `url(${x.photo})`, backgroundPosition: x.pos }}
               />
             ))}
             <div className="rc-world-shade" />
