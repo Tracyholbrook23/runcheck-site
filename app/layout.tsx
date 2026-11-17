@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -68,6 +69,7 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
         <GoogleAnalytics />
+        <Analytics />
       </body>
     </html>
   );
