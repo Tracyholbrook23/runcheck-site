@@ -42,7 +42,7 @@ const organizationSchema = {
   url: "https://www.theruncheck.app",
   image: "https://www.theruncheck.app/runcheck-logo1.png",
   description:
-    "RunCheck lets you see who's playing, where the run is, and when it tips off, before you leave the house. Launching in Austin.",
+    "RunCheck lets you see who's playing, where the run is, and when it tips off, before you leave the house. Starting in Austin and Round Rock, Texas.",
 };
 
 export default function RootLayout({

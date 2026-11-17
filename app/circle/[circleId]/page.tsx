@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Lock } from 'lucide-react';
 import OpenCircleButton from './OpenCircleButton';
 
@@ -22,5 +23,23 @@ export async function generateMetadata({ params }: { params: Promise<{ circleId:
 export default async function CircleInvitePage({ params }: { params: Promise<{ circleId: string }> }) {
   const { circleId } = await params; const preview = await getPreview(circleId);
   const name = preview?.name || 'a private Circle';
-  return <main style={{minHeight:'100vh',display:'grid',placeItems:'center',padding:20,background:'#080B10',color:'#fff',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif'}}><section style={{maxWidth:460,width:'100%',background:'#121821',border:'1px solid #273243',borderRadius:24,padding:28,textAlign:'center'}}>{preview?.photoUrl && <img src={preview.photoUrl} alt="Circle photo" style={{width:96,height:96,borderRadius:'50%',objectFit:'cover',margin:'0 auto 18px',display:'block',border:'2px solid #F36025'}}/>}<div style={{fontWeight:900,color:'#F36025',letterSpacing:1,fontSize:12,display:'flex',alignItems:'center',justifyContent:'center',gap:6}}><Lock size={13} strokeWidth={2.5} /> PRIVATE RUN CHECK CIRCLE</div><h1 style={{fontSize:29,margin:'14px 0'}}>{name}</h1>{preview?.description && <p style={{color:'#fff',fontWeight:700,lineHeight:1.5}}>{preview.description}</p>}<p style={{color:'#C6CFDD',lineHeight:1.55}}>You&apos;re being invited to join this ongoing basketball community-not just one run. Request access and the Circle owner decides who joins.</p><OpenCircleButton circleId={circleId}/></section></main>;
+  return (
+    <main className="rc-share">
+      <Link href="/" className="rc-share-logo" aria-label="RunCheck home">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/runcheck-logo.png" alt="RunCheck" />
+      </Link>
+      <section className="rc-share-card">
+        <div className="rc-share-body rc-share-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          {preview?.photoUrl && <img src={preview.photoUrl} alt="Circle photo" className="rc-share-avatar" />}
+          <span className="rc-share-chip"><Lock size={13} strokeWidth={2.5} aria-hidden="true" /> Private RunCheck Circle</span>
+          <h1>{name}</h1>
+          {preview?.description && <p className="rc-share-text" style={{ color: '#F2EFE7' }}>{preview.description}</p>}
+          <p className="rc-share-text">You&apos;re being invited to join this ongoing basketball community, not just one run. Request access and the Circle owner decides who joins.</p>
+          <OpenCircleButton circleId={circleId} />
+        </div>
+      </section>
+    </main>
+  );
 }

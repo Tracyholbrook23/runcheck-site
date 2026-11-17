@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useSyncExternalStore } from 'react';
 import { MapPin, Clock, Users, ShieldCheck } from 'lucide-react';
 
@@ -60,75 +61,74 @@ export default function RunRedirectClient({ runId, preview }: { runId: string; p
   const status = preview?.isUpcoming === false ? 'This run is no longer available.' : null;
   const paid = preview?.isPaid === true && preview.playerTotalCents != null;
   const spotsLeft = paid && preview?.capacity ? Math.max(0, preview.capacity - (preview.spotsTaken ?? 0)) : null;
-  const kicker = paid ? 'Paid run' : preview?.visibility === 'invite_only' ? 'Private run invitation' : 'Pickup basketball';
-  const line = { margin: '8px 0 0', color: '#D5DCE8', fontSize: 17, display: 'flex', alignItems: 'center', gap: 8 } as const;
+  const kicker = paid ? 'Paid run' : preview?.visibility === 'invite_only' ? 'Private run invite' : 'Pickup basketball';
 
   return (
-    <main style={{ background: '#080B10', minHeight: '100vh', color: '#fff', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif', padding: '32px 20px', display: 'grid', placeItems: 'center' }}>
-      <section style={{ width: '100%', maxWidth: 480, background: '#121821', border: '1px solid #273243', borderRadius: 24, overflow: 'hidden', boxShadow: '0 24px 80px rgba(0,0,0,.38)' }}>
+    <main className="rc-share">
+      <Link href="/" className="rc-share-logo" aria-label="RunCheck home">
+        <img src="/runcheck-logo.png" alt="RunCheck" />
+      </Link>
+      <section className="rc-share-card">
         {preview?.photoUrl ? (
-          <img src={preview.photoUrl} alt="" style={{ width: '100%', height: 190, objectFit: 'cover', display: 'block' }} />
+          <img src={preview.photoUrl} alt="" className="rc-share-media" />
         ) : (
-          <div style={{ height: 142, background: 'linear-gradient(135deg, #FA5B70, #5132A8)', display: 'grid', placeItems: 'center' }}>
-            <Image src="/runcheck-logo1.png" alt="RunCheck" width={88} height={88} style={{ borderRadius: 20 }} priority />
+          <div className="rc-share-fallback">
+            <Image src="/home/ball.webp" alt="" width={96} height={96} priority />
           </div>
         )}
-        <div style={{ padding: 24 }}>
-          <div style={{ color: '#FF7184', fontSize: 12, fontWeight: 800, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: 10 }}>
-            {kicker}
-          </div>
-          <h1 style={{ fontSize: 28, lineHeight: 1.12, margin: 0 }}>{title}</h1>
-          {preview?.gymName && <p style={{ ...line, marginTop: 14 }}><MapPin size={16} style={{ flexShrink: 0 }} /> {preview.gymName}{preview.areaLabel ? ` · ${preview.areaLabel}` : ''}</p>}
-          {when && <p style={line}><Clock size={16} style={{ flexShrink: 0 }} /> {when}</p>}
+        <div className="rc-share-body">
+          <span className="rc-share-chip">{kicker}</span>
+          <h1>{title}</h1>
+          {preview?.gymName && <p className="rc-share-line"><MapPin aria-hidden="true" /> {preview.gymName}{preview.areaLabel ? ` · ${preview.areaLabel}` : ''}</p>}
+          {when && <p className="rc-share-line"><Clock aria-hidden="true" /> {when}</p>}
 
           {paid && !status && (
-            <div style={{ marginTop: 18, padding: 16, borderRadius: 16, background: 'rgba(34,197,94,.08)', border: '1px solid rgba(34,197,94,.3)' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
-                <span style={{ fontSize: 26, fontWeight: 800 }}>{money(preview!.priceCents ?? preview!.playerTotalCents!)}</span>
+            <div className="rc-share-box">
+              <div className="rc-share-price">
+                <strong>{money(preview!.priceCents ?? preview!.playerTotalCents!)}</strong>
                 {spotsLeft != null && (
-                  <span style={{ color: '#D5DCE8', fontSize: 15, display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <Users size={15} /> {spotsLeft > 0 ? `${spotsLeft} spot${spotsLeft === 1 ? '' : 's'} left` : 'Full'}
-                  </span>
+                  <span><Users aria-hidden="true" /> {spotsLeft > 0 ? `${spotsLeft} spot${spotsLeft === 1 ? '' : 's'} left` : 'Full'}</span>
                 )}
               </div>
-              <p style={{ margin: '10px 0 0', color: '#AAB6C8', fontSize: 14, lineHeight: 1.5, display: 'flex', gap: 8 }}>
-                <ShieldCheck size={16} style={{ flexShrink: 0, marginTop: 2, color: '#22C55E' }} />
+              <p className="rc-share-note">
+                <ShieldCheck aria-hidden="true" />
                 {preview!.isLocked
                   ? 'This run is locked in and happening.'
                   : `You're only charged if ${preview!.minToLock ?? 10} players join. Otherwise your card is never charged.`}
               </p>
-              <p style={{ margin: '8px 0 0', color: '#8693A8', fontSize: 13 }}>The exact address and how to get in show up after you join.</p>
+              <p className="rc-share-small">The exact address and how to get in show up after you join.</p>
             </div>
           )}
 
-          {preview?.description && !preview?.rules && <p style={{ margin: '18px 0 0', color: '#AAB6C8', lineHeight: 1.5 }}>{preview.description}</p>}
+          {preview?.description && !preview?.rules && <p className="rc-share-text">{preview.description}</p>}
           {preview?.rules && (
-            <div style={{ marginTop: 18, padding: 16, borderRadius: 16, background: '#0D131B', border: '1px solid #273243' }}>
-              <div style={{ fontWeight: 800, fontSize: 13, letterSpacing: 0.6, color: '#8693A8', marginBottom: 8 }}>RUN RULES</div>
-              <ul style={{ margin: 0, paddingLeft: 20, color: '#D5DCE8', fontSize: 15, lineHeight: 1.6 }}>
+            <div className="rc-share-box">
+              <h2>Run rules</h2>
+              <ul>
                 {preview.rules.split('\n').map((l) => l.trim()).filter(Boolean).map((line, i) => <li key={i}>{line}</li>)}
               </ul>
             </div>
           )}
-          {status && <p style={{ margin: '18px 0 0', color: '#FFB4BE', fontWeight: 700 }}>{status}</p>}
+          {status && <p className="rc-share-status">{status}</p>}
 
           {!status && (
             <>
-              <button type="button" onClick={openApp} style={{ width: '100%', marginTop: 24, border: 0, borderRadius: 14, background: '#FA5B70', color: '#fff', padding: '16px 18px', fontSize: 16, fontWeight: 800, cursor: 'pointer' }}>
+              <button type="button" onClick={openApp} className="rc-share-action">
                 {opening ? 'Opening RunCheck…' : paid ? (spotsLeft === 0 ? 'Open in RunCheck' : 'Grab my spot in RunCheck') : 'Open in RunCheck'}
               </button>
-              <div style={{ marginTop: 20, padding: 16, borderRadius: 16, background: '#0D131B', border: '1px solid #273243' }}>
-                <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 10 }}>New to RunCheck? Two quick steps:</div>
-                <ol style={{ margin: 0, paddingLeft: 20, color: '#D5DCE8', fontSize: 15, lineHeight: 1.7 }}>
-                  <li><a href={APP_STORE_URL} style={{ color: '#FF7184', fontWeight: 800 }}>Get the free app</a> and sign up (takes a minute).</li>
+              <div className="rc-share-box">
+                <h2>New to RunCheck? Two quick steps</h2>
+                <ol>
+                  <li><a href={APP_STORE_URL}>Get the free app</a> and sign up (takes a minute).</li>
                   <li>Come back to this text and tap the link again. It opens this run in the app.</li>
                 </ol>
               </div>
             </>
           )}
-          {status && <a href={APP_STORE_URL} style={{ display: 'block', marginTop: 16, textAlign: 'center', color: '#AAB6C8', fontSize: 14 }}>Don&apos;t have RunCheck? Get the app</a>}
+          {status && <a href={APP_STORE_URL} className="rc-share-link">Don&apos;t have RunCheck? Get the app</a>}
         </div>
       </section>
+      {paid && <p className="rc-share-foot"><Link href="/refunds">How paid runs and refunds work</Link></p>}
     </main>
   );
 }

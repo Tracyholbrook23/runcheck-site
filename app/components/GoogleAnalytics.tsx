@@ -33,6 +33,31 @@ export default function GoogleAnalytics() {
     return () => window.removeEventListener("runcheck:cookie-settings", openSettings);
   }, []);
 
+  // Count every App Store click, on every page. Only sends when analytics was accepted
+  // (window.gtag only exists then). Links can name their spot with data-placement;
+  // otherwise the nearest section or the nav is used.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.('a[href*="apps.apple.com"]') as HTMLAnchorElement | null;
+      if (!link || !window.gtag) return;
+      const area =
+        link.dataset.placement ||
+        (link.closest("nav, header") ? "nav" : null) ||
+        link.closest("section[id], section[aria-label], section[class]")?.getAttribute("id") ||
+        link.closest("section[aria-label]")?.getAttribute("aria-label") ||
+        link.closest("section")?.className.split(" ")[0] ||
+        (link.closest("footer") ? "footer" : "page");
+      window.gtag("event", "app_store_click", {
+        placement: area,
+        page_path: window.location.pathname,
+        link_text: (link.textContent || "").trim().slice(0, 60),
+        transport_type: "beacon",
+      });
+    };
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, []);
+
   useEffect(() => {
     if (previousPathname.current === pathname) return;
     previousPathname.current = pathname;

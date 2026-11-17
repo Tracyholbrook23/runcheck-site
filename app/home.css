@@ -57,7 +57,7 @@
 
 /* Phone menu on the homepage. Burger and panel styles are shared with the site nav. */
 .rc-nav .rc-home-burger { display: none; }
-@media (max-width: 900px) { .rc-nav .rc-nav-links { display: none; } .rc-nav .rc-home-burger { display: block; } }
+@media (max-width: 1040px) { .rc-nav .rc-nav-links { display: none; } .rc-nav .rc-home-burger { display: block; } }
 .rc-nav .rc-home-menu { position: absolute; top: calc(100% + .6rem); right: 0; margin: 0; display: flex; }
 .rc-home-menu-action { margin-top: .35rem; padding: .85rem 1rem !important; border-radius: 14px !important; background: var(--a); color: var(--g) !important; font-weight: 600 !important; text-align: center; }
 
@@ -241,3 +241,20 @@
   .rc-live-ring { animation: none; }
   .rc-phone img, .rc-flank span, .rc-phone-notes p, .rc-crew span, .rc-world-bg, .rc-float { transition-duration: .01ms !important; }
 }
+
+/* Proof: real reviews and a real run */
+.rc-proof { display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 1rem; }
+.rc-review { margin: 0; padding: 1.4rem; border-radius: 22px; background: rgba(10, 10, 10, .05); border: 1px solid rgba(10, 10, 10, .1); display: flex; flex-direction: column; gap: .8rem; }
+.rc-review-stars { color: var(--a); letter-spacing: .15em; font-size: .95rem; }
+.rc-review blockquote { margin: 0; font-size: 1.08rem; line-height: 1.5; color: var(--g); }
+.rc-review figcaption { margin-top: auto; font-size: .82rem; letter-spacing: .06em; color: rgba(10, 10, 10, .6); }
+.rc-proof-run { position: relative; display: flex; align-items: flex-end; min-height: 220px; overflow: hidden; border-radius: 22px; color: var(--i); text-decoration: none; }
+.rc-proof-run img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+.rc-proof-run:hover img { transform: scale(1.04); }
+.rc-proof-run:after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 30%, rgba(10, 10, 10, .85)); }
+.rc-proof-run span { position: relative; z-index: 1; display: grid; gap: .25rem; padding: 1.3rem; font-size: .95rem; color: rgba(242, 239, 231, .85); }
+.rc-proof-run em { display: inline-flex; align-items: center; gap: .45rem; font-style: normal; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--i); }
+.rc-proof-run em:before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--a); }
+.rc-proof-run strong { font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1; text-transform: uppercase; color: var(--i); }
+@media (max-width: 1000px) { .rc-proof { grid-template-columns: 1fr 1fr; } .rc-proof-run { grid-column: 1 / -1; } }
+@media (max-width: 800px) { .rc-proof { grid-template-columns: 1fr; } }

@@ -17,6 +17,7 @@ const APP_STORE_URL = "https://apps.apple.com/us/app/runcheck-pickup-basketball/
 const NAV_LINKS = [
   { label: "How it works", href: "/how-it-works" },
   { label: "About", href: "/about" },
+  { label: "Host", href: "/host" },
   { label: "Partners", href: "/sponsors" },
   { label: "Updates", href: "/updates" },
   { label: "Merch", href: "/merch" },
@@ -28,6 +29,12 @@ const SCREENS = [
   { left: "LIVE", right: "NOW", img: "/home/phone-live-runs.webp", note: "Runs forming near you and who started them." },
   { left: "THE", right: "MAP", img: "/home/phone-map-screen.webp", note: "On fire, poppin, active or dead. One look at the whole city." },
   { left: "CHECK", right: "IN", img: "/home/phone-court-checkin.webp", note: "Walk in, tap check in, and the count goes up for everybody." },
+];
+
+// Real App Store reviews.
+const REVIEWS = [
+  { name: "lomax_swag_4life", quote: "Makes life easier not always having to ask around to find a solid run, take a look at the app before i leave the house and it removes all my worries." },
+  { name: "Nila.bear", quote: "I will never waste time looking for a run again. Whoever made this app is a genius." },
 ];
 
 const CREW = ["MH", "TM", "CH", "JD", "TB", "DR", "MK", "NR", "CJ", "AS"];
@@ -540,13 +547,36 @@ export function HomeStory() {
             <span>Where it starts</span>
           </p>
         </div>
+        <div className="rc-proof">
+          {REVIEWS.map((r) => (
+            <figure key={r.name} className="rc-review">
+              <span className="rc-review-stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote>&ldquo;{r.quote}&rdquo;</blockquote>
+              <figcaption>{r.name} · App Store review</figcaption>
+            </figure>
+          ))}
+          <Link href="/updates/open-run-elite" className="rc-proof-run">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/photos/rr/rr-jumper.webp" alt="" loading="lazy" />
+            <span>
+              <em>Running now</em>
+              <strong>Open Run Elite</strong>
+              Round Rock Sports Center, booked and paid in RunCheck
+            </span>
+          </Link>
+        </div>
         <div className="rc-free-foot">
           <p>No paywall to see the runs. Download it, check in, hoop.</p>
           <p>
-            Gyms and local brands keep the runs going.{" "}
-            <Link href="/sponsors" className="rc-text-link">
-              Partner with RunCheck
+            Rent a gym?{" "}
+            <Link href="/host" className="rc-text-link">
+              Host paid runs
             </Link>
+            . Local brand?{" "}
+            <Link href="/sponsors" className="rc-text-link">
+              Partner with us
+            </Link>
+            .
           </p>
         </div>
       </section>

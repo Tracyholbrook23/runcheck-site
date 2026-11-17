@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CookieSettingsButton } from "./CookieSettingsButton";
+import { AndroidSignup } from "./AndroidSignup";
 
 const PRIVACY_URL = "/privacy";
 const TERMS_URL = "/terms";
@@ -21,6 +22,7 @@ export function Footer() {
   return (
     <footer className="border-t border-zinc-800/60 px-6 py-14 bg-black">
       <div className="max-w-6xl mx-auto flex flex-col gap-8">
+        <AndroidSignup />
         {/* Top row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
           <div className="flex flex-col items-center sm:items-start gap-2">
@@ -32,6 +34,8 @@ export function Footer() {
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
             <Link href="/about" className="hover:text-white transition-colors">About</Link>
+            <Link href="/host" className="hover:text-white transition-colors">Host a run</Link>
+            <Link href="/pickup-basketball" className="hover:text-white transition-colors">Find a run</Link>
             <Link href="/updates" className="hover:text-white transition-colors">Updates</Link>
             <Link href="/merch" className="hover:text-white transition-colors">Merch</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>

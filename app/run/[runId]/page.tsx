@@ -1,57 +1,6 @@
 import type { Metadata } from 'next';
-import { cache } from 'react';
+import { SITE_URL, formatStartTime, getRunPreview } from '../../../lib/runPreview';
 import RunRedirectClient from './RunRedirectClient';
-
-const SITE_URL = 'https://theruncheck.app';
-const PREVIEW_URL = 'https://us-central1-runcheck-567a3.cloudfunctions.net/getRunSharePreview';
-
-type RunPreview = {
-  runId: string;
-  title: string;
-  gymName: string;
-  startTime: string | null;
-  description: string | null;
-  photoUrl: string | null;
-  visibility: 'invite_only' | 'public';
-  isUpcoming: boolean;
-  isPaid?: boolean;
-  playerTotalCents?: number | null;
-  priceCents?: number | null;
-  spotsTaken?: number | null;
-  capacity?: number | null;
-  minToLock?: number | null;
-  isLocked?: boolean;
-  isFull?: boolean;
-  areaLabel?: string | null;
-};
-
-const RUN_ID_RE = /^[A-Za-z0-9_-]{1,128}$/;
-
-const getRunPreview = cache(async (runId: string): Promise<RunPreview | null> => {
-  if (!RUN_ID_RE.test(runId)) return null;
-  try {
-    const response = await fetch(`${PREVIEW_URL}?runId=${encodeURIComponent(runId)}`, {
-      next: { revalidate: 60 },
-    });
-    return response.ok ? (await response.json() as RunPreview) : null;
-  } catch {
-    // The landing page still gives the recipient a working App Store/open-app
-    // path if the preview service has a brief network issue.
-    return null;
-  }
-});
-
-function formatStartTime(value: string | null) {
-  if (!value) return null;
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return null;
-  return new Intl.DateTimeFormat('en-US', {
-    weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
-    // Link previews are built on the server, so pick the app's home time zone
-    // instead of the server's UTC. The page itself re-formats in the viewer's zone.
-    timeZone: 'America/Chicago', timeZoneName: 'short',
-  }).format(date);
-}
 
 export async function generateMetadata({
   params,
@@ -75,7 +24,8 @@ export async function generateMetadata({
     ].filter(Boolean).join(' · ') + (preview.description ? ` - ${preview.description}` : '')
     : 'Someone shared a pickup basketball run with you on RunCheck. Open the app to see the details and request to join.';
   const url = `${SITE_URL}/run/${encodeURIComponent(runId)}`;
-  const image = preview?.photoUrl ?? `${SITE_URL}/runcheck-logo1.png`;
+  // A branded card with the gym, time and price, so every shared run looks like an invite.
+  const image = `${SITE_URL}/run/${encodeURIComponent(runId)}/og`;
 
   return {
     title,

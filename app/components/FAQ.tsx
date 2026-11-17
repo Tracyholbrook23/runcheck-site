@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const FAQS = [
   {
     q: "Is RunCheck free?",
-    a: "Yes - the core app is completely free. Finding runs, checking in, browsing courts, and planning runs are all free. Premium features like Private Runs and Paid Runs will require a subscription when they launch.",
+    a: "Yes. The app is free to download, and finding runs, checking in, browsing courts and planning runs are all free. Some runs are paid runs, where the host charges a set price to cover the gym. You only pay for those if you join one.",
   },
   {
     q: "How do GPS check-ins work?",
@@ -18,11 +18,11 @@ const FAQS = [
   },
   {
     q: "Can I find games near me even if I just moved to a new city?",
-    a: "RunCheck is launching in Austin, TX first, with more cities on the roadmap after launch. If you're in Austin, you'll see every tracked court near you, with real-time player counts for active runs. More cities are coming soon.",
+    a: "RunCheck is starting in Austin and Round Rock, Texas, with more cities on the way. If you're in the Austin area, you'll see every tracked court near you, with real-time player counts for active runs.",
   },
   {
     q: "Can I start my own run?",
-    a: "Yes. You can post an Open Run so other nearby players can see it and join you. Set the level (Casual, Balanced, Competitive), the time, and you're good. Premium users will also be able to create Private or Paid Runs after launch.",
+    a: "Yes. You can post an Open Run so other nearby players can see it and join you. Set the level (Casual, Balanced, Competitive), the time, and you're good. If you rent a gym, you can apply to host paid runs, where players pay their share in the app.",
   },
   {
     q: "What is a Reliability Score?",

@@ -16,6 +16,8 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const email: string = (body?.email ?? "").trim().toLowerCase();
+    // Where the signup came from, e.g. "android". Saved on the Klaviyo profile so you can filter by it.
+    const source: string | null = typeof body?.source === "string" && /^[a-z_]{1,24}$/.test(body.source) ? body.source : null;
 
     // ── Validate ──────────────────────────────────────────────────────────────
     if (!email || !EMAIL_RE.test(email)) {
@@ -52,7 +54,7 @@ export async function POST(req: NextRequest) {
               profile: {
                 data: {
                   type: "profile",
-                  attributes: { email },
+                  attributes: source ? { email, properties: { signup_source: source, ...(source === "android" ? { wants_android: true } : {}) } } : { email },
                 },
               },
             },
