@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.runcheck.app",
+      "package_name": "app.theruncheck",
       "sha256_cert_fingerprints": [
         "32:95:B3:55:4C:29:46:77:9C:F2:74:CB:52:81:FE:92:6D:E0:33:12:60:98:99:18:A4:DD:F5:D3:FA:7C:C5:CA"
       ]
