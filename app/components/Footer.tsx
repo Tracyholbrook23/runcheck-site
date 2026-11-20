@@ -48,6 +48,9 @@ export function Footer() {
             <Link href="/refunds" className="hover:text-white transition-colors">
               Refund Policy
             </Link>
+            <Link href="/delete-account" className="hover:text-white transition-colors">
+              Delete Account
+            </Link>
             <CookieSettingsButton />
           </div>
 

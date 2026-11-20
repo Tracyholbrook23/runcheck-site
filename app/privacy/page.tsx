@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description: "Learn how RunCheck collects, uses, and protects your personal information, including location data and email.",
 };
 
-const LAST_UPDATED = "September 7, 2026";
+const LAST_UPDATED = "November 20, 2026";
 
 const sections = [
   {
     id: "overview",
     title: "Overview",
-    content: `RunCheck ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and website (collectively, the "Service"). Please read this policy carefully. If you disagree with its terms, please discontinue use of the Service.`,
+    content: `RunCheck ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile apps for iPhone and Android and our website (collectively, the "Service"). Please read this policy carefully. If you disagree with its terms, please discontinue use of the Service.`,
   },
   {
     id: "information-we-collect",
@@ -22,26 +22,38 @@ const sections = [
       {
         title: "Information You Provide Directly",
         items: [
-          "Email address - when you join our waitlist or create an account.",
-          "Name and username - when you set up a profile.",
-          "Profile photo - if you choose to upload one.",
-          "Run details - court name, run level, and check-in information you submit.",
+          "Account details - email address, name, username, and password (or sign-in through a supported provider) when you create an account.",
+          "Profile information - profile photo, skill level, home court, and other details you choose to add.",
+          "Content you create - runs you post, run rules, posts, game clips and videos, photos, comments, likes, and gym reviews.",
+          "Messages - messages you send in run chats, group chats, channels, and direct messages.",
+          "Host applications - if you apply to host paid runs, your phone number, a selfie, your Instagram handle, and the other details on the application. Payout and identity details are collected by Stripe, not stored by RunCheck.",
+          "Support requests - anything you send us by email or through the in-app help tools.",
+        ],
+      },
+      {
+        title: "Payment Information",
+        items: [
+          "When you pay for a paid run, your card or wallet payment (Apple Pay or Google Pay) is processed by Stripe. RunCheck does not receive or store your full card number.",
+          "We keep records of your paid run bookings, such as the run, amount, service fee, refunds, and payment status.",
+          "Hosts receive payouts through Stripe. Stripe collects the bank and identity information it needs to send payouts and to meet its legal requirements.",
         ],
       },
       {
         title: "Location Information",
         items: [
-          "Precise GPS location - collected when you use the check-in feature to verify your physical presence at a court. We do not allow remote check-ins.",
-          "General location - used to show nearby courts and active runs in your area.",
-          "Location is only collected while the app is in use and with your explicit permission. You may revoke location access at any time through your device settings.",
+          "Precise location - used to verify that you are physically at a court when you check in, and to show nearby courts and runs. We do not allow remote check-ins.",
+          "Background location (Smart Auto Check-In) - if you allow location access \"Always\" (iPhone) or \"Allow all the time\" (Android), the app sets up geofences around the courts you choose or are likely to visit. This lets RunCheck check you in when you arrive, update the live player count other players see, and check you out when you leave, even when the app is closed.",
+          "You can turn Smart Auto Check-In off at any time in the app's Settings, or change location access in your phone's settings. Without background access, you can still check in by opening the app.",
         ],
       },
       {
         title: "Automatically Collected Information",
         items: [
-          "Device information - device type, operating system, and app version.",
-          "Usage data - features used, screens visited, and time spent in the app.",
-          "IP address - collected for security and analytics purposes.",
+          "Device information - device type, operating system, app version, and a device token used to send you push notifications.",
+          "Usage data - features used, screens visited, and actions taken in the app.",
+          "Crash and performance data - error reports and diagnostics when the app has a problem.",
+          "Install attribution - which link, ad, or campaign led you to install the app, which may include device identifiers.",
+          "IP address - collected for security, fraud prevention, and analytics.",
           "Check-in timestamps - when and how often you check in at courts.",
         ],
       },
@@ -52,13 +64,16 @@ const sections = [
     title: "How We Use Your Information",
     items: [
       "To operate and improve the RunCheck Service.",
-      "To verify GPS check-ins and display accurate player counts at courts.",
-      "To show you active runs and courts near your location.",
-      "To send you launch updates, product news, and notifications you've opted into.",
+      "To verify check-ins and display accurate live player counts at courts.",
+      "To show you active runs, usual run times, and courts near your location.",
+      "To process paid run bookings, refunds, and host payouts.",
+      "To send notifications you've turned on, such as runs at gyms you follow, run reminders, chat messages, and booking or refund updates.",
+      "To send account and transactional emails, and product news you've opted into.",
       "To build features like leaderboards, reliability scores, and run history.",
+      "To review host applications and keep paid runs safe.",
       "To respond to your support requests and feedback.",
       "To detect and prevent fraud, abuse, and security issues.",
-      "To comply with legal obligations.",
+      "To comply with legal, tax, and accounting obligations.",
     ],
   },
   {
@@ -69,15 +84,26 @@ const sections = [
       {
         title: "With Other Users",
         items: [
-          "Your username and check-in activity (court, run level, timestamp) are visible to other RunCheck users when you are actively checked in.",
-          "Your reliability score and run history may be visible on leaderboards if you opt in.",
+          "Your username, profile photo, and check-in activity (court and time) are visible to other RunCheck users when you are checked in, unless you choose to check in anonymously.",
+          "Runs you join, posts, clips, comments, and messages you send are visible to the people they are shared with.",
+          "Hosts of a paid run see the names of players who join, and can see who has paid and checked in.",
+          "Your reliability score and run history may be visible on your profile and leaderboards.",
         ],
       },
       {
         title: "With Service Providers",
         items: [
-          "Klaviyo - we use Klaviyo to manage our email waitlist and send launch communications. Your email address is shared with Klaviyo for this purpose.",
-          "Vercel - our website and API are hosted on Vercel's infrastructure.",
+          "Google Firebase - accounts, database, file storage, and push notification delivery.",
+          "Stripe - payment processing, refunds, and host payouts.",
+          "Expo - app updates and push notification delivery.",
+          "Google Maps Platform - maps and place search.",
+          "PostHog - in-app product analytics.",
+          "Sentry - crash and error reporting.",
+          "AppsFlyer - install attribution and invite links.",
+          "Resend - transactional emails such as booking confirmations.",
+          "Klaviyo - our email waitlist and launch communications.",
+          "GIPHY - GIF search in chats. Your search terms are sent to GIPHY.",
+          "Vercel - hosting for our website and API.",
           "Google Analytics - with your permission, our website uses Google Analytics to understand visits, pages viewed, approximate location, device and browser information, and interactions such as scrolling and outbound link clicks. Google may process IP addresses to provide the service. We disable Google Signals and advertising personalization in our website configuration.",
         ],
       },
@@ -93,28 +119,37 @@ const sections = [
   {
     id: "analytics-cookies",
     title: "Analytics & Cookies",
-    content: "We ask for your permission before loading Google Analytics. If you accept, Google Analytics stores identifiers in your browser and measures how you use our website. If you reject, the analytics tag does not load. You can revisit your choice through the Cookie Settings control in the website footer. Essential storage used for security or features you request does not require analytics consent.",
+    content: "On our website, we ask for your permission before loading Google Analytics. If you accept, Google Analytics stores identifiers in your browser and measures how you use our website. If you reject, the analytics tag does not load. You can revisit your choice through the Cookie Settings control in the website footer. Essential storage used for security or features you request does not require analytics consent.",
   },
   {
     id: "location-data",
     title: "Location Data & GPS",
-    content: `Because RunCheck is a location-based service, we want to be especially transparent about how we handle GPS data:`,
+    content: `Because RunCheck is a location-based service, we want to be especially transparent about how we handle location data:`,
     items: [
-      "GPS location is only accessed when you actively use the check-in feature.",
-      "We do not track your location in the background.",
-      "Location data is used solely to verify court check-ins. We do not store a continuous history of your movements.",
-      "Check-in location data is associated with a specific court and timestamp, not a continuous GPS trail.",
-      "You can disable location access at any time in your device's Settings > Privacy > Location Services.",
+      "Location is used to verify court check-ins, show nearby courts and runs, and, if you turn it on, run Smart Auto Check-In.",
+      "Smart Auto Check-In uses your location in the background only to notice when you arrive at or leave the courts you choose or are likely to visit. It does not record a continuous trail of where you go.",
+      "Check-in records are tied to a specific court and time, not a continuous GPS history.",
+      "We do not sell your location or use it for advertising.",
+      "You can turn off Smart Auto Check-In in the app, or limit location access in your phone's settings at any time.",
     ],
   },
   {
     id: "data-retention",
     title: "Data Retention",
     items: [
-      "Account data is retained while your account is active.",
-      "Check-in history is retained to power leaderboards and reliability scores.",
-      "Waitlist email data is retained until you unsubscribe or request deletion.",
-      "You may request deletion of your account and associated data at any time by contacting us at hello@theruncheck.app.",
+      "Account data is kept while your account is active.",
+      "Check-in history is kept to power leaderboards, reliability scores, and usual run times.",
+      "Paid run booking and payment records are kept as long as needed for refunds, disputes, tax, and accounting, even after you delete your account.",
+      "Waitlist email data is kept until you unsubscribe or request deletion.",
+    ],
+  },
+  {
+    id: "delete-account",
+    title: "Deleting Your Account",
+    items: [
+      "In the app: open Settings and tap Delete Account. This permanently deletes your account and your profile, check-ins, schedules, run memberships, clips, reviews, reports, chats, and messages.",
+      "Without the app: visit theruncheck.app/delete-account or email hello@theruncheck.app from the email on your account, and we will delete it for you.",
+      "Some records may be kept after deletion where required by law or to handle refunds and disputes, as described above. Deleted clips may remain in backup storage for a short time before they are purged.",
     ],
   },
   {
@@ -123,9 +158,10 @@ const sections = [
     items: [
       "Access - you may request a copy of the personal data we hold about you.",
       "Correction - you may update or correct your account information at any time.",
-      "Deletion - you may request that we delete your personal data.",
-      "Opt-out of emails - every email we send includes an unsubscribe link. You may also email hello@theruncheck.app to opt out.",
-      "Location - you may revoke location permissions at any time through your device settings. Note that some features (check-in) require location to function.",
+      "Deletion - you may delete your account in the app or request deletion as described above.",
+      "Notifications - you can turn push notifications on or off in the app or your phone's settings.",
+      "Opt-out of emails - marketing emails include an unsubscribe link. You may also email hello@theruncheck.app to opt out.",
+      "Location - you may limit or revoke location permissions at any time through your device settings. Some features, like check-in, require location to work.",
       "California residents may have additional rights under the CCPA. Please contact us to exercise them.",
     ],
   },
@@ -137,12 +173,12 @@ const sections = [
   {
     id: "security",
     title: "Data Security",
-    content: `We implement reasonable technical and organizational measures to protect your information against unauthorized access, loss, or misuse. However, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security, and you use the Service at your own risk.`,
+    content: `We implement reasonable technical and organizational measures to protect your information against unauthorized access, loss, or misuse. Data is encrypted in transit. However, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security, and you use the Service at your own risk.`,
   },
   {
     id: "changes",
     title: "Changes to This Policy",
-    content: `We may update this Privacy Policy from time to time. When we do, we will revise the "Last Updated" date at the top of this page. If we make material changes, we will notify you via email (if you're on our waitlist) or through a notice in the app. Your continued use of the Service after changes are posted constitutes your acceptance of the revised policy.`,
+    content: `We may update this Privacy Policy from time to time. When we do, we will revise the "Last updated" date at the top of this page. If we make material changes, we will notify you by email or through a notice in the app. Your continued use of the Service after changes are posted constitutes your acceptance of the revised policy.`,
   },
   {
     id: "contact",
