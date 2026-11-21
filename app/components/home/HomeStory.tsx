@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Footer } from "../Footer";
+import { PhotoStack } from "../FullBleed";
 import type { CourtScene, BallRect } from "./courtScene";
 
 /*
@@ -580,6 +581,58 @@ export function HomeStory() {
           </p>
         </div>
       </section>
+
+      <PhotoStack
+        label="The RunCheck community"
+        panels={[
+          {
+            src: "/photos/rr/rr-organize.webp",
+            alt: "Players getting a run organized at Round Rock Sports Center",
+            pos: "52% 45%",
+            eyebrow: "The community",
+            title: (
+              <>
+                Real runs. Real players. <span>Real time.</span>
+              </>
+            ),
+            body: "Hoopers all over Austin use RunCheck to find the run, pull up and get a game.",
+          },
+          {
+            src: "/photos/rr/rr-iso.webp",
+            alt: "One on one in front of the Round Rock Sports Center wall",
+            pos: "50% 55%",
+            eyebrow: "Round Rock Sports Center",
+            title: (
+              <>
+                Pull up. Check in. <span>Hoop.</span>
+              </>
+            ),
+            body: "Walk in, tap check in, and everybody can see the run is on.",
+          },
+          {
+            src: "/photos/rr/rr-smile-full.webp",
+            alt: "A player laughing between games",
+            pos: "50% 24%",
+            eyebrow: "Built in Austin",
+            title: (
+              <>
+                Built for <span>the culture.</span>
+              </>
+            ),
+            body: "Made by a hooper who got tired of driving to empty gyms.",
+          },
+          {
+            src: "/photos/rr/rr-layup-full.webp",
+            alt: "A layup at Round Rock Sports Center",
+            pos: "50% 32%",
+            eyebrow: "Running now",
+            title: "Open Run Elite",
+            body: "A real run at Round Rock Sports Center, booked and paid in RunCheck.",
+            href: "/updates/open-run-elite",
+            cta: "Read their story",
+          },
+        ]}
+      />
 
       <section ref={endRef} className="rc-end">
         <div className="rc-end-lockup" aria-hidden="true">

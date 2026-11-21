@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { formatDate, getUpdates } from "../../lib/updates";
+import { RevealPhoto } from "../components/FullBleed";
 
 export const metadata: Metadata = {
   title: "Updates - RunCheck",
@@ -25,43 +26,44 @@ export default function UpdatesPage() {
     <div className="rc-sub min-h-screen">
       <Nav activePath="/updates" />
 
-      <main className="rc-updates">
-        <header className="rc-updates-head">
-          <h1>Updates</h1>
-          <p>What&apos;s new with RunCheck. New features, new partners, new gear.</p>
-        </header>
+      <main>
+        <div className="rc-updates is-head">
+          <header className="rc-updates-head">
+            <h1>Updates</h1>
+            <p>What&apos;s new with RunCheck. New features, new partners, new gear.</p>
+          </header>
+        </div>
 
         {first ? (
           <>
-            <Link href={`/updates/${first.slug}`} className="rc-update-feature">
-              <div className="rc-update-img">
-                <Image src={first.image} style={{ objectPosition: first.focus }} alt="" fill sizes="(max-width: 900px) 100vw, 60vw" priority />
-              </div>
-              <div className="rc-update-text">
-                <time dateTime={first.date}>{formatDate(first.date)}</time>
-                <h2>{first.title}</h2>
-                <p>{first.summary}</p>
-                <span className="rc-update-more">Read it</span>
-              </div>
-            </Link>
+            <RevealPhoto src={first.image} alt="" pos={first.focus} href={`/updates/${first.slug}`} label={first.title}>
+              <time dateTime={first.date} className="rc-fb-eyebrow">{formatDate(first.date)}</time>
+              <h2 className="rc-fb-title is-md">{first.title}</h2>
+              <p>{first.summary}</p>
+              <span className="rc-fb-cta">Read it</span>
+            </RevealPhoto>
 
             {rest.length > 0 && (
-              <div className="rc-update-grid">
-                {rest.map((u) => (
-                  <Link key={u.slug} href={`/updates/${u.slug}`} className="rc-update-card">
-                    <div className="rc-update-img">
-                      <Image src={u.image} style={{ objectPosition: u.focus }} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" />
-                    </div>
-                    <time dateTime={u.date}>{formatDate(u.date)}</time>
-                    <h2>{u.title}</h2>
-                    <p>{u.summary}</p>
-                  </Link>
-                ))}
+              <div className="rc-updates is-grid">
+                <div className="rc-update-grid">
+                  {rest.map((u) => (
+                    <Link key={u.slug} href={`/updates/${u.slug}`} className="rc-update-card">
+                      <div className="rc-update-img">
+                        <Image src={u.image} style={{ objectPosition: u.focus }} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+                      </div>
+                      <time dateTime={u.date}>{formatDate(u.date)}</time>
+                      <h2>{u.title}</h2>
+                      <p>{u.summary}</p>
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </>
         ) : (
-          <p className="rc-updates-empty">Nothing here yet. Check back soon.</p>
+          <div className="rc-updates is-grid">
+            <p className="rc-updates-empty">Nothing here yet. Check back soon.</p>
+          </div>
         )}
       </main>
 

@@ -442,3 +442,71 @@
 .rc-android button:disabled{opacity:.6}
 .rc-android-error{flex-basis:100%;margin:0;font-size:.9rem;color:#FF8A5A}
 .rc-android-done{margin:0;padding:1.2rem 1.4rem;border-radius:22px;background:rgba(242,239,231,.05);border:1px solid rgba(242,239,231,.12);color:#F2EFE7;font-family:"Oswald",Arial,sans-serif}
+
+/* Full bleed photos: hero, scroll reveal and photo stack */
+.rc-fb-hero{position:relative;height:100svh;min-height:640px;overflow:hidden;background:#0A0A0A;isolation:isolate}
+.rc-fb-hero.is-short{height:88svh;min-height:560px}
+.rc-fb-media{position:absolute;inset:0;transform:translate3d(0,calc(var(--p,0) * 16%),0) scale(calc(1.04 + var(--p,0) * .1));will-change:transform}
+.rc-fb-media img,.rc-reveal-media img,.rc-stack-media img{object-fit:cover}
+.rc-fb-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(10,10,10,.84) 0%,rgba(10,10,10,.5) 40%,rgba(10,10,10,.05) 74%),linear-gradient(180deg,rgba(10,10,10,.6) 0%,rgba(10,10,10,0) 22%,rgba(10,10,10,0) 55%,#0A0A0A 100%)}
+.rc-fb-shade.is-bottom{background:linear-gradient(180deg,rgba(10,10,10,.45) 0%,rgba(10,10,10,0) 24%,rgba(10,10,10,.12) 50%,rgba(10,10,10,.94) 100%)}
+.rc-fb-hero:after{content:"";position:absolute;inset:0;z-index:1;background:#0A0A0A;opacity:calc(var(--p,0) * .7);pointer-events:none}
+.rc-fb-content{position:relative;z-index:2;height:100%;max-width:1240px;margin:0 auto;padding:8rem clamp(1.2rem,5vw,4rem) clamp(3rem,8vh,5.5rem);display:flex;flex-direction:column;justify-content:flex-end;transform:translate3d(0,calc(var(--p,0) * -70px),0);opacity:calc(1 - var(--p,0) * 1.5)}
+.rc-sub .rc-fb-content h1{margin:0;max-width:14ch;text-align:left;font-size:clamp(3.4rem,8vw,8rem);text-shadow:0 4px 40px rgba(10,10,10,.35)}
+.rc-fb-content>p,.rc-fb-content .rc-post-summary{max-width:540px;margin:1.4rem 0 0;font-size:clamp(1.08rem,1.5vw,1.25rem);line-height:1.55;color:rgba(242,239,231,.88)}
+.rc-fb-content time{display:block;margin-bottom:.9rem;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,231,.75)}
+.rc-fb-content .rc-post-back{margin-bottom:1.6rem}
+
+.rc-reveal{position:relative;height:170svh;background:#0A0A0A}
+.rc-reveal-pin{position:sticky;top:0;height:100svh;overflow:hidden}
+.rc-reveal-frame{position:absolute;inset:0;clip-path:inset(calc((1 - var(--e,0)) * 12%) calc((1 - var(--e,0)) * 9%) round calc((1 - var(--e,0)) * 36px));will-change:clip-path}
+.rc-reveal-media{position:absolute;inset:0;transform:scale(calc(1.3 - var(--e,0) * .3));will-change:transform}
+.rc-reveal-content{position:absolute;z-index:2;left:0;right:0;bottom:0;max-width:1240px;margin:0 auto;padding:0 clamp(1.2rem,5vw,4rem) clamp(3rem,9vh,6rem);opacity:var(--t,0);transform:translate3d(0,calc((1 - var(--t,0)) * 40px),0)}
+.rc-reveal-content p:not(.rc-fb-eyebrow){max-width:560px;font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.6;color:rgba(242,239,231,.86)}
+.rc-reveal-link{position:absolute;inset:0;z-index:3}
+.rc-reveal-pin:hover .rc-fb-cta{background:#ff6f3b}
+
+.rc-stack{position:relative;z-index:5;height:calc((var(--n,3) + .5) * 100svh);background:#0A0A0A}
+.rc-stack-pin{position:sticky;top:0;height:100svh;overflow:hidden}
+.rc-stack-panel{position:absolute;inset:0;overflow:hidden;clip-path:inset(calc((1 - var(--k,0)) * 100%) calc((1 - var(--k,0)) * 10%) 0 round calc((1 - var(--k,0)) * 40px) calc((1 - var(--k,0)) * 40px) 0 0);will-change:clip-path}
+.rc-stack-media{position:absolute;inset:0;transform:scale(calc(1.25 - var(--k,0) * .25 + var(--out,0) * .08));will-change:transform}
+.rc-stack-dim{position:absolute;inset:0;background:#0A0A0A;opacity:calc(var(--out,0) * .65);pointer-events:none}
+.rc-stack-copy{position:absolute;z-index:2;left:0;right:0;bottom:0;max-width:1240px;margin:0 auto;padding:0 clamp(1.2rem,5vw,4rem) clamp(3rem,10vh,6.5rem);color:#F2EFE7;opacity:var(--t,0);transform:translate3d(0,calc((1 - var(--t,0)) * 50px),0)}
+
+.rc-fb-eyebrow{display:inline-flex;align-items:center;gap:.55rem;margin:0 0 1rem;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#F2EFE7}
+.rc-fb-eyebrow:before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:#FF5A1F}
+.rc-fb-title,.rc-sub .rc-fb-title,.rc-home .rc-fb-title{margin:0;max-width:13ch;font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;font-size:clamp(3.2rem,8.5vw,9rem);line-height:.88;letter-spacing:0;text-transform:uppercase;color:#F2EFE7;text-shadow:0 4px 40px rgba(10,10,10,.35)}
+.rc-fb-title.is-md,.rc-sub .rc-fb-title.is-md{max-width:16ch;font-size:clamp(2.8rem,6.4vw,6.6rem)}
+.rc-fb-title span{color:#FF5A1F}
+.rc-fb-body{max-width:540px;margin:1.3rem 0 0;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.55;color:rgba(242,239,231,.88)}
+.rc-fb-cta{display:inline-flex;margin-top:1.6rem;padding:.9rem 1.35rem;border-radius:999px;background:#FF5A1F;color:#0A0A0A;font-family:"Oswald","Arial Narrow",Arial,sans-serif;font-weight:600;font-size:1rem;letter-spacing:.02em;text-decoration:none;transition:background-color .25s,transform .25s}
+.rc-fb-cta:hover{background:#ff6f3b;transform:translateY(-2px)}
+
+.rc-host.is-after{padding-top:clamp(4.5rem,9vw,7.5rem);padding-bottom:0}
+.rc-host.is-last{padding-bottom:5rem}
+.rc-updates.is-head{padding-bottom:3rem}
+.rc-updates.is-head .rc-updates-head{margin-bottom:0}
+.rc-updates.is-grid{padding-top:clamp(4rem,8vw,6.5rem)}
+.rc-post.is-after{padding-top:3.5rem}
+
+@media(max-width:800px){
+  .rc-fb-shade{background:linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.1) 28%,rgba(10,10,10,.5) 58%,#0A0A0A 100%)}
+  .rc-fb-content{padding-bottom:2.6rem}
+  .rc-reveal{height:150svh}
+  .rc-stack-copy{padding-bottom:6.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .rc-fb-media,.rc-reveal-media,.rc-stack-media{transform:none!important}
+  .rc-fb-content{transform:none!important;opacity:1!important}
+  .rc-fb-hero:after{opacity:0!important}
+  .rc-reveal{height:auto}
+  .rc-reveal-pin{position:relative}
+  .rc-reveal-frame,.rc-stack-panel{clip-path:none!important}
+  .rc-reveal-content,.rc-stack-copy{opacity:1!important;transform:none!important}
+  .rc-stack{height:auto}
+  .rc-stack-pin{position:static;height:auto;overflow:visible}
+  .rc-stack-panel{position:relative;height:100svh}
+  .rc-stack-dim{display:none}
+}
+.rc-home .rc-fb-body{margin-top:1.3rem}
+.rc-home .rc-fb-eyebrow{margin-bottom:1rem}

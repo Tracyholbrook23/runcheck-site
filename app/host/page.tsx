@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { StoreLink } from "../components/StoreLink";
+import { FullBleedHero, RevealPhoto } from "../components/FullBleed";
 
 export const metadata: Metadata = {
   title: "Host a Run - RunCheck",
@@ -40,21 +40,17 @@ export default function HostPage() {
     <div className="rc-sub min-h-screen">
       <Nav activePath="/host" />
 
-      <main className="rc-host">
-        <section className="rc-host-hero">
-          <div className="rc-host-hero-copy">
-            <h1>Get paid to host your run.</h1>
-            <p>Got access to a gym? Players book and pay in RunCheck, the run only happens if enough people join, and you get paid to your bank after the run.</p>
-            <div className="rc-host-actions">
-              <StoreLink placement="host_hero" className="rc-host-action">Get RunCheck to apply</StoreLink>
-              <a href="#fees" className="rc-host-ghost">See the fees</a>
-            </div>
-          </div>
-          <div className="rc-host-hero-img">
-            <Image src="/photos/rr/rr-organize.webp" alt="A host getting the run organized at Round Rock Sports Center" fill sizes="(max-width: 900px) 100vw, 50vw" preload />
-          </div>
-        </section>
+      <main>
+      <FullBleedHero src="/photos/rr/rr-organize.webp" alt="A host getting the run organized at Round Rock Sports Center" pos="52% 45%">
+        <h1>Get paid to host your run.</h1>
+        <p>Got access to a gym? Players book and pay in RunCheck, the run only happens if enough people join, and you get paid to your bank after the run.</p>
+        <div className="rc-host-actions">
+          <StoreLink placement="host_hero" className="rc-host-action">Get RunCheck to apply</StoreLink>
+          <a href="#fees" className="rc-host-ghost">See the fees</a>
+        </div>
+      </FullBleedHero>
 
+      <div className="rc-host is-after">
         <section className="rc-host-section">
           <h2>Why hosts use it</h2>
           <div className="rc-host-perks">
@@ -66,7 +62,14 @@ export default function HostPage() {
             ))}
           </div>
         </section>
+      </div>
 
+      <RevealPhoto src="/photos/rr/rr-dunk.webp" alt="A dunk at Round Rock Sports Center" pos="50% 42%">
+        <p className="rc-fb-eyebrow">Paid runs</p>
+        <h2 className="rc-fb-title is-md">The court gets paid for before anybody steps on it.</h2>
+      </RevealPhoto>
+
+      <div className="rc-host is-after">
         <section className="rc-host-section">
           <h2>How it works</h2>
           <ol className="rc-host-steps">
@@ -98,22 +101,20 @@ export default function HostPage() {
             </dl>
           </div>
         </section>
+      </div>
 
-        <section className="rc-host-section rc-host-story">
-          <div className="rc-host-story-img">
-            <Image src="/photos/rr/rr-wall-jumper.webp" alt="A jump shot in front of the Round Rock Sports Center wall" fill sizes="(max-width: 900px) 100vw, 45vw" style={{ objectPosition: "50% 45%" }} />
-          </div>
-          <div>
-            <h2>Already running in Round Rock</h2>
-            <p>Open Run Elite rents the court at Round Rock Sports Center and splits the cost with everybody who plays. Now players book and pay in RunCheck, and nobody has to chase anybody for money.</p>
-            <p>
-              <Link href="/updates/open-run-elite" className="rc-host-link">Read their story</Link>
-              <span aria-hidden="true">  ·  </span>
-              <a href="https://www.instagram.com/open.run.elite/" target="_blank" rel="noreferrer" className="rc-host-link">@open.run.elite</a>
-            </p>
-          </div>
-        </section>
+      <RevealPhoto src="/photos/rr/rr-wall-jumper.webp" alt="A jump shot in front of the Round Rock Sports Center wall" pos="50% 40%">
+        <p className="rc-fb-eyebrow">Open Run Elite</p>
+        <h2 className="rc-fb-title is-md">Already running in Round Rock</h2>
+        <p>Open Run Elite rents the court at Round Rock Sports Center and splits the cost with everybody who plays. Now players book and pay in RunCheck, and nobody has to chase anybody for money.</p>
+        <p>
+          <Link href="/updates/open-run-elite" className="rc-host-link">Read their story</Link>
+          <span aria-hidden="true">  ·  </span>
+          <a href="https://www.instagram.com/open.run.elite/" target="_blank" rel="noreferrer" className="rc-host-link">@open.run.elite</a>
+        </p>
+      </RevealPhoto>
 
+      <div className="rc-host is-after is-last">
         <section className="rc-host-section">
           <h2>The rules we hold hosts to</h2>
           <ul className="rc-host-rules">
@@ -132,6 +133,7 @@ export default function HostPage() {
           <p>Apply from your Profile in the app. Don&apos;t see the option yet, or have questions first? <Link href="/contact">Reach out</Link> and we&apos;ll get you set up.</p>
           <StoreLink placement="host_bottom" className="rc-host-action">Get RunCheck to apply</StoreLink>
         </section>
+      </div>
       </main>
 
       <Footer />

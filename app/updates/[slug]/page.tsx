@@ -7,6 +7,7 @@ import { Nav } from "../../components/Nav";
 import { Footer } from "../../components/Footer";
 import { formatDate, getUpdate, getUpdates } from "../../../lib/updates";
 import { Inline } from "../Inline";
+import { FullBleedHero } from "../../components/FullBleed";
 
 const SITE_URL = "https://www.theruncheck.app";
 const APP_STORE_URL = "https://apps.apple.com/us/app/runcheck-pickup-basketball/id6760801659";
@@ -42,18 +43,16 @@ export default async function UpdatePost({ params }: { params: Promise<{ slug: s
     <div className="rc-sub min-h-screen">
       <Nav activePath="/updates" />
 
-      <main className="rc-post">
+      <FullBleedHero src={u.image} alt="" pos={u.focus} short>
         <Link href="/updates" className="rc-post-back">
           <ArrowLeft aria-hidden="true" /> All updates
         </Link>
         <time dateTime={u.date}>{formatDate(u.date)}</time>
         <h1>{u.title}</h1>
         <p className="rc-post-summary">{u.summary}</p>
+      </FullBleedHero>
 
-        <div className="rc-post-img">
-          <Image src={u.image} style={{ objectPosition: u.focus }} alt="" fill sizes="(max-width: 900px) 100vw, 860px" priority />
-        </div>
-
+      <main className="rc-post is-after">
         <article className="rc-post-body">
           {u.blocks.map((b, i) =>
             b.type === "h2" ? (
