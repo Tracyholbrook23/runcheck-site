@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: "https://www.theruncheck.app/host",
     siteName: "RunCheck",
     type: "website",
-    images: [{ url: "https://www.theruncheck.app/photos/rr/rr-iso.webp", alt: "A pickup run at Round Rock Sports Center" }],
+    images: [{ url: "https://www.theruncheck.app/photos/rr/rr-organize.webp", alt: "A host getting the run organized at Round Rock Sports Center" }],
   },
 };
 
@@ -51,7 +51,7 @@ export default function HostPage() {
             </div>
           </div>
           <div className="rc-host-hero-img">
-            <Image src="/photos/rr/rr-iso.webp" alt="A pickup run at Round Rock Sports Center" fill sizes="(max-width: 900px) 100vw, 50vw" preload />
+            <Image src="/photos/rr/rr-organize.webp" alt="A host getting the run organized at Round Rock Sports Center" fill sizes="(max-width: 900px) 100vw, 50vw" preload />
           </div>
         </section>
 
@@ -101,7 +101,7 @@ export default function HostPage() {
 
         <section className="rc-host-section rc-host-story">
           <div className="rc-host-story-img">
-            <Image src="/photos/rr/rr-jumper.webp" alt="Open Run Elite at Round Rock Sports Center" fill sizes="(max-width: 900px) 100vw, 45vw" style={{ objectPosition: "50% 40%" }} />
+            <Image src="/photos/rr/rr-wall-jumper.webp" alt="A jump shot in front of the Round Rock Sports Center wall" fill sizes="(max-width: 900px) 100vw, 45vw" style={{ objectPosition: "50% 45%" }} />
           </div>
           <div>
             <h2>Already running in Round Rock</h2>

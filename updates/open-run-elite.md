@@ -26,6 +26,10 @@ We just launched paid private runs in RunCheck, and Open Run Elite is one of the
 ![Working one on one in front of the Round Rock Sports Center wall](/photos/rr/rr-iso.webp)
 ![A dunk under the RR Sports Center banner](/photos/rr/rr-dunk.webp)
 
+![Getting the run organized before tip off](/photos/rr/rr-organize.webp)
+![All smiles between games](/photos/rr/rr-smile.webp)
+![A layup at Round Rock Sports Center](/photos/rr/rr-layup.webp)
+
 ## Pull up
 
 Want to play? Hit up [@open.run.elite](https://www.instagram.com/open.run.elite/) on Instagram for the next run.
